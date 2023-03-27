@@ -280,41 +280,6 @@ $f=l_1 \, l_2 \, l_3$, which is a product of three linearly independent linear f
 On the other hand, if $f$ is a product of three distinct but linearly dependent linear forms, its Jacobian subscheme has length~$4$ and is supported at a point.
 \end{rmk}
 
-\subsection{Triangles {\bf togliere ?}}
-
-In this section we discuss about \emph{triangles}, namely reducible ternary cubics that split as the product of three linear forms. A triangle is called \emph{proper} is these three forms are linearly independent. 
-
-Using the action of~$\SO_3(\C)$, we can suppose that one of the linear forms of a proper triangle is one of the coordinate axes. Therefore proper triangles are parametrized by an open subset of $\p^2 \times \p^2$.
-
-\begin{pro}
-The eigenscheme of a general triangle has constant Hilbert function, equal to~$7$.
-\end{pro}
-\begin{proof}
-The proof can be performed via a symbolic computation. Indeed, one can compute a Gr\"{o}bner basis of the ideal of the eigenscheme of a triangle with generic coefficients, for example via the following Sage code:
-%
-\begin{lstlisting}
-# defining a ring of rational functions for the generic coefficients
-# and the coordinate ring of IP^2
-C.<a1,a2,b1,b2,c1,c2> = PolynomialRing(QQ)
-CC = C.fraction_field()
-P.<x0,x1,x2> = PolynomialRing(CC, order='degrevlex')
-
-# defining a triangle with generic coefficients
-l1 = a1*x0 + b1*x1 + c1*x2
-l2 = a2*x0 + b2*x1 + c2*x2
-f = x0*l1*l2
-
-# computing the eigenscheme of the triangle
-m = matrix(P, [[x0,x1,x2],[f.derivative(x0), f.derivative(x1), f.derivative(x2)]])
-eigen = P.ideal(m.minors(2))
-
-# computing the reduced Groebner basis of the eigenscheme
-gb = eigen.groebner_basis()
-\end{lstlisting}
-%
-The leading terms of the Gr\"{o}bner basis turn out to be $\{x_1^4, x_0^3, x_0^2 x_1, x_0 x_1^2\}$. By computing the monomials under the staircase, we get the Hilbert function of the ideal.
-\end{proof}
-
 \section{Further alignments}
 
 \begin{tabular}{|ll|}\hline
