@@ -32,7 +32,7 @@
 \setlength{\evensidemargin}{0 in}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{lem}[theorem]{Lemma}
 \newtheorem{prop}[theorem]{Proposition}
 \newtheorem{cor}[theorem]{Corollary}
@@ -70,7 +70,7 @@
 
 
 \newcommand{\scl}[2]{\langle #1, #2 \rangle}
-\title{Ternary tensors with an aligned triple of eigenpoints}
+\title{Ternary tensors with a triple of aligned eigenpoints}
 \author{}
 \date{}
 \begin{document}
@@ -103,22 +103,24 @@ See \cite[Lemma~9.1]{OS1} for the reduced case. The proof works also in the non-
 \end{proof}
 
 
-\begin{rmk}
+\begin{rmk}\label{rmk: general no triple}
 As a consequence we have that a zero-dimensional~$E(f)$ never contains $4$ or more aligned points. However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, like for instance the Fermat cubic polynomial.
-\end{rmk}
+
 However, it turns out, that the general $f$ has an eigenscheme with no aligned triples. This is a consequence of the geometric properties of the classical Geiser map associated with seven points in the plane, and has been proved in \cite[Proposition 4.5]{BGV}.
+\end{rmk}
 
 \begin{definition}
- We set $\mathcal{L} \subseteq \p(K[x,y,z]_3) \cong \p^9$ to be the closure of the locus of classes of cubic forms $f$ having a reduced zero-dimensional eigenscheme $E(f)$ with an aligned eigentriple.
+ We set $\mathcal{L} \subset \p(K[x,y,z]_3) \cong \p^9$ to be the closure of the locus of classes of cubic forms $f$ having a reduced zero-dimensional eigenscheme $E(f)$ with an aligned eigentriple.
+ By Remark \ref{rmk: general no triple}, we have that $\sL$ is a proper subvariety.
 \end{definition}
 
 
 \begin{theorem}\label{thm: dimension of L}
-The variety~$\mathcal{L}$ is an irreducible hypersurface.
+The variety~$\mathcal{L}$ is a hypersurface.
 \end{theorem}
 
 
-The proof of Theorem \ref{thm: dimension of L} will rely  on the following discussion of the dimension of 
+The proof of Theorem \ref{thm: dimension of L} will rely on the following discussion on the dimension of 
 the variety of cubic forms having an assigned triple of aligned points as eigenpoints.
 %We consider the plane $\mathbb{P}^2_K$, where $K$ is a characteristic zero
 %field.
@@ -233,12 +235,54 @@ $a_0, \dots, a_9$ gives a linear variety of $\mathbb{P}^9_K$ of dimension
 $3$.
 \end{proof}
 
-\begin{proof} of Theorem \ref{thm: dimension of L}
-By the above construction, for a a general fixed triple of aligned points, the set of cubic forms having such a triple as eigenpoints is a linear system of dimension $3$. Since the variety of aligned triples is $5$-dimensional, this proves that $\mathcal{L}$ is a hypersurface.
-
-For the irreducibility, we maybe need the argument on the Geiser map. Is there a simpler one?
+\begin{proof} {\bf of Theorem \ref{thm: dimension of L}}
+By the above construction, for a a general fixed triple of aligned points, the set of cubic forms having such a triple as eigenpoints is a linear system of dimension $3$. Since the variety of aligned triples is $5$-dimensional, this proves that $\dim \mathcal{L} \ge 8$. As $\sL \subsetneq\p^9$, the claim
+follows.
 \end{proof}
 
+\noindent
+\textbf{Nota di colore}
+\begin{quote}
+The computation of the solution of the linear system whose associated
+matrix is $M$ in the general case gives the following
+result:
+\[
+\left\{
+\begin{array}{rcl}
+  a_0 & = & f_0(A_1, B_1, C_1, A_2, B_2, C_2, u_1, u_2, l_0, l_1, l_2, l_3) \\
+  a_1 & = & f_1(A_1, B_1, C_1, A_2, B_2, C_2, u_1, u_2, l_0, l_1, l_2, l_3) \\
+  \dots & & \dots \\
+  a_5 & = & f_5(A_1, B_1, C_1, A_2, B_2, C_2, u_1, u_2, l_0, l_1, l_2, l_3) \\
+  a_6 & = & D l_0\\
+  a_7 & = & D l_1\\
+  a_8 & = & D l_2\\
+  a_9 &=& D l_3
+\end{array}
+\right.
+\]
+where the degrees are the following:
+
+\begin{tabular}{|l|rrrrrrrrrrrr|} \hline
+  & $A_{1}$ & $B_{1}$ & $C_{1}$ & $A_{2}$ & $B_{2}$ & $C_{2}$ &
+  $u_{1}$ & $u_{2}$ & $l_0$ & $l_1$ & $l_2$ & $l_3$ \\ \hline
+$f_0$& 6 & 6 & 6 & 6 & 6 & 6 & 1 & 1 & 1 & 1 & 1 & 1 \\
+$f_1$& 5 & 6 & 6 & 5 & 6 & 6 & 1 & 1 & 1 & 1 & 1 & 1 \\
+$f_2$& 6 & 5 & 6 & 6 & 5 & 6 & 1 & 1 & 1 & 1 & 1 & 1 \\
+$f_3$& 6 & 6 & 6 & 6 & 6 & 6 & 1 & 1 & 1 & 0 & 1 & 1 \\
+$f_4$& 5 & 6 & 5 & 5 & 6 & 5 & 1 & 1 & 1 & 1 & 1 & 1 \\
+$f_5$& 6 & 6 & 5 & 6 & 6 & 5 & 1 & 1 & 1 & 1 & 1 & 1 \\
+$D$& 6 & 5 & 4 & 6 & 5 & 4 & 1 & 1 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+
+Since $P_1, P_2 \in \mathbb{P}^2$ and $P_3 \in
+\mathbb{P}^1$, we have that in the space $\mathbb{P}^9$ of the cubic
+curves, the variety of the cubics with three collinear eigenpoints is
+a hypersurface (((((of dimension 15?))))).
+L'equazione parametrica delle cubiche in cui il rango della matrice si
+abbassa e' quindi lineare in molte variabili. Puo' questo aiutare a cercare
+la dimensione?
+\end{quote}
+\textbf{Fine Nota di colore}
 
 \subsection{Higher dimensional linear systems of cubics with aligned eigenpoints}
 We want now to consider the case in which $M$ has rank less then $6$.
@@ -346,10 +390,10 @@ the matrix whose rows are $P_1$ and $P_2$. We get an ideal
 $J_1$ whose radical and primary decomposition are quite easy to compute.
 The primary decomposition of $J_1$ (after discarding 
 degenerate cases) is given by the three ideals:
-\[
+\begin{equation}\label{eq: fibre 4 dim}
 \left(\scl{P_i}{P_1}, \scl{P_i}{P_2},\scl{P_i}{P_3}\right) \quad
 \mbox{for $i = 1, 2, 3$}
-\]
+\end{equation}
 %% questi conti si possono trovare nel file contoTrePuntiAllineati.sage
 
 
@@ -371,53 +415,10 @@ In conclusion:
   three points must coincide, so this case is impossible.
 \end{proof}
 
-\noindent
-\textbf{Nota di colore}
-\begin{quote}
-The computation of the solution of the linear system whose associated
-matrix is $M$ in the general case gives the following
-result:
-\[
-\left\{
-\begin{array}{rcl}
-  a_0 & = & f_0(A_1, B_1, C_1, A_2, B_2, C_2, u_1, u_2, l_0, l_1, l_2, l_3) \\
-  a_1 & = & f_1(A_1, B_1, C_1, A_2, B_2, C_2, u_1, u_2, l_0, l_1, l_2, l_3) \\
-  \dots & & \dots \\
-  a_5 & = & f_5(A_1, B_1, C_1, A_2, B_2, C_2, u_1, u_2, l_0, l_1, l_2, l_3) \\
-  a_6 & = & D l_0\\
-  a_7 & = & D l_1\\
-  a_8 & = & D l_2\\
-  a_9 &=& D l_3
-\end{array}
-\right.
-\]
-where the degrees are the following:
-
-\begin{tabular}{|l|rrrrrrrrrrrr|} \hline
-  & $A_{1}$ & $B_{1}$ & $C_{1}$ & $A_{2}$ & $B_{2}$ & $C_{2}$ &
-  $u_{1}$ & $u_{2}$ & $l_0$ & $l_1$ & $l_2$ & $l_3$ \\ \hline
-$f_0$& 6 & 6 & 6 & 6 & 6 & 6 & 1 & 1 & 1 & 1 & 1 & 1 \\
-$f_1$& 5 & 6 & 6 & 5 & 6 & 6 & 1 & 1 & 1 & 1 & 1 & 1 \\
-$f_2$& 6 & 5 & 6 & 6 & 5 & 6 & 1 & 1 & 1 & 1 & 1 & 1 \\
-$f_3$& 6 & 6 & 6 & 6 & 6 & 6 & 1 & 1 & 1 & 0 & 1 & 1 \\
-$f_4$& 5 & 6 & 5 & 5 & 6 & 5 & 1 & 1 & 1 & 1 & 1 & 1 \\
-$f_5$& 6 & 6 & 5 & 6 & 6 & 5 & 1 & 1 & 1 & 1 & 1 & 1 \\
-$D$& 6 & 5 & 4 & 6 & 5 & 4 & 1 & 1 & 0 & 0 & 0 & 0 \\ \hline
-\end{tabular}
-
-Since $P_1, P_2 \in \mathbb{P}^2$ and $P_3 \in
-\mathbb{P}^1$, we have that in the space $\mathbb{P}^9$ of the cubic
-curves, the variety of the cubics with three collinear eigenpoints is
-a hypersurface (((((of dimension 15?))))).
-L'equazione parametrica delle cubiche in cui il rango della matrice si
-abbassa e' quindi lineare in molte variabili. Puo' questo aiutare a cercare
-la dimensione?
-\end{quote}
-\textbf{Fine Nota di colore}
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Cubic forms with two triples of aligned eigenpoints} 
 Next we are going to determine the degree of $\sL$, by considering a general pencil in $\p(K[x,y,z]_3)$
@@ -884,20 +885,6 @@ $\eta :\Delta \to \sD$ is birational. The claim follows.
 
 
 
-\begin{definition}
- We set $\mathcal{L} \subseteq \p(K[x,y,z]_3) \cong \p^9$ to be the closure of the locus of classes of cubic forms $f$ having a reduced zero-dimensional eigenscheme $E(f)$ with an aligned eigentriple.
-\end{definition}
-
-
-\begin{theorem}
-The variety~$\mathcal{L}$ is an irreducible hypersurface.
-\end{theorem}
-
-\begin{proof}
-By the Gallet - Logar construction, for a a general fixed triple of aligned points, the set of cubic forms having such a triple as eigenpoints is a linear system of dimension $3$. Since the variety of aligned triples is $5$-dimensional, this proves that $\mathcal{L}$ is a hypersurface.
-
-For the irreducibility, we maybe need the argument on the Geiser map. Is there a simpler one?
-\end{proof}
 
 Next we are going to determine the degree of $\sL$, by considering a general pencil in $\p(K[x,y,z]_3)$
 and intersecting it with $\sL$. 
@@ -941,15 +928,21 @@ It follows that if $f$ and $g$ are general enough, then $\mathcal{N}$ is a $3$-d
 Being a variety of minimal degree, its degree is $5+1-3 = 3$.
 \end{proof}
 
-\begin{theorem}
-The degree of $\mathcal L$ is equal to
+\begin{theorem} The hypersurface $\sL \subset \p^9$ is irreducible and its degree is equal to
 \[
   \deg \ \mathcal L =  15.
 \]
 \end{theorem}
 
 \begin{proof}
-We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics $\Lambda_f = \langle M_1, M_2, M_3 \rangle$ contains a cubic which splits in three lines, a so called {\it triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+We first prove the irreducibility of $\sL$.
+Let $\sA \subset {\rm Sym}^3(\p^2 )$ be the locus of unordered triples of points; it is simple to check that $\sA$ is irreducible of dimension $5$, and consider the rational map $\tau:\sL \dasharrow \sA$
+associating to any cubic form with exactly one triple of aligned eigenpoints the triple itself. Over an open subset $\sV \subset \sA$ the fibers of $\tau$ are all isomorphic to $\p^3$. The closure of their union fills up an irreducible component of $\sL$. The locus of aligned triples satisfying \eqref{eq: fibre 4 dim} is $3$-dimensional, and over its general point the fiber is isomorphic to $\p^4$, so the union of such fibers is $7$-dimensional ad does not give rise to an additional irreducible component.
+
+Finally, by Proposition \ref{pro: dimension of Delta}, also the locus of forms with two or more aligned triples is $7$-dimensional.
+
+
+To determine the degree of $\sL$, we start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics $\Lambda_f = \langle M_1, M_2, M_3 \rangle$ contains a cubic which splits in three lines, a so called {\it triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
 To determine the degree of $\mathcal L$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
 
