@@ -55,6 +55,8 @@
 \newcommand{\sD}{\mathcal{D}}
 \newcommand{\sT}{\mathcal{T}}
 \newcommand{\sN}{\mathcal{N}}
+\newcommand{\sA}{\mathcal{A}}
+\newcommand{\sV}{\mathcal{V}}
 
 \newcommand{\de}{\partial}
 \newcommand{\codim}{\mathrm{codim}}
@@ -283,6 +285,8 @@ abbassa e' quindi lineare in molte variabili. Puo' questo aiutare a cercare
 la dimensione?
 \end{quote}
 \textbf{Fine Nota di colore}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Higher dimensional linear systems of cubics with aligned eigenpoints}
 We want now to consider the case in which $M$ has rank less then $6$.
@@ -536,7 +540,8 @@ z g_1-yg_2+xg_3 = 0
 We analyze now in more details, one at a time, the two conditions
 $\delta_1(P_1, P_2, P_4) =0$ and $\delta_2(P_1, \dots, P_5) = 0$.
 
-\section{Case $\delta_1=0$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Case $\delta_1=0$}
 {From} the bilinearity of the scalar product, we get that
 $\delta_1(P_1, P_2, P_4)=0$ is equivalent to each of the conditions
 $\delta_1(P_1, P_i, P_j)=0$, for $i \in \{2, 3\}$ and $j \in \{4, 5\}$,
@@ -683,9 +688,41 @@ $(\Omega_1, \Omega_2, \Omega_3)$ decomposes into two ideals: one gives that
 $P_1$ and $P_2$ coincide and can therefore be discarded, and the other is
 the ideal which gives the conditions $\scl{P_1}{P_1}=0$ and $\scl{P_1}{P_2}=0$.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Condition $\scl{P_1}{P_1} \scl{P_2}{P_2}-\scl{P_1}{P_2}^2 = 0$}
-va studiata a parte 
+\begin{lemma}\label{lemma: Cauchy Schwarz}
+Two points $P_1, P_2 \in \p^2$ with $P_1 \neq P_2$ satisfy
+\begin{equation}\label{eq: Cauchy Schwarz}
+\scl{P_1}{P_1} \scl{P_2}{P_2}-\scl{P_1}{P_2}^2 = 0
+\end{equation}
+if and only if the line $\overline {P_1 P_2}$ is tangent to the isotropic conic
+$C_{\rm iso}$ of equation $x^2 +y^2 +z^2=0$.
+\end{lemma}
 
+\begin{proof}
+Since the general point of the line $\overline {P_1 P_2}$ can be expressed in the form
+$t P_1 + sP_2$ where $(t:s) \in \p^1$, the intersection between $\overline {P_1 P_2}$
+and $C_{\rm iso}$ is determined by the pairs $( \overline t: \overline s)\in \p^1$ which are solutions of
+$$
+\scl{t P_1 + sP_2}{t P_1 + sP_2} =0.
+$$
+The bilinearity and symmetry of the form $\scl{}{}$ gives the quadratic polynomial
+\begin{equation}\label{eq: intersezione con isotropa}
+\scl{t P_1 + sP_2}{t P_1 + sP_2}= \scl{P_1}{P_1} t^2
++2\scl{P_1}{P_2} ts + \scl{P_2}{P_2}s^2,
+\end{equation}
+whose discriminant is $4 ( \scl{P_1}{P_2}^2 - \scl{P_1}{P_1} \scl{P_2}{P_2})$.
+Hence the condition \eqref{eq: Cauchy Schwarz} implies that \eqref{eq: intersezione con isotropa}
+has a double root, and this proves the statement.
+\end{proof}
+
+\begin{rmk}
+The pairs $(P_1, P_2) \in \p^2 \times \p^2$ of points satisfying \eqref{eq: Cauchy Schwarz}
+form a closed subvariety of dimension $3$, and Lemma \ref{lemma: Cauchy Schwarz} gives the geometric description of such a locus.
+
+\end{rmk}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Condition $\scl{P_1}{P_1} = 0$ and $\scl{P_1}{P_2}=0$}
 gi\`a incontrata, va completata
 
@@ -740,6 +777,7 @@ $i= 2, \dots, 5$).
   \end{eqnarray*}
 \end{example}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Study of the case  $\delta_2 =0$}
 
@@ -794,11 +832,13 @@ $\Lambda'\Omega_k'G_i'(P)=0$ for all $i=1, 2, 3$ and all $k = 1, 2, 3$,
 hence either $G_1'(P) = 0$, $G_2'(P) = 0$ and $G_3'(P)=0$ or
 $\Lambda'\Omega_k' = 0$ for $k = 1, 2, 3$.
 
-\subsection{Condition
-  $\Lambda' = \scl{P_1}{P_1}\scl{P_2}{P_2}-\scl{P_1}{P_2}^2 = 0$} Da studiare
-a parte.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Condition $\Omega_k' = 0$ for $k=1, 2, 3$}
+\subsection{Conditions $\Lambda' =0$ and $\Omega_k' = 0$ for $k=1, 2, 3$}
+
+The locus of pairs of points satisfying condition $\Lambda'=\scl{P_1}{P_1}\scl{P_2}{P_2}-\scl{P_1}{P_2}^2=0$ has been settled in Lemma \ref{lemma: Cauchy Schwarz}.
+ 
+ We focus on $\Omega_k' = 0$ for $k=1, 2, 3$.
 The ideal $(\Omega_1', \Omega_2', \Omega_3')$ decomposes into the intersection
 of several prime ideals, but some of them have to be discarded because
 either imply $v_2 = 0$ or $\det([P_1, P_2, P_4]) = 0$ or $P_1 = P_2$.
@@ -985,7 +1025,7 @@ The following pencil of cubic forms admits exactly $15$ cubics with an aligned t
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Possible configurations of the eigenpoints}
 
@@ -1253,6 +1293,7 @@ has rank less than $10$, hence the points are eigenpoints.
   realizable in characteristic zero.
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Particular Cases}
 Concerning proposition~\ref{prototipo}:
 
