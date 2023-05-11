@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[10pt, a4paper, reqno, captions=tableheading,bibliography=totoc]{scrartcl}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -20,45 +20,22 @@
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
 }
-\usepackage{cleveref}
-
-\usepackage{listings}
-
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\lstset{frame=tb,
-  language=Python,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\small\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
-}
+\usepackage[nameinlink]{cleveref}
 
 \theoremstyle{plain}
-\newtheorem{lem}{Lemma}[section]
-\newtheorem{pro}[lem]{\textbf{Proposition}}
-\newtheorem{theorem}[lem]{\textbf{Theorem}}
-\newtheorem{cor}[lem]{\textbf{Corollary}}
-\newtheorem{conjecture}[lem]{\textbf{Conjecture}}
-\newtheorem{fact}[lem]{\textbf{Fact}}
-\newtheorem{assumption}[lem]{\textbf{Assumption}}
-\newtheorem*{reduction}{\textbf{Reduction}}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prop}[lemma]{Proposition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{cor}[lemma]{Corollary}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{fact}[lemma]{Fact}
+\newtheorem{assumption}[lemma]{Assumption}
+\newtheorem*{reduction}{Reduction}
 \theoremstyle{definition}
-\newtheorem{dfn}[lem]{\textbf{Definition}}
-\newtheorem{es}[lem]{\textbf{Example}}
-\newtheorem*{notation}{\textbf{Notation}}
-\newtheorem{rmk}[lem]{Remark}
+\newtheorem{dfn}[lemma]{Definition}
+\newtheorem{es}[lemma]{Example}
+\newtheorem*{notation}{Notation}
+\newtheorem{rmk}[lemma]{Remark}
 
 
 \newcommand{\N}{\mathbb{N}}
@@ -75,10 +52,14 @@
 \newcommand{\oo}{\mathcal{O}}
 \newcommand{\Bl}{\mathrm{Bl}}
 
+\newcommand{\iso}{\mathcal{Q}}
+
 \newcommand{\SO}{\operatorname{SO}}
 \newcommand{\Eig}{\operatorname{Eig}}
-\newcommand{\polq }{{\rm Pol}_Q}
+\newcommand{\polq}{{\rm Pol}_Q}
 \newcommand{\comment}[1]{}
+
+\newcommand{\scl}[2]{\left\langle {#1}, {#2} \right\rangle}
 
 \title{Ternary symmetric tensors with an aligned triple of eigenpoints}
 \author{}
@@ -112,14 +93,14 @@ We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the 
 %
 
 The goal of this section is to understand what happens when we have one or more triples of aligned points inside a zero-dimensional reduced eigenscheme.
-We
+We start by recalling a property of eigenschemes of ternary forms, namely, that, when zero-dimensional, they are somehow ``general'' with respect to conics.
 
-\begin{lem}
-\label{lem:no_six_conic}
+\begin{lemma}
+\label{lemma:no_six_conic}
 Let $f \in \C[x,y,z]_d$ be a homogeneous form of degree~$d$.
 If $E(f)$ is zero-dimensional,
 then no degree six subscheme of~$E(f)$ lies on a conic.
-\end{lem}
+\end{lemma}
 \begin{proof}
 See \cite[Lemma~9.1]{OS1} for the reduced case.
 The proof works also in the non-reduced case.
@@ -171,16 +152,16 @@ By the Gallet - Logar construction, for a a general fixed aligned triple of poin
 For the irreducibility, we maybe need the argument on the Geiser map. Is there a simpler one?
 \end{proof}
 
-\begin{lem}
-\label{lem:pencil_one_aligned}
+\begin{lemma}
+\label{lemma:pencil_one_aligned}
  If $f$ and $g$ are general cubics, then any cubic in the pencil $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
-\end{lem}
+\end{lemma}
 
 This is a corollary of the following result.
 
-\begin{pro}
+\begin{prop}
     The locus of cubics that have at least two aligned triples of eigenpoints has codimension~$2$ in~$\p^9$.
-\end{pro}
+\end{prop}
 \begin{proof}
     Conti di Sandro.
 \end{proof}
@@ -189,15 +170,15 @@ This is a corollary of the following result.
  We define $\Delta \subset \mathcal{L}$ to be the closure of the locus of cubics with at least two aligned triples of eigenpoints.
 \end{dfn}
 
-\begin{pro}
+\begin{prop}
   The variety~$\Delta$ has dimension~$7$ and it is the union of two irreducible components~$\Delta_1$ and~$\Delta_2$.
-\end{pro}
+\end{prop}
 
 In what follows, we shall use the following notation.
 Denote by $M_1$, $M_2$ and $M_3$ the three minors of \Cref{eq:def_matrix} relative to a cubic form $f$.
 The net of cubics, which base locus is the eigenscheme $E(f)$, will be denoted by $\Lambda_f = \langle M_1, M_2, M_3 \rangle$.
-\begin{lem}
-\label{lem:scroll}
+\begin{lemma}
+\label{lemma:scroll}
  If $f$ and $g$ are general cubics, then
  %
  \[
@@ -205,7 +186,7 @@ The net of cubics, which base locus is the eigenscheme $E(f)$, will be denoted b
  \]
  %
  is an embedding of a rational projective bundle and has degree~$3$.
-\end{lem}
+\end{lemma}
 \begin{proof}
 Consider the projective bundle given by the family of planes
 %
@@ -229,12 +210,12 @@ The degree of $\mathcal L$ is equal to
 \end{theorem}
 
 \begin{proof}
-We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics $\Lambda_f = \langle M_1, M_2, M_3 \rangle$ contains a cubic which splits in three lines, a so called {\it triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics $\Lambda_f = \langle M_1, M_2, M_3 \rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
 To determine the degree of $\mathcal L$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
 
 To this aim, denote by ${\mathcal T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is $6$ and its degree is $15$,
-see for instance \cite[Section 2.2.2]{3264}. We now consider the variety~${\mathcal N}$ from \Cref{lem:scroll}.
+see for instance \cite[Section 2.2.2]{3264}. We now consider the variety~${\mathcal N}$ from \Cref{lemma:scroll}.
 \comment{
 given by the union of the nets of cubics of the pencil
 $$
@@ -263,7 +244,7 @@ The following pencil of cubic forms admits exactly $15$ cubics with an aligned t
 \end{es}
 
 
-\section{Eigendiscriminants {\bf togliere ?}}
+\section{Eigendiscriminants \textbf{togliere?}}
 We recall that in \cite[Theorem~4.1, Corollary~4.2]{ASS} the authors prove that the Eigendiscriminant $\Delta_{n,d}\subset \p ((K^n)^{\otimes d})$ parametrizing
 all tensors with zero-dimensional non-reduced eigenscheme or with positive dimensional eigenscheme is an irreducible hypersurface of degree $n(n-1)(d-1)^{n-1}$. For $n=3$ and $d=3$
 this gives $24$.
@@ -274,9 +255,9 @@ In this section we shall consider the analogous question for symmetric tensors s
 \]
 the restriction of the discriminant to the subspace of symmetric tensors.
 
-\begin{pro}
+\begin{prop}
 Let $f$ be a homogeneous polynomial of degree $3$ in $x_0,x_1,x_2$. If $V(f)$ is a cuspidal curve, then $E(f)$ is not reduced.
-\end{pro}
+\end{prop}
 
 \begin{proof}
 We know that $E(f)$ contains the Jacobian subscheme. As such a subscheme is $GL(3)$-invariant, we can assume that $f$ has the normal form $x_0 x_1^2-x_2^3$. Then it is simple to check that the Jacobian subscheme has length~$2$.
@@ -369,9 +350,9 @@ From examples, we know that $d_3$ actually implies Case a star configuration as 
 
 
 \subsection{The locus of forms with positive-dimensional eigenscheme}
-\begin{pro}
+\begin{prop}
 Assume that $\dim  E(f)=1$ and that the one-dimensional component of $E(f)$ is a line $L$. Then $L\subseteq {\rm Sing} f$.
-\end{pro}
+\end{prop}
 
 \begin{proof}
 Assume by contradiction that
@@ -388,11 +369,11 @@ where $Q$ is the isotropic quadric. If $Z\subset R(f)$, then $Z\subset V(f)$ by 
 Finally, assume that $Z=p_1 + p_2$ as a divisor on $Q$, with $p_1 \in R(f)$ and $p_2\in {\overline {R(f)}} \setminus R(f)$. The necessarily $p_2 \in {\rm Sing} V(f)$, so that residually to $Z$ the line $L$ intersects $V(f)$ in $p_2$. Therefore $V(f)$ has a singular point $p_2$ on $Q$ and $V(f)$ intersect tangentially $Q$ in $p_1$. The examples show that this never happens ...
 \end{proof}
 
-\begin{pro}\label{p2}
+\begin{prop}\label{p2}
 Let $C=V(f)\subset \p^2$ be a cubic curve. Assume that $\dim E(f)=1$ and that the $1$-dimensional component is a line $L$.
 
 Then the residual subscheme $Z={\rm Res}_L(E(f))$ in $E(f)$ with respect to $V(L)$ is  zero dimensional of degree $3$ if $\dim \Lambda =2$, or of degree $4$, if $\dim \Lambda=1$.
-\end{pro}
+\end{prop}
 
 \begin{proof}
 Since $G_1$, $G_2$ and $G_3$ have a common linear component $L$, by writing
@@ -693,12 +674,12 @@ Geiser maps are a classical topic and several of their properties are understood
 %\cite[Chapter~IX, Theorem~25]{Cool}). When $Z$ is general, the Jacobian locus~$\Sigma$ is a curve of degree~$6$ which is singular at $Z$ as illustrated in \cite[Chapter~IX, Theorem~27]{Cool}. We define $B(Z)$ to be the branch locus of $\widetilde{\gamma_Z}$, that is the direct image of~$\Sigma$. For modern references, see for instance \cite[Section~8.7.2]{Dolgachev} and \cite[Section~7]{OS1}, where it is proven that a general Geiser map is branched along a smooth L\"uroth quartic.
 
 
-\begin{lem}
-\label{lem:branched_smooth_iff_no_collinear}
+\begin{lemma}
+\label{lemma:branched_smooth_iff_no_collinear}
 Let $Z \subset \p^2$ be a set of seven distinct points such that
 no six points lie on a conic, and let $B(Z)\subset\p^2$ be the associated branch locus. If $B(Z)$ is a smooth curve
 of degree four, then $Z$ contains no three points on a line.
-\end{lem}
+\end{lemma}
 
 \begin{proof}
 See \cite[Lemma 4.3]{BGV}
@@ -717,12 +698,12 @@ See \cite[Lemma 4.3]{BGV}
 %the image of~$R_\pi$ under the projection~$\pi$ is either a singular curve of degree~$4$, or a plane curve of degree~$3$ or less, or a finite set points, which contradicts the hypothesis on~$B(Z)$.
 \end{proof}
 
-\begin{pro}
+\begin{prop}
 \label{pro:plane_cubics_general_position}
 If $f\in\C[x_0,x_1,x_2]_3$ is general, then $E(f)$ contains no 3 points on a line.
-\end{pro}
+\end{prop}
 \begin{proof}
-By the proof of \cite[Theorem~10.4]{OS1}, we have that if $f$ is general, the branch locus of the associated Geiser map is a smooth L\"uroth quartic. Hence by Lemma \ref{lem:branched_smooth_iff_no_collinear} the eigenscheme~$E(f)$
+By the proof of \cite[Theorem~10.4]{OS1}, we have that if $f$ is general, the branch locus of the associated Geiser map is a smooth L\"uroth quartic. Hence by Lemma \ref{lemma:branched_smooth_iff_no_collinear} the eigenscheme~$E(f)$
 contains no collinear triples.
 \end{proof}
 
@@ -746,10 +727,10 @@ contains no collinear triples.
 %Moreover, by making experiments with random forms, it is possible to check that if $f$ is a general triangle, then $E(f)$ consists of 7 reduced points, no three of which on a line and no six of which on a conic. The same holds when $f$ is the union of a general conic and a line.
 %\end{es}
 
-\begin{pro}\label{allineati_contrae} Let $E(f)$ be zero dimensional.
+\begin{prop}\label{allineati_contrae} Let $E(f)$ be zero dimensional.
 Then $E(f)$ contains an aligned triple of points on a line $L$
 if and only if the Geiser map $\gamma_{E(f)}$ contracts the line $L$.
-\end{pro}
+\end{prop}
 
 \begin{proof}
 Let us identify $\p^2 = \p (I_Z(3))^\vee$. For any $P \in \p^2 \setminus E(f)$, the point $\gamma_{E(f)} (P)$ corresponds to the pencil of cubics through $E(f) \cup \{P\}$. If $E(f)$ contains a triple of points on $L$, for any $P \in L \setminus E(f)$
@@ -759,7 +740,7 @@ Conversely, if $\gamma_{E(f)}$ contracts a line $L$, for any $P\in L$, the penci
 \end{proof}
 
 
-\begin{lem}
+\begin{lemma}
 Let $E(f)$ be zero-dimensional and reduced, and set
 $$
 g_0:=x_1 \partial _2 f - x_2 \partial _1 f, \quad
@@ -779,7 +760,7 @@ that is the intersection between the polar line $L_Q$ relative to the isotropic 
 first polar curve of $f$ with respect to $Q$.
 
 In particular, the only possible curves contracted by the Geiser map $\gamma _{E(f)}$ are lines.
-\end{lem}
+\end{lemma}
 
 \begin{proof}
 We observe that for any point $P=(P_0:P_1:P_2)\in \p^2 \setminus Z$, the homogeneous coordinates
@@ -814,12 +795,12 @@ By Proposition \ref{allineati_contrae}, such polynomials are exactly the ones wi
 
 
 
-\begin{pro}
+\begin{prop}
 The locus $\sL \subset \p(\C [x_0,x_1,x_2]_3)$ corresponding to cubic polynomials for which the Geiser map contracts at least a line satisfies
 \[
 {\rm codim} \sL \ge 1.
 \]
-\end{pro}
+\end{prop}
 
 \begin{proof}
 
@@ -1020,10 +1001,10 @@ $$
 This concludes the proof.
 
 \end{proof}
-%\begin{pro}
+%\begin{prop}
 %\label{pro: plane cubics, general position}
 %If $f\in\C[x_0,x_1,x_2]_3$ is general, then $E(f)$ contains no 3 points on a line and no 6 points on a conic.
-%\end{pro}
+%\end{prop}
 %\begin{proof}
 %We already observed that $E(f)$ does not contain 6 points on a conic by \cite[Lemma 9.1]{OS1}. Having a collinear triple is a closed condition in the space of cubics. In order to conclude, we only need to exhibit an example with no collinear triples. Consider
 %\[f=x_0x_2^2+x_0^2x_2-2x_0x_1x_2+x_0^3+x_0^2x_1-x_0x_1^2-x_1^3.\]
