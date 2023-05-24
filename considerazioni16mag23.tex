@@ -1,0 +1,213 @@
+\documentclass{amsart}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+%%%%%\usepackage{mathrsfs}  %% \mathscr{A}...
+\usepackage{amssymb}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+
+\newcommand{\scl}[2]{\langle #1, #2 \rangle}
+
+\begin{document}
+We study here some exceptions.
+
+A general notation. If $P_1, \dots, P_5$ are such $P_1, P_2, P_4$ are
+not collinear, $P_3 \in P_1+P_2$ and $P_5\in P_1+P_4$ and if $P=(x, y, z)$ is
+a point of the plane, we set $M_{kl}(P_1, P_2, P_3, P_4, P_5, P)$ the
+following square matrix of order $10$:
+
+\[
+  [\phi_1(P_1), \phi_2(P_1), \phi_1(P_2), \phi_2(P_2),
+  \phi_1(P_3), \phi_2(P_3), \phi_1(P_4), \phi_2(P_4), \phi_k(P_5), \phi_l(P)]
+\]
+where $k, l \in \{1, 2, 3\}$.
+The matrices $M_{kl}$ are $9$ square matrices of order $10$. 
+
+{From} the determinant of these matrices we get the polynomials which
+define the eigenpoints.
+
+\section{Caso $\delta_1=0$}
+
+Case $\delta_1(P_1, P_2, P_4) = 0$. In this case $P_1, P_2, P_4$ can be
+chosen in an arbitrary way. We can construct
+$G_1, G_2, G_3$ unless $\sigma(P_1, P_2) = s_{11}s_{22}-s_{12}^2 = 0$
+($s_{ij} = \scl{P_i}{P_j}$)
+or $s_{11} = 0, s_{12} = 0$. Since this last condition implies the first,
+it is enough to consider the case $\sigma(P_1, P_2) = 0$.
+In this case, we consider the matrices obtained from $M_{kl}$ above,
+exchanging $P_2$ with $P_4$ and $P_3$ with $P_5$. Again, the determinant
+of these matrices allow to construct three polynomials whose zeros are
+the eigenpoints, unless $\sigma(P_1, P_4) = 0$. Hence the only case in
+which it is not possible to construct $G_1, G_2, G_3$ is when
+$\delta_1(P_1, P_2, P_4) = 0, \sigma(P_1, P_2) = 0, \sigma (P_1, P_4)=0$.
+These three conditions imply that $P_1, P_2, P_4$ are collinear.\\
+Conclusion: $\delta_1(P_1, P_2, P_4) = 0$ does not have exceptions: it
+always permits to construct $G_1, G_2, G_3$.
+
+\bigskip
+
+\section{Caso $\delta_2=0$} In the construction we observed that
+
+\begin{quote}
+``The polynomial $\delta_2$ can be rewritten as
+$U_1u_1+U_2u_2$, where:
+
+\begin{equation}
+  \begin{split}
+    U_1 & =  \langle P_1, P_2\rangle \left(\langle P_1, P_1\rangle
+  \langle P_4,P_5\rangle - \langle P_1, P_4\rangle \langle P_1, P_5\rangle
+  \right)\\
+  U_2 & =  \langle P_1, P_2\rangle^2\langle P_4, P_5\rangle
+  -\langle P_1, P_4\rangle \langle P_1, P_5\rangle \langle P_2, P_2\rangle
+  \mbox{''}
+  \label{sst2}
+  \end{split}
+\end{equation}
+\end{quote}
+{From} this we obtained that $\delta_2 = 0$ can be obtained by the
+substitution $u_1 = U_2, u_2 = -U_1$ \emph{unless} $U_1 = U_2 = 0$.
+Hence now we consider this particular case.
+
+It is easy to see that
+\begin{equation}
+  \begin{split}
+    U_1 & = v_2s_{12}\sigma_{14}\\
+    U_2 & = -v_1 s_{14}\sigma_{12} + v_2(s_{12}^2s_{44}-s_{14}^2s_{22})
+  \end{split}
+\end{equation}
+(where $s_{ij} = \scl{P_i}{P_j}$ and $\sigma_{ij} = s_{ii}s_{jj}-s_{ij}^2$). 
+
+After some suitable substitutions, we get that $U_1 = U_2 = 0$ is equivalent
+to:
+\[
+\left\{
+\begin{array}{rcl}
+  s_{12} & = & 0 \\
+  s_{14}s_{22}s_{15} & = & 0
+\end{array}
+\right.
+\quad
+\mbox{or}
+\quad
+\left\{
+\begin{array}{rcl}
+  \sigma_{14} & = & 0 \\
+  s_{45}\sigma_{12} & = & 0
+\end{array}
+\right.
+\]
+And the symmetric conditions, excanging $u_1$ and $u_2$ with $v_1$ and $v_2$,
+which are:
+\[
+\left\{
+\begin{array}{rcl}
+  s_{14} & = & 0 \\
+  s_{12}s_{13}s_{44} & = & 0
+\end{array}
+\right.
+\quad \mbox{or}
+\quad
+\left\{
+\begin{array}{rcl}
+  \sigma_{12} & = & 0 \\
+  s_{23}\sigma_{14} & = & 0
+\end{array}
+\right.
+\]
+
+\subsection{Case $s_{12} = 0$, $s_{14} = 0$}
+vedi file: \verb+file degenere_d2_1+
+
+Here we take $P_1 = (A_1, B_1, C_1)$ (hence in an arbitray way)
+and $P_2 = (A_2C_1, B_2C_1, -A_1A_2-B_1B_2)$,
+$P_4=(A_4C_1, B_4C_1, -A_1A_4-B_1B_4)$, then $P_3 = u_1P_1+u_2P_2$
+and $P_5 = v_1 P_1 + v_2 P_4$ (with no conditions on $u_1, u_2, v_1, v_2$).
+Then we compute the matrices $M_{11}(P_1, \dots, P_5, P)$,
+$M_{12}(P_1, \dots, P_5, P)$, $M_{13}(P_1, \dots, P_5, P)$,
+and let $h_1, h_2, h_3$ be the determinants of these three matrices.
+The eigenpoints come from the common zeros of these three polynomials.
+We note that the factorization of $h_i$'s give:
+\[
+h_i = \alpha s_{11}^4s_{22} g_i
+\]
+where $\alpha$ is a factor that cannot be zero if the points are distinct
+and $g_i$ ($i=1, 2, 3$) are three polynomials of degree $3$ in $x, y, z$. 
+
+The condition $s_{11} = 0$ implies that $P_1, P_2$ and $P_4$ are collinear,
+so has to be discarded. \\
+Here we assume that $s_{22} \not =  0$. 
+
+Now we consider the polynomial $C_1g_1-B_1g_2+A_1g_3$. Its factorization is the
+following:
+\[
+\beta s_{11}^5 s_{22} r_1 r_2 r_3
+\]
+where, again, $\beta$ is a factor that is not zero if the points are
+distinct and $r_1$, $r_2$, $r_3$ are linear polynomials in $x, y, z$
+defining, respectively, the lines $P_1+P_2$, the line $P_1+P_4$, the line
+$P_6+P_7$. Since the point $P_1$ is on the line $r_3$,
+also in this case we have that the condition $s_{12} = s_{14} = 0$
+(which gives $\delta_2=0$) implies that the points $P_1, P_6, P_7$ are
+alligned.
+
+In order to get the explicit values of $P_6$ and $P_7$, we consider the
+polynomial $P_{2,z}g_1-P_{2, y}g_2+P_{2,x}g_3$. One of its factors is
+$\scl{(x, y, z)}{P_1}$ which says that one of the two points $P_6$ or
+$P_7$ (say $P_6$) is ortogonal to $P_1$, hence $P_2, P_4, P_6$ are collinear),
+another factor gives a new
+line through $P_6$ and $P_7$. This new line and the line $r_3$ above
+allow to determine the point $P_6$ which is:
+\[
+P_6 = (2s_{24}s_{45}s_{13} - s_{24}s_{34}s_{15} - s_{23}s_{44}s_{15})P_2 - 
+(s_{24}s_{25}s_{13} + s_{22}s_{45}s_{13} - 2s_{22}s_{34}s_{15})P_4
+\]
+The point $P_7$ is
+\[
+\begin{array}{l}
+  (-s_{15}^2s_{24}^3s_{33} + 5s_{15}^2s_{22}s_{24}s_{34}^2 
+  - 3s_{13}s_{15}s_{24}^3s_{35} - 6s_{13}s_{15}s_{22}s_{24}s_{34}s_{45} +\\
+  s_{13}s_{15}s_{22}s_{23}s_{44}s_{45} + 4s_{13}^2s_{24}^3s_{55})P_1+
+  s_{11}^2C_1(B_2A_4 - A_2B_4)(s_{25}s_{34} - s_{23}s_{45})P_6
+  \end{array}
+   \]
+
+   In the considered situation, we have that the $7$ eigenpoints have
+   the following $4$ allignements:
+   \[
+   (P_1, P_2, P_3), \quad (P_1, P_4, P_5), \quad (P_1, P_6, P_7),
+   \quad (P_2, P_4, P_6)
+   \]
+   Hence we have a realization of the configuration $(5)$ of the figure.
+
+   Now it remains to consider the case $s_{12} = 0$. If this is the case,
+   we can consider the symmetric condition (excanging $u_1$ and $u_2$
+   with $v_1$ and $v_2$) and following the same constructions here
+   presented, we get that either we can construct three polynomials of
+   degree $3$ in $x, y, z$ from which we get the eigenpoints as above,
+   or $s_{44} = 0$. Hence it remains to consider the case:
+   \[
+   s_{12} = 0, \quad s_{14} = 0, \quad s_{22} = 0, \quad s_{44} = 0
+   \]
+   In this case we have that the line $P_1+P_2$ is tangent to the
+   isotropic conic in the point $P_2$ and the line $P_1+P_4$ is tangent
+   to the isotropic conic in the point $P_4$. This case will be considered
+   later.
+
+   The case $s_{12}= 0$ and $s_{15}=0$ is the same then the case
+   $s_{12} = 0$, $s_{14} = 0$.
+
+   
+\end{document}
