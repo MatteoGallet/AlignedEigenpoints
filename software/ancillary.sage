@@ -8,7 +8,7 @@
 
 class SymbolicCheck:
 
-    total_checks = 7
+    current_checks = 0
 
     def __init__(self):
         self.passed_checks = 0
@@ -90,40 +90,81 @@ class SymbolicCheck:
 
         return {x:P[0], y:P[1], z:P[2]}
 
-    def all_checks(self):
+    def phi(self, P, R):
+        '''
+        Computes the eigenscheme conditions determined by P.
+
+        INPUT:
+        - P : a vector with three coordinates
+        - R : the ring of polynomials
+
+        OUTPUT:
+        - a list of three vectors, each of which is a condition determined by P
+        '''
+
+        # A generic ternary cubic
+        F = a0*x^3 + a1*x^2*y + a2*x*y^2 + a3*y^3 + a4*x^2*z + a5*x*y*z + a6*y^2*z + a7*x*z^2 + a8*y*z^2 + a9*z^3
+
+        # The ideal of the eigenscheme of the cubic
+        matrix_eigenscheme = matrix([[x, y, z], [diff(F, x), diff(F, y), diff(F, z)]])
+        ideal_eigenscheme = R.ideal(matrix_eigenscheme.minors(2))
+
+        # instantiate the eigenscheme ideal at P
+        instance_ideal_eigenscheme = ideal_eigenscheme.subs(self.point_substitution(P))
+
+        vars_a = [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9]
+        return [vector([poly.coefficient(a_variable) for a_variable in vars_a]) for poly in instance_ideal_eigenscheme.gens()]
+
+    def all_checks(self, quick=False):
         '''
         Performs all the checks.
+
+        INPUT:
+        - quick : a Boolean value (default: False)
         '''
 
         self.passed_checks = 0
+        self.current_checks = 0
 
+        self.current_checks += 1
         if self.check_scalar_product():
             self.passed_checks += 1
 
+        self.current_checks += 1
         if self.check_wedge_product():
             self.passed_checks += 1
 
+        self.current_checks += 1
         if self.check_delta_1():
             self.passed_checks += 1
 
+        self.current_checks += 1
         if self.check_delta_2():
             self.passed_checks += 1
 
+        self.current_checks += 1
         if self.check_sigma():
             self.passed_checks += 1
 
+        self.current_checks += 1
         if self.check_orthogonal_tangent():
             self.passed_checks += 1
 
-        if self.check_conditions_delta():
+        self.current_checks += 1
+        if self.check_matrix_rank_one_alignment():
             self.passed_checks += 1
+
+        if not(quick):
+            self.current_checks += 1
+            if self.check_conditions_delta():
+                self.passed_checks += 1
 
     def everything_alright(self):
         '''
         Determines whether all checks have passed.
         '''
 
-        return self.passed_checks == self.total_checks
+        return self.passed_checks == self.current_checks
 
     def check_scalar_product(self):
         '''
@@ -180,21 +221,70 @@ class SymbolicCheck:
 
         R = PolynomialRing(QQ, "x, y, z, A1, B1, C1, A2, B2, C2")
         R. inject_variables(verbose=False)
+
         # Definition of the isotropic conic
         isotropic_conic = x^2 + y^2 + z^2
+
         # Two generic points in the plane
         P = vector(R, [A1, B1 ,C1])
         Q = vector(R, [A2, B2 ,C2])
+
         # The ideal given by the intersection of the line r through P and Q and the isotropic conic,
         # together with the condititions that P is orthogonal to itself and to Q.
+
         J = R.ideal(det(matrix([P, Q, (x, y, z)])), self.scalar_product(P, P), self.scalar_product(P, Q), isotropic_conic)
+
         # We saturate w.r.t. the condition that P and Q are distinct:
         J = J.saturation(R.ideal(matrix([P, Q]).minors(2)))[0]
+
         # We saturate w.r.t. the condition that P1 and (x, y, z) are distinct:
         J = J.saturation(R.ideal(matrix([P, (x, y, z)]).minors(2)))[0]
+
         # If what is left after the saturations is the the whole ring,
         # then r is tangent to the isotropic conic at P.
         return J == R.ideal(R.one())
+
+    def check_matrix_rank_one_alignment(self):
+        '''
+        Proof of Proposition {prop:rank3points}.
+        '''
+
+        var_xyz = ["x", "y", "z", "u1", "u2", "v1", "v2"]
+        var_a = ["a"+str(i) for i in range(10)]
+        var_ABC = [str(XX)+str(i) for i in range(1, 5) for XX in ["A", "B", "C"]]
+
+        K = QQ
+        R = PolynomialRing(K, var_xyz + var_a + var_ABC)
+        R.inject_variables(verbose=False)
+
+        # Three generic aligned points in the plane
+        P1 = vector((A1, B1, C1))
+        P2 = vector((A2, B2, C2))
+        P3 = u1*P1 + u2*P2
+
+        # Monomials of degree 3 in x, y, z
+        mon = [x^3, x^2*y, x*y^2, y^3, x^2*z, x*y*z, y^2*z, x*z^2, y*z^2, z^3]
+
+        # The matrix of conditions imposed by P1, P2, and P3
+        # Due to Lemma ..., we can consider just two out of the three conditions for each point
+        M = matrix(self.phi(P1, R)[:2] + self.phi(P2, R)[:2] + self.phi(P3, R)[:2])
+
+        # Compute the 6x6 minors of the matrix
+        M6 = M.minors(6)
+
+        # Each of the minors has A1*A2*A3*u1^2*u2^2 as a factor
+        # Due to Lemma ..., we can get rid of it
+        MM6 = list(map(lambda uu: uu.quo_rem(A1*A2*(u1*A1+u2*A2)*u1^2*u2^2)[0], M6))
+        J = R.ideal(MM6)
+
+        # We saturate with respect to the condition P1 = P2
+        J_sat = J.saturation(R.ideal(matrix([P1, P2]).minors(2)))
+
+        # We compute the primary decomposition of the radical of J_sat
+        pd = J_sat[0].radical().primary_decomposition()
+
+        # We obtain three ideals of the form: (<Pi, P1>, <Pi, P2>, <Pi, P3>) for i in {1, 2, 3}
+        return (pd[0] == R.ideal(self.scalar_product(P2, P2), self.scalar_product(P1, P2))) and (pd[1] == R.ideal(self.scalar_product(P1, P1), self.scalar_product(P1, P2))) and (pd[2] == R.ideal(self.scalar_product(P1, P3), self.scalar_product(P2, P3), self.scalar_product(P3, P3)).primary_decomposition()[1])
 
     def check_conditions_delta(self):
         '''
@@ -207,7 +297,7 @@ class SymbolicCheck:
 
         K = QQ
         R = PolynomialRing(K, var_xyz + var_a + var_ABC)
-        R.inject_variables(verbose=false)
+        R.inject_variables(verbose=False)
 
         # Generic plane cubic
         F = a0*x^3 + a1*x^2*y + a2*x*y^2 + a3*y^3 + a4*x^2*z + a5*x*y*z + a6*y^2*z + a7*x*z^2 + a8*y*z^2 + a9*z^3
@@ -226,15 +316,15 @@ class SymbolicCheck:
         eigenscheme = gradients.minors(2)
 
         # Conditions on the cubics to have P1, P2, P3, P4, and P5 as eigenpoints
-        conditionsEigenpoints = [eq.subs(self.point_substitution(pt)) for pt in [P1, P2, P3, P4, P5] for eq in eigenscheme]
+        conditions_eigenpoints = [eq.subs(self.point_substitution(pt)) for pt in [P1, P2, P3, P4, P5] for eq in eigenscheme]
 
-        # conditionsEigenpoints are linear in the coefficients of the cubics,
+        # conditions_eigenpoints are linear in the coefficients of the cubics,
         # so we encode them in a 15x10 matrix
 
         vv = [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9]
         M = matrix([
                     [condition.coefficient(cf) for cf in vv]
-                    for condition in conditionsEigenpoints
+                    for condition in conditions_eigenpoints
                 ])
 
         assert(M.nrows() == 15)
@@ -261,5 +351,5 @@ class SymbolicCheck:
 
 # Running the tests
 my_test = SymbolicCheck()
-my_test.all_checks()
+my_test.all_checks(quick=True)
 print(my_test.everything_alright())
