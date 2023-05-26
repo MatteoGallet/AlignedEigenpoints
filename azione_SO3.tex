@@ -1,0 +1,159 @@
+\documentclass[10pt, a4paper, reqno, captions=tableheading,bibliography=totoc]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{tikz,pgf}
+%\usepackage[utopia]{mathdesign}
+\usepackage{palatino}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\usepackage[nameinlink]{cleveref}
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prop}[lemma]{Proposition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{cor}[lemma]{Corollary}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{fact}[lemma]{Fact}
+\newtheorem{assumption}[lemma]{Assumption}
+\newtheorem*{reduction}{Reduction}
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{es}[lemma]{Example}
+\newtheorem*{notation}{Notation}
+\newtheorem{rmk}[lemma]{Remark}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\sP}{\mathcal{P}}
+\newcommand{\sL}{\mathcal{L}}
+\newcommand{\de}{\partial}
+\newcommand{\codim}{\mathrm{codim}}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\Bl}{\mathrm{Bl}}
+
+\newcommand{\iso}{\mathcal{Q}}
+
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Eig}{\operatorname{Eig}}
+\newcommand{\polq}{{\rm Pol}_Q}
+\newcommand{\comment}[1]{}
+
+\newcommand{\scl}[2]{\left\langle {#1}, {#2} \right\rangle}
+
+\title{Azione di $\mathrm{SO}_3(\mathbb{C})$ su $\p^2(\C)$}
+\author{}
+\date{}
+
+\linespread{1.2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25em}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+ We define $\mathrm{SO}_3(\mathbb{C})$ to be the complexification of the group of special orthogonal real matrices, namely
+ %
+ \[
+  \mathrm{SO}_3(\mathbb{C}) :=
+  \bigl\{
+   M \in \mathrm{GL}_3(\C) \, \mid \,
+   M M^t = I_3 \  \text{and} \  \det(M) = 1
+  \bigr\} \,.
+ \]
+ %
+ The group $\mathrm{SO}_3(\mathbb{C})$ acts on $\C^3$ by matrix multiplication:
+ %
+ \[
+  \begin{array}{ccc}
+   \mathrm{SO}_3(\mathbb{C}) \times \C^3 & \rightarrow & \C^3 \\
+   (M, v) & \mapsto & Mv
+  \end{array}
+ \]
+ %
+ Since all the elements of $\mathrm{SO}_3(\mathbb{C})$ are invertible, the latter action descends to an action on $\p^2(\C)$.
+\end{definition}
+
+\begin{prop}
+ The action of $\mathrm{SO}_3(\mathbb{C})$ on $\p^2(\C)$ has two orbits:
+ %
+ \begin{align*}
+  \mathcal{O}_1 &:=
+  \bigl\{
+   P \in \p^2(\C) \, | \,
+   P = (a:b:c) \  \text{with} \  a^2 + b^2 + c^2 = 0
+  \bigr\} \\
+  \mathcal{O}_2 &:= \p^2(\C) \setminus \mathcal{O}_1
+ \end{align*}
+ %
+ A representative for $\mathcal{O}_1$ is $(1:i:0)$ and a representative for $\mathcal{O}_2$ is $(1:0:0)$.
+\end{prop}
+\begin{proof}
+ Suppose that $P \in \p^2(\C)$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 = 0$.
+ We produce a matrix $M \in \mathrm{SO}_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ i \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
+ Up to relabeling the coordinates, we can suppose that $a \neq 0$.
+ Hence, by rescaling the coordinates of $P$, we have $P = (1: b: c)$ with $b^2 + c^2 = 0$.
+ One can check that the matrix
+ %
+ \[
+  M :=
+  \begin{pmatrix}
+   -1 & 0 & 0 \\
+   0 & ib & -ic \\
+   0 & ic & ib
+  \end{pmatrix}
+ \]
+ %
+ satisfies the requirements.
+
+ Now suppose that $P \in \p^2(\C)$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 \neq 0$.
+ Up to rescaling, we can suppose that $a^2 + b^2 + c^2 = 1$.
+ Again, we produce a matrix $M \in \mathrm{SO}_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
+ First of all, suppose that $b^2 + c^2 \neq 0$ and let $\omega$ be a root of the polynomial $t^2 - (b^2 + c^2)$ in $\C[t]$.
+ Then, the matrix
+ %
+ \[
+   M :=
+   \begin{pmatrix}
+     a & \omega & 0 \\
+     b & -\frac{ab}{\omega} & \frac{c}{\omega} \\
+     c & -\frac{ac}{\omega} & -\frac{b}{\omega}
+   \end{pmatrix}
+ \]
+ %
+ satisfies the requirements.
+ With the same technique, if $a^2 + c^2 \neq 0$, we can produce a matrix $M \in \mathrm{SO}_3(\C)$ that maps $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$; similarly, when $a^2 + b^2 \neq 0$, we can map $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$.
+ Since $\left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$, $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$, and $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ are all $\mathrm{SO}_3(\C)$-equivalent, the only case to consider is when
+ %
+ \[
+  b^2 + c^2 = a^2 + c^2 = a^2 + b^2 = 0 \,,
+ \]
+ %
+ which, however, can never occur.
+\end{proof}
+
+
+
+\end{document}
