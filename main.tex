@@ -122,6 +122,7 @@ We begin to explore these conditions by introducing, for each point $P \in \p^2$
 a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ternary cubic.
 
 \begin{definition}
+\label{definition:matrix_conditions}
  Consider $\p^9 = \p(\C[x,y,z]_3)$, the space of all ternary cubics and take coordinates $\{ f_{ijk} \}_{i+j+k = 3}$ on it,
  so that $f_{ijk}$ is the coefficient of the monomial $x^i y^j z^k$.
  For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements of~$\p^9$ that $P$ is an eigenpoint of a ternary cubic can be expressed in the form
@@ -135,6 +136,8 @@ a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ter
  where $\Phi(P)$ is a $3 \times 10$ matrix with entries depending on $A, B, C$.
  The matrix $\Phi(P)$ is called the matrix of conditions imposed by~$P$.
  We denote by $\phi_1(P)$, $\phi_2(P)$, and~$\phi_3(P)$ the rows of~$\Phi(P)$.
+ Moreover, if $P_1, \dotsc, P_n$ are points in the plane, we denote by $\Phi(P_1, \dotsc, P_n)$ the matrix $[\Phi(P_1), \dotsc, \Phi(P_n)]$, namely,
+  the $3n \times 10$ matrix obtained by stacking the matrices of conditions of~$P_1, \dotsc, n$.
 \end{definition}
 
 \begin{definition}
@@ -148,14 +151,14 @@ all $Q \in r$), we say that $P$ is \emph{orthogonal to~$r$}.
   Let $P \in \p^2$ and let $r \subset \p^2$ be a line through~$P$.
   The following conditions are equivalent:
   \begin{enumerate}
-  \item $P$ is orthogonal to~$r$;
-  \item $\scl{P}{P} = 0$ and there exists $Q \in r$, $Q \neq P$, such
+  \item \label{prop:orthogonal_tangent:item_orthogonal} $P$ is orthogonal to~$r$;
+  \item \label{prop:orthogonal_tangent:item_conditions} $\scl{P}{P} = 0$ and there exists $Q \in r$, $Q \neq P$, such
     that $\scl{P}{Q} = 0$;
-  \item $r$ is tangent in~$P$ to the isotropic conic.
+  \item \label{prop:orthogonal_tangent:item_tangents} $r$ is tangent in~$P$ to the isotropic conic.
   \end{enumerate}
 \end{prop}
 \begin{proof}
-The proof follows from a symbolic computation. See the auxiliary file. (File \verb+contiPezzoMaggio23.sage+)
+Item~\ref{prop:orthogonal_tangent:item_orthogonal} easily implies item~\ref{prop:orthogonal_tangent:item_conditions}, and similarly item~\ref{prop:orthogonal_tangent:item_tangents} implies item~\ref{prop:orthogonal_tangent:item_orthogonal}. The proof of item~\ref{prop:orthogonal_tangent:item_conditions} implies \ref{prop:orthogonal_tangent:item_tangents} follows from a symbolic computation. See the auxiliary file.
 \end{proof}
 
 \begin{definition}
@@ -188,12 +191,22 @@ The proof follows from a symbolic computation. See the auxiliary file. (File \ve
 \end{proof}
 
 \begin{prop}
+\label{prop:condition_rank_aligned}
+ Let $P_1$, $P_2$, and $P_4$ be three distinct points in the plane.
+ Let $M = Phi(P_1, P_2, P_4)$.
+ If $M$ has rank $\leq 5$ then the points $P_1$, $P_2$, and $P_4$ are aligned.
+ Moreover, $M$ cannot have rank $\leq 4$.
+\end{prop}
+\begin{proof}
+ The proof follows from a symbolic computation. See the auxiliary file.
+\end{proof}
+
+\begin{prop}
   %\label{rk3pt}
   \label{prop:rank3points}
   Let $P_1$, $P_2$ and $P_3$ be three distinct aligned points in the plane.
   Let $r$ be the line passing through these points.
-  Let $M=[\Phi(P_1), \Phi(P_2), \Phi(P_3)]$, namely,
-  the $9 \times 10$ matrix obtained by stacking the matrices of conditions of~$P_1$, $P_2$, and~$P_3$.
+  Let $M = \Phi(P_1, P_2, P_3)$.
   Then
   \begin{enumerate}
   \item $M$ has rank $\leq 6$;
@@ -208,6 +221,16 @@ The proof follows from a symbolic computation. See the auxiliary file. (File \ve
 The proof follows from a symbolic computation. See the auxiliary file. (File \verb+contoTrePuntiAllineati.sage+)
 \end{proof}
 
+\begin{prop}
+\label{prop:condition_rank_aligned3}
+ Let $P_1$, $P_2$, $P_3$, and $P_4$ be distinct points in the plane.
+ Suppose furthermore that $P_1$, $P_2$, $P_3$ are aligned.
+ Let $M = Phi(P_1, P_2, P_3, P_4)$.
+ If $M$ has rank $\leq 7$ then $\Phi(P_1, P_2, P_3)$ has rank~$5$.
+\end{prop}
+\begin{proof}
+ The proof follows from a symbolic computation. See the auxiliary file.
+\end{proof}
 
 \begin{lemma}
   Let $P_1$, $P_2$ and $P_3$ be three distinct aligned points in the plane.

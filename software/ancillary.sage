@@ -115,6 +115,31 @@ class SymbolicCheck:
         vars_a = [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9]
         return [vector([poly.coefficient(a_variable) for a_variable in vars_a]) for poly in instance_ideal_eigenscheme.gens()]
 
+    def condition_matrix(self, list_points, R, standard="first_two", list_rows=[]):
+        '''
+        Returns the condition matrix Phi(list_points).
+
+        INPUT:
+        - list_points : a list of ...
+        ...
+        '''
+
+        import operator
+        import itertools
+
+        if standard == "all":
+            return matrix(R, list(itertools.chain(*[self.phi(P, R) for P in list_points])))
+
+        if standard == "first_two":
+            return matrix(R, list(itertools.chain(*[self.phi(P, R)[:2] for P in list_points])))
+
+        if standard == "selected":
+            return matrix(R, list(itertools.chain(*[operator.itemgetter(*list_rows[i])(self.phi(list_points[i], R)) for i in len(list_points)])))
+        else:
+            raise Error("Value of standard not defined")
+
+
+
     def all_checks(self, quick=False):
         '''
         Performs all the checks.
@@ -154,9 +179,17 @@ class SymbolicCheck:
         if self.check_matrix_rank_one_alignment():
             self.passed_checks += 1
 
+        self.current_checks += 1
+        if self.check_check_rank_aligned():
+            self.passed_checks += 1
+
         if not(quick):
             self.current_checks += 1
             if self.check_conditions_delta():
+                self.passed_checks += 1
+
+            self.current_checks += 1
+            if self.check_rank_3aligned():
                 self.passed_checks += 1
 
     def everything_alright(self):
@@ -243,6 +276,132 @@ class SymbolicCheck:
         # If what is left after the saturations is the the whole ring,
         # then r is tangent to the isotropic conic at P.
         return J == R.ideal(R.one())
+
+    def check_rank_aligned(self):
+        '''
+        Proof of Proposition {prop:condition_rank_aligned}
+        '''
+
+        var_xyz = ["x", "y", "z"]
+        var_a = ["a"+str(i) for i in range(10)]
+        var_ABC = [str(XX)+str(i) for i in range(1, 3) for XX in ["A", "B", "C"]]
+        var_ii = ["ii"]
+
+        K = QQ
+        R = PolynomialRing(K, var_xyz + var_a + var_ABC + var_ii)
+        R.inject_variables(verbose=False)
+
+        # Up to SO3, we can suppose that P4 is (1, 0, 0) or (1, i, 0)
+
+        # First case: P4 = (1, 0, 0)
+
+        P1 = vector((A1, B1, C1))
+        P2 = vector((A2, B2, C2))
+        P4 = vector((1, 0, 0))
+
+        M = self.condition_matrix([P1, P2, P4], R, standard="all")
+
+        J5 = R.ideal(M.minors(5))
+        J6 = R.ideal(M.minors(6))
+
+        # We saturate the ideal J6 with respect to the condition that P1, P2, and P4 are aligned.
+
+        J5 = J5.saturation(R.ideal(matrix([P1, P2]).minors(2)))[0].saturation(R.ideal(matrix([P1, P4]).minors(2)))[0].saturation(R.ideal(matrix([P2, P4]).minors(2)))[0].radical()
+        J6 = J6.saturation(matrix([P1, P2, P4]).det())[0]
+
+        orbit1 =  J6 == R.ideal(R.one()) and J5 == R.ideal(R.one())
+
+        # Second case: P4 = (1, i˚, 0)
+
+        P1 = vector((A1, B1, C1))
+        P2 = vector((A2, B2, C2))
+        P4 = vector((1, ii, 0))
+
+        M = self.condition_matrix([P1, P2, P4], R, standard="all")
+
+        J6 = R.ideal(M.minors(6)) + R.ideal(ii^2 + 1)
+
+        # We saturate the ideal J6 with respect to the condition that P1, P2, and P4 are aligned.
+
+        J5 = J5.saturation(R.ideal(matrix([P1, P2]).minors(2)))[0].saturation(R.ideal(matrix([P1, P4]).minors(2)))[0].saturation(R.ideal(matrix([P2, P4]).minors(2)))[0].radical()
+        J6 = J6.saturation(matrix([P1, P2, P4]).det())[0]
+
+        orbit2 = J6 == R.ideal(R.one()) and J5 == R.ideal(R.one())
+
+        return orbit1 and orbit2
+
+    def check_rank_3aligned(self):
+        '''
+        Proof of Proposition {prop:condition_rank_aligned}
+        '''
+
+        var_xyz = ["x", "y", "z", "u1", "u2"]
+        var_a = ["a"+str(i) for i in range(10)]
+        var_ABC = [str(XX)+str(i) for i in range(1, 5) for XX in ["A", "B", "C"]]
+
+        K = QQ
+        R = PolynomialRing(K, var_xyz + var_a + var_ABC)
+        R.inject_variables(verbose=False)
+
+        # First case: P1 = (1, 0, 0)
+
+        P1 = vector(R, (1, 0, 0))
+        P2 = vector(R, (A2, B2, C2))
+        P3 = u1*P1 + u2*P2
+        P4 = vector(R, (A4, B4, C4))
+
+        M = self.condition_matrix([P1, P2, P3, P4], R, standard="all")
+
+        J = R.ideal(M.minors(8))
+
+        orbit1 = Set(J.saturation(matrix(R, [P1, P2, P4]).det())[0].radical().saturation(R.ideal(u1*u2))[0].primary_decomposition()) == Set([R.ideal(A2, B2^2 + C2^2), R.ideal(u1 + u2*A2, B2^2 + C2^2)])
+
+        # Second case: P1 = (1, i, 0)
+
+        var("xx")
+        F.<ii> = NumberField(xx^2 + 1)
+        R = R.change_ring(F)
+        R.inject_variables(verbose=False)
+
+        P1 = vector(R, (1, ii, 0))
+        P2 = vector(R, (A2, B2, C2))
+        P3 = u1*P1 + u2*P2
+        P4 = vector(R, (A4, B4, C4))
+
+        # We perform Gaussian elimination on the matrix M:
+
+        def rid(v1, v2, pv):
+            return(v2-(v2[pv]/v1[pv])*v1)
+
+        def ridM(M, nRiga, pv):
+            v1 = M[nRiga]
+            M1 = [v1] + [rid(v1, M[i], pv) for i in range(M.nrows()) if i != nRiga]
+            return(matrix(M1))
+
+        M = self.condition_matrix([P1, P2, P3, P4], R, standard="all")
+
+        assert(M[0][1] == 3*R.one())
+
+        M = ridM(M, 0, 1)
+
+        assert(M[1][4] == R.one())
+
+        M = ridM(M, 1, 4)
+
+        M = M.delete_columns([1, 4])
+        M = M.delete_rows([0, 1])
+
+        # After the Gaussian elimination, the matrix has at most rank 6
+
+        J = R.ideal(M.minors(6))
+
+        J = J.saturation(matrix(R, [P1, P2, P4]).det())[0].radical()
+
+        J = J.saturation(R.ideal(u1*u2))[0]
+
+        orbit2 = J == R.ideal(A2 + ii*B2)
+
+        return orbit1 and orbit2
 
     def check_matrix_rank_one_alignment(self):
         '''
@@ -351,5 +510,5 @@ class SymbolicCheck:
 
 # Running the tests
 my_test = SymbolicCheck()
-my_test.all_checks(quick=True)
-print(my_test.everything_alright())
+#my_test.all_checks(quick=True)
+#print(my_test.everything_alright())
