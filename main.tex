@@ -238,11 +238,11 @@ The proof follows from a symbolic computation. See the auxiliary file.
   If $Q = w_1 P_1 + w_1 P_2$ is another point of $r$,
   then the rank of the $12 \times 10$ matrix
   \begin{equation}
-  M = \left[
-  \Phi(P_1), \Phi(P_2), \Phi(P_3), \Phi(Q)
-  \right]
+   M = \left[
+    \Phi(P_1), \Phi(P_2), \Phi(P_3), \Phi(Q)
+   \right]
   \end{equation}
-is at most $7$; it is less than $7$ if and only if $\sigma(P_1, P_2) = 0$.
+  is at most $7$; it is less than $7$ if and only if $\sigma(P_1, P_2) = 0$.
 \end{lemma}
 \begin{proof}
   A direct computation shows that all the maximal minors of $M$ are
@@ -322,6 +322,7 @@ is $\leq 6$ if and only if is $6$.
 
 Hence we can summarize the two lemmas above with:
 \begin{prop}
+  \label{prop:rango67}
   Let $P_1, P_2, P_3, Q$ be four collinear points and let
   \[
   M = [\Phi(P_1), \Phi(P_2), \Phi(P_3), \Phi(Q)]
@@ -333,9 +334,8 @@ Hence we can summarize the two lemmas above with:
   \item $M$ has rank $\leq 6$ if and only if $r$ is tangent to the
     isotropic conic;
   \item $M$ has rank $\leq 6$ if and only if $\sigma(r) = 0$;
-    \item $M$ has rank $\leq 6$ if and only if $M$ has rank $6$.
+  \item $M$ has rank $\leq 6$ if and only if $M$ has rank $6$.
   \end{enumerate}
-  \label{rango67}
 \end{prop}
 
 \section{The locus of cubic ternary forms with an aligned triple of eigenpoints}
