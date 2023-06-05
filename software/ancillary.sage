@@ -3,7 +3,7 @@
 # "Ternary symmetric tensors with an aligned triple of eigenpoints"
 # by
 # Valentina Beorchia, Matteo Gallet, Alessandro Logar
-# Last modified: 25/05/2023
+# Last modified: 05/06/2023
 ###############
 
 class SymbolicCheck:
@@ -138,7 +138,19 @@ class SymbolicCheck:
         else:
             raise Error("Value of standard not defined")
 
+    def ort_lines(self, p1, p2, q1, q2):
+        '''Determines if two lines are orthogonal.'''
 
+        K = p1.parent()
+        R = PolynomialRing(K, 'x,y,z')
+        R.inject_variables(verbose=False)
+
+        rt1 = matrix([p1, p2, (x, y, z)]).det()
+        rt2 = matrix([q1, q2, (x, y, z)]).det()
+        cf1 = [rt1.coefficient(xx) for xx in (x, y, z)]
+        cf2 = [rt2.coefficient(xx) for xx in (x, y, z)]
+
+        return(self.scalar_product(cf1, cf2) == 0)
 
     def all_checks(self, quick=False):
         '''
@@ -330,9 +342,9 @@ class SymbolicCheck:
 
         return orbit1 and orbit2
 
-    def check_rank_3aligned(self):
+    def check_rank_3aligned_1general(self):
         '''
-        Proof of Proposition {prop:condition_rank_aligned}
+        Proof of Proposition \\ref{prop:condition3+1}.
         '''
 
         var_xyz = ["x", "y", "z", "u1", "u2"]
@@ -354,6 +366,8 @@ class SymbolicCheck:
 
         J = R.ideal(M.minors(8))
 
+        # We obtain that P2 or P3 is on the isotropic conic
+        # and that the line P1+P2 is tangent to the isotropic conic in P2 or P3
         orbit1 = Set(J.saturation(matrix(R, [P1, P2, P4]).det())[0].radical().saturation(R.ideal(u1*u2))[0].primary_decomposition()) == Set([R.ideal(A2, B2^2 + C2^2), R.ideal(u1 + u2*A2, B2^2 + C2^2)])
 
         # Second case: P1 = (1, i, 0)
@@ -399,7 +413,10 @@ class SymbolicCheck:
 
         J = J.saturation(R.ideal(u1*u2))[0]
 
-        orbit2 = J == R.ideal(A2 + ii*B2)
+        # We obtain that the line P1+P2 is tangent to the isotropic conic
+        # since \sigma(P1, P2) = 0 so
+        # since P1 is on the isotropic conic, it is tangent in P1
+        orbit2 = J == R.ideal(self.sigma(P1, P2).radical())
 
         return orbit1 and orbit2
 
@@ -444,6 +461,45 @@ class SymbolicCheck:
 
         # We obtain three ideals of the form: (<Pi, P1>, <Pi, P2>, <Pi, P3>) for i in {1, 2, 3}
         return (pd[0] == R.ideal(self.scalar_product(P2, P2), self.scalar_product(P1, P2))) and (pd[1] == R.ideal(self.scalar_product(P1, P1), self.scalar_product(P1, P2))) and (pd[2] == R.ideal(self.scalar_product(P1, P3), self.scalar_product(P2, P3), self.scalar_product(P3, P3)).primary_decomposition()[1])
+
+    def check_rank_5V(self):
+        '''Proof of Proposition \\ref{prop:frecciaFissata}.'''
+
+        var_xyz = ["x", "y", "z", "u1", "u2", "v1", "v2"]
+        var_a = ["a"+str(i) for i in range(10)]
+        var_ABC = [str(XX)+str(i) for i in range(1, 5) for XX in ["A", "B", "C"]]
+
+        var("xx")
+        K.<ii> = NumberField(xx^2+1)
+        R = PolynomialRing(K, var_xyz + var_a + var_ABC)
+        R.inject_variables(verbose=False)
+
+        P1 = vector(R, (1, 0, 0))
+        P2 = vector(R, (0, ii, 1))
+        P4 = vector(R, (0, -ii, 1))
+        P3 = u1*P1 + u2*P2
+        P5 = v1*P1 + v2*P4
+
+        M = self.condition_matrix([P1, P2, P3, P4, P5], R, standard="all")
+
+        # M[2] is the zero row
+        assert(M[2] == vector(R, [0 for i in range(10)]))
+        # M[3]-ii*M[4] is zero
+        assert(M[3] - ii*M[4] == vector(R, [0 for i in range(10)]))
+        # u2*M[6]-ii*u2*M[7]+u1*M[8] is zero
+        assert(u2*M[6] - ii*u2*M[7] + u1*M[8] == vector(R, [0 for i in range(10)]))
+        # M[9]+ii*M[10] is zero
+        assert(M[9] + ii*M[10] == vector(R, [0 for i in range(10)]))
+        # v2*M[12]+ii*v2*M[13]+v1*M[14] is zero
+        assert(v2*M[12] + ii*v2*M[13] + v1*M[14] == vector(R, [0 for i in range(10)]))
+        # therefore in the matrix M we can erase the rows: 2, 3, 6, 9, 12
+
+        M = M.matrix_from_rows([0, 1, 4, 5, 7, 8, 10, 11, 13, 14])
+
+        m8 = M.minors(8)
+
+        # check that the matrix M cannot have rank <= 7
+        return R.ideal(m8).saturation(u1*u2*v1*v2)[0] == R.ideal(R.one())
 
     def check_conditions_delta(self):
         '''

@@ -54,6 +54,8 @@
 
 \newcommand{\iso}{\mathcal{Q}}
 
+\newcommand{\imunit}{i}
+
 \newcommand{\SO}{\operatorname{SO}}
 \newcommand{\Eig}{\operatorname{Eig}}
 \newcommand{\polq}{{\rm Pol}_Q}
@@ -261,7 +263,7 @@ The proof follows from a symbolic computation. See the auxiliary file.
     u_1 u_2 w_1 w_2 (u_1w_2-u_2w_1) A_1 A_2 (u_1A_1+u_2A_2) (A_1B_2-A_2B_1) \sigma(P_1,P_2) \,,
   \end{equation}
   %
-  where $P_i = (A_i: B_i, C_i)$ for $i \in \{1,2\}$ and $P3 = u_1 P1 + u_2 P_2$.
+  where $P_i = (A_i: B_i: C_i)$ for $i \in \{1,2\}$ and $P3 = u_1 P_1 + u_2 P_2$.
   The factors $u_1$, $u_2$, $w_1$, $w_2$, and~$u_1w_2-u_2w_1$ appear due to the fact that if
   $P_3$ (or $Q$) coincides with $P_1$ (or, respectively, with $P_2$),
   the rank of $M_1$ is less than $7$
@@ -337,6 +339,187 @@ Hence we can summarize the two lemmas above with:
   \item $M$ has rank $\leq 6$ if and only if $M$ has rank $6$.
   \end{enumerate}
 \end{prop}
+
+\begin{prop}
+Let $P_1, P_2, P_3$ three distinct aligned points and let also $P_1, P_4, P_5$
+be distinct and aligned and assume that
+\[
+\scl{P_1}{P_2}=0, \quad \scl{P_2}{P_2}=0, \quad \scl{P_4}{P_4}=0
+\]
+Then the matrix $\Phi(P_1, P_2, P_3, P_4, P_5)$ has rank~$8$.
+\label{prop:frecciaFissata}
+\end{prop}
+\begin{proof}
+Let $P_1, \dots, P_5$ be such that $P_1, P_2, P_3$ are aligned,
+$P_1, P_4, P_5$ are aligned and the line $P_1+P_2$ and the line
+$P_1+P_4$ are tangent to the isotropic conic, hence
+the conditions satisfied by the points (see \Cref{prop:orthogonal_tangent}) are:
+\[
+\scl{P_1}{P_2}=0, \quad \scl{P_2}{P_2}=0, \quad \scl{P_4}{P_4}=0
+\]
+The point $P_1$ cannot be on the isotropic conic, hence, using the
+action of $\mathrm{SO}_3(\mathbb{C})$, we can assume $P_1 = (1, 0, 0)$.
+Since every element of $\mathrm{SO}_3(\mathbb{C})$ fixes the
+isotropic conic and sends a tangent line to it into another
+tangent line to it, when we transform the point $P_1$
+into $(1, 0, 0)$, we transform the points $P_2$ and $P_4$ into, respectively,
+the points $(0, i, 1)$ and $(0, -i, 1)$ (which are the common points to
+the isotropic conic and the tangent lines through $P_1$).
+Therefore it is enough to study the
+specific configuration of the points given by:
+\[
+P_1 = (1, 0, 0), \quad P_2=(0, i, 1), \quad P_3=u_1P_1+u_2P_2, \quad
+P_4= (0, -i, 1), \quad P_5 = v_1P_1+v_2P_4.
+\]
+It is immediate to see that $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
+In the $15\times 10$ matrix $\Phi(P_1, \dots, P_5)$ we can erase the
+rows: $\phi_2(P_1)$ (which is a zero row), the row $\phi_1(P_2)$
+(since $\phi_1(P_2)=i\phi_2(P_2)$) and, for similar reason, the
+rows: $\phi_1(P_3)$, $\phi_1(P_4)$ and $\phi_1(P_5)$.
+Moreover, since the rank of the matrix $\Phi(P_1, P_2, P_3)$ is $5$,
+we can also erase the row $\phi_3(P_3)$ and, for the same reason, the
+row $\phi_3(P_5)$. The remaining matrix $M$ is a $8\times 10$ matrix whose rank
+in general is $8$. It is not possible to have that all the order $8$ minors
+of $M$ are zero, since this condition implies that the five points
+are not all distinct; for the proof of the latter statement, see the ancillary file.
+\end{proof}
+
+\begin{prop}
+\label{prop:condition3+1}
+  Let $P_1, P_2, P_3$ be three distinct collinear points of the
+  plane and let $Q$ be another different point in the plane.
+  If the matrix $\Phi(P_1, P_2, P_3, Q)$ has rank $\leq 7$,
+  then the line $P_1+P_2$ is tangent to the isotropic conic in the point
+  $P_1$ (or $P_2$ or $P_3$).
+  In particular, in this case the matrix $\Phi(P_1, P_2, P_3)$
+  has rank $5$.
+\end{prop}
+\begin{proof}
+ This follows from a symbolic computation; see the ancillary file.
+ The last statement follows from \Cref{prop:condition3+1}.
+\end{proof}
+
+
+\begin{prop}
+  Let $P_1, P_2, P_3$ three aligned points and let also $P_1, P_4, P_5$
+  be aligned. Then the matrix $\Phi(P_1, P_2, P_3, P_4, P_5)$ cannot
+  have rank $\leq 7$.
+\end{prop}
+\begin{proof}
+  If the above matrix has rank $\leq 7$, in particular we have that
+  the matrix $\Phi(P_1, P_2, P_3, P_4)$ has rank $\leq 7$ hence, from
+  \Cref{prop:condition3+1}, we get the line $P_1+P_2$ is
+  tangent to the isotropic conic in one of the points $P_1, P_2, P_3$.
+  Similarly, also the line $P_1+P_4$ is tangent to the isotropic conic
+  in one of the points $P_1, P_4, P_5$. Hence the points are such that
+  $P_1$ is not on the isotropic conic and the lines $P_1+P_2$ and
+  $P_1+P_4$ are tangent to the conic in the points $P_2$ and $P_4$.
+  Hence the configuration of the points is the configuration described
+  in \Cref{prop:frecciaFissata} so the rank of the matrix
+  considered in this proposition cannot be $\leq 7$.
+\end{proof}
+
+\subsection{Particular cases}
+
+We consider again the case
+\[
+P_1 = (1, 0, 0), P_2 = (0, i, 1), P_4 = (0, -i, 1), P_3 = u_1P_1+u_2P_2,
+P_5 = v_1P_1+v_2P_2
+\]
+The matrix $\Phi(P_1, \dotsc, P_5)$,
+after some manipulations, is the following rank 8 matrix:
+\[
+\left(\begin{array}{rrrrrrrrrr}
+0 & 0 & 0 & 0 & 0 & 0 & 6 \imunit & 0 & 0 & -6 \imunit \\
+0 & 0 & 0 & 0 & 0 & 2 \imunit & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 3 & 0 & 0 & 0 & 0 & -3 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+-3 u_{1}^{2} u_{2} & 0 & 0 & 0 & 0 & 0 & 0 & 2 u_{1}^{2} u_{2} & 2 \imunit u_{1} u_{2}^{2} & 2 u_{1} u_{2}^{2} \\
+-3 v_{1}^{2} v_{2} & 0 & 0 & 0 & 0 & 0 & 0 & 2 v_{1}^{2} v_{2} & -2 \imunit v_{1} v_{2}^{2} & 2 v_{1} v_{2}^{2}
+\end{array}\right)
+\]
+Solving the system with Kramer, we get the following families of
+cubic curves:
+
+\begin{eqnarray*}
+  C(l_1, l_2) & = & x^{3} u_{2} v_{1} l_{1} + \frac{3}{2} x y^{2} u_{2} v_{1} l_{1} +
+  \frac{3}{2} x z^{2} u_{2} v_{1} l_{1} + x^{3} u_{1} v_{2} l_{1} + \\
+  & & \frac{3}{2} x y^{2} u_{1} v_{2} l_{1} + \frac{3}{2} x z^{2} u_{1} v_{2} l_{1} + \imunit y^{3} u_{2} v_{1} l_{2} + y^{2} z u_{2} v_{1} l_{2} +
+  \imunit y z^{2} u_{2} v_{1} l_{2} + \\
+  & & z^{3} u_{2} v_{1} l_{2} - \imunit y^{3} u_{1} v_{2} l_{2} + y^{2} z u_{1} v_{2} l_{2} -  \imunit y z^{2} u_{1} v_{2} l_{2} + z^{3} u_{1} v_{2} l_{2} - \\
+  & & 2 x y^{2} u_{2} v_{2} l_{2} - 2 x z^{2} u_{2} v_{2} l_{2}
+  \end{eqnarray*}
+
+also described by the linear combination of two cubics:
+
+\begin{eqnarray}
+  C(l_1, l_2) & = & x \cdot (u_{2} v_{1} + u_{1} v_{2}) \cdot (x^{2} + \frac{3}{2} y^{2} + \frac{3}{2} z^{2}) l_1+\\
+  & &   \left(\imunit\right) \cdot (y + \imunit z) \cdot (y - \imunit z) \cdot (y u_{2} v_{1} - \imunit z u_{2} v_{1} - y u_{1} v_{2} - \imunit z u_{1} v_{2} + 2 \imunit x u_{2} v_{2})l_2  \nonumber
+\label{famigliaCubDim1}
+\end{eqnarray}
+
+If $l_2=0$ the corresponding cubic has the two lines $P_1+P_2$ and $P_1+P_4$
+of eigenpoints. If we assume $l_2 \not= 0$ (and also $u_1, u_2, v_1, v_2$
+different from zero) we get that the cubics $C(l_1, l_2)$ have 7
+eigenpoints, five are clearly $P_1, \dots, P_5$,
+the remaining two are given by an ideal $J$, one of whose generators is the
+polynomial:
+\[
+yu_2v_1 -\imunit zu_2v_1 + yu_1v_2 + \imunit zu_1v_2
+\]
+which is linear in $x, y, z$ and is the equation of the line passing
+through the point $P_1$ and orthogonal to the line $P_3+P_5$. In particular,
+we get that the three eigenpoints $P_1$, $P_6$ and $P_7$ are collinear.
+In general, there are no other collinearities among the points (indeed, if
+$P_6$ (or $P_7$) were aligned with two of the other points, its coordinates
+would be rationals in the parameters and the ideal $J$ would split
+into the two ideals of the points $P_6$ and $P_7$).
+
+
+Now we consider the one dimensional linear system of cubics given
+by~(\ref{famigliaCubDim1}) and we want to see if, for some positions
+of the points $P_3$ and $P_5$ we can have further collinearities.
+
+\textbf{Case 1.} We want to see when $P_2, P_4$ and $P_6$ are aligned.
+In this case we get the following coordinates for $P_6$ and $P_7$:
+
+\begin{eqnarray*}
+  P_6 & = & \left(0,\,3 v_{1} l_{1} - 2 v_{2} l_{2},
+  \,-2 \imunit v_{2} l_{2}\right)\\
+  P_7 & = & \left(9 v_{1}^{2} l_{1} - 12 v_{1} v_{2} l_{2},
+  \,-6 \imunit v_{1} v_{2} l_{1} + 4 \imunit v_{2}^{2} l_{2},
+  \,-4 v_{2}^{2} l_{2}\right)
+\end{eqnarray*}
+In this case we have the five alignments $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$,
+$(P_1, P_6, P_7)$ and $(P_2, P_4, P_6)$ and the following orthogonalities
+of the points:
+\[
+\scl{P_1}{P_2} = \scl{P_1}{P_4} = \scl{P_1}{P_6} =
+\scl{P_2}{P_2} = \scl{P_2}{P_3} = \scl{P_4}{P_4} =
+\scl{P_4}{P_5} = 0
+\]
+Furthermore, here we have the orthogonalities of the lines containing
+the points:
+\[
+\begin{array}{l}
+(P_1+P_2) \perp (P_1+P_2), \ (P_1+P_2) \perp (P_2+P_5), \
+  (P_1+P_4) \perp (P_1+P_4), \\
+  (P_1+P_4) \perp (P_3+P_4), \ (P_1+P_6) \perp (P_3+P_5)
+\end{array}
+  \]
+
+  \textbf{Case 2.} If we impose the collinearities of the points
+  $P_2$, $P_5$ and $P_6$, we get that also the points $P_3, P_4, P_5$
+  the points $P_3, P_5, P_7$ are aligned. The orthogonalities of the
+  points and of the lines of the previous case are the same.
+
+  The same collinearities are obtained if we impose the only condition
+  that $P_3, P_5, P_7$ are aligned. Hence we have that the family of
+  cubic curves given by~\ref{famigliaCubDim1} can only give the
+  three configurations of eigenpoints described above (which are
+  (3), (5), (8) of figure.....).
 
 \section{The locus of cubic ternary forms with an aligned triple of eigenpoints}
 
