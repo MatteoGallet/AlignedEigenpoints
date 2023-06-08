@@ -26,7 +26,7 @@
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{prop}[lemma]{Proposition}
 \newtheorem{theorem}[lemma]{Theorem}
-\newtheorem{cor}[lemma]{Corollary}
+\newtheorem{corollary}[lemma]{Corollary}
 \newtheorem{conjecture}[lemma]{Conjecture}
 \newtheorem{fact}[lemma]{Fact}
 \newtheorem{assumption}[lemma]{Assumption}
@@ -57,7 +57,7 @@
 \newcommand{\imunit}{i}
 
 \newcommand{\SO}{\operatorname{SO}}
-\newcommand{\Eig}{\operatorname{Eig}}
+\newcommand{\Eig}[1]{\operatorname{Eig}\left( {#1} \right)}
 \newcommand{\polq}{{\rm Pol}_Q}
 \newcommand{\comment}[1]{}
 
@@ -80,10 +80,19 @@ Abstract
 \end{abstract}
 
 \section{Introduction}
+\label{introduction}
 
-\section{Aligned eigenpoints of ternary cubic forms}
+However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
 
-We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$E(f)$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
+The goal of this paper is to classify all the situations when we have one or more triples of aligned points inside a zero-dimensional reduced eigenscheme of a cubic plane curve.
+
+\Cref{aligned} clarifies the reasons of interest in the situation of triples of aligned eigenpoints.
+
+
+\section{Aligned eigenpoints of ternary cubic form}
+\label{aligned}
+
+We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{f}$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
 %
 \begin{equation}
 \label{eq:def_matrix}
@@ -93,9 +102,14 @@ We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the 
     \end{pmatrix}.
 \end{equation}
 %
+Since the eigenschemes of two proportional homogenous forms are the same,
+if $C$ is the curve defined by these forms,
+we can write $\Eig{C}$ for such eigenscheme and hence talk about the eigenscheme of a plane curve.
 
-The goal of this section is to understand what happens when we have one or more triples of aligned points inside a zero-dimensional reduced eigenscheme.
-We start by recalling a property of eigenschemes of ternary forms, namely,
+The eigenscheme of a general ternary cubic form has no aligned triples of points. This is a consequence of the geometric properties of the classical Geiser map associated with seven points in the plane, and has been proved in \cite[Proposition~4.5]{BGV}.
+
+Moreover, whenever the eigenscheme of a ternary form is zero-dimensional, it never cointains $4$ or more aligned points.
+To see this, we recall a property of eigenschemes of ternary forms, namely,
 that when zero-dimensional they are somehow ``general'' with respect to conics.
 
 \begin{lemma}
@@ -109,13 +123,13 @@ See \cite[Lemma~9.1]{OS1} for the reduced case.
 The proof works also in the non-reduced case.
 \end{proof}
 
-\begin{rmk}
-\label{rmk:general_no_triple}
-As a consequence of \Cref{lemma:no_six_conic}, a zero-dimensional eigenscheme~$E(f)$ for $f \in \C[x,y,z]_d$ never contains $4$ or more aligned points.
-However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
-\end{rmk}
+\begin{corollary}
+\label{corollary:general_no_triple}
+As a consequence of \Cref{lemma:no_six_conic}, a zero-dimensional eigenscheme~$\Eig(f)$ for $f \in \C[x,y,z]_d$ never contains $4$ or more aligned points.
+Moreover, if $\Eig{f}$ contains two triples of aligned points, those must share a point.
+\end{corollary}
 
-It turns out, that the general $f \in \C[x,y,z]_d$ has an eigenscheme with no aligned triples. This is a consequence of the geometric properties of the classical Geiser map associated with seven points in the plane, and has been proved in \cite[Proposition 4.5]{BGV}.
+Therefore, we investigate the situations when we have one or more triples of aligned eigenpoints in a zero-dimensional, reduced eigenscheme of a ternary cubic form.
 
 \section{First properties of aligned eigenpoints of ternary cubics}
 
@@ -127,7 +141,7 @@ a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ter
 \label{definition:matrix_conditions}
  Consider $\p^9 = \p(\C[x,y,z]_3)$, the space of all ternary cubics and take coordinates $\{ f_{ijk} \}_{i+j+k = 3}$ on it,
  so that $f_{ijk}$ is the coefficient of the monomial $x^i y^j z^k$.
- For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements of~$\p^9$ that $P$ is an eigenpoint of a ternary cubic can be expressed in the form
+ For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements of~$\p^9$ that $P$ is an eigenpoint of a ternary cubic form can be expressed in the form
  %
  \[
   \Phi(P) \cdot
@@ -650,10 +664,10 @@ We know that $E(f)$ contains the Jacobian subscheme. As such a subscheme is $GL(
 
 We recall that the hypersurface $\Sigma _{3,3}$ of singular degree three polynomials has degree $12$ (Kapranov) and that the locus of cuspidal cubics is a closed subvariety of codimension~$1$ in~$\Sigma_{3,3}$ and degree~$24$.
 
-\begin{cor}
+\begin{corollary}
 The discriminant hypersurface~$\Delta_{3,3, Sym}$
 intersects the hypersurface~$\Sigma_{3,3}$ along the subvariety of cuspidal cubics.
-\end{cor}
+\end{corollary}
 
 \begin{rmk}
 The general nodal cubic has reduced zero dimensional eigenscheme. Indeed, this is the case for the cubic $x_0 x_1^2 -x_2^2(x_0+x_1)$.
