@@ -658,6 +658,56 @@ are not all distinct; for the proof of the latter statement, see the ancillary f
   considered in this proposition cannot be $\leq 7$.
 \end{proof}
 
+
+\begin{prop}
+ Let $P_1$, $P_2$, $P_3$, $P_4$, and~$P_5$ be distinct points in the plane.
+ Suppose that $P_1, P_2, P_3$ are aligned and also $P_1, P_4, P_5$ are aligned.
+ The matrix $\Phi(P_1, P_2, P_3, P_4, P_5)$ has rank~$8$ if and only if
+ %
+ \begin{itemize}
+  \item the line $P_1 + P_2 + P_3$ is tangent to the isotropic conic in $P_2$ or $P_3$ and the line $P_1 + P_4 + P_5$ is tangent to the isotropic conic in $P_4$ or $P_5$; or
+  \item ????
+ \end{itemize}
+\end{prop}
+
+
+\begin{definition}
+\label{definition:delta1}
+ Let $P$, $Q$, and~$R$ be distinct points in the plane.
+ We define the quantity
+ %
+ \[
+  \delta_1(P, Q, R) :=
+  \scl{P}{P} \scl{Q}{R} - \scl{P}{Q}\scl{P}{R}
+  =
+  \scl{P\times Q}{P \times R} \,,
+ \]
+ %
+ where $\times$ denotes the cross product.
+\end{definition}
+
+\begin{definition}
+ Let $P_1$, $P_2$, $P_3$, $P_4$, and~$P_5$ be distinct points in the plane.
+ Suppose that $P_1, P_2, P_3$ are aligned and also $P_1, P_4, P_5$ are aligned.
+ We define the quantity
+ %
+ \[
+  \delta_2(P_1, P_2, P_3, P_4, P_5) :=
+  \scl{P_1}{P_2} \scl{P_1}{P_3} \scl{P_4}{P_5} -
+  \scl{P_1}{P_4} \scl{P_1}{P_5} \scl{P_2}{P_3} \,.
+ \]
+ %
+\end{definition}
+
+\begin{prop}
+ Let $P_1$, $P_2$, $P_3$, $P_4$, and~$P_5$ be distinct points in the plane.
+ Suppose that $P_1, P_2, P_3$ are aligned and also $P_1, P_4, P_5$ are aligned.
+ The matrix $\Phi(P_1, P_2, P_3, P_4, P_5)$ has rank $\leq 9$ if and only if $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
+\end{prop}
+\begin{proof}
+
+\end{proof}
+
 \subsection{Particular cases}
 
 We consider again the case
