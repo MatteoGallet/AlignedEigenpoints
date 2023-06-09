@@ -78,14 +78,15 @@
 We assume that we have five points $P_1, \dots, P_5$ in a ``V'' configuration
 as usual and we also assume that the $15\times 10$ matrix
 $\Phi(P_1, \dots, P_5)$ has rank $9$. Hence there exists a unique cubic
-curve $C$ which has $P_1, \dots, P_5$ among its eigenpoints. 
-We call $\mathcal{H}$ the $8\times 10$ matrix whose rows are the vectors
-$\phi_1(P_i), \phi_2(P_i)$ ($i = 1, \dots, 4$) and we can assume
-that the matrix whose rows are the rows of $\mathcal{H}$ and the
-row $\phi_1(P_5)$
-has rank $9$. If $P=(x, y, z)$ is a generic point of the plane,
-consider the following three square matrices of order $10$:
-\[ \mathcal{G}_1 = 
+curve $\mathcal{C}$ which has $P_1, \dots, P_5$ among its eigenpoints.
+By \ref{...}, for each point $P_i$ for $i \in \{1,\dotsc,4\}$ there exist two indices $i_1, i_2 \in \{1,2,3\}$ such that the matrix~$\mathcal{H}$ whose rows are $\{ \phi_{i_1}(P_i), \phi_{i_2}(P_i)\}_{i=1}^4$ has rank~$8$.
+To simplify the notation, we assume that the two indices are always $1$ and $2$ for every~$P_i$.
+Similarly, we assume that the matrix whose rows are the rows of $\mathcal{H}$ and the
+row $\phi_1(P_5)$ has rank $9$.
+If $P = (x: y: z)$ is a generic point of the plane,
+consider the following three square matrices of order~$10$:
+%
+\[ \mathcal{G}_1 =
 \left(
 \begin{array}{c}
   \mathcal{H} \\
@@ -94,7 +95,7 @@ consider the following three square matrices of order $10$:
 \end{array}
 \right),
 \quad
-\mathcal{G}_2 = 
+\mathcal{G}_2 =
 \left(
 \begin{array}{c}
   \mathcal{H} \\
@@ -103,7 +104,7 @@ consider the following three square matrices of order $10$:
 \end{array}
 \right),
 \quad
-\mathcal{G}_3 = 
+\mathcal{G}_3 =
 \left(
 \begin{array}{c}
   \mathcal{H} \\
@@ -113,30 +114,43 @@ consider the following three square matrices of order $10$:
 \right)
 \]
 and let $g_1$, $g_2$ and $g_3$ be their determinants.
+We know by \ref{} that $z \phi_1(P)-y\phi_2(P) +x\phi_3(P) = 0$, hence
+%
+\[
+\det
+\left(
+\begin{array}{c}
+  \mathcal{H} \\
+  \phi_1(P_5)\\
+  z \phi_1(P)-y\phi_2(P) +x\phi_3(P)
+\end{array}
+\right) = 0
+\]
+%
+using the multilinearity of the determinant, we get the syzygy~$(z,-y,x)$ among
+$g_1, g_2, g_3$.
 It holds:
 \begin{prop}
-  A point $P=(x, y, z)$ of the plane is an eigenpoint of $C$ if and only if
-  $P$ is a common zero of $g_1, g_2, g_3$. Moreover, among these three
-  polynomials we have the syzygy:
-  \[
-   z g_1-y g_2 +x g_3 = 0
-   \]
-   \label{threeG}
+ \label{threeG}
+  A point $P = (A: B: C)$ of the plane is an eigenpoint of $\mathcal{C}$ if and only if
+  $P$ is a common zero of $g_1, g_2, g_3$.
 \end{prop}
 \begin{proof}
-  Suppose that $P$ is an eigenpoint of $C$. Then the $18\times 10$ matrix
+  Suppose that $P$ is an eigenpoint of $\mathcal{C}$. Then the $18\times 10$ matrix
   $\mathcal{M} = \Phi(P_1, \dots, P_5, P)$, which is the matrix
   associated to the linear
-  system obtained by imposing that the six points are eigenpoints, 
-  has rank $9$, since we know that the linear system has a solution.
-  In particular, when $P$ is an eigenpoint of $C$, the matrices
+  system obtained by imposing that the six points are eigenpoints,
+  has rank~$9$, since by assumption the matrix has rank at least~$9$ and we know that the linear system has a solution.
+  In particular the matrices
   $\mathcal{G}_1, \mathcal{G}_2$ and $\mathcal{G}_3$, which are
   submatrices of $\mathcal{M}$, have determinant zero, so
-  $g_1(P) = g_2(P) = g_3(P) = 0$. \\
+  $g_1(P) = g_2(P) = g_3(P) = 0$.
+
   Conversely, suppose that $P$ is a point such that
   $g_1(P) = g_2(P) = g_3(P) = 0$. Then $\phi_1(P)$ , $\phi_2(P)$ and
   $\phi_3(P)$ are linear combinations of $\phi_1(P_5)$ and the rows
   of $\mathcal{H}$, so the matrix
+  %
   \[
 \left(
 \begin{array}{c}
@@ -148,21 +162,9 @@ It holds:
 \end{array}
 \right)
 \]
+%
 has rank $9$ and the linear system associated to it has a solution,
-which is che cubic $C$, therefore $P$ is an eigenpoint of $C$. \\
-We know that $z \phi_1(P)-y\phi_2(P) +x\phi_3(P) = 0$, hence
-\[
-\det
-\left(
-\begin{array}{c}
-  \mathcal{H} \\
-  \phi_1(P_5)\\
-  z \phi_1(P)-y\phi_2(P) +x\phi_3(P)
-\end{array}
-\right) = 0
-\]
-using the multilinearity of the determinant, we get the syzygy among
-$g_1, g_2, g_3$.
+which is the cubic $\mathcal{C}$, therefore $P$ is an eigenpoint of $\mathcal{C}$.
 \end{proof}
 
 
