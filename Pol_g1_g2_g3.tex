@@ -1,0 +1,169 @@
+\documentclass[10pt, a4paper, reqno, captions=tableheading,bibliography=totoc]{scrartcl}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{lmodern}
+\usepackage[english]{babel}
+
+
+%\usepackage{booktabs}
+%\usepackage{float}
+%\usepackage{enumitem}
+%\usepackage{tikz,pgf}
+%\usepackage[utopia]{mathdesign}
+%\usepackage{palatino}
+%\usepackage{hyperref}
+%\hypersetup{
+%    colorlinks,
+%    linkcolor={red!50!black},
+%    citecolor={blue!50!black},
+%    urlcolor={blue!80!black}
+%}
+%\usepackage[nameinlink]{cleveref}
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prop}[lemma]{Proposition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{cor}[lemma]{Corollary}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{fact}[lemma]{Fact}
+\newtheorem{assumption}[lemma]{Assumption}
+\newtheorem*{reduction}{Reduction}
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{es}[lemma]{Example}
+\newtheorem*{notation}{Notation}
+\newtheorem{rmk}[lemma]{Remark}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\sP}{\mathcal{P}}
+\newcommand{\sL}{\mathcal{L}}
+\newcommand{\de}{\partial}
+\newcommand{\codim}{\mathrm{codim}}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\Bl}{\mathrm{Bl}}
+
+\newcommand{\iso}{\mathcal{Q}}
+
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Eig}{\operatorname{Eig}}
+\newcommand{\polq}{{\rm Pol}_Q}
+\newcommand{\comment}[1]{}
+
+\newcommand{\scl}[2]{\left\langle {#1}, {#2} \right\rangle}
+
+\title{i polinomi $g_1, g_2,g_3$}
+\author{}
+\date{}
+
+\linespread{1.2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25em}
+
+\begin{document}
+
+\maketitle
+
+We assume that we have five points $P_1, \dots, P_5$ in a ``V'' configuration
+as usual and we also assume that the $15\times 10$ matrix
+$\Phi(P_1, \dots, P_5)$ has rank $9$. Hence there exists a unique cubic
+curve $C$ which has $P_1, \dots, P_5$ among its eigenpoints. 
+We call $\mathcal{H}$ the $8\times 10$ matrix whose rows are the vectors
+$\phi_1(P_i), \phi_2(P_i)$ ($i = 1, \dots, 4$) and we can assume
+that the matrix whose rows are the rows of $\mathcal{H}$ and the
+row $\phi_1(P_5)$
+has rank $9$. If $P=(x, y, z)$ is a generic point of the plane,
+consider the following three square matrices of order $10$:
+\[ \mathcal{G}_1 = 
+\left(
+\begin{array}{c}
+  \mathcal{H} \\
+  \phi_1(P_5)\\
+  \phi_1(P)
+\end{array}
+\right),
+\quad
+\mathcal{G}_2 = 
+\left(
+\begin{array}{c}
+  \mathcal{H} \\
+  \phi_1(P_5)\\
+  \phi_2(P)
+\end{array}
+\right),
+\quad
+\mathcal{G}_3 = 
+\left(
+\begin{array}{c}
+  \mathcal{H} \\
+  \phi_1(P_5)\\
+  \phi_3(P)
+\end{array}
+\right)
+\]
+and let $g_1$, $g_2$ and $g_3$ be their determinants.
+It holds:
+\begin{prop}
+  A point $P=(x, y, z)$ of the plane is an eigenpoint of $C$ if and only if
+  $P$ is a common zero of $g_1, g_2, g_3$. Moreover, among these three
+  polynomials we have the syzygy:
+  \[
+   z g_1-y g_2 +x g_3 = 0
+   \]
+   \label{threeG}
+\end{prop}
+\begin{proof}
+  Suppose that $P$ is an eigenpoint of $C$. Then the $18\times 10$ matrix
+  $\mathcal{M} = \Phi(P_1, \dots, P_5, P)$, which is the matrix
+  associated to the linear
+  system obtained by imposing that the six points are eigenpoints, 
+  has rank $9$, since we know that the linear system has a solution.
+  In particular, when $P$ is an eigenpoint of $C$, the matrices
+  $\mathcal{G}_1, \mathcal{G}_2$ and $\mathcal{G}_3$, which are
+  submatrices of $\mathcal{M}$, have determinant zero, so
+  $g_1(P) = g_2(P) = g_3(P) = 0$. \\
+  Conversely, suppose that $P$ is a point such that
+  $g_1(P) = g_2(P) = g_3(P) = 0$. Then $\phi_1(P)$ , $\phi_2(P)$ and
+  $\phi_3(P)$ are linear combinations of $\phi_1(P_5)$ and the rows
+  of $\mathcal{H}$, so the matrix
+  \[
+\left(
+\begin{array}{c}
+  \mathcal{H} \\
+  \phi_1(P_5)\\
+  \phi_1(P)\\
+  \phi_2(P)\\
+  \phi_3(P)
+\end{array}
+\right)
+\]
+has rank $9$ and the linear system associated to it has a solution,
+which is che cubic $C$, therefore $P$ is an eigenpoint of $C$. \\
+We know that $z \phi_1(P)-y\phi_2(P) +x\phi_3(P) = 0$, hence
+\[
+\det
+\left(
+\begin{array}{c}
+  \mathcal{H} \\
+  \phi_1(P_5)\\
+  z \phi_1(P)-y\phi_2(P) +x\phi_3(P)
+\end{array}
+\right) = 0
+\]
+using the multilinearity of the determinant, we get the syzygy among
+$g_1, g_2, g_3$.
+\end{proof}
+
+
+\end{document}
