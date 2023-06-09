@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{mathtools}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -132,6 +133,159 @@ Moreover, if $\Eig{f}$ contains two triples of aligned points, those must share 
 \end{corollary}
 
 Therefore, we investigate the situations when we have one or more triples of aligned eigenpoints in a zero-dimensional, reduced eigenscheme of a ternary cubic form.
+
+\section{Invariance under the action of orthogonal matrices}
+
+\begin{definition}
+ We define $\mathrm{SO}_3(\mathbb{C})$ to be the complexification of the group of special orthogonal real matrices, namely
+ %
+ \[
+  \mathrm{SO}_3(\mathbb{C}) :=
+  \bigl\{
+   M \in \mathrm{GL}_3(\C) \, \mid \,
+   M M^t = I_3 \  \text{and} \  \det(M) = 1
+  \bigr\} \,.
+ \]
+ %
+ The group $\mathrm{SO}_3(\mathbb{C})$ acts on $\C^3$ by matrix multiplication:
+ %
+ \[
+  \begin{array}{ccc}
+   \mathrm{SO}_3(\mathbb{C}) \times \C^3 & \rightarrow & \C^3 \\
+   (M, v) & \mapsto & Mv
+  \end{array}
+ \]
+ %
+ Since all the elements of $\mathrm{SO}_3(\mathbb{C})$ are invertible, the latter action descends to an action on $\p^2(\C)$.
+
+ Moreover, the group~$\mathrm{SO}_3(\mathbb{C})$ acts also on ternary forms via
+ \[
+  M \cdot f (x,y,z) = f(M^{-1} \cdot \prescript{t} {}( x \ y \ z )  ).
+ \]
+\end{definition}
+
+\begin{prop}
+ The action of $\mathrm{SO}_3(\mathbb{C})$ on $\p^2(\C)$ has two orbits:
+ %
+ \begin{align*}
+  \mathcal{O}_1 &:=
+  \bigl\{
+   P \in \p^2(\C) \, | \,
+   P = (a:b:c) \  \text{with} \  a^2 + b^2 + c^2 = 0
+  \bigr\} \\
+  \mathcal{O}_2 &:= \p^2(\C) \setminus \mathcal{O}_1
+ \end{align*}
+ %
+ A representative for $\mathcal{O}_1$ is $(1:i:0)$ and a representative for $\mathcal{O}_2$ is $(1:0:0)$.
+\end{prop}
+\begin{proof}
+ Suppose that $P \in \p^2(\C)$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 = 0$.
+ We produce a matrix $M \in \mathrm{SO}_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ i \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
+ Up to relabeling the coordinates, we can suppose that $a \neq 0$.
+ Hence, by rescaling the coordinates of $P$, we have $P = (1: b: c)$ with $b^2 + c^2 = -1$.
+ One can check that the matrix
+ %
+ \[
+  M :=
+  \begin{pmatrix}
+   -1 & 0 & 0 \\
+   0 & ib & -ic \\
+   0 & ic & ib
+  \end{pmatrix}
+ \]
+ %
+ satisfies the requirements.
+
+ Now suppose that $P \in \p^2(\C)$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 \neq 0$.
+ Up to rescaling, we can suppose that $a^2 + b^2 + c^2 = 1$.
+ Again, we produce a matrix $M \in \mathrm{SO}_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
+ First of all, suppose that $b^2 + c^2 \neq 0$ and let $\omega$ be a root of the polynomial $t^2 - (b^2 + c^2)$ in $\C[t]$.
+ Then, the matrix
+ %
+ \[
+   M :=
+   \begin{pmatrix}
+     a & \omega & 0 \\
+     b & -\frac{ab}{\omega} & \frac{c}{\omega} \\
+     c & -\frac{ac}{\omega} & -\frac{b}{\omega}
+   \end{pmatrix}
+ \]
+ %
+ satisfies the requirements.
+ With the same technique, if $a^2 + c^2 \neq 0$, we can produce a matrix $M \in \mathrm{SO}_3(\C)$ that maps $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$; similarly, when $a^2 + b^2 \neq 0$, we can map $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$.
+ Since $\left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$, $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$, and $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ are all $\mathrm{SO}_3(\C)$-equivalent, the only case to consider is when
+ %
+ \[
+  b^2 + c^2 = a^2 + c^2 = a^2 + b^2 = 0 \,,
+ \]
+ %
+ which, however, can never occur.
+\end{proof}
+
+The following result is well known; we recall it for the sake of completeness.
+
+\begin{prop}
+ Denote by $\Eig{f} \subset \p^2$ the eigenscheme of~$f$.
+ Then we have
+ \[
+  P = (A: B: C) \in \Eig{f} \iff M \cdot \prescript{t} {}(A \ B \ C) \in \Eig{M \cdot f}.
+ \]
+\end{prop}
+
+
+\begin{proof}
+In the present proof,
+for convenience, we shall consider the transpose of the defining matrix of an eigenscheme.
+
+Let $M \in \mathrm{GL}(3, \C)$.
+A point $P=(A: B: C)$ is an eigenpoint for $f$ if and only if
+\begin{equation*}
+  \text  {rk}  \begin{pmatrix}
+    A & \de_x f(P) \\
+    B & \de_y f(P)  \\
+    C & \de_z f(P)
+    \end{pmatrix}=1,
+\end{equation*}
+which is equivalent to
+\begin{equation}
+\label{eq:def_matrix_M}
+    \text  {rk} \quad  M  \cdot \begin{pmatrix}
+    A & \de_x f(P) \\
+    B & \de_y f(P)  \\
+    C & \de_z f(P)
+    \end{pmatrix}
+    =1.
+\end{equation}
+By setting $\prescript{t} {}(A' \ B' \ C' )= M \cdot \prescript{t} {}(A \ B \ C) $ and $Q=(A':B':C')$, we have that \Cref{eq:def_matrix_M}
+is equivalent to
+\begin{equation}
+\label{eq:transformed}
+  \text{rk}
+  \begin{pmatrix}
+    A' &  \\
+    B' & M \cdot \nabla f (P) \\
+    C' & \\
+  \end{pmatrix}=1.
+\end{equation}
+Now we consider the polynomial $M \cdot f$ and we observe that the chain rule gives
+\begin{gather*}
+\partial_x (M\cdot f) = \partial_x \bigl( f(M^{-1}  \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(1)}(\nabla f) \bigl( M^{-1}\   \prescript{t} {} (x \ y \ z) \bigr) \,, \\
+\partial_y (M\cdot f) = \partial_y \bigl( f(M^{-1}  \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(2)}(\nabla f) \bigl( M^{-1}\   \prescript{t} {} (x \ y \ z) \bigr) \,, \\
+\partial_z (M\cdot f) = \partial_z  \bigl( f(M^{-1}  \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(3)}(\nabla f) \bigl( M^{-1}\   \prescript{t} {} (x \ y \ z) \bigr) \,,
+\end{gather*}
+where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Hence
+\[
+\nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\   \prescript{t} {} (x \ y \ z)),
+\]
+so we have
+\[
+\nabla (M \cdot f)(Q)=\nabla (M \cdot f)(M \cdot P)=
+\prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\   M \cdot P)=\prescript{t} {} M^{-1} \cdot (\nabla f)(P).
+\]
+Finally, if we choose $M \in \mathrm{SO}_3(\mathbb{C})$, we have
+$\prescript{t} {} M^{-1}=M$. We deduce that
+\Cref{eq:transformed} holds if and only if $Q \in E(M\cdot f)$, so the statement is proved.
+\end{proof}
 
 \section{First properties of aligned eigenpoints of ternary cubics}
 
