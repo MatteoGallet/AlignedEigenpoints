@@ -133,8 +133,13 @@ class SymbolicCheck:
         if standard == "first_two":
             return matrix(R, list(itertools.chain(*[self.phi(P, R)[:2] for P in list_points])))
 
-        if standard == "selected":
-            return matrix(R, list(itertools.chain(*[operator.itemgetter(*list_rows[i])(self.phi(list_points[i], R)) for i in len(list_points)])))
+            def get_rows(lst_rows, mat):
+                if len(lst_rows) == 1:
+                    return (operator.itemgetter(*lst_rows)(mat),)
+                else:
+                    return operator.itemgetter(*lst_rows)(mat)
+
+            return matrix(R, list(itertools.chain(*[get_rows(list_rows[i], phi(list_points[i], R)) for i in range(len(list_points))])))
         else:
             raise Error("Value of standard not defined")
 
