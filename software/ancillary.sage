@@ -143,6 +143,15 @@ class SymbolicCheck:
         else:
             raise Error("Value of standard not defined")
 
+    def clear_uv(self, poly):
+        R = poly.parent()
+        return R.ideal(poly).saturation(u1*v1*u2*v2)[0].gens()[0]
+
+    def get_sqrfree(self, poly):
+        if poly.is_zero():
+            return R(0)
+        return prod(map(lambda pair: pair[0], list(poly.factor())))
+
     def ort_lines(self, p1, p2, q1, q2):
         '''Determines if two lines are orthogonal.'''
 
