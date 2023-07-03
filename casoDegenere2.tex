@@ -101,9 +101,8 @@ P_4= (0, -i, 1), \quad P_5 = v_1P_1+v_2P_4.
 It is immediate to see that $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 In the $15\times 10$ matrix $\Phi_M(P_1, \dots, P_5)$ we can erase the
 rows: $\phi_2(P_1)$ (which is a zero row), the row $\phi_1(P_2)$
-(since $\phi_1(P_2)=i\phi_2(P_2)$) and, for similar reason, the
-rows: $\phi_1(P_3)$, $\phi_1(P_4)$ and $\phi_1(P_5)$. (((*uso la notazione
-$\Phi(P) = (\phi_1(P), \phi_2(P), \phi_3(P))$*)))
+(since $\phi_1(P_2)=i\phi_2(P_2)$) and, for similar reasons, the
+rows: $\phi_1(P_3)$, $\phi_1(P_4)$ and $\phi_1(P_5)$. 
 Moreover, since the rank of the matrix $\Phi_M(P_1, P_2, P_3)$ is $5$,
 we can also erase the row $\phi_3(P_3)$ and, for the same reason, the
 row $\phi_3(P_5)$. The remaining matrix $M$ is a $8\times 10$ matrix whose rank
@@ -163,7 +162,7 @@ P_5 = v_1P_1+v_2P_2
 \]
 The matrix $\Phi(P_1, ..., P_5)$, 
 after some manipulations, is the following rank 8 matrix:
-\[
+\begin{equation}
 \left(\begin{array}{rrrrrrrrrr}
 0 & 0 & 0 & 0 & 0 & 0 & 6 \mathit{ii} & 0 & 0 & -6 \mathit{ii} \\
 0 & 0 & 0 & 0 & 0 & 2 \mathit{ii} & 0 & 0 & 0 & 0 \\
@@ -174,7 +173,8 @@ after some manipulations, is the following rank 8 matrix:
 -3 u_{1}^{2} u_{2} & 0 & 0 & 0 & 0 & 0 & 0 & 2 u_{1}^{2} u_{2} & 2 \mathit{ii} u_{1} u_{2}^{2} & 2 u_{1} u_{2}^{2} \\
 -3 v_{1}^{2} v_{2} & 0 & 0 & 0 & 0 & 0 & 0 & 2 v_{1}^{2} v_{2} & -2 \mathit{ii} v_{1} v_{2}^{2} & 2 v_{1} v_{2}^{2}
 \end{array}\right)
-\]
+\label{matriceBella}
+\end{equation}
 Solving the system with Kramer, we get the following families of
 cubic curves:
 
@@ -216,6 +216,9 @@ into the two ideals of the points $P_6$ and $P_7$).
 Now we consider the one dimensional linear system of cubics given
 by~(\ref{famigliaCubDim1}) and we want to see if, for some positions
 of the points $P_3$ and $P_5$ we can have further collinearities.
+
+Siamo arrivati al punto 12341231234 del file input30mag.sage
+
 
 \textbf{Case 1.} We want to see when $P_2, P_4$ and $P_6$ are aligned. 
 In this case we get the following coordinates for $P_6$ and $P_7$:
