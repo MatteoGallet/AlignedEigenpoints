@@ -49,15 +49,10 @@ M = M.matrix_from_rows([0, 1, 4, 5, 7, 8, 10, 11, 13, 14])
 
 ## M non puo' avere rango piu' basso di 8:
 m8 = M.minors(8)
-print("La matrice non ha rango minore di 8:")
-print(S.ideal(m8).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
+assert(S.ideal(m8).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
 
 print("""\n\nQui finisce dimostazione proposizione \\ref{frecciaFissata}
 nel file casoDegenere2.tex""")
-
-print("")
-
-
 
 
 ## manipolation of the matrix M:
@@ -81,338 +76,343 @@ M1 = ridM(M1, 7, 6)
 
 ### adesso M1 (equiv ad M) e' piu' bella. Ha due righe tutte nulle
 
-show(M1)
+assert(M1[7]) == vector(S, [0 for _ in range(10)])
+assert(M1[9]) == vector(S, [0 for _ in range(10)])
 
 ## tolgo le due righe nulle di M1
 M1 = M1.matrix_from_rows([0, 1, 2, 3, 4, 5, 6, 8])
+
+M1.rescale_row(0, 1/(-6*ii))
+M1.rescale_row(2, 1/(-3))
+M1.rescale_row(1, 1/(2*ii))
+M1.add_multiple_of_row(6, 0, -2*u1*u2^2)
+M1.add_multiple_of_row(7, 0, -2*v1*v2^2)
+M1 = (M1.matrix_from_rows(range(6)).stack(vector(S, list(map(S, list(M1[6]*1/(u1*u2))))))).\
+stack(vector(S, list(map(S, list(M1[7]*1/(v1*v2))))))
+
+
 M2 = copy(M1)
 
 ## M1 (matrice 8x10) di rango 8 e' la matrice di un sistema lineare
 ## le cui soluzioni danno tutte le cubiche che hanno la configurazione
 ## P1, P2, P3, P4, P5 di autopunti.
-## risolviamo il sistema con Kramer. Usiamo il fatto che il determinante di
-## M1 fatto con le colonne 1, 2, 3, 4, 5, 6, 7, 8 (togliendo quindi
-## ad M1 la prima e l'ultima colonna) non e' zero.
+## risolviamo il sistema con Cramer. Usiamo il fatto che il determinante di
+## fatto con le colonne 1, 3, 4, 5, 6, 7, 8, 9  di M1 non puo' mai essere zero.
 
-## matrice dei coefficienti e suo determinante:
-coeffMat = [[M1[i, j] for i in range(8)] for j in range(1, 9)]
-dCf = matrix(coeffMat).det()
+coeffM = M1.matrix_from_columns([1, 3, 4, 5, 6, 7, 8, 9])
+assert(S.ideal(coeffM.det()).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
 
-## colonna dei termini noti:
-tn = -dCf*(l1*vector(S, [M1[i, 0] for i in range(8)])+l2*vector(S, [M1[i, 9] for i in range(8)]))
+matB = -M1.matrix_from_columns([0, 2])*matrix(S, [[a0], [a2]])
 
-## soluzione con kramer:
-krm = []
-for k in range(8):
-    dt = matrix([coeffMat[i] for i in range(k)] + [tn] + [coeffMat[i] for i in range(k+1, 8)]).det()
-    krm.append(S(dt/dCf))
+## soluzione del sistema:
+sol = solve_with_Cramer(coeffM, matB)
 
-print("Verifica soluzione con Kramer: Tutto zero?")
-assert(M1*vector([l1*dCf]+krm+[l2*dCf])== vector(S, [0 for _ in range(8)]))
+## verifica:
+assert(vector(coeffM*sol-det(coeffM)*vector(matB.transpose()))== vector(S, [0 for _ in range(8)]))
 
-## la soluzione del sistema (dipende dai parametri liberi l1 e l2):
-sol = [l1*dCf]+krm+[l2*dCf]
+
+## la soluzione del sistema (dipende dai parametri liberi a0 e a2):
+## riformulo sol, mettendo matA.det() al posto 0 e al posto 2
+i1, i2 = 0, 2
+
+sol1 = list(sol)
+sol1 = vector(S, sol1[:i1]+[a0*coeffM.det()]+sol1[i1:i2-1]+[a2*coeffM.det()]+sol1[i2-1:])
+
+## sol1 e' la soluzione del sistema con matrice M1:
+assert(M1*sol1 == vector(S, [0 for _ in range(8)]))
 
 ## la famiglia di cubiche soluzione:
-cb = sum([sol[i]*mon[i] for i in range(10)])
-cb = factor(cb)[-1][0]
+cb = sum([sol1[i]*mon[i] for i in range(10)])
+
+cb = S.ideal(cb).saturation(u1*u2*v1*v2)[0].gens()[0]
 
 print("\nCalcolata la famiglia cb di cubiche con configurazione data\n")
 print("Famiglia denominata con \\ref{famigliaCubDim1}")
 
-### autopunti di cb:
+## cb is the linear combination of the following two cubics:
+cbb1 = x*(x^2+3/2*y^2+3/2*z^2)
+cbb2 = (y + ii*z) * (y + (-ii)*z) * (y*u2*v1 + (-ii)*z*u2*v1 - y*u1*v2 + (-ii)*z*u1*v2 + (2*ii)*x*u2*v2)
+## i.e. cb1 = w1*cbb1 + w2*ccb2
+## as is obtained by the following computation, which gives that
+## w2 = 3*a0 - 2*a2, w1 = (-ii)*4*u2*v2*a0:
+
+assert(S.ideal([(w1*cbb1+w2*cbb2 -cb).coefficient(mm) for mm in mon]).saturation(u1*u2*v1*v2)[0] == S.ideal(w2 - 3*a0 + 2*a2, 4*u2*v2*a0 + (-ii)*w1))
+## 
+assert(cb == ((-ii)*4*u2*v2*a0)*cbb1 + (3*a0 - 2*a2)*cbb2)
+
+## hence we redefine cb:
+
+cb = l1*cbb1+l2*cbb2
+
+## cbb1 is a cubic which has as eigenpoints P1 and the line P1+P2 and 
+## P1+P4
+e_cbb1 = S.ideal(matrix(S, [(x, y, z), [cbb1.derivative(xx) for xx in (x, y, z)]]).minors(2)).saturation(u1*u2*v1*v2)[0]
+
+assert(e_cbb1 == S.ideal(y^2*z + z^3, y^3 + y*z^2))
+## hence we can assume l2 != 0 
+
+### eigenpoints of cb:
 ej = S.ideal(matrix(S, [(x, y, z), [cb.derivative(xx) for xx in (x, y, z)]]).minors(2))
 
-ep = ej.saturation(u1*u2*v1*v2)[0].saturation(l2)[0].radical().primary_decomposition()
+ej = ej.saturation(u1*u2*v1*v2*l2)[0]
+
+## we erase from ej the known eigenpoints:
+for pp in [P1, P2, P3, P4, P5]:
+    ej = ej.saturation(S.ideal(matrix([pp, (x, y, z)]).minors(2)))[0]
+
+## we get precisely a new ideal:
+ep = ej.radical().primary_decomposition()
+
+assert(len(ep) == 1)
+
+## ep[0] is the intersection of a line and a conic 
+## and gives the eigenpoints P6 and P7
+
+rt = y*u2*v1 + (-ii)*z*u2*v1 + y*u1*v2 + ii*z*u1*v2 
+
+conica = 12*x*y*u1*v2*l2 + (12*ii)*x*z*u1*v2*l2 + (-8*ii)*x^2*u2*v2*l2 + (4*ii)*y^2*u2*v2*l2 + (4*ii)*z^2*u2*v2*l2 + 3*y^2*l1 + 3*z^2*l1
 
 
-## si trovano i 5 autopunti P1, P2, P3, P4, P5 e inoltre
-## due autopunti che sono dati dall'ideale:
-dueP = ep[-1]
+assert(ep[0] == S.ideal(conica, rt).saturation(u1*u2*v1*v2)[0])
+## ep[2] e' un ideale di 2 punti che stanno su retta rt che passa per P1
 
-## e sono due punti su una retta di equazione:
-## y*u2*v1 + (-ii)*z*u2*v1 + y*u1*v2 + (ii)*z*u1*v2
-## e su una conica di equazione:
-## 3*y*z*v1*l1 + (-3*ii)*z^2*v1*l1 - 6*x*y*v1*l2 + (6*ii)*x*z*v1*l2 + (-4*ii)*x^2*v2*l2 + (2*ii)*y^2*v2*l2 + (2*ii)*z^2*v2*l2
-
-assert(dueP == S.ideal(y*u2*v1 + (-ii)*z*u2*v1 + y*u1*v2 + (ii)*z*u1*v2,\
-3*y*z*v1*l1 + (-3*ii)*z^2*v1*l1 - 6*x*y*v1*l2 + (6*ii)*x*z*v1*l2 + (-4*ii)*x^2*v2*l2 + (2*ii)*y^2*v2*l2 + (2*ii)*z^2*v2*l2).saturation(v1*v2)[0])
-
-## y*u2*v1 + (-ii)*z*u2*v1 + y*u1*v2 + (ii)*z*u1*v2
+## la retta rt = y*u2*v1 + (-ii)*z*u2*v1 + y*u1*v2 + (ii)*z*u1*v2
 ## e' la retta passante per P1 e ortogonale alla retta
 ## P3+P5, come segue da questi conti:
 r35 = matrix([P3, P5, (x, y, z)]).det()
-rt = dueP.gens()[0]  ### retta per P1, P6, P7
 
 ## la retta rt passa per P1:
-assert(rt.subs({x:P1[0], y:P1[1], z:P1[2]}).is_zero())
+assert(rt.subs(substitution(P1)).is_zero())
 
-print("\n\n\n")
-print(scalarProd([r35.coefficient(xx) for xx in (x, y, z)], \
-                  [rt.coefficient(xx) for xx in (x, y, z)]) == 0)
-
+## la retta r35 e la retta rt sono ortogonali
 assert(scalarProd([r35.coefficient(xx) for xx in (x, y, z)], \
                   [rt.coefficient(xx) for xx in (x, y, z)]).is_zero())
-		  
+          
 ### studio delle possibili configurazioni dei punti nelle cubiche
 ### della famiglia cb.
 ###
-### In generale, la conica che compare in dueP e' irriducibile
-assert(dueP.gens()[1].is_prime())
+### In generale, la conica che compare in ep[0] e' irriducibile
+assert(conica.is_prime())
 
 ### punto 12341231234 (riferimento sul file casoDegenere2.tex)
 
 
-###   ===> caso P2, P4, P6 allineati
+###   ===> caso 1: caso imposizione P2, P4, P6 allineati
+
+## equation line P2+P4: x = 0
+assert(matrix([P2, P4, (x, y, z)]).det() == 2*ii*x)
+
+## construction of the point P6 intersection of the lines rt and P2+P4:
+P6 = vector(S, (0, rt.coefficient(z), -rt.coefficient(y)))
+
+## P6 always exists:
+assert(S.ideal(list(P6)).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
+
+## if P6 is an eigenpoint, it must be a point of the conic. 
+## Hence u2*v2*l2 + (-3/4*ii)*l1 = 0, i.e. 
+## l1 = u2*v2, l2 = 3/4*ii
+assert(conica.subs(substitution(P6)) == ((16*ii))*v2*v1*u2*u1*(u2*v2*l2 + (-3/4*ii)*l1))
+
+
+
+## the family of  cubics in which P6 is aligned with P2 and P4:
+cb1 = S(cb.subs({l1: u2*v2, l2: 3/4*ii}))
+## cb1 is smooth
+assert(sing_loc(cb1).saturation(u1*u2*v1*v2)[0] == S.ideal(x, y, z))
+
+
+
+## construction of P7 for cb1:
+
+e_cb1 = S.ideal(matrix([(x, y, z), [cb1.derivative(xx) for xx in (x, y, z)]]).minors(2)).\
+saturation(u1*u2*v1*v2)[0]
+for pp in [P1, P2, P3, P4, P5, P6]:
+    e_cb1 = e_cb1.saturation(S.ideal(matrix([pp, (x, y, z)]).minors(2)))[0]
+
+pl1, pl2 = tuple(e_cb1.gens()[:2])
+
+
+slz = matrix([[pl1.coefficient(xx) for xx in (x, y, z)], \
+              [pl2.coefficient(xx) for xx in (x, y, z)]]).minors(2)
+
+P7 = 1/6*vector(S, [slz[2], -slz[1], slz[0]])
+
+## P7 always exists:
+assert(S.ideal(list(P7)).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
+
+## 
+print("Points P6 and P7 when P2, P4, P6 are aligned:")
+print(P6)
+print(P7)
+
+print("")
+
+## The seven eigenpoints of cb1 have 4 alignments:
+lp = [P1, P2, P3, P4, P5, P6, P7]
+
+assert(allignments(lp) == [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)])
+
+## the seven eigenpoints cannot have more then the 4 alignments above:
+for i in range(5):
+    for j in range(i+1, 6):
+        for k in range(j+1, 7):
+            if not ((i+1, j+1, k+1) in [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)]):
+                assert(S.ideal(matrix([lp[i], lp[j], lp[k]]).det()).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
+
+## conclusion:
+## In the case P2, P4, P6 aligned, 
+## we have a configuration of type (5) and we cannot have other configurations
+## of the 7 eigenpoints (but there is a configuration with lines of eigepoints).
 
 ##
-## costruzione di Prt: generico punto su retta rt = P1+P6+P7
-ss6 = {x:w1*rt.coefficient(z), y:w2*rt.coefficient(z), \
-          z:-rt.coefficient(x)*w1-rt.coefficient(y)*w2}
-
-assert(rt.subs(ss6).is_zero())
-
-Prt = vector(S, (x, y, z)).subs(ss6)
-
-## condition of alignment between P2, P4, Prt. gives w1 = 0 or
-## u1*v2-u2*v1 = 0
-assert(S.ideal(det(matrix([P2, P4, Prt]))) == S.ideal(w1*(u1*v2-u2*v1)))
-
-### Caso 1A  w1 = 0
-## hence we define PP6 on the line rt aligned with P2 and P4
-## and we see when (for which values of u1 and u2) it is an eigenpoint
-
-PP6 = Prt.subs({w1:0, w2:1})
-J2 = dueP.subs({x:PP6[0], y:PP6[1], z:PP6[2]}).saturation(u1*u2*v1*v2)[0]
-
-ff = J2.gens()[0]
-print(ff.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})==0)
-
-## here is the corresponding cubic curve:
-cb2 = cb.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})
-cb2 = cb2.factor()[-1][0]
-PP3 = P3.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})
-
-## and here we have the eigenpoints of cb2:
-EJ = S.ideal(matrix(S, [(x, y, z), [cb2.derivative(xx) for xx in (x, y, z)]]).minors(2))
-## P67 are the 2 ideals corresponding to the two new eigenpoints
-P67 = EJ.saturation(u1*u2*v1*v2)[0].saturation(S.ideal(l1, l2))[0].\
-radical().primary_decomposition()[-2:]
-
-## here we obtain true, hence we define the point PP6
-print(P67[0].subs({x:0, y: 3*v1*l1 - 2*v2*l2, z: -(2*ii)*v2*l2})== S.ideal(0))
-
-PP6 = vector(S, (0, 3*v1*l1 - 2*v2*l2, -(2*ii)*v2*l2))
-
-print(latex(PP6))
-
-## and now we define PP7:
-dueG = P67[1].gens()[:2]
-mn2 = matrix([[dueG[0].coefficient(cc) for cc in (x, y, z)], \
-        [dueG[1].coefficient(cc) for cc in (x, y, z)]]).minors(2)
-sst7 = {x:mn2[2], y:-mn2[1], z: mn2[0]}
-print(P67[1].subs(sst7)==S.ideal(0))
-PP7 = vector(S, (x, y, z)).subs(sst7)
-
-print(latex(PP7))
-
-print("\n\nHere we have the alignments of the 7 points:")
-print(allignments([P1, P2, PP3, P4, P5, PP6, PP7]))
-print("\nHence we have a cubic whose eigenpoints are in configuration (5)")
-
-## in the output we give the orthogonality of the points:
+## we compute the orthogonality of the points:
 print("")
-PNT = [P1, P2, PP3, P4, P5, PP6, PP7]
+couple_of_ortog_points = []
 for i in range(7):
     for j in range(i, 7):
-        if scalarProd(PNT[i], PNT[j]) == 0:
-            print("point "+str(i+1)+" orthogonal to point "+str(j+1))
+        if scalarProd(lp[i], lp[j]) == 0:
+            couple_of_ortog_points.append((i+1, j+1))
+
+## we have the following orthogonalities of the points:
+## [(1, 2), (1, 4), (1, 6), (2, 2), (2, 3), (4, 4), (4, 5)]
+assert(couple_of_ortog_points == [(1, 2), (1, 4), (1, 6), (2, 2), (2, 3), (4, 4), (4, 5)])
+
 
 ## in the output we show the kind of orthogonality among
 ## the lines:
 
 print("\nOrthogonalities among the lines in case P2, P4, P6 aligned:\n ")
-RT = [[P1, P2], [P1, P4], [P1, PP6], [P2, P5], [PP3, P4], [PP3, P5]]
+RT = [[P1, P2], [P1, P4], [P1, P6], [P2, P5], [P3, P4], [P3, P5]]
 lines = ["line123", "line145", "line167", "line25", "line34", "line35"]
 for i in range(6):
     for j in range(i, 6):
         if ortLines(*(RT[i]+RT[j])):
             print("line "+lines[i]+" ortogonal to line "+lines[j])
 
-
-
-print("\nEnd of case P2 P4 P6 aligned. conf (5)\n")
+print("\nEnd of case P2 P4 P6 aligned, only possibility: conf (5)")
+print("or two lines and the intersection point as eigenpoints")
 
 ####################
 ####################
-###
-### ==> caso P2, P5, P6 allineati
 
-## costruzione di Prt: generico punto su retta rt = P1+P6+P7
-ss6 = {x:w1*rt.coefficient(z), y:w2*rt.coefficient(z), \
-          z:-rt.coefficient(x)*w1-rt.coefficient(y)*w2}
-rt.subs(ss6)
-Prt = vector(S, (x, y, z)).subs(ss6)
-
-## condition of alignment between P2, P5, Prt. gives 
-## {w1: -(ii)*u1*v1, w2: u2*v1 - u1*v2}:
-det(matrix([P2, P5, Prt])).factor()
-
-## hence we define PP6 on the line rt aligned with P2 and P5
-## and we see when (for which values of u1 and u2) it is an eigenpoint
-
-PP6 = Prt.subs({w1: -(ii)*u1*v1, w2: u2*v1 - u1*v2})
-J2 = dueP.subs({x:PP6[0], y:PP6[1], z:PP6[2]}).saturation(u1*u2*v1*v2)[0]
-ff = J2.gens()[0]
-ff = ff.factor()[-1][0]
-print(ff.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})==0)
-PP3 = P3.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})
-
-cb2 = cb.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})
-cb2 = cb2.factor()[-1][0]
-## and here we have the eigenpoints of cb2:
-EJ = S.ideal(matrix(S, [(x, y, z), [cb2.derivative(xx) for xx in (x, y, z)]]).minors(2))
-## We saturate EJ with some conditions that are not compatible and we get the 7 eigenpoints:
-P67 = EJ.saturation(u1*u2*v1*v2)[0].saturation(S.ideal(l1, l2))[0].\
-saturation(S.ideal(3*l1 + 4*l2, v1 + v2))[0].\
-saturation(S.ideal(3*l1 - 4*l2, v1 - v2))[0].\
-saturation(S.ideal(3*v2*l1 - 4*v1*l2))[0].radical().primary_decomposition()[:2]
+###   ===> caso 2: caso imposizione P2, P5, P6 allineati
 
 
-## computation of PP6 and PP7:
-dueG = P67[1].gens()[:2]
-mn2 = matrix([[dueG[0].coefficient(cc) for cc in (x, y, z)], \
-        [dueG[1].coefficient(cc) for cc in (x, y, z)]]).minors(2)
-sst6 = {x:mn2[2], y:-mn2[1], z: mn2[0]}
-print(P67[1].subs(sst6)==S.ideal(0))
-PP6 = vector(S, (x, y, z)).subs(sst6)
+## equation line P2+P5: r25 = y*v1 + (-ii)*z*v1 + (2*ii)*x*v2
+r25 = matrix([P2, P5, (x, y, z)]).det()
+assert(r25 == y*v1 + (-ii)*z*v1 + (2*ii)*x*v2)
+
+## construction of the point P6 intersection of the lines rt and P2+P5:
+
+slz6 = matrix([[r25.coefficient(xx) for xx in (x, y, z)], [rt.coefficient(xx) for xx in (x, y, z)]]).minors(2)
+P6 = vector(S, (slz6[2], -slz6[1], slz6[0]))
+## P6 is the intersection point of rt and r25
+assert(r25.subs(substitution(P6)).is_zero() and  rt.subs(substitution(P6)).is_zero())
+
+## P6 always exists:
+assert(S.ideal(list(P6)).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
+
+## if P6 is an eigenpoint, it must be a point of the conic. Hence 
+# u1*v1*l2 + u2*v2*l2 + (-3/4*ii)*l1)
+assert(conica.subs(substitution(P6)) == \
+((-64*ii)) * v1 * u2 * u1 * v2^3 * (u1*v1*l2 + u2*v2*l2 + (-3/4*ii)*l1))
 
 
-dueG = P67[0].gens()[:2]
-mn2 = matrix([[dueG[0].coefficient(cc) for cc in (x, y, z)], \
-        [dueG[1].coefficient(cc) for cc in (x, y, z)]]).minors(2)
-sst7 = {x:mn2[2], y:-mn2[1], z: mn2[0]}
-print(P67[0].subs(sst7)==S.ideal(0))
-PP7 = vector(S, (x, y, z)).subs(sst7)
+## Hence the substitution is:
+## {l1: u1*v1+u2*v2: l2: 3/4*ii}
+
+cb1 = S(cb.subs({l1: u1*v1+u2*v2, l2: 3/4*ii}))
+
+## if we assume (2*u1*v1+3*u2*v2)*(u1*v1+u2*v2)*(u1*v1+3*u2*v2) != 0, 
+## then  cb1 is smooth:
+irr = sing_loc(cb1).saturation(u1*u2*v1*v2)[0].saturation(2*u1*v1+3*u2*v2)[0].\
+saturation(u1*v1+u2*v2)[0].saturation(u1*v1+3*u2*v2)[0]
+assert(irr == S.ideal(x, y, z))
+
+## construction of P7:
+
+e_cb1 = S.ideal(matrix([(x, y, z), [cb1.derivative(xx) for xx in (x, y, z)]]).minors(2)).\
+saturation(u1*u2*v1*v2)[0]
+for pp in [P1, P2, P3, P4, P5, P6]:
+    e_cb1 = e_cb1.saturation(S.ideal(matrix([pp, (x, y, z)]).minors(2)))[0]
+
+pl1, pl2 = tuple(e_cb1.gens()[:2])
 
 
-print("\n\nHere we have the alignments of the 7 points  (configuration (8)):")
-print(allignments([P1, P2, PP3, P4, P5, PP6, PP7]))
+slz = matrix([[pl1.coefficient(xx) for xx in (x, y, z)], \
+              [pl2.coefficient(xx) for xx in (x, y, z)]]).minors(2)
 
+P7 = vector(S, [slz[2], -slz[1], slz[0]])
 
-## in the output we give the orthogonality of the points:
+## P7 is an eigenpoint of cb1:
+assert(S.ideal(matrix([(x, y, z), [cb1.derivative(xx) for xx in (x, y, z)]]).minors(2)).subs(substitution(P7))==S.ideal(0))
+
+## P7 always exists:
+assert(S.ideal(list(P7)).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
+
+## The seven eigenpoints of cb1 have the 6 alignments [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 5, 6), (3, 4, 6), (3, 5, 7)]
+lp = [P1, P2, P3, P4, P5, P6, P7]
+assert(allignments(lp) == [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 5, 6), (3, 4, 6), (3, 5, 7)])
+
+## we compute the orthogonality of the points:
 print("")
-PNT = [P1, P2, PP3, P4, P5, PP6, PP7]
+couple_of_ortog_points = []
 for i in range(7):
     for j in range(i, 7):
-        if scalarProd(PNT[i], PNT[j]) == 0:
-            print("point "+str(i+1)+" orthogonal to point "+str(j+1))
+        if scalarProd(lp[i], lp[j]) == 0:
+            couple_of_ortog_points.append((i+1, j+1))
 
-## in the output we show the kind of orthogonality among
-## the lines:
+## we have the following orthogonalities of the points:
+## [(1, 2), (1, 4), (2, 2), (2, 3), (4, 4), (4, 5)]
+assert(couple_of_ortog_points == [(1, 2), (1, 4), (2, 2), (2, 3), (4, 4), (4, 5)])
 
-print("\nOrthogonalities among the lines in case P2, P4, P6 aligned:\n ")
-RT = [[P1, P2], [P1, P4], [P1, PP6], [P2, P5], [PP3, P4], [PP3, P5]]
-lines = ["line123", "line145", "line167", "line25", "line34", "line35"]
-for i in range(6):
-    for j in range(i, 6):
-        if ortLines(*(RT[i]+RT[j])):
-            print("line "+lines[i]+" ortogonal to line "+lines[j])
+### end of case P2, P5, P6 collinear. We have configuration (8)
 
+###############################
+###############################
 
+## case 3: P3, P5, P7 aligned.
 
-print("\nEnd of case of alignment P2, P4, P6 conf (8)\n")
+## case P3, P5 aligned with a point of the line P1+P6+P7.
+## Here we call P7 the point of rt which is aligned with 
+## P3 and P5
 
+## equation line P3+P5: r35 = y*u2*v1 + (-ii)*z*u2*v1 - y*u1*v2 + (-ii)*z*u1*v2 + (2*ii)*x*u2*v2
+r35 = matrix([P3, P5, (x, y, z)]).det()
+assert(r35 == y*u2*v1 + (-ii)*z*u2*v1 - y*u1*v2 + (-ii)*z*u1*v2 + (2*ii)*x*u2*v2)
 
+## construction of the point P7 intersection of the lines rt and P3+P5:
 
+slz7 = matrix([[r35.coefficient(xx) for xx in (x, y, z)], [rt.coefficient(xx) for xx in (x, y, z)]]).minors(2)
+P7 = vector(S, (slz7[2], -slz7[1], slz7[0]))
+## P7 is the intersection point of rt and r35
+assert(r35.subs(substitution(P7)).is_zero() and  rt.subs(substitution(P7)).is_zero())
 
-####################
-###################
-######
-###### ==> caso P3, P5, P6 allineati
-######
-####################
+## P7 always exists:
+assert(S.ideal(list(P7)).saturation(u1*u2*v1*v2)[0] == S.ideal(S.one()))
 
-## costruzione di Prt: generico punto su retta rt = P1+P6+P7
-ss6 = {x:w1*rt.coefficient(z), y:w2*rt.coefficient(z), \
-          z:-rt.coefficient(x)*w1-rt.coefficient(y)*w2}
-rt.subs(ss6)
-Prt = vector(S, (x, y, z)).subs(ss6)
+## if P7 is an eigenpoint, it must be a point of the conic. Hence
+## u1*v1*l2 + u2*v2*l2 + (-3/4*ii)*l1
+## indeed:
 
-## condition of alignment between P3, P5, Prt. gives 
-## sAux:
-ff1 = det(matrix([P3, P5, Prt])).factor()[-1][0]
+assert(conica.subs(substitution(P7)) == \
+((-64*ii)) * v1 * u1 * v2^3 * u2^3 * (u1*v1*l2 + u2*v2*l2 + (-3/4*ii)*l1))
 
-sAux = {w1: ff1.coefficient(w2), w2: -ff1.coefficient(w1)}
+## Hence the substitution is:
+## {l1: u1*v1+u2*v2, l2: 3/4*ii}
 
-print("\nsostituz ok?")
-print(ff1.subs(sAux) == S(0))
-print("")
-## hence we define PP6 on the line rt aligned with P3 and P5
-## and we see when (for which values of u1 and u2) it is an eigenpoint
+cb1bis = S(cb.subs({l1: u1*v1+u2*v2, l2: 3/4*ii}))
 
-PP6 = Prt.subs(sAux)
+## we obtain that the new cubic is the same the cubic cb1 of the previous case, so this case is already studied.
+assert(cb1bis == cb1)
 
-J2 = dueP.subs({x:PP6[0], y:PP6[1], z:PP6[2]}).saturation(u1*u2*v1*v2)[0]
+print()
+print("In conclusion, we have two possible configurations: (5) and (8)")
+print("(and a case of two lines of eigenpoints)")
+print("the line P3+P5 and the line P1+P6+P7 are always orthogonal")
 
-
-ff = J2.gens()[0]
-ff = ff.factor()[-1][0]
-print(ff.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})==0)
-PP3 = P3.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})
-
-cb2 = cb.subs({u1: ff.coefficient(u2), u2:-ff.coefficient(u1)})
-cb2 = cb2.factor()[-1][0]
-## and here we have the eigenpoints of cb2:
-EJ = S.ideal(matrix(S, [(x, y, z), [cb2.derivative(xx) for xx in (x, y, z)]]).minors(2))
-## We saturate EJ with some conditions that are not compatible and we get the 7 eigenpoints:
-
-P67 = EJ.saturation(u1*u2*v1*v2)[0].saturation(S.ideal(l1, l2))[0].\
-saturation(S.ideal(3*l1 + 4*l2, v1 + v2))[0].\
-saturation(S.ideal(3*l1 - 4*l2, v1 - v2))[0].\
-saturation(S.ideal(3*v2*l1 - 4*v1*l2))[0].radical().primary_decomposition()[:2]
-
-## computation of PP6 and PP7:
-dueG = P67[1].gens()[:2]
-mn2 = matrix([[dueG[0].coefficient(cc) for cc in (x, y, z)], \
-        [dueG[1].coefficient(cc) for cc in (x, y, z)]]).minors(2)
-sst6 = {x:mn2[2], y:-mn2[1], z: mn2[0]}
-print(P67[1].subs(sst6)==S.ideal(0))
-PP6 = vector(S, (x, y, z)).subs(sst6)
-
-
-dueG = P67[0].gens()[:2]
-mn2 = matrix([[dueG[0].coefficient(cc) for cc in (x, y, z)], \
-        [dueG[1].coefficient(cc) for cc in (x, y, z)]]).minors(2)
-sst7 = {x:mn2[2], y:-mn2[1], z: mn2[0]}
-print(P67[0].subs(sst7)==S.ideal(0))
-PP7 = vector(S, (x, y, z)).subs(sst7)
-
-
-print("\n\nHere we have the alignments of the 7 points (configuration (8)):")
-print(allignments([P1, P2, PP3, P4, P5, PP6, PP7]))
-
-
-
-## in the output we give the orthogonality of the points:
-print("")
-PNT = [P1, P2, PP3, P4, P5, PP6, PP7]
-for i in range(7):
-    for j in range(i, 7):
-        if scalarProd(PNT[i], PNT[j]) == 0:
-            print("point "+str(i+1)+" orthogonal to point "+str(j+1))
-
-## in the output we show the kind of orthogonality among
-## the lines:
-
-print("\nOrthogonalities among the lines in case P2, P4, P6 aligned:\n ")
-RT = [[P1, P2], [P1, P4], [P1, PP6], [P2, P5], [PP3, P4], [PP3, P5]]
-lines = ["line123", "line145", "line167", "line25", "line34", "line35"]
-for i in range(6):
-    for j in range(i, 6):
-        if ortLines(*(RT[i]+RT[j])):
-            print("line "+lines[i]+" ortogonal to line "+lines[j])
-
-
-
-print("\nEnd of case of alignment P3, P5, P6 conf (8)\n")
+## Nota:
+## Un esempio di cubica singolare che salta fuori e':
+## x^3 + 9/2*x*y^2 + (-21/4*ii)*y^3 + 15/4*y^2*z + 9/2*x*z^2 + (-21/4*ii)*y*z^2 + 15/4*z^3
+## che e' una cubica che ha 7 autopunti in conf (8) e uno di questi e' il
+## punto singolare.
