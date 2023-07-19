@@ -411,7 +411,8 @@ Item~\ref{prop:orthogonal_tangent:item_orthogonal} easily implies item~\ref{prop
   \sigma(P_1, P_2) := \scl{P_1}{P_1} \scl{P_2}{P_2} - \scl{P_1}{P_2}^2 \,.
  \]
  %
- In view of \Cref{prop:orthogonal_tangent}, the condition $\sigma(P_1, P_2) = 0$ only depends on the line~$r$ through~$P_1$ and~$P_2$.
+ In view of \Cref{prop:orthogonal_tangent}, the condition $\sigma(P_1, P_2) = 0$ only depends on the line~$r$ through~$P_1$ and~$P_2$ ((@@perche'? Per me
+viene come conseguenza della bilinearita' del prod scalare)).
  This is why we sometimes simply write $\sigma(r) = 0$.
 \end{definition}
 
@@ -459,7 +460,13 @@ Item~\ref{prop:orthogonal_tangent:item_orthogonal} easily implies item~\ref{prop
   \end{enumerate}
 \end{prop}
 \begin{proof}
-The proof follows from a symbolic computation. See the auxiliary file.
+The first point is a consequence of~\Cref{eq:base}. Let $J$ be the ideal 
+of the order six minors of $M$. We saturate $J$ w.r.t.\ the conditions that
+the points are distinct and then we compute its primary decomposition.
+We get ...@@ Furthermore, if we compute the ideal of the order $5$ minors of
+$M$ and we saturate it w.r.t.\ we see that...@@
+%
+For details, see the auxiliary file.
 \end{proof}
 
 \begin{prop}
@@ -580,7 +587,7 @@ Hence we can summarize the two lemmas above with:
 \end{prop}
 
 \begin{prop}
-Let $P_1, P_2, P_3$ three distinct aligned points and let also $P_1, P_4, P_5$
+Let $P_1, P_2, P_3$ be three distinct aligned points and let also $P_1, P_4, P_5$
 be distinct and aligned and assume that
 \[
 \scl{P_1}{P_2}=0, \quad \scl{P_2}{P_2}=0, \quad \scl{P_4}{P_4}=0
