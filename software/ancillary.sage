@@ -308,6 +308,9 @@ class SymbolicCheck:
         '''
         Proof of Proposition {prop:condition_rank_aligned}
         @@@@ NON MI TORNA LA DIM
+        Questa dim va sostituita con il file:
+        prop47_5ago.sage
+        che dovrebbe essere la correzione.
         '''
 
         var_xyz = ["x", "y", "z"]
