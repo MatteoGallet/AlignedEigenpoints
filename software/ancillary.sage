@@ -307,6 +307,7 @@ class SymbolicCheck:
     def check_rank_aligned(self):
         '''
         Proof of Proposition {prop:condition_rank_aligned}
+        @@@@ NON MI TORNA LA DIM
         '''
 
         var_xyz = ["x", "y", "z"]
@@ -338,7 +339,7 @@ class SymbolicCheck:
 
         orbit1 =  J6 == R.ideal(R.one()) and J5 == R.ideal(R.one())
 
-        # Second case: P4 = (1, i˚, 0)
+        # Second case: P4 = (1, ii, 0)
 
         P1 = vector((A1, B1, C1))
         P2 = vector((A2, B2, C2))
