@@ -636,7 +636,7 @@ These quantities are crucial to describe what happens when we have aligned eigen
  where $\times$ denotes the cross product. i.e.,
  %
  \[
-  P \times Q = (P_2 Q_3 - P_3 Q_2. P_3 Q_1 - P_1 Q_3, P_1 Q_2 - P_2 Q_1) \,.
+  P \times Q = (P_2 Q_3 - P_3 Q_2, \, P_3 Q_1 - P_1 Q_3, \, P_1 Q_2 - P_2 Q_1) \,.
  \]
 
 \end{definition}
@@ -688,10 +688,9 @@ We fix the following coordinates of the points:
 $P_1, P_2, P_4 = (A_1: B_1: C_1), (A_2: B_2: C_2), (A_4: B_4, C_4)$,
 then $P_3 = u_1P_1+u_2P_2$ and $P_5 = v_1P_1+v_2P_4$. We proceed as in
 the proof of \Cref{proposition:three_aligned_ranks}: we compute the determinant of
-the order $10$ matrix $M$ whose rows are
-$\phi_i(P_j)$ for $i=1, 2$ and $j=1, \dots, 5$.
+the reduced matrix of conditions of $P_1, \dotsc, P_5$.
 Its value is:
-5
+%
 \begin{gather}
 \label{delta1delta2}
 A_1A_2A_4(u_1A_1+u_2A_2)(v_1A_1+v_2A_4)u_1^2u_2^2v_1^2v_2^2D^5
