@@ -68,7 +68,7 @@
 
 \newcommand{\iii}{\textbf{i}}
 
-\title{........}
+\title{Eigenpoint collinearities of plane cubics}
 \author{}
 \date{}
 
@@ -471,16 +471,15 @@ The quantity~$\sigma$ is the discriminant of the intersection between the line~$
   The converse is immediate.
 \end{proof}
 
-\begin{prop}
+\begin{corollary}
+A line $r$ in the plane is tangent to the isotropic conic if and only
+if $\sigma(P_1, P_2) = 0$ for all points $P_1, P_2 \in r$ with $P_1 \neq P_2$.
+\end{corollary}
+
+\begin{corollary}
 A line $r$ in the plane is tangent in a point $P$ to the isotropic conic
 if and only if $\scl{P}{Q} = 0$ for all points $Q \in r$.
-\end{prop}
-
-An easy computation shows that:
-\begin{prop}
-A line $r$ in the plane is tangent to the isotropic conic if and only
-if $\sigma(P_1, P_2) = 0$ for all points $P_1, P_2 \in r$.
-\end{prop}
+\end{corollary}
 
 \begin{prop}
 \label{pr2}
@@ -1028,7 +1027,7 @@ each of which has the syzygy $(z, -y, x)$.
 
 The polynomials $g_i^{(j)}$ are degree $3$ polynomials in $x, y, z$ whose
 coefficients are polynomials in $A_1, B_1, C_1, A_2, B_2, C_2, A_3, B_3, C_3,
-u_1, u_2, v_1, v_2$, so are big polynomials which require 
+u_1, u_2, v_1, v_2$, so are big polynomials which require
 special care in handling.
 
 <<<<<<< HEAD
@@ -1061,7 +1060,7 @@ If we define:
   \end{split}
 \end{equation}
 it holds: $\delta_2(P_1, \dots, P_5) = U_1u_1+U_2u_2$, hence, in order to
-have a $V$-configuration satisfying $\delta_2(P_1, \dots, P_5) = 0$ we can 
+have a $V$-configuration satisfying $\delta_2(P_1, \dots, P_5) = 0$ we can
 fix $P_1, P_2, P_4$ arbitrarily, $P_5$ on the line $P_1+P_4$ and in this
 way $P_3$ is determined by $u_1 = U_2$ and $u_2 = -U_1$. Also in this case
 the subvariety of $\mathbb{P}^9$ given by the cubics with 5
@@ -1084,7 +1083,7 @@ common zeros are eigenpoints.
 After the substitution, the three triplets become:
 %
 \begin{equation}
-\sigma(P_1, P_2) \cdot \Omega^{(i)} \cdot  \left(G_1, G_2, G_3\right),\quad 
+\sigma(P_1, P_2) \cdot \Omega^{(i)} \cdot  \left(G_1, G_2, G_3\right),\quad
 \hbox{for $i = 1, 2, 3$}
 \label{G1G2G3}
 \end{equation}
@@ -1094,11 +1093,11 @@ where $\sigma(P_1, P_2)$ is defined in~(\ref{sigma12}) and
 \begin{eqnarray}
 \label{3_Omega}
   \begin{split}
-  \Omega^{(1)} & = & (s_{14} s_{25} + s_{12} s_{45}) C_{1} 
+  \Omega^{(1)} & = & (s_{14} s_{25} + s_{12} s_{45}) C_{1}
 - (s_{14}s_{15}+s_{11}s_{45})C_{2} +(s_{11} s_{25}- s_{12} s_{15})C_4 \\
-  \Omega^{(2)} & = & (s_{14} s_{25} + s_{12} s_{45}) B_{1} 
+  \Omega^{(2)} & = & (s_{14} s_{25} + s_{12} s_{45}) B_{1}
 - (s_{14} s_{15} + s_{11} s_{45}) B_{2} +(s_{11} s_{25} - s_{12} s_{15}) B_{4} \\
-  \Omega^{(3)} & = & (s_{14} s_{25} + s_{12} s_{45}) A_{1} 
+  \Omega^{(3)} & = & (s_{14} s_{25} + s_{12} s_{45}) A_{1}
 - (s_{14} s_{15} +s_{11} s_{45})A_{2} +(s_{11} s_{25}-s_{12} s_{15})A_{4}
 \end{split}
 \end{eqnarray}
@@ -1124,7 +1123,7 @@ r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
 and is composed by $1965$ monomials. The relevant fact is that when we
 evaluate $r_3$ on the coordinates of $P_1$, we get zero. Hence we have:
 \begin{prop}
-If we have five generic points $P_1, \dots, P_5$ which are in a 
+If we have five generic points $P_1, \dots, P_5$ which are in a
 $V$-configuration and satisfy the condition $\delta_2(P_1, \dots, P_5) = 0$,
 then the unique cubic determined by the condition that $P_1, \dots, P_5$
 are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
