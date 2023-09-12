@@ -436,9 +436,10 @@ if and only if $\scl{P}{Q} = 0$ for all points $Q \in r$.
 \end{prop}
 
 Let $P_1, P_2$ be two distinct points in the plane and let
-\[
+\begin{equation}
+\label{sigma12}
   \sigma(P_1, P_2) := \scl{P_1}{P_1} \scl{P_2}{P_2} - \scl{P_1}{P_2}^2 \,.
- \]
+ \end{equation}
  %
 An easy computation shows that:
 \begin{prop}
@@ -804,8 +805,9 @@ and proposition~\ref{prop:d1d2}.
 Here we want to consider a $V$-configuration of points $P_1, \dots, P_5$
 such that $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$.
 Moreover, here we assume that the rank of the matrix $M$
-of conditions imposed by
-the five point is $9$, hence there exists precisely one cubic curve with
+of the conditions imposed by
+the five points (which, by proposition~\ref{pr5}, is at most $9$)
+is $9$, hence there exists precisely one cubic curve having
 $P_1, \dots, P_5$ among its eigenpoints. In particular, from
 proposition~\ref{pr5}, we have that at least one of the two lines
 $P_1+P_2$ and $P_1+P_4$ is not tangent to the isotropic conic (in $P_2$
@@ -959,7 +961,7 @@ $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$, what
 can we say about all the eigenpoints of the corresponding cubics?
 
 The matrices $\mathcal{G}_i$ of~(\ref{G1G2G3}) depend on the matrix
-$\mathcal{H}$ and of the choice of the row $\phi_1(P_5)$. In particular,
+$\mathcal{H}$ and on the choice of the row $\phi_1(P_5)$. In particular,
 in~(\ref{G1G2G3}) we can take $\phi_2(P_5)$ or $\phi_3(P_5)$ in place
 of $\phi_1(P_5)$, obtaining in this way the matrices
 $\mathcal{G}_i^{(2)}$ and $\mathcal{G}_i^{(3)}$ ($i=1, 2, 3$) (in order
@@ -972,24 +974,129 @@ lemma~\ref{lemma_for_minors1} implies that the determinants $g_i^{(j)}$
 differ only by factors given by different coordinates of the points.
 Hence, in the general case, we can construct the following triplets of
 polynomials:
-\[
+\begin{equation}
 \left(g_1^{(1)}, g_2^{(1)}, g_3^{(1)}\right),\quad
 \left(g_1^{(2)}, g_2^{(2)}, g_3^{(2)}\right),\quad
 \left(g_1^{(3)}, g_2^{(3)}, g_3^{(3)}\right)
-\]
+\label{3tripletsPol}
+\end{equation}
 each of which has the syzygy $(z, -y, x)$.
 
 The polynomials $g_i^{(j)}$ are degree $3$ polynomials in $x, y, z$ whose
 coefficients are polynomials in $A_1, B_1, C_1, A_2, B_2, C_2, A_3, B_3, C_3,
-u_1, u_2, v_1, v_2$, so are big polynomials that require particular
+u_1, u_2, v_1, v_2$, so are big polynomials which require 
 special care in handling.
 
-Now we consider the case $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$. 
+To construct five points $P_1, \dots, P_5$ which are in a $V$-configuration
+and such that $\delta_1(P_1, P_2, P_4)= 0$ is quite easy: $P_1$
+and $P_2$ can be taken in an arbitrary way, $P_4$ has to be chosen in such
+a way that it satisfies the linear
+equation $\scl{P_4}{P_2}\scl{P_1}{P_1}-\scl{P_4}{P_1}\scl{P_1}{P_2} = 0$
+and $P_3$ and $P_5$ have to be chosen on the lines $P_1+P_2$ and $P_1+P_4$
+respectively. In particular, the corresponding variety of cubic curves
+has dimension $7$ ($\mathbb{P}^2\times \mathbb{P}^2 \times
+\mathbb{P}^1\times  \mathbb{P}^1$).
+If we construct a random example
+of five points as above, we get a smooth cubic curve whose $7$ eigenpoints
+do not have other collinearities (in addition to those of a
+$V$-configuration).
 
+The case in which the $V$-configuration satisfies the condition
+$\delta_2(P_1, \dots, P_5) = 0$ is different.
 
+If we define:
+\begin{equation}
+  \begin{split}
+    U_1 & =  \langle P_1, P_2\rangle \left(\langle P_1, P_1\rangle
+  \langle P_4,P_5\rangle - \langle P_1, P_4\rangle \langle P_1, P_5\rangle
+  \right)\\
+  U_2 & =  \langle P_1, P_2\rangle^2\langle P_4, P_5\rangle
+  -\langle P_1, P_4\rangle \langle P_1, P_5\rangle \langle P_2, P_2\rangle
+  \label{sst2}
+  \end{split}
+\end{equation}
+it holds: $\delta_2(P_1, \dots, P_5) = U_1u_1+U_2u_2$, hence, in order to
+have a $V$-configuration satisfying $\delta_2(P_1, \dots, P_5) = 0$ we can 
+fix $P_1, P_2, P_4$ arbitrarily, $P_5$ on the line $P_1+P_4$ and in this
+way $P_3$ is determined by $u_1 = U_2$ and $u_2 = -U_1$. Also in this case
+the subvariety of $\mathbb{P}^9$ given by the cubics with 5
+eigenpoints satisfying $\delta_2 = 0$ is of dimension $7$
+($\mathbb{P}^2\times \mathbb{P}^2 \times \mathbb{P}^2\times \mathbb{P}^1$).
 
+Also in this case, it is easy to construct examples and now it turns out that
+the $7$ eigenpoints of the obtained cubics satisfy the further
+condition that also $P_6$ and  $P_7$ are aligned with $P_1$. To explain
+why, we proceed as follows.
 
+Consider again the
+triplets of polynomials of~(\ref{3tripletsPol}), in which we make the
+substitution $u_1 = U_2$ and $u_2 = -U_1$ (where $U_1, U_2$ are
+given by~\ref{sst2})). Here we
+assume that both $U_1$ and $U_2$ are not zero (this case will be considered
+later). If at least one of the three triplets obtained is not identically
+zero, from it we have three degree three polynomials in $x, y, z$ whose
+common zeros are eigenpoints.
+After the substitution, the three triplets become:
+%
+\begin{equation}
+\sigma(P_1, P_2) \cdot \Omega^{(i)} \cdot  \left(G_1, G_2, G_3\right),\quad 
+\hbox{for $i = 1, 2, 3$}
+\label{G1G2G3}
+\end{equation}
+%
+where $\sigma(P_1, P_2)$ is defined in~(\ref{sigma12}) and
+%
+\begin{eqnarray}
+\label{3_Omega}
+  \begin{split}
+  \Omega^{(1)} & = & (s_{14} s_{25} + s_{12} s_{45}) C_{1} 
+- (s_{14}s_{15}+s_{11}s_{45})C_{2} +(s_{11} s_{25}- s_{12} s_{15})C_4 \\
+  \Omega^{(2)} & = & (s_{14} s_{25} + s_{12} s_{45}) B_{1} 
+- (s_{14} s_{15} + s_{11} s_{45}) B_{2} +(s_{11} s_{25} - s_{12} s_{15}) B_{4} \\
+  \Omega^{(3)} & = & (s_{14} s_{25} + s_{12} s_{45}) A_{1} 
+- (s_{14} s_{15} +s_{11} s_{45})A_{2} +(s_{11} s_{25}-s_{12} s_{15})A_{4}
+\end{split}
+\end{eqnarray}
+%
+(here, for the sake of shortness, $s_{ij}$ denotes $\scl{P_i}{P_j}$).
 
+The polynomials $G_1, G_2, G_3$ are three polynomials of degree three
+in $x, y, z$ (with coefficients in the variables
+$A_1, B_1, C_1, A_2, B_2, C_2, A_4, B_4, C_4, v_1, v_2$) which are independent
+of the triplet chosen and, clearly, $z\,G_3-y\,G_2+x\,G_1 = 0$. The common
+zeros are the eigenpoints of the cubic curve defined by the matrix
+$\Phi(P_1, \dots, P_5)$.
+
+According to [conti Valentina@@], we have that the polynomial
+$F := C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$,
+linear in $x, y, z$, which
+correspond to the line $P_1+P_2$, the line $P_1+P_4$ and the line $P_6+P_7$.
+The factorization of $F$ gives that the factor $r_3$ is:
+\[
+r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
+-2 yv_1A_1B_1^4A_2^2B_2A_4^3
+\]
+and is composed by $1965$ monomials. The relevant fact is that when we
+evaluate $r_3$ on the coordinates of $P_1$, we get zero. Hence we have:
+\begin{prop}
+If we have five generic points $P_1, \dots, P_5$ which are in a 
+$V$-configuration and satisfy the condition $\delta_2(P_1, \dots, P_5) = 0$,
+then the unique cubic determined by the condition that $P_1, \dots, P_5$
+are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
+aligned with $P_1$.
+\end{prop}
+
+For some specific values of the coordinates it can happen that either
+$U_1=0$ or $U_2=0$ (in which case $P_1$ and $P_3$ or, respectively, $P_2$
+and $P_3$ coincide) or $\sigma(P_1, P_2) = 0$ or $\Omega^{(i)} = 0$ for
+$i = 1, 2, 3$ (in which case formula~(\ref{G1G2G3}) does not allow to
+obtain the polynomials $G_i$). We remark, however, that, similar to the
+relation $\delta_2(P1, \dots, P_5) = U_1u_1+U_2u_2$, we also have the
+symmetric relation $\delta_2(P_1, \dots, P_5) = -V_1v_1-V_2v_2$, where
+$V_1$ and $V_2$ are obtained by the expressions of~(\ref{sst2}), where
+we exchange $P_2$ with $P_4$ and $P_3$ with $P_5$. Hence we can repeat
+all the above computations obtaining, instead of~(\ref{G1G2G3}) the
+three triplets:
 
 \section{Particular cases}
 file \verb+contiCasoDegenere2.sage+ and file
