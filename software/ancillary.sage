@@ -133,7 +133,7 @@ class SymbolicCheck:
         if standard == "first_two":
             return matrix(R, list(itertools.chain(*[self.phi(P, R)[:2] for P in list_points])))
 
-        if standard == "selected": 
+        if standard == "selected":
             def get_rows(lst_rows, mat):
                 if len(lst_rows) == 1:
                     return (operator.itemgetter(*lst_rows)(mat),)
@@ -582,6 +582,96 @@ class SymbolicCheck:
         m1 = m1.quo_rem(matrix([P1, P2, P4]).det()^5)[0]
 
         return m1 == -54*self.delta1(P1, P2, P4)*self.delta2(P1, P2, P3, P4, P5)
+
+    def check_four_aligned(self):
+    '''Proof that in Proposition {proposition:four_aligned} the rank of the matrix \Phi(P_1, P_2, P_3, Q) is at most 7.'''
+
+        var_xyz = ["x", "y", "z", "u1", "u2", "v1", "v2", "w1", "w2"]
+        var_a = ["a"+str(i) for i in range(10)]
+        var_ABC = [str(XX)+str(i) for i in range(1, 6) for XX in ["A", "B", "C"]]
+
+        K = QQ
+        R = PolynomialRing(K, var_xyz + var_a + var_ABC)
+        R.inject_variables(verbose=False)
+
+        P1 = vector(R, (A1, B1, C1))
+        P2 = vector(R, (A2, B2, C2))
+        P3 = u1*P1 + u2*P2
+        Q = w1*P1 + w2*P2
+
+        M = self.condition_matrix([P1, P2, P3, Q], R)
+
+        m8 = M.minors(8)
+        if not(Set(m8) == {0}):
+            raise Error("There is a non-zero minor of order 8.")
+
+        rows = Combinations(10, 7)
+        good = []
+        for row in rows:
+            if not((0 in row and 1 in row and 2 in row) or (3 in row and 4 in row and 5 in row) or (6 in row and 7 in row and 8 in row)):
+            good.append(row)
+        M1 = M.matrix_from_rows([0,1,2,3,4,5,6,7,8,9])
+        m71 = []
+        count = 0
+        for row in good:
+            count += 1
+            N = M1.matrix_from_rows(row)
+            n7 = N.minors(7)
+            if (count % 10 == 0):
+                print("Calcolati minori")
+                sleep(1)
+            m71.append(n7)
+        m71 = flatten(m71)
+
+        J71 = R.ideal(m71)
+        G71 = J71.groebner_basis()
+        J71sat = J71.saturation(u1*u2*w1*w2)[0].saturation(R.ideal(matrix(R, [P1, P2]).minors(2)))[0]
+        J71rad = J71sat.radical()
+
+        M2 = M.matrix_from_rows([0,1,2,3,4,5,6,7,8,10])
+        m72 = []
+        count = 0
+        for row in good:
+            count += 1
+            N = M2.matrix_from_rows(row)
+            n7 = N.minors(7)
+            if (count % 10 == 0):
+                print("Calcolati minori")
+                sleep(1)
+            m72.append(n7)
+        m72 = flatten(m72)
+
+        J72 = R.ideal(m72)
+        G72 = J72.groebner_basis()
+        J72sat = J72.saturation(u1*u2*w1*w2)[0].saturation(R.ideal(matrix(R, [P1, P2]).minors(2)))[0]
+        J72rad = J72sat.radical()
+
+        M3 = M.matrix_from_rows([0,1,2,3,4,5,6,7,8,11])
+        m73 = []
+        count = 0
+        for row in good:
+            count += 1
+            N = M3.matrix_from_rows(row)
+            n7 = N.minors(7)
+            if (count % 10 == 0):
+                print("Calcolati minori")
+                sleep(1)
+            m73.append(n7)
+        m73 = flatten(m73)
+
+        J73 = R.ideal(m73)
+        G73 = J73.groebner_basis()
+        J73sat = J73.saturation(u1*u2*w1*w2)[0].saturation(R.ideal(matrix(R, [P1, P2]).minors(2)))[0]
+        J73rad = J73sat.radical()
+
+        J7rad = J71rad + J72rad + J73rad
+        J7 = J7rad.saturation(R.ideal(matrix(R, [P1, P2]).minors(2)))[0].saturation(R.ideal(matrix(R, [[u1, u2],[w1, w2]]).minors(2)))[0]
+        j = J7.gens()[0]
+
+        if not(j == self.sigma(P1, P2)):
+            raise Error("Wrong condition!")
+
+
 
 # Running the tests
 my_test = SymbolicCheck()
