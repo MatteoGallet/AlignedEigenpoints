@@ -133,6 +133,7 @@ Moreover, if $\Eig{f}$ contains two triples of aligned points, those must share 
 Therefore, we investigate the situations when we have one or more triples of aligned eigenpoints in a zero-dimensional, reduced eigenscheme of a ternary cubic form.
 
 \section{Invariance under the action of orthogonal matrices}
+\label{invariance}
 
 \begin{definition}
  We define $\mathrm{SO}_3(\mathbb{C})$ to be the complexification of the group of special orthogonal real matrices, namely
@@ -563,10 +564,9 @@ that line is tangent to $\iso$ in one of the three given points.
 
 \begin{prop}
 \label{prop:condition3+1}
-%\label{pr3}
 Let $P_1, P_2, P_3, P_4$ be four distinct points of the plane such that
 $P_1, P_2, P_3$ are aligned and let $r$
-be the line passing thorough them. If
+be the line passing through them. If
 $\text{rk}\ \Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to $\iso$ in one of the three points $P_1, P_2, P_3$.
 \end{prop}
 \begin{proof}
@@ -662,7 +662,7 @@ We define the quantity
 \end{definition}
 
 \begin{lemma}
-\label{prop:d1d2}
+\label{lemma:d1d2}
 Let $P_1, \dots, P_5$ be a $V$-configuration. Then
 \[
 \text{rk}\ \Phi(P_1, \dots, P_5) \leq 9
@@ -736,7 +736,7 @@ of $M$ are zero: the ideal they generate, after saturations ensuring that the po
 \end{proof}
 
 \begin{prop}
-\label{pr5}
+\label{proposition:rank_V}
 Let $P_1, \dots, P_5$ be a $V$-configuration of
 points. Then we have:
 \begin{enumerate}
@@ -745,6 +745,7 @@ points. Then we have:
 $\delta_1(P_1, P_2, P_4) \cdot \delta_2(P_1, \dots, P_5) =0$\,;
 \item $\text{rk}\ \Phi(P_1, \dots, P_5) = 8$ if and only if, one of
 the following two conditions is satisfied:
+%
 \begin{itemize}
   \item the line $P_1+P_2$ is tangent to $\iso$ in $P_2$ or $P_3$
 and the line $P_1+P_4$ is tangent to $\iso$ in $P_4$ or $P_5$,
@@ -752,36 +753,36 @@ and the line $P_1+P_4$ is tangent to $\iso$ in $P_4$ or $P_5$,
 $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \ $\overline{\delta}_1(P_1, P_4, P_5) = 0$\,.
 \end{itemize}
+%
 \end{enumerate}
 \end{prop}
 \begin{proof}
 %%% si basa sui file:
 %%% rank_8_2_1_ii_0.sage e
 %%% rank_8_1.sage
-First, note that if the rank is $\leq 7$, in particular, from
-\Cref{prop:condition3+1} applied to $P_1, P_2, P_3$ and $P_4$
-the line $P_1+P_2$ is tangent to $\iso$ (in $P_2$ or $P_3$)
-and, analogously, the line $P_1+P_4$ is tangent to $\iso$
-(in $P_4$ or $P_5$). Hence, from \Cref{lemma:special_case_rank_8},
-the matrix $\Phi(P_1, \dots, P_5)$ cannot have rank less then $8$.
-In the rest of the proof, we distinguish two possibilities:
+If the rank is $\leq 7$, from
+\Cref{prop:condition3+1} applied to $P_1, P_2, P_3, P_4$ and $P_1, P_4, P_5, P_2$,
+the lines $P_1+P_2$ and $P_1 + P_4$ are tangent to~$\iso$ (the first in $P_2$ or $P_3$ and the second in $P_4$ or $P_5$).
+Then we get a contradiction from \Cref{lemma:special_case_rank_8}.
+This shows the first item.
+
+The second item follows from \Cref{lemma:d1d2}.
+
+In the rest of the proof, by \Cref{invariance}, we distinguish two possibilities:
 $P_1 = (1:\iii :0)$ and
-$P_1 = (1: 0: 0)$. The other points are taken generic,
-i.e.\ $P_2, P_4 = (A_2: B_2: C_2), (A_4: B_4: C_4)$ and
-$P_3 = u_1P_1+P_2$, $P_5 = v_1P_1+v_2P_4$.
-In the first case, the matrix
-$M = \Phi(P_1, \dots, P_5)$ can be modified with elementary rows (and
-columns) operations in order to transform the study of all the
-order $9$ minors of $M$ to the order $7$ minors of the transformed matrix.
+$P_1 = (1: 0: 0)$.
+Let $P_2, P_4 = (A_2: B_2: C_2), (A_4: B_4: C_4)$ and
+$P_3 = u_1P_1+P_2$, $P_5 = v_1P_1+v_2P_4$ be the other points.
+In the first case, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\mathrm{rk} M \leq 9$ if and only if $\mathrm{rk} M' \leq 7$.
 The computations require several other strategies, but at the end we are
-able to see that in this case (i.e.\ the case in which $P_1$ is on $iso$), the matrix $M$ cannot have rank less then $9$.
-If $P_1 = (1: 0: 0)$, then the ideal of the order $9$ monors of
+able to see that in this case (i.e.\ the case in which $P_1$ is on $\iso$), the matrix $M$ cannot have rank less then $9$.
+If $P_1 = (1: 0: 0)$, then the ideal of the order $9$ minors of
 $\Phi(P_1, \dots, P_5)$ (after several manipulations and saturations)
 gives that there a few possibilities which can be summarized by the
 following conditions: either the line $P_1+P_2$ is tangent to $\iso$ (in $P_2$ or $P_3$) and the line $P_1+P_4$ is tangent to $\iso$ (in $P_4$ or $P_5$) or $\delta_1(P_1, P_2, P_4) = 0$,
 \ $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \ $\overline{\delta}_1(P_1, P_4, P_5) = 0$.
-To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{prop:d1d2}.
+To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{lemma:d1d2}.
 \end{proof}
 
 
