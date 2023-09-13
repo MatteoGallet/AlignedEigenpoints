@@ -675,9 +675,8 @@ if and only if} \quad
 We fix the following coordinates of the points:
 $P_1, P_2, P_4 = (A_1: B_1: C_1), (A_2: B_2: C_2), (A_4: B_4, C_4)$,
 then $P_3 = u_1P_1+u_2P_2$ and $P_5 = v_1P_1+v_2P_4$. We proceed as in
-the proof of \Cref{proposition:three_aligned_ranks}: we compute the determinant of
-the reduced matrix of conditions of $P_1, \dotsc, P_5$.
-Its value is:
+the proof of \Cref{proposition:three_aligned_ranks}: we find, via symbolic computation, that the determinant of
+the reduced matrix of conditions of $P_1, \dotsc, P_5$ is
 %
 \begin{gather}
 \label{delta1delta2}
@@ -699,41 +698,41 @@ $\text{rk}\ \Phi(P_1, \dots, P_5) \leq 9$ if and only if
 \]
 \end{proof}
 
-\begin{prop}
-\label{prop:frecciaFissata}
+\begin{lemma}
+\label{lemma:special_case_rank_8}
 Let $P_1, \dots, P_5$ be a $V$-configuration of points and assume that
 \[
 \scl{P_1}{P_2}=0, \quad \scl{P_2}{P_2}=0, \quad \scl{P_1}{P_4}=0,
 \quad \scl{P_4}{P_4}=0.
 \]
 Then the matrix $\Phi(P_1, \dots, P_5)$ has rank $8$.
-\end{prop}
+\end{lemma}
 \begin{proof}
 By \Cref{proposition:sigma_tangency},
 the lines $P_1+P_2$ and $P_1+P_4$ are tangent to $\iso$ in~$P_2$ and~$P_4$, respectively. The point $P_1$ cannot be on~$\iso$, hence, using the
 action of $\mathrm{SO}_3(\mathbb{C})$, we can assume $P_1 = (1: 0: 0)$.
-Since every element of $\mathrm{SO}_3(\mathbb{C})$ fixes $\iso$ and sends a tangent line to it into another
-tangent line to it, when we transform the point $P_1$
-into $(1: 0: 0)$, we transform the points $P_2$ and $P_4$ into, respectively,
+Since every element of $\mathrm{SO}_3(\mathbb{C})$ fixes $\iso$ (and sends a tangent line to it into another tangent line to it), when we transform the point~$P_1$
+into $(1: 0: 0)$, we transform the points~$P_2$ and~$P_4$ into, respectively,
 the points $(0: \iii: 1)$ and $(0: -\iii: 1)$ (which are the common points to
-$\iso$ and the tangent lines through $P_1$).
-Therefore it is enough to study the
-specific configuration of the points given by:
-\[
-P_1 = (1: 0: 0), \quad P_2=(0: \iii: 1), \quad P_3=u_1P_1+u_2P_2, \quad
-P_4 = (0: -\iii: 1), \quad P_5 = v_1P_1+v_2P_4.
-\]
+$\iso$ and the tangent lines through~$P_1$).
+Therefore, it is enough to study the
+specific configuration of the points:
+%
+\begin{gather*}
+P_1 = (1: 0: 0), \quad P_2=(0: \iii: 1), \quad P_3=(u_1, \iii u_2, u_2), \\
+P_4 = (0: -\iii: 1), \quad P_5 = (v_1, -\iii v_2, v_2),
+\end{gather*}
+%
+where $(u_1: u_2), (v_1: v_2) \in \p^1$.
 In the $15\times 10$ matrix $\Phi(P_1, \dots, P_5)$ we can erase the
 rows: $\phi_2(P_1)$ (which is a zero row), the row $\phi_1(P_2)$
-(since $\phi_1(P_2)=i\phi_2(P_2)$) and, for similar reasons, the
+(since $\phi_1(P_2)=\iii\phi_2(P_2)$) and, for similar reasons, the
 rows: $\phi_1(P_3)$, $\phi_1(P_4)$ and $\phi_1(P_5)$.
 Moreover, since the rank of the matrix $\Phi(P_1, P_2, P_3)$ is $5$,
 we can also erase the row $\phi_3(P_3)$ and, for the same reason, the
-row $\phi_3(P_5)$. The remaining matrix $M$ is a $8\times 10$ matrix whose rank
-in general is $8$. It is not possible to have that all the order $8$ minors
-of $M$ are zero, since this condition implies that the five points
-are not all distinct; for the proof of the latter statement, see
-the ancillary file.
+row $\phi_3(P_5)$. The remaining matrix $M$ is a $8\times 10$ matrix.
+It is not possible that all the order $8$ minors
+of $M$ are zero: the ideal they generate, after saturations ensuring that the points are distinct, is the whole ring.
 \end{proof}
 
 \begin{prop}
@@ -763,7 +762,7 @@ First, note that if the rank is $\leq 7$, in particular, from
 \Cref{prop:condition3+1} applied to $P_1, P_2, P_3$ and $P_4$
 the line $P_1+P_2$ is tangent to $\iso$ (in $P_2$ or $P_3$)
 and, analogously, the line $P_1+P_4$ is tangent to $\iso$
-(in $P_4$ or $P_5$). Hence, from \Cref{prop:frecciaFissata},
+(in $P_4$ or $P_5$). Hence, from \Cref{lemma:special_case_rank_8},
 the matrix $\Phi(P_1, \dots, P_5)$ cannot have rank less then $8$.
 In the rest of the proof, we distinguish two possibilities:
 $P_1 = (1:\iii :0)$ and
@@ -782,7 +781,7 @@ gives that there a few possibilities which can be summarized by the
 following conditions: either the line $P_1+P_2$ is tangent to $\iso$ (in $P_2$ or $P_3$) and the line $P_1+P_4$ is tangent to $\iso$ (in $P_4$ or $P_5$) or $\delta_1(P_1, P_2, P_4) = 0$,
 \ $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \ $\overline{\delta}_1(P_1, P_4, P_5) = 0$.
-To conclude the proof, we use \Cref{prop:frecciaFissata} and \Cref{prop:d1d2}.
+To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{prop:d1d2}.
 \end{proof}
 
 
