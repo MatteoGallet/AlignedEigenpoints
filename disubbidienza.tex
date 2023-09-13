@@ -1120,4 +1120,111 @@ three triplets:
 file \verb+contiCasoDegenere2.sage+ and file
 \verb+conf_sigma12_sigma14.sage+
 
+\section{The locus of cubic ternary forms with an aligned triple of eigenpoints}
+
+\begin{definition}
+ We set $\mathcal{L} \subseteq \p^9$ to be the closure of the locus of classes of cubic forms $f$ having a reduced zero-dimensional eigenscheme $E(f)$ with an aligned eigentriple.
+\end{definition}
+
+\begin{theorem}
+The variety~$\mathcal{L}$ is an irreducible hypersurface.
+\end{theorem}
+
+\begin{proof}
+By the Gallet - Logar construction, for a a general fixed aligned triple of points, the set of cubic forms having such a triple as eigenpoints is a linear system of dimension 3. Since the variety of aligned triples is $5$-dimensional, this proves that $\mathcal{L}$ is a hypersurface.
+
+For the irreducibility, we maybe need the argument on the Geiser map. Is there a simpler one?
+\end{proof}
+
+\begin{lemma}
+\label{lemma:pencil_one_aligned}
+ If $f$ and $g$ are general cubics, then any cubic in the pencil $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
+\end{lemma}
+
+This is a corollary of the following result.
+
+\begin{prop}
+    The locus of cubics that have at least two aligned triples of eigenpoints has codimension~$2$ in~$\p^9$.
+\end{prop}
+\begin{proof}
+    Conti di Sandro.
+\end{proof}
+
+\begin{definition}
+ We define $\Delta \subset \mathcal{L}$ to be the closure of the locus of cubics with at least two aligned triples of eigenpoints.
+\end{definition}
+
+\begin{prop}
+  The variety~$\Delta$ has dimension~$7$ and it is the union of two irreducible components~$\Delta_1$ and~$\Delta_2$.
+\end{prop}
+
+In what follows, we shall use the following notation.
+Denote by $M_1$, $M_2$ and $M_3$ the three minors of \Cref{eq:def_matrix} relative to a cubic form $f$.
+The net of cubics, which base locus is the eigenscheme $E(f)$, will be denoted by $\Lambda_f = \langle M_1, M_2, M_3 \rangle$.
+\begin{lemma}
+\label{lemma:scroll}
+ If $f$ and $g$ are general cubics, then
+ %
+ \[
+   \mathcal{N} := \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda f + \mu g} \subset \p^9
+ \]
+ %
+ is an embedding of a rational projective bundle and has degree~$3$.
+\end{lemma}
+\begin{proof}
+Consider the projective bundle given by the family of planes
+%
+\[
+{\mathcal P} := \{ \Lambda_{\lambda f + \mu g} \, : \, (\lambda: \mu)\in \p^1 \} \subset \p^1 \times \p^9
+\]
+%
+Then $\mathcal{N}$ is the projection of~$\mathcal{P}$ on the second factor.
+However, the map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
+If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to~$f$, and by $N_1$, $N_2$ and $N_3$ the ones relative to~$g$, the vectorial dimension of the linear span $\left\langle M_1, M_2, M_3, N_1, N_2, N_3 \right\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
+
+It follows that if $f$ and $g$ are general enough, then $\mathcal{N}$ is a $3$-dimensional rational normal scroll in $\p(\left\langle M_1, M_2, M_3, N_1, N_2, N_3 \right\rangle) \cong \p^5$.
+Being a variety of minimal degree, its degree is $5+1-3 = 3$.
+\end{proof}
+
+\begin{theorem}
+The degree of $\mathcal L$ is equal to
+\[
+  \deg \ \mathcal L =  15.
+\]
+\end{theorem}
+
+\begin{proof}
+We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics $\Lambda_f = \langle M_1, M_2, M_3 \rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+
+To determine the degree of $\mathcal L$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
+
+To this aim, denote by ${\mathcal T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is $6$ and its degree is $15$,
+see for instance \cite[Section 2.2.2]{3264}. We now consider the variety~${\mathcal N}$ from \Cref{lemma:scroll}.
+\comment{
+given by the union of the nets of cubics of the pencil
+$$
+{\mathcal N} = \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda f + \mu g} \subset \p^9.
+$$
+Observe that we can assume that ${\mathcal N}$ is an embedding of a rational projective bundle; indeed, it can be seen as an immersion of the $\p^2$-bundle over $\p^1$ given by the family the planes ${\mathcal P}=
+\{\Lambda_{\lambda f + \mu g}\ : \ (\lambda:\mu)\in \p^1\} \subset \p^1 \times \p^9$. The map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so it is either an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
+If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to $f$, and by $N_1$, $N_2$ and $N_3$ the ones relative to $g$, the vectorial dimension of the linear span
+$\langle M_1,M_2,M_3,N_1,N_2,N_3
+\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
+
+It follows that if ${\mathcal N}$ is general enough, it is a $3$-dimensional rational normal scroll in $\p(\langle M_1,M_2,M_3,N_1,N_2,N_3
+\rangle) \cong \p^5$, and being a variety of minimal degree, its degree is $\deg {\mathcal N}=5+1-3=3$.
+}
+Note that, since each net containing a triangle, actually contains exactly $3$ of them, the number of nets of ${\mathcal N}$ containing some triangle is given by
+%
+\[
+\frac {{\mathcal T} \cdot {\mathcal N}}{3} =\frac{{15} \cdot {3}}{3}=15 \,.
+\]
+%
+This hence implies that $\deg {\mathcal L} = 15$.
+\end{proof}
+
+\begin{es}
+The following pencil of cubic forms admits exactly $15$ cubics with an aligned triple of eigenpoints ..
+\end{es}
+
 \end{document}
