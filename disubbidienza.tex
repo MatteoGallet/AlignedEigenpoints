@@ -458,34 +458,23 @@ conic. Let $P_1, P_2$ be two distinct points in the plane and define
 %
 The quantity~$\sigma$ is the discriminant of the intersection between the line~$r$ through~$P_1$ and~$P_2$ and the isotropic conic.
 
-
 \begin{prop}
+\label{proposition:sigma_tangency}
   Let $P_1$, $P_2$ be two distinct points in the plane and let $r$ be the line between them.
   Then the following are equivalent:
   \begin{enumerate}
   \item $\sigma(P_1, P_2) = 0$;
+  \item $\sigma(Q_1, Q_2) = 0$ for all pairs of distinct points $Q_1, Q_2 \in r$;
   \item the line $r$ is tangent to the isotropic conic at some point;
-  \item there exists a point $T \in r$ such that $T$ is orthogonal to $r$.
+  \item there exists a point $T \in r$ such that $T$ is orthogonal to $r$ (equivalently, $T \in \iso$ and $\scl{T, Q} = 0$ for all $Q \in r$).
   \end{enumerate}
 \end{prop}
 \begin{proof}
-  By recalling the characterization of~$\sigma$ as a discriminant, we have that $\sigma(P_1, P_2) = 0$ if and only if $r$ is tangent to the isotropic conic in a point~$T$.
-  For such a point~$T$ we then have $\scl{T}{T} = 0$.
-  By bilinearity, the condition $\sigma(P_1, P_2) = 0$ implies that $\sigma(T, Q) = 0$ for all $Q \in r$.
-  Since  $\sigma(T, Q) = \scl{T}{T}\scl{Q}{Q}-\scl{T}{Q}^2$, we get
-  $\scl{T}{Q} = 0$, hence $T$ is orthogonal to $r$.
+  By recalling the characterization of~$\sigma$ as a discriminant, we have that $\sigma(P_1, P_2) = 0$ if and only if $r$ is tangent to the isotropic conic in a point~$T$; this shows that the first three items are equivalent.
+
+  Now, if $\sigma(P_1, P_2) = 0$, then $r$ is tangent to $\iso$ at a point~$T$, hence $\scl{T}{T} = 0$. Moreover, we also have that $\sigma(T, Q) = 0$ for all $Q \in r$ with $Q \neq T$. Hence $T$ is orthogonal to~$r$.
   The converse is immediate.
 \end{proof}
-
-\begin{corollary}
-A line $r$ in the plane is tangent to the isotropic conic if and only
-if $\sigma(P_1, P_2) = 0$ for all points $P_1, P_2 \in r$ with $P_1 \neq P_2$.
-\end{corollary}
-
-\begin{corollary}
-A line $r$ in the plane is tangent in a point $P$ to the isotropic conic
-if and only if $\scl{P}{Q} = 0$ for all points $Q \in r$.
-\end{corollary}
 
 \begin{prop}
 \label{proposition:three_aligned_ranks}
@@ -748,7 +737,7 @@ row $\phi_3(P_5)$. The remaining matrix $M$ is a $8\times 10$ matrix whose rank
 in general is $8$. It is not possible to have that all the order $8$ minors
 of $M$ are zero, since this condition implies that the five points
 are not all distinct; for the proof of the latter statement, see
-the ancillary file. 
+the ancillary file.
 \end{proof}
 
 \begin{prop}
