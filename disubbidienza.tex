@@ -53,7 +53,7 @@
 \newcommand{\oo}{\mathcal{O}}
 \newcommand{\Bl}{\mathrm{Bl}}
 
-\newcommand{\iso}{\mathcal{Q}}
+\newcommand{\iso}{\mathcal{C}_{\mathrm{iso}}}
 
 \newcommand{\imunit}{i}
 
@@ -449,14 +449,14 @@ Construct three $1 \times n$ matrices $w_1$, $w_2$, $w_3$ by extracting the entr
 % \end{proof}
 
 
-First of all, we evidentiate a property of the lines tanget to the isotropic
-conic. Let $P_1, P_2$ be two distinct points in the plane and define
+First of all, we evidentiate a property of the lines tanget to $\iso$.
+Let $P_1, P_2$ be two distinct points in the plane and define
 %
 \[
   \sigma(P_1, P_2) := \scl{P_1}{P_1} \scl{P_2}{P_2} - \scl{P_1}{P_2}^2 \,.
 \]
 %
-The quantity~$\sigma$ is the discriminant of the intersection between the line~$r$ through~$P_1$ and~$P_2$ and the isotropic conic.
+The quantity~$\sigma$ is the discriminant of the intersection between the line~$r$ through~$P_1$ and~$P_2$ and $\iso$.
 
 \begin{prop}
 \label{proposition:sigma_tangency}
@@ -465,12 +465,12 @@ The quantity~$\sigma$ is the discriminant of the intersection between the line~$
   \begin{enumerate}
   \item $\sigma(P_1, P_2) = 0$;
   \item $\sigma(Q_1, Q_2) = 0$ for all pairs of distinct points $Q_1, Q_2 \in r$;
-  \item the line $r$ is tangent to the isotropic conic at some point;
+  \item the line $r$ is tangent to $\iso$ at some point;
   \item there exists a point $T \in r$ such that $T$ is orthogonal to $r$ (equivalently, $T \in \iso$ and $\scl{T, Q} = 0$ for all $Q \in r$).
   \end{enumerate}
 \end{prop}
 \begin{proof}
-  By recalling the characterization of~$\sigma$ as a discriminant, we have that $\sigma(P_1, P_2) = 0$ if and only if $r$ is tangent to the isotropic conic in a point~$T$; this shows that the first three items are equivalent.
+  By recalling the characterization of~$\sigma$ as a discriminant, we have that $\sigma(P_1, P_2) = 0$ if and only if $r$ is tangent to $\iso$ in a point~$T$; this shows that the first three items are equivalent.
 
   Now, if $\sigma(P_1, P_2) = 0$, then $r$ is tangent to $\iso$ at a point~$T$, hence $\scl{T}{T} = 0$. Moreover, we also have that $\sigma(T, Q) = 0$ for all $Q \in r$ with $Q \neq T$. Hence $T$ is orthogonal to~$r$.
   The converse is immediate.
@@ -484,7 +484,7 @@ $r$ be the line passing through them. Then:
 \item $5 \leq \text{rk}\ \Phi(P_1, P_2, P_3) \leq 6$;
 \item
 $\text{rk}\ \Phi(P_1, P_2, P_3) = 5$ if and only if $r$ is tangent
-to the isotropic conic in one of the three points $P_1, P_2$, or $P_3$.
+to $\iso$ in one of the three points $P_1, P_2$, or $P_3$.
 \end{itemize}
 \end{prop}
 \begin{proof} We fix the following coordinates for the points:
@@ -528,7 +528,7 @@ ideals:
 \left(\scl{P_i}{P_1}, \scl{P_i}{P_2},\scl{P_i}{P_3}\right) \quad
 \mbox{for $i = 1, 2, 3$}
 \]
-hence the line $r$ is tangent to the isotropic conic
+hence the line $r$ is tangent to $\iso$
 (in $P_1$ or $P_2$ or $P_3$).
 It is easy to see via a symbolic computation that it is not possible to have that all the order
 $4$-minors of $\Phi(P_1, P_2, P_3)$ are zero.
@@ -544,7 +544,7 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 $\text{rk}\ \Phi(P_1, P_2, P_4) = 5$, then $P_1, P_2, P_4$
  are aligned.
 \end{itemize}
-In the last case, the line $P_1+P_2+P_4$ is tangent to the isotropic conic
+In the last case, the line $P_1+P_2+P_4$ is tangent to $\iso$
 in one of the three points.
 \end{prop}
 \begin{proof}
@@ -557,7 +557,7 @@ the matrix cannot have rank smaller than~$5$. Meanwhile, the computation
 of the ideal of the order six minors of $\Phi(P_1, P_2, P_4)$ and its
 saturation w.r.t. the condition that the points are distinct, gives that
 $P_1, P_2, P_4$ must be aligned and, according to \Cref{proposition:three_aligned_ranks},
-that line is tangent to the isotropic conic in one of the three given points.
+that line is tangent to $\iso$ in one of the three given points.
 \end{proof}
 
 
@@ -567,8 +567,7 @@ that line is tangent to the isotropic conic in one of the three given points.
 Let $P_1, P_2, P_3, P_4$ be four distinct points of the plane such that
 $P_1, P_2, P_3$ are aligned and let $r$
 be the line passing thorough them. If
-$\text{rk}\ \Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to the
-isotropic conic in one of the three points $P_1, P_2, P_3$.
+$\text{rk}\ \Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to $\iso$ in one of the three points $P_1, P_2, P_3$.
 \end{prop}
 \begin{proof}
 Also in this case, we distinguish two cases: $P_1 = (1: 0: 0)$ and
@@ -586,7 +585,7 @@ let $r$ be the line through them. Then:
 \begin{itemize}
 \item $6 \leq \text{rk} \ \Phi(Q_1, \dotsc, Q_4) \leq 7$;
 \item $\text{rk} \ \Phi(Q_1, \dotsc, Q_4) = 6$ if and only if $r$ is tangent
-to the isotropic conic.
+to $\iso$.
 \end{itemize}
 \end{prop}
 \begin{proof}
@@ -594,7 +593,7 @@ to the isotropic conic.
   zero, so $\mathrm{rk}\,(\Phi(Q_1, \dotsc, Q_4)) \leq 7$.
   Indeed, in view of \Cref{lemma:minors}, we can just check the order~$8$ minors of the reduced condition matrix of $Q_1, \dotsc, Q_4$; it turns out that they are all zero.
   On the other hand, the rank of $\Phi(Q_1, \dotsc, Q_4)$ cannot be $5$:
-  in that case, for any triple~$T$ extracted from the four points, the matrix of conditions would have rank~$5$, hence by \Cref{proposition:three_aligned_ranks} the line~$r$ would be tangent to the isotropic conic in an element of $T$; this is a contradiction.
+  in that case, for any triple~$T$ extracted from the four points, the matrix of conditions would have rank~$5$, hence by \Cref{proposition:three_aligned_ranks} the line~$r$ would be tangent to $\iso$ in an element of $T$; this is a contradiction.
   Hence, the first item of the statement is proven.
 
   We proceed to prove the second item.
@@ -710,17 +709,14 @@ Let $P_1, \dots, P_5$ be a $V$-configuration of points and assume that
 Then the matrix $\Phi(P_1, \dots, P_5)$ has rank $8$.
 \end{prop}
 \begin{proof}
-{From} the above conditions and from \Cref{proposition:three_aligned_ranks} we have that
-the lines $P_1+P_2$ and $P_1+P_4$ are tangent to the isotropic
-conic in $P_2$ and $P_4$ respectively. The point $P_1$ cannot be on
-the isotropic conic, hence, using the
+By \Cref{proposition:sigma_tangency},
+the lines $P_1+P_2$ and $P_1+P_4$ are tangent to $\iso$ in~$P_2$ and~$P_4$, respectively. The point $P_1$ cannot be on~$\iso$, hence, using the
 action of $\mathrm{SO}_3(\mathbb{C})$, we can assume $P_1 = (1: 0: 0)$.
-Since every element of $\mathrm{SO}_3(\mathbb{C})$ fixes the
-isotropic conic and sends a tangent line to it into another
+Since every element of $\mathrm{SO}_3(\mathbb{C})$ fixes $\iso$ and sends a tangent line to it into another
 tangent line to it, when we transform the point $P_1$
 into $(1: 0: 0)$, we transform the points $P_2$ and $P_4$ into, respectively,
 the points $(0: \iii: 1)$ and $(0: -\iii: 1)$ (which are the common points to
-the isotropic conic and the tangent lines through $P_1$).
+$\iso$ and the tangent lines through $P_1$).
 Therefore it is enough to study the
 specific configuration of the points given by:
 \[
@@ -751,8 +747,8 @@ $\delta_1(P_1, P_2, P_4) \cdot \delta_2(P_1, \dots, P_5) =0$\,;
 \item $\text{rk}\ \Phi(P_1, \dots, P_5) = 8$ if and only if, one of
 the following two conditions is satisfied:
 \begin{itemize}
-  \item the line $P_1+P_2$ is tangent to the isotropic conic in $P_2$ or $P_3$
-and the line $P_1+P_4$ is tangent to the isotropic conic in $P_4$ or $P_5$,
+  \item the line $P_1+P_2$ is tangent to $\iso$ in $P_2$ or $P_3$
+and the line $P_1+P_4$ is tangent to $\iso$ in $P_4$ or $P_5$,
 \item $\delta_1(P_1, P_2, P_4) = 0$, \
 $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \ $\overline{\delta}_1(P_1, P_4, P_5) = 0$\,.
@@ -765,8 +761,8 @@ $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 %%% rank_8_1.sage
 First, note that if the rank is $\leq 7$, in particular, from
 \Cref{prop:condition3+1} applied to $P_1, P_2, P_3$ and $P_4$
-the line $P_1+P_2$ is tangent to the isotropic conic (in $P_2$ or $P_3$)
-and, analogously, the line $P_1+P_4$ is tangent to the isotropic conic
+the line $P_1+P_2$ is tangent to $\iso$ (in $P_2$ or $P_3$)
+and, analogously, the line $P_1+P_4$ is tangent to $\iso$
 (in $P_4$ or $P_5$). Hence, from \Cref{prop:frecciaFissata},
 the matrix $\Phi(P_1, \dots, P_5)$ cannot have rank less then $8$.
 In the rest of the proof, we distinguish two possibilities:
@@ -779,18 +775,14 @@ $M = \Phi(P_1, \dots, P_5)$ can be modified with elementary rows (and
 columns) operations in order to transform the study of all the
 order $9$ minors of $M$ to the order $7$ minors of the transformed matrix.
 The computations require several other strategies, but at the end we are
-able to see that in this case (i.e.\ the cas in which $P_1$ is on the
-isotropic conic), the matrix $M$ cannot have rank less then $9$.
+able to see that in this case (i.e.\ the case in which $P_1$ is on $iso$), the matrix $M$ cannot have rank less then $9$.
 If $P_1 = (1: 0: 0)$, then the ideal of the order $9$ monors of
 $\Phi(P_1, \dots, P_5)$ (after several manipulations and saturations)
 gives that there a few possibilities which can be summarized by the
-following conditions: either the line $P_1+P_2$ is tangent to the isotropic
-conic (in $P_2$ or $P_3$) and the line $P_1+P_4$ is tangent to the isotropic
-conic (in $P_4$ or $P_5$) or $\delta_1(P_1, P_2, P_4) = 0$,
+following conditions: either the line $P_1+P_2$ is tangent to $\iso$ (in $P_2$ or $P_3$) and the line $P_1+P_4$ is tangent to $\iso$ (in $P_4$ or $P_5$) or $\delta_1(P_1, P_2, P_4) = 0$,
 \ $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \ $\overline{\delta}_1(P_1, P_4, P_5) = 0$.
-To conclude the proof, we use \Cref{prop:frecciaFissata}, \Cref{fantasma}
-and \Cref{prop:d1d2}.
+To conclude the proof, we use \Cref{prop:frecciaFissata} and \Cref{prop:d1d2}.
 \end{proof}
 
 
@@ -804,9 +796,9 @@ the five points (which, by proposition~\ref{pr5}, is at most $9$)
 is $9$, hence there exists precisely one cubic curve having
 $P_1, \dots, P_5$ among its eigenpoints. In particular, from
 proposition~\ref{pr5}, we have that at least one of the two lines
-$P_1+P_2$ and $P_1+P_4$ is not tangent to the isotropic conic (in $P_2$
+$P_1+P_2$ and $P_1+P_4$ is not tangent to $\iso$ (in $P_2$
 or $P_3$ or, respectively, in $P_4$ or $P_5$). We assume therefore that
-$P_1+P_2$ is not tangent to the isotropic conic and then,
+$P_1+P_2$ is not tangent to $\iso$ and then,
 by~\ref{prop:condition3+1}, for each point $P_i$ for $i \in
 \{1,\dotsc,4\}$ there exist
 two indices $i_1, i_2 \in \{1,2,3\}$ such that the matrix~$\mathcal{H}$
