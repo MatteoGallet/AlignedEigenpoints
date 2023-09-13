@@ -51,7 +51,7 @@ Jrel = S.ideal(s11-scalarProd(P1, P1), \
 print("""We assume (we know) that the vectors:
 phi_p(P1)[0], phi_p(P1)[1], phi_p(P2)[0], phi_p(P2)[1], 
 phi_p(P3)[0], phi_p(P3)[1], phi_p(P4)[0], phi_p(P4)[1]
-are linearly independent and we contruct three  
+are linearly independent and we construct three
 9 X 10 matrices M1, M2, M3 with these eight rows plus, respectively, 
 the row phi_p(P5)[0], phi_p(P5)[1], phi_p(P5)[2]""")
 
@@ -72,7 +72,7 @@ print("""We construct 3 vectors minM1, minM2, minM3, each with 10
 components, which are the maximal minors of M1, M2, M3, respectively""")
 
 
-doCompleteComputation = false
+doCompleteComputation = False
 
 
 if doCompleteComputation: 
@@ -80,21 +80,21 @@ if doCompleteComputation:
     ttA = cputime()
     minM1 = M1.minors(9)
     print(cputime()-ttA)
-    minM1 = [numerator(mm/(A1*A2*A4*u1^2*u2^2*v1*v2*(u1*A1+u2*A2)*det(matrix([P1, P2, P4])^2))) for mm in minM1]
+    minM1 = [mm.quo_rem(A1*A2*A4*u1^2*u2^2*v1*v2*(u1*A1+u2*A2)*det(matrix([P1, P2, P4])^2))[0] for mm in minM1]
     minM1 = [minM1[9-i] for i in range(10)]
 
     sleep(1)
     ttA = cputime()
     minM2 = M2.minors(9)
     print(cputime()-ttA)
-    minM2 = [numerator(mm/(A1*A2*A4*u1^2*u2^2*v1*v2*(u1*A1+u2*A2)*det(matrix([P1, P2, P4])^2))) for mm in minM2]
+    minM2 = [mm.quo_rem(A1*A2*A4*u1^2*u2^2*v1*v2*(u1*A1+u2*A2)*det(matrix([P1, P2, P4])^2))[0] for mm in minM2]
     minM2 = [minM2[9-i] for i in range(10)]
 
     sleep(1)
     ttA = cputime()
     minM3 = M3.minors(9)
     print(cputime()-ttA)
-    minM3 = [numerator(mm/(A1*A2*A4*u1^2*u2^2*v1*v2*(u1*A1+u2*A2)*det(matrix([P1, P2, P4])^2))) for mm in minM3]
+    minM3 = [mm.quo_rem(A1*A2*A4*u1^2*u2^2*v1*v2*(u1*A1+u2*A2)*det(matrix([P1, P2, P4])^2))[0] for mm in minM3]
     minM3 = [minM3[9-i] for i in range(10)]
 
     threeMin = [minM1, minM2, minM3]
