@@ -1338,6 +1338,118 @@ From examples, we know that $d_3$ actually implies Case a star configuration as 
 
 \end{description}
 
+\section{The locus of forms with positive-dimensional eigenscheme}
+
+\begin{prop}
+Assume that $\dim \Eig{f} = 1$ and that the one-dimensional component of $\Eig{f}$ is a line~$L$.
+Then $L \subseteq \mathrm{Sing}(f)$.
+\end{prop}
+\begin{proof}
+Assume by contradiction that
+%
+\[
+ L \subseteq {\overline{R(f)}}.
+\]
+%
+We observe that if $L \subseteq V(f)$, then $L\subset \iso$, by Proposition ....
+This is impossible since $\iso$ is irreducible.
+
+So consider the scheme-theoretic intersection
+%
+\[
+Z:= L \cap \iso,
+\]
+%
+If $Z \subset R(f)$, then $Z \subset V(f)$ by Proposition \ref{pro: relation eigenpoints - tangent space to the isotroquadric}. Since $L \not \subset V(f)$, residually $L$ intersects $V(f)$ in a point. Since such a point is also an eigenpoint and it can't be regular, it is necessarily a singular point of $V(f)$. This gives a contradiction, since every line passing through a singular point has intersection multiplicity $\ge 2$ with $V(f)$.
+Finally, assume that $Z = p_1 + p_2$ as a divisor on~$\iso$, with $p_1 \in R(f)$ and $p_2\in {\overline {R(f)}} \setminus R(f)$. The necessarily $p_2 \in \mathrm{Sing}(f)$, so that residually to~$Z$ the line~$L$ intersects~$V(f)$ in~$p_2$. Therefore $V(f)$ has a singular point $p_2$ on $\iso$ and $V(f)$ intersect tangentially~$\iso$ in~$p_1$.
+The examples show that this never happens ...
+\end{proof}
+
+\begin{prop}\label{p2}
+Let $C = V(f) \subset \p^2$ be a cubic curve.
+Assume that $\dim \Eig{f} = 1$ and that the $1$-dimensional component is a line~$L$.
+Then the residual subscheme $Z := \mathrm{Res}_L \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$L$ is zero-dimensional of degree~$3$ if $\dim \Lambda = 2$, or of degree~$4$, if $\dim \Lambda = 1$.
+\end{prop}
+\begin{proof}
+Since $G_1$, $G_2$ and $G_3$ have a common linear component~$L$, by writing
+\[
+G_i=L \ H_i, \quad i=1,2,3
+\]
+we have that the residual subscheme $Z = \mathrm{Res}_L \bigl( \Eig{f} \bigr)$ is a quasi complete intersection
+determined by the polynomials $H_1$, $H_2$ and $H_3$; indeed, we recall that $\mathcal{I}_{Z, \p^2} = \mathcal{I}_{\Eig{f}), \p^2} (-1)$.
+
+Let us assume $\dim \Lambda = 2 = \dim \p \bigl( \left\langle H_1,H_2,H_3 \right\rangle \bigr)$.
+So we have an exact sequence
+\[
+ 0 \to \mathcal{G} \to \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \to \mathcal{I}_{Z,\p^2} \to 0 \,,
+\]
+where $\mathcal{G}$ is a rank two reflexive sheaf by \cite[Proposition 1]{Hartshorne1980}.
+But on a smooth surface reflexive implies locally free (see \cite[Example~1.1.6]{Huybrechts2010}),
+so $\mathcal{G}$ is a rank two vector bundle.
+
+Next we observe that the two independent
+syzygies between the generators $G_i$ give rise to the syzygies:
+\[
+x_2\ H_1 - x_1\ H_2 + x_0\ H_3=0, \qquad \partial_2 f\ H_1 - \partial_1 f \ H_2 +\partial_0 f \ H_3=0,
+\]
+which occur in degrees $3$ and $4$. We claim that the two relations are independent, again,
+otherwise the $G_i$'s would be identically zero. So we apply \cite[Proposition~12]{Ellia2020}, and we have that $\mathcal {G}$ splits. Observe that as $c_1(\mathcal {I}_{Z,\p^2})=0$, we have $c_1(\mathcal {G})=-6$. Moreover, there is no syzygy in degree $2$, since
+otherwise the $H_i$ would be linearly dependent, so the $G_i$ would belong to a pencil, which we excluded.
+
+It follows that the splitting of $\mathcal{G}$ is of the form
+%
+\[
+\mathcal{G} \cong \oo_{\p^2} (-3) \oplus \oo_{\p^2} (-3) \,.
+\]
+%
+We get the free resolution of the ideal sheaf:
+%
+\[
+0\to \oo_{\p^2} (-3)\oplus \oo_{\p^2} (-3) \to 3\oo_{\p^2} (-2)\to \mathcal {I}_{Z,\p^2} \to 0 \,.
+\]
+%
+Moreover
+%
+\[
+c_2 (\mathcal{I}_{Z,\p^2} ) = c_2 \bigl( 3\oo_{\p^2}(-2) \bigr) - c_2 (\mathcal{G}) = 12 - 9 = 3 \,,
+\]
+%
+and $h^0 \bigl( \mathcal{I}_{Z,\p^2}(1) \bigr) = 0$.
+
+Finally, assume $\dim \Lambda =1 =\dim \p \bigl( \left\langle H_1, H_2, H_3 \right\rangle \bigr)$.
+Then $Z = \mathrm{Res}_L \bigl( \Eig{f} \bigr)$ is the complete intersection of two conics.
+\end{proof}
+
+
+\begin{es}
+Consider
+\[
+f(x_0,x_1,x_2)=x_0^2 (x_1 - x_2)
+\]
+(Example~\eqref{item: ternary cubic, no regular eigenpoints} with $t=i$).
+We have $L=x_0$,
+\[
+H_1=x_0^2-2x_1^2+2x_1 x_2, \quad H_2= 2x_2^2-x_0^2-2x_1 x_2, \quad H_3= 2x_1x_2-2x_2^2-x_0x_1 \,.
+\]
+The two syzygies in degree~$3$ are:
+\[
+x_2 \, H_1 - x_1 \, H_2 + x_0 \, H_3 = 0, \quad x_0 \, H_2 + 2(x_1+x_2) \, H_3 + x_0 \, H_1 = 0.
+\]
+Finally, $Z= \{ (0:1:1),(2:1:-1),(-2:1:-1)\}$. Observe that one point is on the singular line $x_0=0$
+and that the Jacobian scheme is non reduced, it consists of a line with an embedded point.
+\end{es}
+
+\begin{rmk}
+Assume $\dim E(f) =1$ and that the $1$-dimensional component is an irreducible conic $\tilde Q$. Let $Q$ be the isotropic quadric. Then we have the following possible cases:
+\begin{itemize}
+\item $\tilde Q = Q$. It seems that this never happens.
+\item set $Z:= \tilde Q \cap Q$. Then $Z\subset R(f)$ , so $V(f)$ is tangent to $Q$ in four points.
+\item $Z$ consists of one singular point for $V(f)$ and one or two regular eigenpoints.
+\item $Z$ consists of two singular points for $V(f)$.
+\item $Z$ consists of a triple point for $V(f)$, with one common tangent with $Q$.
+\end{itemize}
+\end{rmk}
+
 \bibliographystyle{amsalpha}
 \bibliography{ooms}
 
