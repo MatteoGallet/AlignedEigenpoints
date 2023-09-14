@@ -301,7 +301,7 @@ $\prescript{t} {} M^{-1}=M$. We deduce that
 \section{Conditions imposed by aligned eigenpoints}
 \label{conditions}
 
-Forcing \blue {Imposing} a cubic ternary form to have one or more aligned triples of eigenschemes imposes \blue {implies} conditions both on the points and on the cubics.
+Imposing a cubic ternary form to have one or more aligned triples of eigenschemes implies conditions both on the points and on the cubics.
 We begin to explore these conditions by introducing, for each point
 $P \in \p^2$,
 a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ternary cubic.
@@ -324,7 +324,7 @@ a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ter
  where $\Phi(P)$ is a $3 \times 10$ matrix with entries depending on $A, B, C$.
  The matrix $\Phi(P)$ is called the \emph{matrix of conditions} imposed by~$P$.
 We denote by $\phi_1(P)$, $\phi_2(P)$, and~$\phi_3(P)$ the rows of~$\Phi(P)$.
-They are \blue {però di solito nelle righe non si mettono virgole}
+Written as vectors, they are
 %
 \begin{equation}
 \label{equation:matrix_conditions_rows}
@@ -367,12 +367,12 @@ Moreover, if $P_1, \dotsc, P_n$ are points in the plane, we denote by $\Phi(P_1,
  \right)
 \]
 %
-namely, the $3n \times 10$ matrix obtained by stacking the matrices of conditions of~$P_1, \dotsc, P_n$ on top \blue{bottom} of each other.
+namely, the $3n \times 10$ matrix obtained by vertically stacking the matrices of conditions of~$P_1, \dotsc, P_n$.
 \end{definition}
 
 \begin{rmk}
-From \Cref{equation:matrix_conditions_rows}, it follows that $\Phi(P)$ has never rank strictly lower than~$2$ \blue{ By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of 
-$\Phi(P)$ is never $ \le 1$} .
+By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of
+$\Phi(P)$ is never $\leq 1$.
 Moreover, it holds:
 \begin{equation}
   C \, \phi_1(P) - B \, \phi_2(P) + A \, \phi_3(P) = 0,
@@ -383,19 +383,19 @@ among the three vectors, at most two of them are linearly independent.
 Hence, the matrix~$\Phi(P)$ has rank~$2$.
 \end{rmk}
 
-Hence \blue{As a consequence}, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
+As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
 \begin{equation}
 \label{bound_rank}
 \text{rk} \  \Phi(P_1, \dots, P_n) \leq \min \left\{2n, 10 \right\}
 \end{equation}
 
-Here \blue {In what follows} we want to study the possible values of the rank of the matrix
+In what follows we want to study the possible values of the rank of the matrix
 $\Phi(P_1, \dots, P_n)$ for several configurations of points $P_1, \dots, P_n$
 (and several values of $n$).
-We will therefore have to study \blue {In particular, we will study} the ideal~$J_k$ of order $k$ minors of the
-involved matrix and to deduce \blue{will deduce} the properties of \blue {bounds on} the rank from the possible
+In particular, we will study the ideal~$J_k$ of order $k$ minors of the
+involved matrix and we will deduce some bounds about the rank from the possible
 decompositions of the ideal~$J_k$. Most of these computations will be done
-with the auxiliary \blue {aid; auxiliary è aggettivo} of a computer algebra system. Nevertheless, in many cases,
+with the aid of a computer algebra system. Nevertheless, in many cases,
 the result cannot be reached just by brute force, but it is necessary to
 make some preprocessing on the ideal~$J_k$. In particular, it turns out that
 it is often convenient to first saturate the ideal~$J_k$ with respect to
@@ -455,7 +455,7 @@ Construct three $1 \times n$ matrices $w_1$, $w_2$, $w_3$ by extracting the entr
 % \end{proof}
 
 
-First of all, we evidentiate \blue {point out} a property of the lines, which are tangent to~$\iso$.
+First of all, we point out a property of the lines, which are tangent to~$\iso$.
 Let $P_1, P_2$ be two distinct points in the plane and define
 %
 \[
@@ -466,20 +466,19 @@ The quantity~$\sigma$ is the discriminant of the intersection between the line~$
 
 \begin{prop}
 \label{proposition:sigma_tangency}
-  Let $P_1$, $P_2$ be two distinct points in the plane and let $r$ be the line between 
-  \blue{joining} them.
+  Let $P_1$, $P_2$ be two distinct points in the plane and let $r$ be the line joining them.
   Then the following are equivalent:
   \begin{enumerate}
   \item $\sigma(P_1, P_2) = 0$;
   \item $\sigma(Q_1, Q_2) = 0$ for all pairs of distinct points $Q_1, Q_2 \in r$;
   \item the line $r$ is tangent to~$\iso$ at some point;
-  \item there exists a point $T \in r$ such that $T$ is orthogonal to $r$ (equivalently, $T \in \iso$ and $\scl{T, Q} = 0$ for all $Q \in r$ \blue{questa è la definizione di punto ortogonale a retta, secondo me}).
+  \item there exists a point $T \in r$ such that  $T \in \iso$ and $\scl{T}{Q} = 0$ for all $Q \in r$, $Q \neq T$; in this case we say that $T$ is \emph{orthogonal} to $r$.
   \end{enumerate}
 \end{prop}
 \begin{proof}
   By recalling the characterization of~$\sigma$ as a discriminant, we have that $\sigma(P_1, P_2) = 0$ if and only if $r$ is tangent to~$\iso$ in a point~$T$; this shows that the first three items are equivalent.
 
-  Now, if $\sigma(P_1, P_2) = 0$, then $r$ is tangent to~$\iso$ at a point~$T$, hence $\scl{T}{T} = 0$. Moreover, we also have that $\sigma(T, Q) = 0$ for all $Q \in r$ with $Q \neq T$. Hence \blue{, that is, } $T$ is orthogonal to~$r$.
+  Now, if $\sigma(P_1, P_2) = 0$, then $r$ is tangent to~$\iso$ at a point~$T$, hence $\scl{T}{T} = 0$. Moreover, we also have that $\sigma(T, Q) = 0$ for all $Q \in r$ with $Q \neq T$. Hence, $T$ is orthogonal to~$r$.
   The converse is immediate.
 \end{proof}
 
@@ -494,13 +493,13 @@ $\text{rk}\ \Phi(P_1, P_2, P_3) = 5$ if and only if $r$ is tangent
 to~$\iso$ in one of the three points $P_1, P_2$, or $P_3$.
 \end{itemize}
 \end{prop}
-\begin{proof} We fix the following coordinates for the points \blue{We denote the coordinates of the points as follows: (non fissiamo le coordinate, sono generiche):}
+\begin{proof} We denote the coordinates of the points as follows:
 \[
 P_1, P_2, P_3 = (A_1: B_1: C_1), (A_2: B_2: C_2), u_1P_1+u_2P_2.
 \]
 We have to consider the ideal generated by the $17640$ order six
-minors of the matrix $\Phi(P_1, P_2, P_3)$, we can however \blue {and we 
-claim that we can} greately simplify
+minors of the matrix $\Phi(P_1, P_2, P_3)$ and we
+claim that we can greately simplify
 the computations.
 
 Consider the matrix $M$ constructed with the following six rows:
@@ -528,18 +527,18 @@ constructed with the columns $l_1, \dots, l_6$ is zero, then necessarily $D$
 must be zero. In this way we see that, in order to have that all the order
 six minors of $\Phi(P_1, P_2, P_3)$ are zero, it is enough to compute the
 ideal of the order six minors of the matrix $M$ above and divide each
-minor by $A_1A_2(u_1A_1+u_2A_2)$. In this way \blue{By this procedure (ripetizione di In this way)} we get an ideal that (after
+minor by $A_1A_2(u_1A_1+u_2A_2)$. By this procedure, we get an ideal that (after
 a saturation w.r.t.\ the condition that $P_1$, $P_2$, and $P_1, P_3$ and
 $P_2$, $P_3$ are distinct), has
 a very simple primary decomposition, which is given by the following three
 ideals:
 \[
 \left(\scl{P_i}{P_1}, \scl{P_i}{P_2},\scl{P_i}{P_3}\right) \quad
-\mbox{for $i = 1, 2, 3$}.
+\mbox{for } i = 1, 2, 3 \,.
 \]
-hence \blue {As a consequence (frase molto lunga senno')}, the line $r$ is tangent to~$\iso$
+As a consequence, the line $r$ is tangent to~$\iso$
 (in $P_1$ or $P_2$ or $P_3$).
-It is easy \blue{not difficult} to see via a symbolic computation that it is not possible to have that all the order
+It is not difficult to see via a symbolic computation that it is not possible to have that all the order
 $4$-minors of $\Phi(P_1, P_2, P_3)$ are zero.
 \end{proof}
 
@@ -574,11 +573,11 @@ that line is tangent to~$\iso$ in one of the three given points.
 \label{prop:condition3+1}
 Let $P_1, P_2, P_3, P_4$ be four distinct points of the plane such that
 $P_1, P_2, P_3$ are aligned and let $r$
-be the line passing through \blue{joining} them. If
+be the line passing joining them. If
 $\text{rk}\ \Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one of the three points $P_1, P_2, P_3$.
 \end{prop}
 \begin{proof}
-Also in this case, \blue {Again,} we distinguish two cases: $P_1 = (1: 0: 0)$ and
+Again, we distinguish two cases: $P_1 = (1: 0: 0)$ and
 $P_1 = (1: \iii: 0)$. In both cases, the ideal of the order $8$
 minors \blue {la comunita' che studia varietà determinantali usa la notazione $I_8(\Phi(P_1, P_2, P_3, P_4))$} of $\Phi(P_1, P_2, P_3, P_4)$ can be computed and saturated
 w.r.t.\ the conditions that the points are different and that
@@ -600,10 +599,10 @@ to~$\iso$.
   A direct symbolic computation shows that all the maximal minors of~$\Phi(Q_1, \dotsc, Q_4)$ are
   zero, so $\mathrm{rk}\,(\Phi(Q_1, \dotsc, Q_4)) \leq 7$.
   Indeed, in view of \Cref{lemma:minors}, we can just check the order~$8$ minors of the reduced condition matrix of $Q_1, \dotsc, Q_4$; it turns out that they are all zero.
-  
+
   On the other hand, the rank of $\Phi(Q_1, \dotsc, Q_4)$ cannot be $5$:
-  in that case, \blue {if this would bethe case}, for any triple~$T$ extracted from the four points, the matrix of conditions would have rank~$5$, hence by \Cref{proposition:three_aligned_ranks} the line~$r$ would be tangent to~$\iso$ in an element of $T$; this is a contradiction.
-  Hence, \blue {So, (troppi hence, in generale)} the first item of the statement is proven.
+  if this were the case, for any triple~$T$ extracted from the four points, the matrix of conditions would have rank~$5$, hence by \Cref{proposition:three_aligned_ranks} the line~$r$ would be tangent to~$\iso$ in an element of $T$; this is a contradiction.
+  So, the first item of the statement is proven.
 
   We proceed to prove the second item.
   We take the reduced matrix of conditions of~$Q_1, Q_2, Q_3$, to which we add the row~$\phi_1(Q_4)$.
@@ -681,8 +680,7 @@ if and only if} \quad
 \]
 \end{lemma}
 \begin{proof}
-We fix the following coordinates of the points:
-\blue {We denote the coordinate of the points as follows:}
+We denote the coordinate of the points as follows:
 $P_1, P_2, P_4 = (A_1: B_1: C_1), (A_2: B_2: C_2), (A_4: B_4, C_4)$,
 then $P_3 = u_1P_1+u_2P_2$ and $P_5 = v_1P_1+v_2P_4$. We proceed as in
 the proof of \Cref{proposition:three_aligned_ranks}: we find, via symbolic computation, that the determinant of
