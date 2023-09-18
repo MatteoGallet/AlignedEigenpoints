@@ -70,6 +70,7 @@
 \newcommand{\iii}{\textbf{i}}
 \definecolor{MyDarkGreen}{cmyk}{0.7,0,1,0}
 \newcommand{\blue}[1]{{\color{blue}  [#1]}}
+\newcommand{\cbc}{\ensuremath{Cbc}}
 
 \title{Eigenpoint collinearities of plane cubics}
 \author{}
@@ -310,9 +311,10 @@ a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ter
 \label{definition:matrix_conditions}
  Consider $\p^9 = \p(\C[x,y,z]_3)$, the space of all ternary cubics.
  Throught this paper, we fix the following vector basis for $\C[x,y,z]_3$:
- \[
-  (x^3, x^2 y, x y^2, y^3, x^2 z, x y z, y^2 z, x z^2, y z^2, z^3)
- \]
+ \begin{eqnarray}
+  \mathcal{B} = (x^3, x^2 y, x y^2, y^3, x^2 z, x y z, y^2 z, x z^2, y z^2, z^3)
+  \label{vector_basis}
+ \end{eqnarray}
  For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$f$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
  For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements~$[f]$ of~$\p^9$ that $P$ is an eigenpoint of the ternary cubic form~$f$ can be expressed in the form
  %
@@ -740,7 +742,8 @@ Moreover, since the rank of the matrix $\Phi(P_1, P_2, P_3)$ is $5$,
 we can also erase the row $\phi_3(P_3)$ and, for the same reason, the
 row $\phi_3(P_5)$. The remaining matrix $M$ is a $8\times 10$ matrix.
 It is not possible that all the order $8$ minors
-of $M$ are zero: the ideal they generate, after saturations ensuring that the points are distinct, is the whole ring.
+of $M$ are zero: the ideal they generate, after saturations ensuring
+that the points are distinct, is the whole ring.
 \end{proof}
 
 \begin{prop}
@@ -800,26 +803,23 @@ Here we want to consider a $V$-configuration of points $P_1, \dots, P_5$
 such that $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$.
 Moreover, here we assume that the rank of the matrix $M$
 of the conditions imposed by
-the five points (which, by proposition~\ref{pr5}, is at most $9$)
-is $9$, hence there exists precisely one cubic curve having
-$P_1, \dots, P_5$ among its eigenpoints. In particular, from
-proposition~\ref{pr5}, we have that at least one of the two lines
-$P_1+P_2$ and $P_1+P_4$ is not tangent to~$\iso$ (in $P_2$
-or $P_3$ or, respectively, in $P_4$ or $P_5$). We assume therefore that
-$P_1+P_2$ is not tangent to~$\iso$ and then,
-by~\ref{prop:condition3+1}, for each point $P_i$ for $i \in
-\{1,\dotsc,4\}$ there exist
-two indices $i_1, i_2 \in \{1,2,3\}$ such that the matrix~$\mathcal{H}$
-whose rows are $\{ \phi_{i_1}(P_i), \phi_{i_2}(P_i)\}_{i=1}^4$ has rank~$8$.
-To simplify the notation, we assume that the two indices are always $1$ and
-$2$ for every~$P_i$.
-Since the matrix whose rows are the rows of
-$\mathcal{H}$ and one the rows of $\Phi(P_5)$ has rank $9$, we
-can assume that the rank $9$ is realized by the matrix $\mathcal{H}$ plus
-the row $\phi_1(P_5)$.
+the five points (which, by~\Cref{proposition:rank_V}, is at most $9$)
+is $9$, hence there exists precisely one cubic curve $\cbc$ having
+$P_1, \dots, P_5$ among its eigenpoints. Another immediate consequence of
+the rank $9$ condition is that the
+matrix $\Phi(P_1, \dots, P_5)$ has at least one $9 \times 10$-submatrix
+$\mathcal{H}$ whose order $9$ minors are not all zero. If
+$\mathcal{H}_i$ is the order $9$ minor of
+$\mathcal{H}$ given by erasing the $i$-th column ($i=1, \dots, 10)$, from
+Cramer's rule, the equation of $\cbc$ is given by
+\[
+ F(x, y, z) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_{10-i}
+\]
+(where $\mathcal{B}_j$ is the $j$-th monomial of the basis $\mathcal{B}$
+given in~\ref{vector_basis}).
 
-If $P = (x: y: z)$ is a generic point of the plane,
-consider the following three square matrices of order~$10$:
+Given the matrix $\mathcal{H}$ and a generic point $X = (x: y: z)$
+of the plane, consider the following three square matrices of order~$10$:
 %
 \begin{eqnarray}
 \label{G1G2G3}
@@ -827,8 +827,7 @@ consider the following three square matrices of order~$10$:
 \left(
 \begin{array}{c}
   \mathcal{H} \\
-  \phi_1(P_5)\\
-  \phi_1(P)
+  \phi_1(X)
 \end{array}
 \right),
 \quad
@@ -836,8 +835,7 @@ consider the following three square matrices of order~$10$:
 \left(
 \begin{array}{c}
   \mathcal{H} \\
-  \phi_1(P_5)\\
-  \phi_2(P)
+  \phi_2(X)
 \end{array}
 \right),
 \quad
@@ -845,39 +843,38 @@ consider the following three square matrices of order~$10$:
 \left(
 \begin{array}{c}
   \mathcal{H} \\
-  \phi_1(P_5)\\
-  \phi_3(P)
+  \phi_3(X)
 \end{array}
 \right)
 \end{eqnarray}
 and let $g_1$, $g_2$ and $g_3$ be their determinants.
-We know by \Cref{eq:base} that $z \phi_1(P)-y\phi_2(P) +x\phi_3(P) = 0$, hence
+We know by \Cref{eq:base} that $z \phi_1(X)-y\phi_2(X) +x\phi_3(X) = 0$, hence
 %
 \[
 \det
 \left(
 \begin{array}{c}
   \mathcal{H} \\
-  \phi_1(P_5)\\
-  z \phi_1(P)-y\phi_2(P) +x\phi_3(P)
+  z \phi_1(X)-y\phi_2(X) +x\phi_3(X)
 \end{array}
 \right) = 0
 \]
 %
-using the multilinearity of the determinant, we get the syzygy~$(z,-y,x)$ among
-$g_1, g_2, g_3$.
+using the multilinearity of the determinant, we get the
+syzygy~$(z,-y,x)$ among $g_1, g_2, g_3$.
 It holds:
 \begin{prop}
  \label{threeG}
-  A point $P = (A: B: C)$ of the plane is an eigenpoint of $\mathcal{C}$ if and only if
-  $P$ is a common zero of $g_1, g_2, g_3$.
+ A point $P = (A: B: C)$ of the plane is an eigenpoint of $\cbc$ if
+and only if  $P$ is a common zero of $g_1, g_2, g_3$.
 \end{prop}
 \begin{proof}
-  Suppose that $P$ is an eigenpoint of $\mathcal{C}$. Then the $18\times 10$ matrix
+  Suppose that $P$ is an eigenpoint of $\cbc$. Then the $18\times 10$ matrix
   $\mathcal{M} = \Phi(P_1, \dots, P_5, P)$, which is the matrix
   associated to the linear
   system obtained by imposing that the six points are eigenpoints,
-  has rank~$9$, since by assumption the matrix has rank at least~$9$ and we know that the linear system has a solution.
+  has rank~$9$, since by assumption the matrix has rank at least~$9$ and
+  we know that the linear system has a solution.
   In particular the matrices
   $\mathcal{G}_1, \mathcal{G}_2$ and $\mathcal{G}_3$, which are
   submatrices of $\mathcal{M}$, have determinant zero, so
@@ -886,21 +883,35 @@ It holds:
   Conversely, suppose that $P$ is a point such that
   $g_1(P) = g_2(P) = g_3(P) = 0$. Then $\phi_1(P)$ , $\phi_2(P)$ and
   $\phi_3(P)$, the three rows of $\Phi(P)$, are linear combinations of
-$\phi_1(P_5)$ and the rows of $\mathcal{H}$, so the $12\times 10$ matrix
+  the rows of $\mathcal{H}$, so the $12\times 10$ matrix
   %
   \[
 \left(
 \begin{array}{c}
   \mathcal{H} \\
-  \phi_1(P_5)\\
   \Phi(P)
 \end{array}
 \right)
 \]
 %
 has rank $9$ and the linear system associated to it has a solution,
-which is the cubic $\mathcal{C}$, therefore $P$ is an eigenpoint of $\mathcal{C}$.
+which is the cubic $\cbc$, therefore $P$ is an eigenpoint of $\cbc$.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{es} Consider the following five points in a $V$ configuration:
 \[
