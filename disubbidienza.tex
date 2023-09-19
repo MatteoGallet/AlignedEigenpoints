@@ -799,6 +799,25 @@ To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{lemma:d
 
 \section{$\delta_1=0$ or $\delta_2=0$}
 
+Questa parte va un po' meditata, per cercare una notazione coerente.@@
+Forse la definizione \Cref{definition:matrix_conditions} va rimaneggiata.
+
+Given a polynomial $f = a_0x^3+a_1x^2y+\cdots+ a_9z^3$, and a point
+$X = (A: B: C)$, to $f$ we associate the $10$-dimensional vector
+$v(f)(P) = (A^3, A^2B, \dots, C^3)$. Similarly, if $f_x$, $f_y$, $f_z$ are
+the three derivative of $f$, we have the vectors
+$v(f_x)(P) = (3A^2, 2AB, \dots )$, etc.
+In particular, we get:
+\begin{gather*}
+\phi_1(P) = A\cdot v(f_x)(P)-B\cdot v(f_y)(P), \\
+\phi_2(P) = A\cdot v(f_z)(P)-C\cdot v(f_y)(P),\\
+\phi_3(P) = B\cdot v(f_z)(P)-C\cdot v(f_y)(P) 
+\end{gather*}
+
+
+\bigskip
+\bigskip
+
 Here we want to consider a $V$-configuration of points $P_1, \dots, P_5$
 such that $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$.
 Moreover, here we assume that the rank of the matrix $M$
@@ -807,118 +826,77 @@ the five points (which, by~\Cref{proposition:rank_V}, is at most $9$)
 is $9$, hence there exists precisely one cubic curve $\cbc$ having
 $P_1, \dots, P_5$ among its eigenpoints. Another immediate consequence of
 the rank $9$ condition is that the
-matrix $\Phi(P_1, \dots, P_5)$ has at least one $9 \times 10$-submatrix
+matrix $\Phi(P_1, \dots, P_5)$ has $9$ linearly independent rows, so
+has at least one $9 \times 10$-submatrix
 $\mathcal{H}$ whose order $9$ minors are not all zero. If
 $\mathcal{H}_i$ is the order $9$ minor of
 $\mathcal{H}$ given by erasing the $i$-th column ($i=1, \dots, 10)$, then,
 from Cramer's rule, the polynomial defining $\cbc$ is given by
 \[
- F(x, y, z) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_i
+ F(X) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_i
 \]
 (where $\mathcal{B}_i$ is the $i$-th monomial of the basis $\mathcal{B}$
-given in~\ref{vector_basis}).
-
-Given the matrix $\mathcal{H}$ and a generic point $X = (x: y: z)$
-of the plane, consider the following three square matrices of order~$10$:
-%
-\begin{eqnarray}
-\label{G1G2G3}
-\mathcal{G}_1 =
-\left(
-\begin{array}{c}
-  \mathcal{H} \\
-  \phi_1(X)
-\end{array}
-\right),
-\quad
-\mathcal{G}_2 =
-\left(
-\begin{array}{c}
-  \mathcal{H} \\
-  \phi_2(X)
-\end{array}
-\right),
-\quad
-\mathcal{G}_3 =
-\left(
-\begin{array}{c}
-  \mathcal{H} \\
-  \phi_3(X)
-\end{array}
-\right)
-\end{eqnarray}
-and let $g_1$, $g_2$ and $g_3$ be their determinants.
-We know by \Cref{eq:base} that $z \phi_1(X)-y\phi_2(X) +x\phi_3(X) = 0$, hence
-%
+defined in~(\ref{vector_basis}) and $X=(x, y, z)$). In other words,
 \[
-\det
-\left(
-\begin{array}{c}
-  \mathcal{H} \\
-  z \phi_1(X)-y\phi_2(X) +x\phi_3(X)
-\end{array}
-\right) = 0
+F(X) = \det \left( \begin{array}{c} \mathcal{H}\\ v(f)(X)
+ \end{array} \right)
 \]
-%
-using the multilinearity of the determinant, we get the
-syzygy~$(z,-y,x)$ among $g_1, g_2, g_3$.
-It holds:
+From the matrix $\mathcal{H}$ it is moreover possible to construct 
+the three minors of (\ref{eq:def_matrix}) (i.e.\ the Geiser polynomials
+(si chiamano cosi'?@@)), indeed we have:
 \begin{prop}
- \label{threeG}
- A point $P = (A: B: C)$ of the plane is an eigenpoint of $\cbc$ if
-and only if  $P$ is a common zero of $g_1, g_2, g_3$.
-\end{prop}
-\begin{proof}
-  Suppose that $P$ is an eigenpoint of $\cbc$. Then the $18\times 10$ matrix
-  $\mathcal{M} = \Phi(P_1, \dots, P_5, P)$, which is the matrix
-  associated to the linear
-  system obtained by imposing that the six points are eigenpoints,
-  has rank~$9$, since by assumption the matrix has rank at least~$9$ and
-  we know that the linear system has a solution.
-  In particular the matrices
-  $\mathcal{G}_1, \mathcal{G}_2$ and $\mathcal{G}_3$, which are
-  submatrices of $\mathcal{M}$, have determinant zero, so
-  $g_1(P) = g_2(P) = g_3(P) = 0$.
-
-  Conversely, suppose that $P$ is a point such that
-  $g_1(P) = g_2(P) = g_3(P) = 0$. Then $\phi_1(P)$ , $\phi_2(P)$ and
-  $\phi_3(P)$, the three rows of $\Phi(P)$, are linear combinations of
-  the rows of $\mathcal{H}$, so the $12\times 10$ matrix
-  %
-  \[
+\label{proposition:geiser1}
+It holds: If $g_1, g_2, g_3$ are the three minors of the matrix 
+\[
 \left(
-\begin{array}{c}
-  \mathcal{H} \\
-  \Phi(P)
+\begin{array}{ccc}
+x & y & z \\
+\de_xF(X) & \de_yF(X) & \de_z F(X)
 \end{array}
 \right)
 \]
-%
-has rank $9$ and the linear system associated to it has a solution,
-which is the cubic $\cbc$, therefore $P$ is an eigenpoint of $\cbc$.
+they are given by:
+\[
+\det \left( \begin{array}{c} \mathcal{H}\\ 
+\phi_1(X)
+\end{array} \right),\quad
+\det \left( \begin{array}{c} \mathcal{H}\\ 
+\phi_2(X)
+\end{array} \right), \quad
+\det \left( \begin{array}{c} \mathcal{H}\\ 
+\phi_3(X)
+\end{array} \right)
+\]
+\end{prop}
+\begin{proof} We have:
+\begin{eqnarray*}
+g_1 & =  & x \cdot \de_y F(X)- y \cdot \de_xF(X) \\
+& = & 
+x\cdot \de_y \det \left( \begin{array}{c} \mathcal{H}\\ v(f)(X)
+\end{array} \right) -y \cdot
+\de_x \det \left( \begin{array}{c} \mathcal{H}\\ v(f)(X)
+\end{array} \right) \\
+& = & \det \left( \begin{array}{c} \mathcal{H}\\ x \cdot v(f_y)(X)-
+y \cdot v(f_x)(X)
+\end{array} \right)\\
+& = & \left( \begin{array}{c} \mathcal{H}\\ 
+\phi_1(X)
+\end{array} \right)
+\end{eqnarray*}
+and similarly for $g_2 = x \cdot \de_z F(X)- z \cdot \de_xF(X)$
+and $g_3 = y \cdot \de_z F(X)- z \cdot \de_yF(X)$.
 \end{proof}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{es} Consider the following five points in a $V$ configuration:
-\[
-p_1, p_2, p_3, p_4, p_5 = (2: -1: 1), \ (-1: 1: 3), \ (1: 0: 4),\
-(3: 6: -1), \ (-1: -7: 2)
-\]
-Then
+\begin{es} Consider the following five points in a $V$-configuration:
+\begin{gather*}
+p_1, p_2, p_4 = (2: -1: 1), \ (-1: 1: 3), \ (3: 6: -1), \\
+p_3, p_5 = p_1+p_2,  \ p_1+p_4
+\end{gather*}
+They satisfy the condition $\delta_2(p_1, \dots, p_5) = 0$.
+We consider the $9\times 10$ matrix $\mathcal{H}$ whose rows
+(suitable rescaled) are:
+$\phi_i(p_j)$ for $i = 1, 2$ and $j = 1, 2, 3, 4$ and $\phi_1(p_5)$:
 \[
 \mathcal{H} =
 \left(\begin{array}{rrrrrrrrrr}
@@ -928,28 +906,36 @@ Then
 -9 & 6 & -3 & 0 & 17 & -8 & -1 & -21 & -6 & -27 \\
 0 & 1 & 0 & 0 & 0 & 4 & 0 & 0 & 16 & 0 \\
 -12 & 0 & 0 & 0 & -31 & 0 & 0 & -56 & 0 & 48 \\
--162 & -189 & -108 & 324 & 36 & 27 & -36 & -6 & 3 & 0 \\
-27 & 36 & 36 & 0 & 21 & 48 & 108 & -17 & -36 & 9
-\end{array}\right)
+54& 63& 36& -108& -12& -9& 12& 2& -1& 0\\
+27 & 36 & 36 & 0 & 21 & 48 & 108 & -17 & -36 & 9 \\
+336& 328& 119& -588& -56& -33& 56& 7& -4& 0
+\end{array}
+\right)
 \]
-while
+The cubic with $p_1, \dots, p_5$ as eigenpoints is given by
 \[
-\phi_1(p_5) = (21, 97, 329, -147, -28, -96, 28, 28, -4, 0)
+\det \left(
+\begin{array}{c}
+\mathcal{H}\\
+x^3 \ \ x^2y \ \ xy^2 \ \dots \  z^3
+\end{array}
+\right)
 \]
-hence the determinant of the matrices $\mathcal{G}_1, \mathcal{G}_2$
-and $\mathcal{G}_3$ are:
+whose value is (after a suitable rescaling):
+\[
+766x^3 - 1176x^2y + 417xy^2 - 128y^3 + 1488x^2z - 1722xyz
++ 597y^2z - 207xz^2 + 504yz^2 + 911z^3
+\]
+and the Geiser (@@) polynomials are:
 \begin{eqnarray*}
-g_1 & = & 4760x^3 + 8209x^2y - 4331xy^2 - 652y^3 + 4858x^2z + 4752xyz - \\
-& & 4858y^2z - 1512xz^2 - 720yz^2\\
-g_2 & = & 4948x^3 - 4858x^2y + 2572xy^2 - 8345x^2z + 12544xyz + 652y^2z -\\
-& & 1103xz^2 + 4858yz^2 + 720z^3\\
-g_3 & = & 4948x^2y - 4858xy^2 + 2572y^3 + 4760x^2z - 136xyz + 8213y^2z + \\
-& & 4858xz^2 + 3649yz^2 - 1512z^3
+g_1 & = & 392x^3 + 488x^2y - 656xy^2 + 139y^3 + 574x^2z + 594xyz - 574y^2z - 168xz^2 - 69yz^2\\
+g_2 & = & 496x^3 - 574x^2y + 199xy^2 - 904x^2z + 1120xyz - 139y^2z - 81xz^2 + 574yz^2 + 69z^3\\
+g_3 & = & 496x^2y - 574xy^2 + 199y^3 + 392x^2z - 416xyz + 464y^2z + 574xz^2 + 513yz^2 - 168z^3
 \end{eqnarray*}
-and the common zeros of $g_1, g_2, g_3$ (i.e.\ the eigenpoints of the
-corresponding cubic curve) are the points $p_1, \dots, p_5$
-above and the two other points $p_6 = (1236: 1365: -1396)$ and
-$p_7=(672: 1640: -1727)$.
+and can be computed either using their definition,
+or~\Cref{proposition:geiser1}.
+The common zeros of $g_1, g_2, g_3$ are the points $p_1, \dots, p_5$
+and the points $p_6 = (21: 34: -8)$ and $p_7 = (19: 35: -9)$.
 \end{es}
 
 \begin{rmk}
