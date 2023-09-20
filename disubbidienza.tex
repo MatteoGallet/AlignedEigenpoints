@@ -372,7 +372,7 @@ Moreover, if $P_1, \dotsc, P_n$ are points in the plane, we denote by $\Phi(P_1,
 namely, the $3n \times 10$ matrix obtained by vertically stacking the matrices of conditions of~$P_1, \dotsc, P_n$.
 \end{definition}
 
-\begin{rmk}
+\begin{rmk} @@si puo' dire meglio, usando le derivate parziali@@)
 By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of
 $\Phi(P)$ is never $\leq 1$.
 Moreover, it holds:
@@ -802,27 +802,24 @@ To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{lemma:d
 Questa parte va un po' meditata, per cercare una notazione coerente.@@
 Forse la definizione \Cref{definition:matrix_conditions} va rimaneggiata.
 
-Given a linear combination $\Lambda = a_0\lambda_0+\cdots+a_9\almbda_9$, we
+Given a linear combination $\Lambda = a_0\lambda_0+\cdots+a_9\lambda_9$, we
 denote by $v(\Lambda)$ the $10$-component vector given by
 $(\lambda_0, \dots, \lambda_9)$. In particular, if $X=(x: y: z)$ and
 $f(X) = a_0x^3+a_1x^2y+\cdots+ a_9z^3$ is a degree $3$ homogeneous polynomial
 $v(f(X)) = (x^3, x^2y, \dots, z^3)$, while $v(\de_x(f)(X)) = v(\de_x)(f)(X) =%
 (3x^2, 2xy, \dots, 0)$. With this notation if $P=(A: B: C)$, we get:
+%
 \begin{gather*}
 \phi_1(P) = A\cdot v(f_x)(P)-B\cdot v(f_y)(P), \\
 \phi_2(P) = A\cdot v(f_z)(P)-C\cdot v(f_y)(P),\\
 \phi_3(P) = B\cdot v(f_z)(P)-C\cdot v(f_y)(P) 
 \end{gather*}
-
-
-\bigskip
-\bigskip
-
+%
 Here we want to consider a $V$-configuration of points $P_1, \dots, P_5$
 such that $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$.
-Moreover, here we assume that the rank of the matrix $M$
+Moreover, we assume that the rank of the matrix $M$
 of the conditions imposed by
-the five points (which, by~\Cref{proposition:rank_V}, is at most $9$)
+the five points (which, by~\Cref{proposition:rank_V}, is at most~$9$)
 is $9$, hence there exists precisely one cubic curve $\cbc$ having
 $P_1, \dots, P_5$ among its eigenpoints. Another immediate consequence of
 the rank $9$ condition is that the
@@ -833,10 +830,10 @@ $\mathcal{H}_i$ is the order $9$ minor of
 $\mathcal{H}$ given by erasing the $i$-th column ($i=1, \dots, 10)$, then,
 from Cramer's rule, the polynomial defining $\cbc$ is given by
 \[
- F(X) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_i
+ F(X) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot v(f)(X)_i
 \]
-(where $\mathcal{B}_i$ is the $i$-th monomial of the basis $\mathcal{B}$
-defined in~(\ref{vector_basis}) and $X=(x, y, z)$). In other words,
+(where $v(f)(X)_i$ is the $i$-th monomial of $v(f)(X)$
+and $X=(x: y: z)$). In other words,
 \[
 F(X) = \det \left( \begin{array}{c} \mathcal{H}\\ v(f)(X)
  \end{array} \right)
@@ -846,7 +843,7 @@ the three minors of (\ref{eq:def_matrix}) (i.e.\ the Geiser polynomials
 (si chiamano cosi'?@@)), indeed we have:
 \begin{prop}
 \label{proposition:geiser1}
-It holds: If $g_1, g_2, g_3$ are the three minors of the matrix 
+If $g_1, g_2, g_3$ are the three minors of the matrix 
 \[
 \left(
 \begin{array}{ccc}
@@ -855,7 +852,7 @@ x & y & z \\
 \end{array}
 \right)
 \]
-they are given by:
+they can be computed by:
 \[
 \det \left( \begin{array}{c} \mathcal{H}\\ 
 \phi_1(X)
@@ -890,8 +887,8 @@ and $g_3 = y \cdot \de_z F(X)- z \cdot \de_yF(X)$.
 
 \begin{es} Consider the following five points in a $V$-configuration:
 \begin{gather*}
-p_1, p_2, p_4 = (2: -1: 1), \ (-1: 1: 3), \ (3: 6: -1), \\
-p_3, p_5 = p_1+p_2,  \ p_1+p_4
+p_1, \ p_2, \ p_4 = (2: -1: 1), \ (-1: 1: 3), \ (3: 6: -1), \\
+p_3, \ p_5 = p_1+p_2,  \ p_1+p_4
 \end{gather*}
 They satisfy the condition $\delta_2(p_1, \dots, p_5) = 0$.
 We consider the $9\times 10$ matrix $\mathcal{H}$ whose rows
@@ -948,7 +945,8 @@ $\mathcal{H}$ with a random row of elements of the field~$K$.
 Here we want to consider the following problem:
 given five generic points in a $V$-configuration and imposing one
 fo the two conditions
-$\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$, what
+$\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$, assuming
+again that the rank of $\Phi(P_1, \dots, P_5)$ is~$9$, what
 can we say about all the eigenpoints of the corresponding cubics?
 
 
@@ -959,10 +957,11 @@ a way that it satisfies the linear
 equation $\scl{P_4}{P_2}\scl{P_1}{P_1}-\scl{P_4}{P_1}\scl{P_1}{P_2} = 0$
 and $P_3$ and $P_5$ have to be chosen on the lines $P_1+P_2$ and $P_1+P_4$
 respectively. In particular, the corresponding variety of cubic curves
-has dimension $7$ ($\mathbb{P}^2\times \mathbb{P}^2 \times
+has dimension $7$ (parametrized by an opes subset of
+$\mathbb{P}^2\times \mathbb{P}^2 \times
 \mathbb{P}^1\times  \mathbb{P}^1$).
-If we construct a random example
-of five points as above, we get a smooth cubic curve whose $7$ eigenpoints
+The construction of a random example
+of five points as above, gives a smooth cubic curve whose $7$ eigenpoints
 do not have other collinearities (in addition to those of a
 $V$-configuration).
 
@@ -980,68 +979,38 @@ If we define:
   \label{sst2}
   \end{split}
 \end{equation}
-it holds: $\delta_2(P_1, \dots, P_5) = U_1u_1+U_2u_2$, hence, in order to
+in such a way that
+$\delta_2(P_1, \dots, P_5) = U_1u_1+U_2u_2$, hence, in order to
 have a $V$-configuration satisfying $\delta_2(P_1, \dots, P_5) = 0$ we can
 fix $P_1, P_2, P_4$ arbitrarily, $P_5$ also arbitrarily but
 on the line $P_1+P_4$ and in this
 way $P_3$ is determined by $u_1 = U_2$ and $u_2 = -U_1$. Also in this case
 the subvariety of $\mathbb{P}^9$ given by the cubics with 5
 eigenpoints satisfying $\delta_2 = 0$ is of dimension $7$
-($\mathbb{P}^2\times \mathbb{P}^2 \times \mathbb{P}^2\times \mathbb{P}^1$).
-
-Also in this case, it is easy to construct examples and now it turns out that
+(parametrized by an open subset of
+$\mathbb{P}^2\times \mathbb{P}^2 \times \mathbb{P}^2\times \mathbb{P}^1$).
+(
+Also in this case, it is easy to construct examples, but now it turns out that
 the $7$ eigenpoints of the obtained cubics satisfy the further
 condition that also $P_6$ and  $P_7$ are aligned with $P_1$. To explain
 why, we proceed as follows.
 
-
-
-
-
-
-
-
-
-
-Consider again the
-triplets of polynomials of~(\ref{3tripletsPol}), in which we make the
+Consider again the three polynomials contructed
+in~(\ref{proposition:geiser1}), in which we make the
 substitution $u_1 = U_2$ and $u_2 = -U_1$ (where $U_1, U_2$ are
-given by~\ref{sst2})). Here we
-assume that both $U_1$ and $U_2$ are not zero (this case will be considered
-later). If at least one of the three triplets obtained is not identically
-zero, from it we have three degree three polynomials in $x, y, z$ whose
-common zeros are eigenpoints.
-After the substitution, the three triplets become:
-%
-\begin{equation}
-\sigma(P_1, P_2) \cdot \Omega^{(i)} \cdot  \left(G_1, G_2, G_3\right),\quad
-\hbox{for } i = 1, 2, 3 \,,
-\label{G1G2G3}
-\end{equation}
-%
-where
-%
-\begin{equation}
-\label{3_Omega}
-  \begin{split}
-  \Omega^{(1)} & = (s_{14} s_{25} + s_{12} s_{45}) C_{1}
-- (s_{14}s_{15}+s_{11}s_{45})C_{2} +(s_{11} s_{25}- s_{12} s_{15})C_4 \\
-  \Omega^{(2)} & = (s_{14} s_{25} + s_{12} s_{45}) B_{1}
-- (s_{14} s_{15} + s_{11} s_{45}) B_{2} +(s_{11} s_{25} - s_{12} s_{15}) B_{4} \\
-  \Omega^{(3)} & = (s_{14} s_{25} + s_{12} s_{45}) A_{1}
-- (s_{14} s_{15} +s_{11} s_{45})A_{2} +(s_{11} s_{25}-s_{12} s_{15})A_{4}
-\end{split}
-\end{equation}
-%
-(here, for the sake of shortness, $s_{ij}$ denotes $\scl{P_i}{P_j}$).
-
-The polynomials $G_1, G_2, G_3$ are three polynomials of degree three
+given by~\ref{sst2})). Here
+both $U_1$ and $U_2$ are not zero (since
+we assume that the points $P_1, \dots, P_5$ are distinct).The condition
+$\mathrm{rank}\,(\mathcal{H}) = 9$ ensures that
+no one of $g_1, g_2$ or $g_3$ is a polynomial of degree $3$ in $x, y, z$
+After the substitution, these three polynomials have a common factor
+which can be erased since in our hypothesis cannot be zero. We get therefore
+three degree polynomials $G_1$, $G_2$, $G_3$
+of degree three
 in $x, y, z$ (with coefficients in the variables
-$A_1, B_1, C_1, A_2, B_2, C_2, A_4, B_4, C_4, v_1, v_2$) which are independent
-of the triplet chosen and, clearly, $z\,G_3-y\,G_2+x\,G_1 = 0$. The common
-zeros are the eigenpoints of the cubic curve defined by the matrix
-$\Phi(P_1, \dots, P_5)$.
-
+$A_1, B_1, C_1, A_2, B_2, C_2, A_4, B_4, C_4, v_1, v_2$)
+The common zeros are the eigenpoints of the cubic $\cbc$.
+%
 \begin{prop}
 \label{proposition:G_split}
  The polynomial
@@ -1129,20 +1098,6 @@ then the unique cubic determined by the condition that $P_1, \dots, P_5$
 are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
 aligned with $P_1$.
 \end{prop}
-
-Now we consider the case $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
-
-For some specific values of the coordinates it can happen that either
-$U_1=0$ or $U_2=0$ (in which case $P_1$ and $P_3$ or, respectively, $P_2$
-and $P_3$ coincide) or $\sigma(P_1, P_2) = 0$ or $\Omega^{(i)} = 0$ for
-$i = 1, 2, 3$ (in which case formula~(\ref{G1G2G3}) does not allow to
-obtain the polynomials $G_i$). We remark, however, that, similar to the
-relation $\delta_2(P1, \dots, P_5) = U_1u_1+U_2u_2$, we also have the
-symmetric relation $\delta_2(P_1, \dots, P_5) = -V_1v_1-V_2v_2$, where
-$V_1$ and $V_2$ are obtained by the expressions of~(\ref{sst2}), where
-we exchange $P_2$ with $P_4$ and $P_3$ with $P_5$. Hence we can repeat
-all the above computations obtaining, instead of~(\ref{G1G2G3}) the
-three triplets:
 
 \section{Particular cases}
 file \verb+contiCasoDegenere2.sage+ and file
