@@ -683,7 +683,7 @@ if and only if} \quad
 \end{lemma}
 \begin{proof}
 We denote the coordinate of the points as follows:
-$P_1, P_2, P_4 = (A_1: B_1: C_1), (A_2: B_2: C_2), (A_4: B_4, C_4)$,
+$P_1, P_2, P_4 = (A_1: B_1: C_1), (A_2: B_2: C_2), (A_4: B_4: C_4)$,
 then $P_3 = u_1P_1+u_2P_2$ and $P_5 = v_1P_1+v_2P_4$. We proceed as in
 the proof of \Cref{proposition:three_aligned_ranks}: we find, via symbolic computation, that the determinant of
 the reduced matrix of conditions of $P_1, \dotsc, P_5$ is
@@ -820,11 +820,11 @@ such that $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$.
 Moreover, we assume that the rank of the matrix $M$
 of the conditions imposed by
 the five points (which, by~\Cref{proposition:rank_V}, is at most~$9$)
-is $9$, hence there exists precisely one cubic curve $\cbc$ having
+is indeed $9$, hence there exists precisely one cubic curve $\cbc$ having
 $P_1, \dots, P_5$ among its eigenpoints. Another immediate consequence of
 the rank $9$ condition is that the
 matrix $\Phi(P_1, \dots, P_5)$ has $9$ linearly independent rows, so
-has at least one $9 \times 10$-submatrix
+we can extract from it a  $9 \times 10$-submatrix
 $\mathcal{H}$ whose order $9$ minors are not all zero. If
 $\mathcal{H}_i$ is the order $9$ minor of
 $\mathcal{H}$ given by erasing the $i$-th column ($i=1, \dots, 10)$, then,
@@ -966,9 +966,9 @@ do not have other collinearities (in addition to those of a
 $V$-configuration).
 
 The case in which the $V$-configuration satisfies the condition
-$\delta_2(P_1, \dots, P_5) = 0$ is different.
+$\delta_2(P_1, \dots, P_5) = 0$ is somehow different.
 
-If we define:
+We define:
 \begin{equation}
   \begin{split}
     U_1 & =  \langle P_1, P_2\rangle \left(\langle P_1, P_1\rangle
@@ -980,36 +980,43 @@ If we define:
   \end{split}
 \end{equation}
 in such a way that
-$\delta_2(P_1, \dots, P_5) = U_1u_1+U_2u_2$, hence, in order to
+$\delta_2(P_1, \dots, P_5) = U_1u_1+U_2u_2$. In order to
 have a $V$-configuration satisfying $\delta_2(P_1, \dots, P_5) = 0$ we can
-fix $P_1, P_2, P_4$ arbitrarily, $P_5$ also arbitrarily but
+therefore fix $P_1, P_2, P_4$ arbitrarily, $P_5$ any point 
 on the line $P_1+P_4$ and in this
-way $P_3$ is determined by $u_1 = U_2$ and $u_2 = -U_1$. Also in this case
-the subvariety of $\mathbb{P}^9$ given by the cubics with 5
+way $P_3$ is determined by $u_1 = U_2$ and $u_2 = -U_1$. Note that,
+since we assume the points distinct, $U_1$ and $U_2$ cannot be zero.
+Also in this case
+the subvariety of $\mathbb{P}^9$ given by the cubics with $5$
 eigenpoints satisfying $\delta_2 = 0$ is of dimension $7$
 (parametrized by an open subset of
 $\mathbb{P}^2\times \mathbb{P}^2 \times \mathbb{P}^2\times \mathbb{P}^1$).
-(
 Also in this case, it is easy to construct examples, but now it turns out that
 the $7$ eigenpoints of the obtained cubics satisfy the further
-condition that also $P_6$ and  $P_7$ are aligned with $P_1$. To explain
+condition that also $P_6$ and $P_7$ are aligned with $P_1$. To explain
 why, we proceed as follows.
 
-Consider again the three polynomials contructed
-in~(\ref{proposition:geiser1}), in which we make the
-substitution $u_1 = U_2$ and $u_2 = -U_1$ (where $U_1, U_2$ are
-given by~\ref{sst2})). Here
-both $U_1$ and $U_2$ are not zero (since
-we assume that the points $P_1, \dots, P_5$ are distinct).The condition
-$\mathrm{rank}\,(\mathcal{H}) = 9$ ensures that
-no one of $g_1, g_2$ or $g_3$ is a polynomial of degree $3$ in $x, y, z$
-After the substitution, these three polynomials have a common factor
-which can be erased since in our hypothesis cannot be zero. We get therefore
-three degree polynomials $G_1$, $G_2$, $G_3$
-of degree three
-in $x, y, z$ (with coefficients in the variables
-$A_1, B_1, C_1, A_2, B_2, C_2, A_4, B_4, C_4, v_1, v_2$)
-The common zeros are the eigenpoints of the cubic $\cbc$.
+Consider again a matrix $\mathcal{H}$ of rank $9$ extracted from
+the martix $\Phi(P_1, P_2, P_3, P_4, P_5)$, where now $P_3 = U_2P_1-U_1P_2$
+and the three polynomials $g_1, g_2, g_3$ contructed
+in~(\ref{proposition:geiser1}). The condition
+$\text{rk}\,(\mathcal{H}) = 9$ ensures that
+$g_1, g_2$ and $g_3$ cannot be zero and are polynomials of degree
+$3$ in $x, y, z$.
+The computation shows that three polynomials have a common factor,
+hence are of the form $\Omega G_1$, $\Omega G_2$, $\Omega G_3$, where
+($\Omega$ is a polynomial in the variables
+$A_1, B_1, C_1, A_2, B_2, C_2, A_4, B_4, C_4, v_1, v_2$ but
+does not contain the variables $x, y, z$), hence $G_1, G_2, G_3$ are again
+degree three polynomials in $x, y, z$, with coefficients in the variables
+$A_1, \dots, C_4, v_1, v_2$. The common zeros are the eigenpoints of the
+cubic $\cbc$.
+%
+\begin{rmk} For computational reasons, it is much more convenient
+to postpone the substitution $u_1 = U_2$ and $u_2 = -U_1$ after the 
+computation of the three polynomials constructed
+in~\Cref{proposition:geiser1}.
+\end{rmk}
 %
 \begin{prop}
 \label{proposition:G_split}
@@ -1018,8 +1025,13 @@ $F := C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$,
 linear in $x, y, z$.
 \end{prop}
 \begin{proof}
+%%%%%%%%%%%%%%%%%%%%
+@@@@@@@@@@@@@@@@@@@@@@@\\
+DA qui: 
+
  We know that $G_1, G_2, G_3$ admit the syzygy $z G_1 - y G_2 + x G_3 = 0$.
-Then, due to the exactness of the Koszul complex of $(x,y,z)$ (see \cite[Chapter~17]{Eisenbud1995}),
+Then, due to the exactness of the Koszul complex of $(x,y,z)$ 
+(see \cite[Chapter~17]{Eisenbud1995}),
 we know that $G_1, G_2, G_3$ are the $2 \times 2$ minors of a matrix of the form
 %
 \[
@@ -1048,6 +1060,10 @@ where $f$ is a ternary cubic.
 We actually know that $E$ is zero-dimensional, because this can be checked by taking particular values in the $G_i$.
 Hence we obtain that the $G_i$ are the $2\times 2$ minors of the previous matrix.
 
+@@@@@@@@@@@@@@@@@\\
+a qui probabilmente ora e' superfluo
+%%%%%%%%%%%%%%%
+
 Consider the Laguerre map
 %
 \[
@@ -1075,7 +1091,12 @@ The image of~$P$ is then the intersection point of the two lines:
 Since we know that there is a whole line that is contracted to the same point~$Q$,
 we know that the first equation is a factor of the second.
 Therefore we have $\left\langle Q, (x,y,z) \right\rangle = 0$, so $\left\langle Q, \nabla f (x,y,z) \right\rangle = 0$.
-It then follows that $\left\langle P, (x, y, z) \wedge \nabla f(x,y,z) \right\rangle = 0$, which implies that $A G_1 + B G_2 + C G_3$ evaluates to zero for each $(x,y,z)$ such that $\left\langle Q, (x,y,z) \right\rangle= 0$, namely for each point in the line $P_1 P_2$.
+It then follows that $\left\langle P, (x, y, z) \wedge \nabla f(x,y,z) \right\rangle = 0$, which implies that $A G_1 + B G_2 + C G_3$
+\\
+@@@@
+QUI C'E' un meno da qualche parte? \\
+@@@\\
+evaluates to zero for each $(x,y,z)$ such that $\left\langle Q, (x,y,z) \right\rangle= 0$, namely for each point in the line $P_1 P_2$.
 This means that the line $P_1 P_2$ is contained in $E$.
 By repeating this argument in the case $P_1 P_4$ we see that $E$ splits into three distinct lines.
 \end{proof}
@@ -1089,7 +1110,7 @@ The factorization of $F$ gives that the factor $r_3$ is:
 r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
 -2 yv_1A_1B_1^4A_2^2B_2A_4^3
 \]
-and is composed by $1965$ monomials. The relevant fact is that when we
+and is composed by almost $2000$ monomials. The relevant fact is that when we
 evaluate $r_3$ on the coordinates of $P_1$, we get zero. Hence we have:
 \begin{prop}
 If we have five generic points $P_1, \dots, P_5$ which are in a
