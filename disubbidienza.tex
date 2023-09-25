@@ -768,11 +768,6 @@ $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \end{enumerate}
 \end{prop}
 OSSERVAZIONE:\\
-I punti che soddisfano la condizione 3, punto 2, si trovano:\\
-assegnando P1, P2, P4 arbitrari e P3 su P1+P2 con \\
-$u_1 = s12^2 + s11*s22$,  $u_2 = -2*s11*s12$\\
-e P5 su retta P1+P4 con simili coefficienti. Sono $P^2xP^2xP^2$\\
-La famiglia di cubiche ha dim 1 e sono, pare dagli esempi, singolari in P1
 
 la condizione 3, punto 1 si trova fissando un punto P1 e mandando le due
 tangenti alla conica isotropa (se P1 esterno conica isotropa). Per P2 e P4 si prendono i punti di contatto con conica isotropa, P3 arbitrario su P1+P2, P5 arbitrario su P1+P4. Quindi dimensione: 2+1+1. Famiglia cubiche ottenute di dim 1. Pare che cubica liscia, vale delta2(P1,..., P5) = 0 e P6 e P7 allineati con P1.   
@@ -1035,8 +1030,7 @@ linear in $x, y, z$.
 \end{prop}
 \begin{proof}
 %%%%%%%%%%%%%%%%%%%%
-@@@@@@@@@@@@@@@@@@@@@@@\\
-DA qui: 
+@@@@@@@@@@@@@@@@@@@@@@@ DA QUI: 
 
  We know that $G_1, G_2, G_3$ admit the syzygy $z G_1 - y G_2 + x G_3 = 0$.
 Then, due to the exactness of the Koszul complex of $(x,y,z)$ 
@@ -1069,8 +1063,7 @@ where $f$ is a ternary cubic.
 We actually know that $E$ is zero-dimensional, because this can be checked by taking particular values in the $G_i$.
 Hence we obtain that the $G_i$ are the $2\times 2$ minors of the previous matrix.
 
-@@@@@@@@@@@@@@@@@\\
-a qui probabilmente ora e' superfluo
+@@@@@@@@@@@@@@@@@ A QUI probabilmente ora e' superfluo
 %%%%%%%%%%%%%%%
 
 Consider the Laguerre map
@@ -1415,6 +1408,52 @@ Assume $\dim E(f) =1$ and that the $1$-dimensional component is an irreducible c
 \item $Z$ consists of a triple point for $V(f)$, with one common tangent with $Q$.
 \end{itemize}
 \end{rmk}
+
+\section{Particular cases}
+
+\verb+ conti nel file three_deltas.sage+
+
+
+Here we want to consider the case in which we have a $V$-configuration of
+five points $P_1, \dots, P_5$ such that the matrix
+$\Phi(P_1, \dots, P_5)$ has rank less then $9$. According
+to~\Cref{proposition:rank_V} we have to consider two cases:\\
+$\delta_1(P_1, P_2, P_4) = 0$, \
+$\overline{\delta}_1(P_1, P_2, P_3) = 0$,
+\ $\overline{\delta}_1(P_1, P_4, P_5) = 0$\\
+and\\
+the line $P_1+P_2$ is tangent to~$\iso$ in $P_2$ or $P_3$
+and the line $P_1+P_4$ is tangent to~$\iso$ in $P_4$ or $P_5$.\\
+
+The points which satisfy the first condition can be obtained
+in this way: $P_1$ and $P_2$ can be fixed in an arbitrary way,
+then in order to have $\delta_1(P_1, P_2, P_4)=0$ the point
+$P_4$ has to satisfy the linear condition
+\[
+(s_{12}A_1-s_{11}A_2)A_4+(s_{12}B_1-s_{11}B_2)B_4+(s_{12}C_1-s_{11}C_2)C_4 = 0
+\]
+Moreover, we have
+\[
+\overline{\delta}_1(P_1, P_2, P_3) = 2s_{11}s_{12}u_1 + s_{12}^2u_2
++ s_{11}s_{22}u_2$ 
+\]
+and a similar expression for $\overline{\delta}_1(P_1, P_4, P_5)$
+(where, as usual $s_{ij}$ denotes $\scl{P_i}{P_j}$),
+hence $P_3 = (s_{12}^2+s_{11}s_{22})P_1-2s_{11}s_{12}P_2$ and
+$P_5 = (s_{14}^2+s_{11}s_{44})P_1-2s_{11}s_{14}P_2$, therefore
+the configuratioin can be parametrized by (an open subset) of
+$\mathbb{P}^2\times \mathbb{P}_2\times \mathbb{P}^1$.
+
+
+
+
+I punti che soddisfano la condizione 3, punto 2, si trovano:\\
+assegnando P1, P2, P4 arbitrari e P3 su P1+P2 con \\
+$u_1 = s12^2 + s11*s22$,  $u_2 = -2*s11*s12$\\
+e P5 su retta P1+P4 con simili coefficienti. Sono $P^2xP^2xP^2$\\
+La famiglia di cubiche ha dim 1 e sono, pare dagli esempi, singolari in P1
+
+
 
 \bibliographystyle{amsalpha}
 \bibliography{ooms}
