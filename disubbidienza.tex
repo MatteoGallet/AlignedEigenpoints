@@ -71,6 +71,8 @@
 \definecolor{MyDarkGreen}{cmyk}{0.7,0,1,0}
 \newcommand{\blue}[1]{{\color{blue}  [#1]}}
 \newcommand{\cbc}{\ensuremath{Cbc}}
+\newcommand{\rk}{\ensuremath{\mathrm{rk}}}
+
 
 \title{Eigenpoint collinearities of plane cubics}
 \author{}
@@ -265,7 +267,7 @@ is equivalent to
 %
 \begin{equation}
 \label{eq:transformed}
-  \text{rk}
+  \rk 
   \begin{pmatrix}
     A' &  \\
     B' & M \cdot \nabla f (P) \\
@@ -388,7 +390,7 @@ Hence, the matrix~$\Phi(P)$ has rank~$2$.
 As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
 \begin{equation}
 \label{bound_rank}
-\text{rk} \  \Phi(P_1, \dots, P_n) \leq \min \left\{2n, 10 \right\}
+\rk  \  \Phi(P_1, \dots, P_n) \leq \min \left\{2n, 10 \right\}
 \end{equation}
 
 In what follows we want to study the possible values of the rank of the matrix
@@ -489,9 +491,9 @@ The quantity~$\sigma$ is the discriminant of the intersection between the line~$
 Let $P_1, P_2, P_3$ be three distinct aligned points of the plane and let
 $r$ be the line passing through them. Then:
 \begin{itemize}
-\item $5 \leq \text{rk}\ \Phi(P_1, P_2, P_3) \leq 6$;
+\item $5 \leq \rk \ \Phi(P_1, P_2, P_3) \leq 6$;
 \item
-$\text{rk}\ \Phi(P_1, P_2, P_3) = 5$ if and only if $r$ is tangent
+$\rk \ \Phi(P_1, P_2, P_3) = 5$ if and only if $r$ is tangent
 to~$\iso$ in one of the three points $P_1, P_2$, or $P_3$.
 \end{itemize}
 \end{prop}
@@ -549,9 +551,9 @@ $4$-minors of $\Phi(P_1, P_2, P_3)$ are zero.
 %%%  conto si trova su file prop47_5ago.sage
 Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 \begin{itemize}
-\item $5 \leq \text{rk}\ \Phi(P_1, P_2, P_4) \leq 6$;
+\item $5 \leq \rk \ \Phi(P_1, P_2, P_4) \leq 6$;
 \item if
-$\text{rk}\ \Phi(P_1, P_2, P_4) = 5$, then $P_1, P_2, P_4$
+$\rk \ \Phi(P_1, P_2, P_4) = 5$, then $P_1, P_2, P_4$
  are aligned.
 \end{itemize}
 In the last case, the line $P_1+P_2+P_4$ is tangent to~$\iso$
@@ -576,7 +578,7 @@ that line is tangent to~$\iso$ in one of the three given points.
 Let $P_1, P_2, P_3, P_4$ be four distinct points of the plane such that
 $P_1, P_2, P_3$ are aligned and let $r$
 be the line passing joining them. If
-$\text{rk}\ \Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one of the three points $P_1, P_2, P_3$.
+$\rk \ \Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one of the three points $P_1, P_2, P_3$.
 \end{prop}
 \begin{proof}
 Again, we distinguish two cases: $P_1 = (1: 0: 0)$ and
@@ -592,14 +594,14 @@ The direct inspection of the ideal obtained from these procedures gives the thes
 Let $Q_1, \dotsc, Q_4$ be four distinct aligned points of the plane and
 let $r$ be the line through them. Then:
 \begin{itemize}
-\item $6 \leq \text{rk} \ \Phi(Q_1, \dotsc, Q_4) \leq 7$;
-\item $\text{rk} \ \Phi(Q_1, \dotsc, Q_4) = 6$ if and only if $r$ is tangent
+\item $6 \leq \rk  \ \Phi(Q_1, \dotsc, Q_4) \leq 7$;
+\item $\rk  \ \Phi(Q_1, \dotsc, Q_4) = 6$ if and only if $r$ is tangent
 to~$\iso$.
 \end{itemize}
 \end{prop}
 \begin{proof}
   A direct symbolic computation shows that all the maximal minors of~$\Phi(Q_1, \dotsc, Q_4)$ are
-  zero, so $\mathrm{rk}\,(\Phi(Q_1, \dotsc, Q_4)) \leq 7$.
+  zero, so $\rk \,(\Phi(Q_1, \dotsc, Q_4)) \leq 7$.
   Indeed, in view of \Cref{lemma:minors}, we can just check the order~$8$ minors of the reduced condition matrix of $Q_1, \dotsc, Q_4$; it turns out that they are all zero.
 
   On the other hand, the rank of $\Phi(Q_1, \dotsc, Q_4)$ cannot be $5$:
@@ -675,7 +677,7 @@ We define the quantity
 \label{lemma:d1d2}
 Let $P_1, \dots, P_5$ be a $V$-configuration. Then
 \[
-\text{rk}\ \Phi(P_1, \dots, P_5) \leq 9
+\rk \ \Phi(P_1, \dots, P_5) \leq 9
 \quad \mbox{
 if and only if} \quad
 \delta_1(P_1, P_2, P_4) \cdot \delta_2(P_1, \dots, P_5) = 0.
@@ -702,7 +704,7 @@ choice of the rows of $M$ would simply modify in the
 determinant from \Cref{delta1delta2} the coordinates
 $A_1, A_2, \dots, (v_1A_1+v_2A_4)$ to some other coordinates of the points.
 Since every point has at least one non-zero coordinate, we have that
-$\text{rk}\ \Phi(P_1, \dots, P_5) \leq 9$ if and only if
+$\rk \ \Phi(P_1, \dots, P_5) \leq 9$ if and only if
 \[
 \delta_1(P_1, P_2, P_4) \cdot \delta_2(P_1, \dots, P_5) = 0 \,. \qedhere
 \]
@@ -751,18 +753,20 @@ that the points are distinct, is the whole ring.
 Let $P_1, \dots, P_5$ be a $V$-configuration of
 points. Then we have:
 \begin{enumerate}
-\item $8 \leq \text{rk}\ \Phi(P_1, \dots, P_5) \leq 10$\,;
-\item $\text{rk}\ \Phi(P_1, \dots, P_5) \leq 9$ if and only if
+\item $8 \leq \rk \ \Phi(P_1, \dots, P_5) \leq 10$\,;
+\item $\rk \ \Phi(P_1, \dots, P_5) \leq 9$ if and only if
 $\delta_1(P_1, P_2, P_4) \cdot \delta_2(P_1, \dots, P_5) =0$\,;
-\item $\text{rk}\ \Phi(P_1, \dots, P_5) = 8$ if and only if, one of
+\item $\rk \ \Phi(P_1, \dots, P_5) = 8$ if and only if, one of
 the following two conditions is satisfied:
 %
 \begin{itemize}
-  \item the line $P_1+P_2$ is tangent to~$\iso$ in $P_2$ or $P_3$
-and the line $P_1+P_4$ is tangent to~$\iso$ in $P_4$ or $P_5$,
 \item $\delta_1(P_1, P_2, P_4) = 0$, \
 $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
-\ $\overline{\delta}_1(P_1, P_4, P_5) = 0$\,.
+\ $\overline{\delta}_1(P_1, P_4, P_5) = 0$\,;
+\label{cond1_rank_v}
+  \item the line $P_1+P_2$ is tangent to~$\iso$ in $P_2$ or $P_3$
+and the line $P_1+P_4$ is tangent to~$\iso$ in $P_4$ or $P_5$.
+\label{cond2_rank_v}
 \end{itemize}
 %
 \end{enumerate}
@@ -788,7 +792,7 @@ $P_1 = (1:\iii :0)$ and
 $P_1 = (1: 0: 0)$.
 Let $P_2, P_4 = (A_2: B_2: C_2), (A_4: B_4: C_4)$ and
 $P_3 = u_1P_1+P_2$, $P_5 = v_1P_1+v_2P_4$ be the other points.
-In the first case, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\mathrm{rk} M \leq 9$ if and only if $\mathrm{rk} M' \leq 7$.
+In the first case, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\rk  M \leq 9$ if and only if $\rk  M' \leq 7$.
 The computations require several other strategies, but at the end we are
 able to see that in this case (i.e.\ the case in which $P_1$ is on~$\iso$), the matrix $M$ cannot have rank less then $9$.
 If $P_1 = (1: 0: 0)$, then the ideal of the order $9$ minors of
@@ -1004,7 +1008,7 @@ Consider again a matrix $\mathcal{H}$ of rank $9$ extracted from
 the martix $\Phi(P_1, P_2, P_3, P_4, P_5)$, where now $P_3 = U_2P_1-U_1P_2$
 and the three polynomials $g_1, g_2, g_3$ contructed
 in~(\ref{proposition:geiser1}). The condition
-$\text{rk}\,(\mathcal{H}) = 9$ ensures that
+$\rk \,(\mathcal{H}) = 9$ ensures that
 $g_1, g_2$ and $g_3$ cannot be zero and are polynomials of degree
 $3$ in $x, y, z$.
 The computation shows that three polynomials have a common factor,
@@ -1124,9 +1128,41 @@ are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
 aligned with $P_1$.
 \end{prop}
 
+forse qui va la parte sulle cubiche singolari?
+
 \section{Particular cases}
 file \verb+contiCasoDegenere2.sage+ and file
 \verb+conf_sigma12_sigma14.sage+
+\verb+molti altri file via via indicati nei commenti di latex+
+In this Section we want to study the possible configurtations of
+points for cubic with a $V$-configuration of points $P_1, \dots, P_5$
+which satisfy the condition $\rk \Phi(P_1, \dots, P_5) = 8$. According
+to~\Cref{proposition:rank_V}, we have to distinguish two cases, the two
+lines of the $V$-configuration are tangent to $\iso$, or
+$\delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
+\overline{\delta}_1(P_1, P_2, P_3)=0$.
+
+Let us start with the second case.
+
+It is not restrictive to suppose that $P_1 = (1: 0: 0)$. Hence
+$P_2 = (A_2: B_2: C_2)$, P_4 = (A_4: B_4: C_4)$ and
+$P_3 = u_1P_1+u_2P_2$, $P_5=v_1P_1+v_2P_4$.
+The condition $\delta_1(P_1, P_2, P_4)$ is $B_2B_4+C_2C_4$ and is linear in
+in each variable, 
+the condition $\overline{\delta}_1(P_1, P_2, P_3)$ and the condition
+$\overline{\delta}_1(P_1, P_4, P_5)$ are linear in $u_1, u_2, v_1, v_2$
+so it is easy to contruct the explicit coordinates of the involved points,
+hence the problem of considering all the possible further
+collinearities of the points can be converted into the study of suitable
+ideals in the coordinates of the points and can be attacked with
+computational tools. In particular, we get:
+
+\begin{lemma} Suppose that among the points $P_1, \dots, P_5$ of a
+$V$-configuration which satisfy condition of~\Cref{proposition:rank_V}
+
+\end{lemma}
+
+
 
 \section{The locus of cubic ternary forms with an aligned triple of eigenpoints}
 \label{locus_one_alignment}
