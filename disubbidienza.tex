@@ -1030,7 +1030,7 @@ linear in $x, y, z$.
 \end{prop}
 \begin{proof}
 %%%%%%%%%%%%%%%%%%%%
-@@@@@@@@@@@@@@@@@@@@@@@ DA QUI: 
+@@@@@@@@@@@@@@@@@@@@@@@ DA QUI...... 
 
  We know that $G_1, G_2, G_3$ admit the syzygy $z G_1 - y G_2 + x G_3 = 0$.
 Then, due to the exactness of the Koszul complex of $(x,y,z)$ 
@@ -1063,7 +1063,7 @@ where $f$ is a ternary cubic.
 We actually know that $E$ is zero-dimensional, because this can be checked by taking particular values in the $G_i$.
 Hence we obtain that the $G_i$ are the $2\times 2$ minors of the previous matrix.
 
-@@@@@@@@@@@@@@@@@ A QUI probabilmente ora e' superfluo
+@@@@@@@@@@@@@@@@@ ..... FINO A QUI probabilmente ora e' superfluo
 %%%%%%%%%%%%%%%
 
 Consider the Laguerre map
@@ -1115,8 +1115,10 @@ r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
 and is composed by almost $2000$ monomials. The relevant fact is that when we
 evaluate $r_3$ on the coordinates of $P_1$, we get zero. Hence we have:
 \begin{prop}
-If we have five generic points $P_1, \dots, P_5$ which are in a
-$V$-configuration and satisfy the condition $\delta_2(P_1, \dots, P_5) = 0$,
+\label{proposition:terzo_allineammento}
+If we have a $V$-configuration of five points $P_1, \dots, P_5$ 
+such that the rank of the matrix $\Phi(P_1, \dots, P_5)$ is $9$ and
+such that $\delta_2(P_1, \dots, P_5) = 0$,
 then the unique cubic determined by the condition that $P_1, \dots, P_5$
 are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
 aligned with $P_1$.
@@ -1417,15 +1419,24 @@ Assume $\dim E(f) =1$ and that the $1$-dimensional component is an irreducible c
 Here we want to consider the case in which we have a $V$-configuration of
 five points $P_1, \dots, P_5$ such that the matrix
 $\Phi(P_1, \dots, P_5)$ has rank less then $9$. According
-to~\Cref{proposition:rank_V} we have to consider two cases:\\
-$\delta_1(P_1, P_2, P_4) = 0$, \
-$\overline{\delta}_1(P_1, P_2, P_3) = 0$,
-\ $\overline{\delta}_1(P_1, P_4, P_5) = 0$\\
-and\\
-the line $P_1+P_2$ is tangent to~$\iso$ in $P_2$ or $P_3$
-and the line $P_1+P_4$ is tangent to~$\iso$ in $P_4$ or $P_5$.\\
+to~\Cref{proposition:rank_V} we have to consider two cases:
+\begin{equation}
+\label{rank8_caso1}
+\delta_1(P_1, P_2, P_4) = 0, \quad 
+\overline{\delta}_1(P_1, P_2, P_3) = 0, \quad
+\overline{\delta}_1(P_1, P_4, P_5) = 0
+\end{equation}
+and
+\begin{gather}
+\label{rank8_caso2}
+\begin{array}{l}
+\mbox{$P_1+P_2$ is tangent to~$\iso$ in $P_2$ or $P_3$ and}\\
+\mbox{$P_1+P_4$ is tangent to~$\iso$ in $P_4$ or $P_5$}.
+\end{array}
+\end{gather}
 
-The points which satisfy the first condition can be obtained
+
+The points which satisfy condition~(\ref{rank8_caso1}) can be obtained
 in this way: $P_1$ and $P_2$ can be fixed in an arbitrary way,
 then in order to have $\delta_1(P_1, P_2, P_4)=0$ the point
 $P_4$ has to satisfy the linear condition
@@ -1434,24 +1445,30 @@ $P_4$ has to satisfy the linear condition
 \]
 Moreover, we have
 \[
-\overline{\delta}_1(P_1, P_2, P_3) = 2s_{11}s_{12}u_1 + s_{12}^2u_2
-+ s_{11}s_{22}u_2$ 
+\overline{\delta}_1(P_1, P_2, P_3) = 2s_{11}s_{12}u_1
++ (s_{12}^2 + s_{11}s_{22})u_2 
 \]
 and a similar expression for $\overline{\delta}_1(P_1, P_4, P_5)$
 (where, as usual $s_{ij}$ denotes $\scl{P_i}{P_j}$),
-hence $P_3 = (s_{12}^2+s_{11}s_{22})P_1-2s_{11}s_{12}P_2$ and
-$P_5 = (s_{14}^2+s_{11}s_{44})P_1-2s_{11}s_{14}P_2$, therefore
-the configuratioin can be parametrized by (an open subset) of
-$\mathbb{P}^2\times \mathbb{P}_2\times \mathbb{P}^1$.
+hence the point $P_3$ is determined by:
+$P_3 = (s_{12}^2+s_{11}s_{22})P_1-2s_{11}s_{12}P_2$ and, similarly, 
+$P_5 = (s_{14}^2+s_{11}s_{44})P_1-2s_{11}s_{14}P_4$, therefore
+the configuration can be parametrized by (an open subset of)
+$\mathbb{P}^2\times \mathbb{P}^2\times \mathbb{P}^1$. The
+value of $\delta_2$ of these points is always $0$, but in this
+case we do not have, in general, that the eigenpoints $P_6$ and $P_7$
+are aligned with $P_1$ (contrary to what happens in the general
+case, see~\Cref{proposition:terzo_allineammento}). This fact can 
+easily be verified constructing an example, which also shows that,
+in general, there are no other collinearities among the seven eigenpoints.
+It is possible, however, that other collinearities appear among the points.
+Up to permutation of the labels, we can have two cases: $P_2$ and $P_4$
+aligned with $P_6$ or $P_1, P_2, P_6$ aligned.
+In the first case, the computations show that, as soon as we impose that
+$P_2, P_4$ and $P_6$ are collinear, we get that also the
+points: $(P_2, P_5, P_7)$, $(P_3, P_4, P_7)$ and  $(P_3, P_5, P_6)$ are
+collinear, so we get the configuration @@ (8).
 
-
-
-
-I punti che soddisfano la condizione 3, punto 2, si trovano:\\
-assegnando P1, P2, P4 arbitrari e P3 su P1+P2 con \\
-$u_1 = s12^2 + s11*s22$,  $u_2 = -2*s11*s12$\\
-e P5 su retta P1+P4 con simili coefficienti. Sono $P^2xP^2xP^2$\\
-La famiglia di cubiche ha dim 1 e sono, pare dagli esempi, singolari in P1
 
 
 
