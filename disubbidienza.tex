@@ -1119,7 +1119,7 @@ r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
 and is composed by almost $2000$ monomials. The relevant fact is that when we
 evaluate $r_3$ on the coordinates of $P_1$, we get zero. Hence we have:
 \begin{prop}
-\label{proposition:terzo_allineammento}
+\label{proposition:terzo_allineamento}
 If we have a $V$-configuration of five points $P_1, \dots, P_5$ 
 such that the rank of the matrix $\Phi(P_1, \dots, P_5)$ is $9$ and
 such that $\delta_2(P_1, \dots, P_5) = 0$,
@@ -1132,35 +1132,82 @@ forse qui va la parte sulle cubiche singolari?
 
 \section{Particular cases}
 file \verb+contiCasoDegenere2.sage+ and file
-\verb+conf_sigma12_sigma14.sage+
-\verb+molti altri file via via indicati nei commenti di latex+
-In this Section we want to study the possible configurtations of
-points for cubic with a $V$-configuration of points $P_1, \dots, P_5$
-which satisfy the condition $\rk \Phi(P_1, \dots, P_5) = 8$. According
-to~\Cref{proposition:rank_V}, we have to distinguish two cases, the two
-lines of the $V$-configuration are tangent to $\iso$, or
-$\delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
-\overline{\delta}_1(P_1, P_2, P_3)=0$.
+\verb+conf_sigma12_sigma14.sage+\\
+\verb+molti altri file via +\\
+\verb+via indicati nei commenti di latex+
 
-Let us start with the second case.
+In this Section we want to study the possible configurtations of
+eigenpoints for cubics with a $V$-configuration 
+which satisfies the condition $\rk \Phi(P_1, \dots, P_5) = 8$. According
+to~\Cref{proposition:rank_V}, we have to distinguish two cases:
+\begin{itemize}
+\item $\delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
+\overline{\delta}_1(P_1, P_2, P_3)=0$, or 
+\item the two lines of the $V$-configuration are tangent to $\iso$.
+\end{itemize}
+
+Let us start with the first case.
+
+We observe that $\delta_1(P_1, P_2, P_4)$ is linear in the coordinates
+of $P_2$ and of $P_4$, meanwhile $\overline{\delta}_1(P_1, P_2, P_3)$
+is linear w.r.t.\ $u_1$ and $u_2$ and $\overline{\delta}_1(P_1, P_4, P_5)$
+is linear w.r.t.\ $v_1$ and $v_2$, hence it is easy to construct
+all the points which are in a $V$-configuration and satisfy the three
+above conditions. Hence $P_1$ and $P_2$ can be chosen in arbitrary way,
+$P_4$ must be on the line orthogonal to the line $P_1+P_2$ and $P_3$ and
+$P_4$ are determined.
+In particular, we have that the variety given by these
+points is of dimension $5$ and is parametrized by (an open subset of) 
+$\mathbb{P}^2 \times \mathbb{P}^2\times \mathbb{P}^1$.
+
+\begin{prop} In the general case 
+
+\end{prop}
+
+
+
 
 It is not restrictive to suppose that $P_1 = (1: 0: 0)$. Hence
-$P_2 = (A_2: B_2: C_2)$, P_4 = (A_4: B_4: C_4)$ and
+$P_2 = (A_2: B_2: C_2)$, $P_4 = (A_4: B_4: C_4)$ and
 $P_3 = u_1P_1+u_2P_2$, $P_5=v_1P_1+v_2P_4$.
 The condition $\delta_1(P_1, P_2, P_4)$ is $B_2B_4+C_2C_4$ and is linear in
 in each variable, 
 the condition $\overline{\delta}_1(P_1, P_2, P_3)$ and the condition
 $\overline{\delta}_1(P_1, P_4, P_5)$ are linear in $u_1, u_2, v_1, v_2$
-so it is easy to contruct the explicit coordinates of the involved points,
-hence the problem of considering all the possible further
+so it is easy to contruct the explicit coordinates of the involved points.
+In particular, we can verify that for these points also
+$\delta_2(P_1, \dots, P_5) = 0$ but a construction of a random example
+shows that in general $P_1, P_6, P_7$ are not alligned, hence the
+rank $9$ condition for $\Phi(P_1, \dots, P_5)$ given 
+in~\Cref{proposition:terzo_allineamento} is necessary.
+As soon as the coordinates of the points $P_1, \dots, P_5$ are
+determined, the problem of considering all the possible further
 collinearities of the points can be converted into the study of suitable
 ideals in the coordinates of the points and can be attacked with
-computational tools. In particular, we get:
+computational tools. 
 
-\begin{lemma} Suppose that among the points $P_1, \dots, P_5$ of a
-$V$-configuration which satisfy condition of~\Cref{proposition:rank_V}
+Suppose $\cbc$ is a cubic constructed from the
+points $P_1, \dots, P_5$ of a $V$-configuration which satisfy condition 
+(\ref{cond1_rank_v}) of~\Cref{proposition:rank_V} and suppose $\cbc$ has
+seven distinct eigenpoints $P_1, \dots, P_5, P_6, P_7$.
+
+\begin{lemma} If, among the
+eigenpoints of $\cbc$ there is
+a further alignment of three points which do not involve $P_1$, then
+the eigenpoints of $\cbc$ satisfy the following alignements:
+\[
+(P_1, P_2, P_3), (P_1, P_4, P_5), (P_2, P_4, P_6), (P_2, P_5, P_7),
+(P_3, P_4, P_7), (P_3, P_5, P_6)
+\]
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+
+\begin{lemma} In the fami $\cbc$ is as abo
 
 \end{lemma}
+
 
 
 
