@@ -763,15 +763,13 @@ the following two conditions is satisfied:
 \item $\delta_1(P_1, P_2, P_4) = 0$, \
 $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \ $\overline{\delta}_1(P_1, P_4, P_5) = 0$\,;
-\label{cond1_rank_v}
   \item the line $P_1+P_2$ is tangent to~$\iso$ in $P_2$ or $P_3$
 and the line $P_1+P_4$ is tangent to~$\iso$ in $P_4$ or $P_5$.
-\label{cond2_rank_v}
 \end{itemize}
 %
 \end{enumerate}
 \end{prop}
-OSSERVAZIONE:\\
+OSSERVAZIONE:
 
 la condizione 3, punto 1 si trova fissando un punto P1 e mandando le due
 tangenti alla conica isotropa (se P1 esterno conica isotropa). Per P2 e P4 si prendono i punti di contatto con conica isotropa, P3 arbitrario su P1+P2, P5 arbitrario su P1+P4. Quindi dimensione: 2+1+1. Famiglia cubiche ottenute di dim 1. Pare che cubica liscia, vale delta2(P1,..., P5) = 0 e P6 e P7 allineati con P1.   
@@ -806,6 +804,7 @@ To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{lemma:d
 
 
 \section{$\delta_1=0$ or $\delta_2=0$}
+\label{sezione_delta_2}
 
 Questa parte va un po' meditata, per cercare una notazione coerente.@@
 Forse la definizione \Cref{definition:matrix_conditions} va rimaneggiata.
@@ -1139,12 +1138,14 @@ file \verb+contiCasoDegenere2.sage+ and file
 In this Section we study the possible configurations of
 eigenpoints for cubics with a $V$-configuration
 satisfying the condition $\rk \Phi(P_1, \dots, P_5) = 8$. According
-to~\Cref{proposition:rank_V}, we have to distinguish two cases:
-\begin{itemize}
-\item $\delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
-\overline{\delta}_1(P_1, P_2, P_3)=0$, or 
-\item the two lines of the $V$-configuration are tangent to $\iso$.
-\end{itemize}
+to~\Cref{proposition:rank_V}, we have to distinguish the two cases
+\begin{eqnarray}
+\delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
+\overline{\delta}_1(P_1, P_2, P_3)=0,
+\label{rk8_1}\\
+\mbox{the two lines of the $V$-configuration are tangent to $\iso$} .
+\label{rk8_2}
+\end{eqnarray}
 
 Let us start with the first case.
 
@@ -1152,40 +1153,42 @@ We observe that $\delta_1(P_1, P_2, P_4)$ is linear in the coordinates
 of $P_2$ and of $P_4$, meanwhile $\overline{\delta}_1(P_1, P_2, P_3)$
 is linear in $u_1$ and $u_2$ and $\overline{\delta}_1(P_1, P_4, P_5)$
 is linear in $v_1$ and $v_2$, hence it is easy to construct
-all the points which are in a $V$-configuration and satisfy the three
-above conditions:  $P_1$ and $P_2$ can be chosen in arbitrary way,
+all the points which are in a $V$-configuration and satisfy (\ref{rk8_1}):
+$P_1$ and $P_2$ can be chosen in arbitrary way,
 $P_4$ must be on the line orthogonal to the line $P_1+P_2$ and $P_3$ and
-$P_4$ are determined by the condition $\overline{\delta}_1$. Such a choice
+$P_5$ are determined by $P_1, P_2, P_4$. Such a choice
 of points gives the matrix $M = \Phi(P_1, \dots, P_5)$ of rank $8$ and
 therefore the linear system associated to $M$, which gives the
-coefficients of a cubic with eigenpoints $P_1, \dots, P_5$, has $\infty^1$
-solutions. This shows that the variety of these cubics is
-of dimension $6$ and is parametrized by (an open subset of) 
+coefficients of the cubics with eigenpoints $P_1, \dots, P_5$, has $\infty^1$
+solutions. This shows that the variety $\mathcal{V}$ of these cubics is
+of dimension $6$ and is parametrized by an open subset of 
 $\mathbb{P}^2 \times \mathbb{P}^2\times \mathbb{P}^1\times \mathbb{P}^1$.
 If we take a random point of this variety, we see that the corresponding
-cubic has $7$ eigenpoints, is singular in $P_1$ and the $7$ points
+cubic has $7$ distinct eigenpoints, is singular in $P_1$ and the $7$ points
 do not satisfy other collinearities in addition to those of $P_1, P_2, P_3$
 and $P_1, P_4, P_5$.
 
-\begin{rmk} From the three $\delta$'s condition satisfied by the points
-$P_1, \dots, P_5$,
-it is immediate to see that also $\delta_2(P_1, \dots, P_5) = 0$. Since we have 
-seen that, in general, we do not have the collinearity $P_1, P_6, P_7$,
+\begin{rmk} If $P_1, \dots, P_5$ satisfy the conditions~(\ref{rk8_1}),
+it follows that also $\delta_2(P_1, \dots, P_5) = 0$. Since, 
+in general, we do not have the collinearity $P_1, P_6, P_7$,
 we see that the hypothesis ``rank $9$''
 in~\Cref{proposition:terzo_allineamento} is necessary.
 \end{rmk}
 
-Concerning further collinearities of the points, we have that
+Concerning possible further collinearities of the points, we have that
 
-\begin{prop} Among the $\infty^1$ cubic curves that we get from the
-solution of the linear system whose coefficient matrix in $M$, there is 
+\begin{prop} If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_1}),
+then, among the $\infty^1$ cubic curves that we get from the
+solution of the linear system whose coefficients matrix in $M$, there is 
 a cubic curve with $7$ eigenpoints with the following three alignments:
-$(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$, $(P_1, P_6, P_7)$.
+$(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$, $(P_1, P_6, P_7)$. \\
+No choices of $P_1, \dots, P_5$ allow to obtain further alignments of the
+$7$ eigenpoints.
 \end{prop}
 And, moreover,
-\begin{prop}
-If in the family of cubic surfaces given by the above variety, we impose that 
-there is an eigenpoint, say $P_6$, which is aligned with one of
+\begin{prop} If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_1})
+and if we impose the condition that there is an eigenpoint, say $P_6$, 
+which is aligned with one of
 the two points $P_2$ or $P_3$ (say $P_2$) and one of the two points
 $P_4$ or $P_5$ (say $P_4$) then the eigenpoints satisfy all these
 alignments:
@@ -1194,50 +1197,43 @@ alignments:
 (P_3, P_4, P_7), (P_3, P_5, P_6)
 \]
 \end{prop}
+The two above propositions exhaust all the possible configurations
+of collinearities of the eigenpoints.
 
-
-
-
-It is not restrictive to suppose that $P_1 = (1: 0: 0)$. Hence
+The proof we give to the two propositions above is computational.
+Using the action of $\mathrm{SO}_3(\mathbb{C})$ (see~\Cref{two_orbits}),
+we can assume $P_1= (1: \iii: 0)$ or $P_1= (1: 0: 0)$. As observed
+in the proof of~\Cref{proposition:rank_V}, if $P_1 = (1: \iii: 0)$,
+(@@ \verb+Vedi file rank_8_2_1_ii_0.sage+), the martix
+$\Phi(P_1, \dots, P_5)$ cannot have rank smaller then $9$, so the only
+case to consider is given by $P_1 = (1: 0: 0)$. Hence
 $P_2 = (A_2: B_2: C_2)$, $P_4 = (A_4: B_4: C_4)$ and
 $P_3 = u_1P_1+u_2P_2$, $P_5=v_1P_1+v_2P_4$.
-The condition $\delta_1(P_1, P_2, P_4)$ is $B_2B_4+C_2C_4$ and is linear in
-in each variable, 
-the condition $\overline{\delta}_1(P_1, P_2, P_3)$ and the condition
-$\overline{\delta}_1(P_1, P_4, P_5)$ are linear in $u_1, u_2, v_1, v_2$
-so it is easy to contruct the explicit coordinates of the involved points.
-In particular, we can verify that for these points also
-$\delta_2(P_1, \dots, P_5) = 0$ but a construction of a random example
-shows that in general $P_1, P_6, P_7$ are not alligned, hence the
-rank $9$ condition for $\Phi(P_1, \dots, P_5)$ given 
-in~\Cref{proposition:terzo_allineamento} is necessary.
-As soon as the coordinates of the points $P_1, \dots, P_5$ are
-determined, the problem of considering all the possible further
+The condition $\delta_1(P_1, P_2, P_4)=0$ reduces to $B_2B_4+C_2C_4$
+and it is easy to contruct the explicit coordinates of the involved points.
+
+The problem of considering all the possible further
 collinearities of the points can be converted into the study of suitable
 ideals in the coordinates of the points and can be attacked with
 computational tools. 
 
-Suppose $\cbc$ is a cubic constructed from the
-points $P_1, \dots, P_5$ of a $V$-configuration which satisfy condition 
-(\ref{cond1_rank_v}) of~\Cref{proposition:rank_V} and suppose $\cbc$ has
-seven distinct eigenpoints $P_1, \dots, P_5, P_6, P_7$.
+Consider the matrix $\Phi(P_1, \dots, P_5)$ and select $8$ linearly independent
+rows (since $P_1$ is numeric, it can be seen that for instance the rows
+of position $0, 1, 3, 5, 6, 8, 10, 12$ are a good choice and avoid to consider
+many exceptions) and let $M_1$ be a matrix obtained in this way.
+We fix two numeric $10$-dimensional vectors and we construct
+$M_a$ (resp.\ $M_b$) obtained by vertically stacking the first (second)
+vector to $M_1$. The rank of $M_a$ is $9$ (unless an unlucky choice
+of the two vecors, in which case they can be changed). The matrix $M_a$ 
+plays the same role of the matrix $\mathcal{H}$
+of~\Cref{Sezione_Delta} hence we can do the same construcion explained
+there in order to obtain the line $r_a$ passing through $P_6$ and $P_7$.
+In the same way we find $r_b$, the line passing through $P_6$ and $P_7$
+for the cubic obtained from the matrix $M_b$. Hence the line $w_1r_a+w_2r_b$
+(where $w_1, w_2$ are parameters) is the line passing through $P_6$ and $P_7$
+for the generic cubic of the $\infty^1$ family. 
 
-\begin{lemma} If, among the
-eigenpoints of $\cbc$ there is
-a further alignment of three points which do not involve $P_1$, then
-the eigenpoints of $\cbc$ satisfy the following alignements:
-\[
-(P_1, P_2, P_3), (P_1, P_4, P_5), (P_2, P_4, P_6), (P_2, P_5, P_7),
-(P_3, P_4, P_7), (P_3, P_5, P_6)
-\]
-\end{lemma}
-\begin{proof}
 
-\end{proof}
-
-\begin{lemma} In the fami $\cbc$ is as abo
-
-\end{lemma}
 
 
 
