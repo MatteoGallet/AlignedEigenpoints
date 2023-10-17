@@ -1183,6 +1183,7 @@ results hold:
 %% three_d_partB.sage
 %% three_d_partC.sage
 %% three_d_partD.sage
+%% three_d_partE.sage
 %%
 \begin{prop}
 \label{three_d_three_alinments}
@@ -1276,6 +1277,78 @@ we can verify that in this family, the point of intersection of the
 lines $P_3+P_4$ and $P_2+P_5$ is a further eigenpoint (which is $P_7$)
 an now it is easy to see that the $7$ eigenponts satisfy the collinearities
 listed in~\Cref{prop:d2_6allin}.
+
+Now consider the case~(\ref{rk8_2}). In order to obtain those configuration,
+$P_1$ can be chosen in the plane, then $P_2$ and $P_4$ are determined, $P_3$
+and $P_5$ are constrained on the line $P_1+P_2$ and $P_1+P_4$ respectively.
+The matrix which gives the linear system of the coefficients of the cubics
+have $P_1, \dots, P_5$ as eigenpoints has rank $8$, so we have $\infty^1$
+possibel choices for the cubics. Hence the variety which parametrizes all
+the cubics with the eigenpoints in case~(\ref{rk8_2}) has dimension $5$
+and is parametrized by an open subset of
+$\mathbb{P}^2\times \mathbb{P}^1\times \mathbb{P}^1\times \mathbb{P}^1$.
+
+We have the following results:
+%%%  file: rank_8_twoTangIso.sage
+\begin{prop}
+\label{prop:rk8_2A}
+If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_2}), then all the 
+cubics which have $P_1, \dots, P_5$ among the eigenpoints have the other
+eigenpoints on a line which passes through~$P_1$.
+\end{prop}
+%
+\begin{rmk} 
+An immediate computation shows that also here we have 
+$\delta_2(P_1, \dots, P_5) = 0$. As a consequence of the above proposition,
+we have however that in this situation the eigenpoints $P_1, P_6, P_7$
+are collinear. 
+\end{rmk}
+A random choice of the points $P_1, \dots, P_5$ and a random solution
+of the system whose associated matrix is $\Phi(P_1, \dots, P_5)$
+shows that, in general, the corresponding cubic is smooth and its $7$
+eigenpoints have the three collinearities $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$
+and $(P_1, P_6, P_7)$.
+
+Among all the possible cubics of the $5$ dimensional variety we get from
+condition~(\ref{rn8_2}) there are some subfamilies in which the eigenpoints
+have other alignments. More precisely,
+\begin{prop}
+\label{prop:rk8_2B}
+In the family of all cubics which satisfy condition~(\ref{rk8_2}) there 
+are cubics which have $7$ eigenpoints with the alignments:
+\[
+(P_1, P_2, P_3),\  (P_1, P_4, P_5),\  (P_1, P_6, P_7),\  (P_2, P_4, P_6)
+\]
+and cubics which have $7$ eigenponts with the alignments:
+\[
+(P_1, P_2, P_3),\  (P_1, P_4, P_5), \ (P_1, P_6, P_7),\  (P_2, P_5, P_6),\ 
+(P_3, P_4, P_6),\  (P_3, P_5, P_7)
+\]
+No other collinearities among the eigenpoints are possible.
+\end{prop}
+
+
+In order to get the proof of~\Cref{prop:rk8_2A} and~\Cref{prop:rk8_2B}
+we consider again the action of $\SO_3(\C)$ and here we can assume:
+\[
+P_1 = (1: 0: 0), \quad P_2 = (0: \iii: 1), \quad P_4 = (0: -\iii: 1)
+\]
+(and $P_3 = u_1P_1+u_2P_2$, $P_5 = v_1P_1+v_2P_4$). In this situation it
+is easy to see that the solution of the system $\Phi(P_1, \dots, P_5)$
+gives the following family of cubic curves:
+\[
+\mathcal{C}(l_1, l_2) = l_1\mathcal{C}_1+l_2\mathcal{C}_2
+\]
+where
+\begin{eqnarray}
+  \mathcal{C}_1 & = & x \cdot \left(2x^{2} + 3 y^{2} + 3 z^{2}\right)\\
+  \mathcal{C}_2 & = & (y + \iii z) \cdot (y - \iii z)
+\cdot (y u_{2} v_{1} - \iii z u_{2} v_{1} - y u_{1} v_{2} - 
+\iii z u_{1} v_{2} + 2 \iii x u_{2} v_{2})  \nonumber
+\label{famigliaCubDim1}
+\end{eqnarray}
+Then, from these equations, all the computations which allow to prove
+the two above propositions are easy.
 
 
 
