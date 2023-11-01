@@ -816,6 +816,35 @@ following conditions: either the line $P_1+P_2$ is tangent to~$\iso$ (in $P_2$ o
 To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{lemma:d1d2}.
 \end{proof}
 
+Finally, we want to see when, in a $V$-configuration, we have that the point
+$P_1$ is singular.
+
+\begin{prop}
+\label{proposition:P1_sing}
+If $P_1, \dots, P_5$ is a $V$ configuration and if $C$ is a cubic which
+has among the eigenpoints $P_1, \dots, P_5$, then $P_1$ is singular if
+and only if one of the following conditions is satisfied:
+\begin{enumerate}
+\item $\delta_1(P_1, P_2, P_4) = 0$ and $\overline{\delta}_1(P_1, P_2, P_3) = 0$;
+\item $\delta_1(P_1, P_2, P_4) = 0$ and $\overline{\delta}_1(P_1, P_4, P_5) = 0$;
+\item $\overline{\delta}_1(P_1, P_2, P_3) = 0$ and
+$\overline{\delta}_1(P_1, P_4, P_5) = 0$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+\verb+file: cubicaSingolare1ii0.sage+ e \verb+cubicaSingolare100.sage+\\
+As usual, we can split the problem into two cases: $P_1 = (1: \iii: 0)$
+and $P_1 = (1: 0: 0)$. In both cases we construct the matrix
+$\Phi(P_1, \dots, P_5)$ (for $P_2$, $P_4$ generic, $P_3$ aligned with
+$P_1$ and $P_2$ and $P_5$ aligned with $P_1$ and $P_4$). To this matrix we add
+a row which correspond to the condition that $P_1$ is singular, obtaining
+in this way a matrix $M$. After
+suitable manipulations of the matrix $M$, we see that the condition that
+the linear system associated to $M$ (which gives the coefficient of the cubic
+having $P_1, \dots, P_5$ eigenpoints and $P_1$ singular) gives no solution
+for the case $P_1=(1: \iii: 0)$ and the three above conditions for the
+case in which $P = (1: 0: 0)$.
+\end{proof}
 
 \section{$\delta_2=0$}
 \label{sezione_delta_2}
