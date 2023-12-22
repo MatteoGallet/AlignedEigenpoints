@@ -637,7 +637,7 @@ These quantities are crucial to describe what happens when we have aligned eigen
 
 \begin{definition}
 \label{definition:delta1}
- Let $P$, $Q$ and~$R$ be distinct points in the plane.
+ Let $P$, $Q$ and~$R$ be distinct, not aligned points in the plane.
  We define the quantity
  %
  \[
@@ -1232,7 +1232,7 @@ results hold:
 \label{three_d_three_alinments}
 If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_1}),
 then, among the $\infty^1$ cubic curves that we get from the
-solution of the linear system whose coefficients matrix in $M$, there is 
+solution of the linear system whose coefficients matrix is $M$, there is 
 a cubic curve with $7$ eigenpoints with the following three alignments:
 $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$, $(P_1, P_6, P_7)$. \\
 No choices of $P_1, \dots, P_5$ allow to obtain further alignments of the
@@ -1290,70 +1290,11 @@ Hence the line $r = w_ar_a+w_br_b$
 (where $w_a, w_b$ are parameters) is the line passing through the eigenpoints
 $P_6$ and $P_7$
 of the generic cubic of the $\infty^1$ family, i.e.\ the cubic obtained
-from $M_1$ by vertically stacking the vector $w_aV_a+w_bV_b$. The condition
-that the line $r$ passes through $P_1$ is a linear condition in $w_a$ and
-$w_b$, hence there is only one value of the parameters $w_a$ and $w_b$
-(up to a scalar multiple) which gives a cubic $C$ of the considered family,
-with the alignment $P_1, P_6, P_7$. Giving a random value to the coordinates
-of the points $P_2$ and $P_4$, we get a cubic which has the only alignments
-of the $V$-configuration and $(P_1, P_6, P_7)$. If there are other alignments
-among the eigenpoints, it is enough to see if it is possible to have
-$P_2, P_4$ and $P_6$ collinear. This last condition allows to obtain the point
-$P_6$ as the intersection of the line $r$ and the line $P_2+P_4$. By subsituting
-it into the ideal of the eigenpoints of the cubic $C$, after some manipulation
-of the ideal, we get that this condition is not compatible. This concludes
-the proof of~\Cref{three_d_three_alinments}.
-
-Concerning \Cref{prop:d2_6allin}, we start the computations as in the
-previous case. Then we assume there is an eigenpoint $P_6$ on the line
-$P_2+P_4$, i.e.\ $P_6 = w_1P_2+w_2P_4$ for suitable values of $w_1, w_2$.
-In particular, the matrix $\Phi(P_1, \dots, P_6)$ must have rank
-$9$. Clearly, it is hard to compute all the order $10$ minors
-of this matrix, but it is enough to select a small number of them
-and to study the ideal they generate. The ideal can be saturated with
-respect to several other ideals which correspond to degenerate cases
-and eventually we get a simple linear condition on $w_1$
-and $w_2$ that has to be satisfied. In this way we have determined
-$P_6$ and the
-family of cubics which have $P_6$ aligned with $P_2$ and $P_4$. Successively
-we can verify that in this family, the point of intersection of the
-lines $P_3+P_4$ and $P_2+P_5$ is a further eigenpoint (which is $P_7$)
-an now it is easy to see that the $7$ eigenponts satisfy the collinearities
-listed in~\Cref{prop:d2_6allin}.
-
-Now consider the case~(\ref{rk8_2}). In order to obtain those configuration,
-$P_1$ can be chosen in the plane, then $P_2$ and $P_4$ are determined, $P_3$
-and $P_5$ are constrained on the line $P_1+P_2$ and $P_1+P_4$ respectively.
-The matrix which gives the linear system of the coefficients of the cubics
-have $P_1, \dots, P_5$ as eigenpoints has rank $8$, so we have $\infty^1$
-possibel choices for the cubics. Hence the variety which parametrizes all
-the cubics with the eigenpoints in case~(\ref{rk8_2}) has dimension $5$
-and is parametrized by an open subset of
-$\mathbb{P}^2\times \mathbb{P}^1\times \mathbb{P}^1\times \mathbb{P}^1$.
-
-We have the following results:
-%%%  file: rank_8_twoTangIso.sage
-\begin{prop}
-\label{prop:rk8_2A}
-If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_2}), then all the 
-cubics which have $P_1, \dots, P_5$ among the eigenpoints have the other
-eigenpoints on a line which passes through~$P_1$.
-\end{prop}
-%
-\begin{rmk} 
-An immediate computation shows that also here we have 
-$\delta_2(P_1, \dots, P_5) = 0$. As a consequence of the above proposition,
-we have however that in this situation the eigenpoints $P_1, P_6, P_7$
-are collinear. 
-\end{rmk}
-A random choice of the points $P_1, \dots, P_5$ and a random solution
-of the system whose associated matrix is $\Phi(P_1, \dots, P_5)$
-shows that, in general, the corresponding cubic is smooth and its $7$
-eigenpoints have the three collinearities $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$
-and $(P_1, P_6, P_7)$.
+the three collinearities $(P_1, P_2, P_3)$,
+$(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
 
 Among all the possible cubics of the $5$ dimensional variety we get from
-condition~(\ref{rn8_2}) there are some subfamilies in which the eigenpoints
+condition~(\ref{rk8_2}) there are some subfamilies in which the eigenpoints
 have other alignments. More precisely,
 \begin{prop}
 \label{prop:rk8_2B}
@@ -1750,7 +1691,7 @@ This hence implies that $\deg {\mathcal L} = 15$.
 The following pencil of cubic forms admits exactly $15$ cubics with an aligned triple of eigenpoints ..
 \end{es}
 
-\section{Further alignments}
+\section{Possible configurations of the seven eigenpoints}
 \label{further_alignments}
 
 \begin{theorem}
@@ -1762,29 +1703,93 @@ The following pencil of cubic forms admits exactly $15$ cubics with an aligned t
 \label{table:all_alignments}
 \caption{All possible configurations of $7$ points with alignments that can appear as eigenschemes of a ternary cubic form, provided that the eigenscheme is zero-dimensional and reduced.}
 \centering
-\begin{tabular}{|lll|}\hline
-  num & collinear vertices & name\\ \hline
- 1& [(1, 2, 3)] & "line" \\
- 2& [(1, 2, 3), (1, 4, 5)] & "X shape"\\
- 3& [(1, 2, 3), (1, 4, 5), (1, 6, 7)] & "star" \\
-  & [(1, 2, 3), (1, 4, 5), (2, 4, 6)] & "triangle" \\
- 4& [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)] & "triangle + altitude" \\
-  & [(1, 2, 3), (1, 4, 5), (2, 4, 6), (3, 5, 6)] & "two X shapes" \\
- 5& [(1, 2, 3), (1, 4, 5), (1, 6, 7),  & "two stars"\\
-  & \phantom{[}(2, 4, 6), (2, 5, 7)] & \\
- 6& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "triangle + three altitudes"\\
-  & \phantom{[} (2, 4, 6), (2, 5, 7), (3, 4, 7)] & \\
+\begin{tabular}{|llll|}\hline
+  num. lines  & collinear vertices & name & conf.\\ \hline
+ 1& [(1, 2, 3)] & "line" & (1)\\
+ 2& [(1, 2, 3), (1, 4, 5)] & "X shape"& (2)\\
+ 3& [(1, 2, 3), (1, 4, 5), (1, 6, 7)] & "star" & (3)\\
+  & [(1, 2, 3), (1, 4, 5), (2, 4, 6)] & "triangle" & (4)\\
+ 4& [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)] & "triangle + altitude" & (5)\\
+  & [(1, 2, 3), (1, 4, 5), (2, 4, 6), (3, 5, 6)] & "two X shapes" & (6)\\
+ 5& [(1, 2, 3), (1, 4, 5), (1, 6, 7),  & "two stars" & (7)\\
+  & \phantom{[}(2, 4, 6), (2, 5, 7)] & &\\
+ 6& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "triangle + three altitudes" & (8)\\
+  & \phantom{[} (2, 4, 6), (2, 5, 7), (3, 4, 7)] & & \\
  7& [(1, 2, 3),
    (1, 4, 5),
    (1, 6, 7),
-   (2, 4, 6), & "Fano matroid" \\
+   (2, 4, 6), & "Fano matroid" & (9)\\
   & \phantom{[} (2, 5, 7),
    (3, 4, 7),
-   (3, 5, 6)] & \\ \hline
+   (3, 5, 6)] & & \\ \hline
 \end{tabular}
 \end{table}
 
-It is well-known that case (7) cannot be realized in zero characteristic (see \cite{Whitney1935}), therefore we will not consider it in our analysis.
+In table~\ref{table:all_alignments} are listed all the possible configuration
+of 7 distinct points of the plane, according to their collinearities. Here
+we want to see which of those nine configurations can be realized by
+the seven eigenpoints of a cubic and, in case the configuration is
+realizable, which are the cubics with that configuration of eigenpoints.
+
+First of all, it is well-known that configuration (9) cannot be realized
+by seven points of the plane over a field of zero
+characteristic (see \cite{Whitney1935}), therefore we will not consider
+it in our analysis.
+
+Configuration (1) can be realized,
+\Cref{proposition:three_aligned_ranks} and Section~\ref{locus_one_alignment}
+give a description of the cubics with such a configuration of points.
+
+Configuration (2) means that the points $P_1, \dots, P_5$ are in a
+$V$-configuration, hence the rank of the matrix $\Phi(P_1, \dots, P_5)$
+must be $9$ or $8$. If the rank is $9$, then $\delta_1(P_1, P_2, P_4) = 0$
+or $\delta_2(P_1, \dots, P_5) = 0$, see~\Cref{proposition:rank_V}.
+From \Cref{proposition:terzo_allineamento} we have that the only possibility
+is $\delta_1(P_1, P_2, P_4) = 0$. Hence if we fix two points $P_1$ and $P_2$
+in the plane and we choose $P_4$ such that $\delta_1(P_1, P_2, P_4) = 0$
+(@@ si puo' mettere migliore condizione) and then if we chose $P_3$
+on the line $P_1+P_2$ and $P_5$ on the line $P_1+P_4$, we have a cubic
+with a configuration of type (2). In case of rank 8.......@@@ completare
+
+Vedi file: \verb+config3.sage+
+\begin{lemma}
+\label{no_delta1_delta1} Suppose we have seven eigenpoints $P_1, \dots, P_7$
+of a cubic in configuration (3). Then among the $7$ points there is a
+$V$-configuration that satisfies a $delta_2$ condition.
+\end{lemma}
+\begin{proof}
+The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. Then 
+the matrix $\Phi(P_1, \dots, P_5)$ has rank $8$ or rank $9$. For rank $8$
+see... @@ everything is known. Hence assume the rank is $9$. If
+$\delta_2(P_1, \dots, P_5) = 0$, we have the thesis, otherwise,
+$\delta_1(P_1, P_2, P_4) = 0$. Then consider the $V$-configuration
+$P_1, P_2, P_3, P_6, P_7$. As above, we suppose $\delta_1(P_1, P_2, P_6) = 0$.
+The two $\delta_1$-equations give two linear equations in the coordinates
+of $P_2$. Assuming the matrix of the system of linear equations have
+maximal rank, the solution gives a point $P_2$ that coincide, as
+a projective point, to $P_1$, which is impossible. Hence we consider the
+case in which the matrix of the linear system do not have maximal rank.
+This condition implies that $\scl{P_1}{P_1} = 0$, hence $P_1$ is on the
+isotropic conic. W.l.o.g.\ we can assume $P_1 = (1: \iii: 0)$ and again 
+we can determine $P_2$ such $\delta_1(P_1, P_2, P_4) = 0$ and
+$\delta_1(P_1, P_2, P_6)$ are zero. The matrix $\Phi(P_1, P_4, P_5, P_6, P_7)$
+must have rank $9$ or smaller, then either
+$\delta_2(P_1, P_4, P_5, P_6, P_7)=0$ or $\delta_1(P_1, P4, P_6) = 0$. IN
+the first case, we have a $\delta_2$ condition among the points, hence
+we assume $\delta_1(P_1, P_4, P_6) = 0$. Solving this equation and
+considering the corresponding points, we get that either
+$\delta_2(P_1, P_2, P_3, P_6, P_7) = 0$ or
+$\delta_2(P_1, P_2, P_3, P_4, P_5)=0$.
+\end{proof}
+
+From the avobe lemma, we have that configuration (3) can be
+realized only by a $\delta_2$ condition (a meno dei casi particolari
+da inserire bene @@@).
+
+Configuration (3) is therefore parametrized as explained in @@@
+
+
+
 
 \begin{description}
  \item[Case (1)]
