@@ -1799,11 +1799,11 @@ by seven points of the plane over a field of zero
 characteristic (see \cite{Whitney1935}), therefore we will not consider
 it in our analysis.
 
-Configuration (1) can be realized,
+\underline{Configuration (1)} can be realized,
 \Cref{proposition:three_aligned_ranks} and Section~\ref{locus_one_alignment}
 give a description of the cubics with such a configuration of points.
 
-Configuration (2) means that the points $P_1, \dots, P_5$ are in a
+\underline{Configuration (2)} means that the points $P_1, \dots, P_5$ are in a
 $V$-configuration, hence the rank of the matrix $\Phi(P_1, \dots, P_5)$
 must be $9$ or $8$. If the rank is $9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dots, P_5) = 0$, see~\Cref{proposition:rank_V}.
@@ -1819,6 +1819,15 @@ of the case $\delta_1(P_1, P_2, P_4)=0$). Configuration (2) can also be
 obtained from~(\ref{rk8_2}) in the general case. @@ e' un caso delta1 = 0?
 da verificare.
 
+\underline{Configuration (3)} If inside the configuration (3) we
+have a $V$-configuration
+such that the rank of the matrix $\Phi(P_1, \dots, P_5)$ is $8$
+we know that ..... @@ (completare)
+
+Here we assume therefore that we have among the $7$ points of (3),
+five points $P_1, \dots, P_5$ in a $V$-configuration such that the
+rank of the matrix $\Phi(P_1, \dots, P_5)$ is $9$.
+
 Vedi file: \verb+config3.sage+
 \begin{lemma}
 \label{no_delta1_delta1} Suppose we have  seven eigenpoints $P_1, \dots, P_7$
@@ -1826,9 +1835,10 @@ of a cubic in configuration (3). Then among the $7$ points there is a
 $V$-configuration that satisfies a $delta_2$ condition.
 \end{lemma}
 \begin{proof}
-The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. Then 
-the matrix $\Phi(P_1, \dots, P_5)$ has rank $8$ or rank $9$. For rank $8$
-see... @@ everything is known. Hence assume the rank is $9$. If
+%% la dim si trova in config3.sage
+The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. As said, 
+we assume the matrix $\Phi(P_1, \dots, P_5)$ has
+rank $9$. If
 $\delta_2(P_1, \dots, P_5) = 0$, we have the thesis, otherwise,
 $\delta_1(P_1, P_2, P_4) = 0$. Then consider the $V$-configuration
 $P_1, P_2, P_3, P_6, P_7$. As above, we suppose $\delta_1(P_1, P_2, P_6) = 0$.
@@ -1854,37 +1864,49 @@ From the avobe lemma, we have that configuration (3) can be
 realized only by a $\delta_2$ condition (a meno dei casi particolari
 da inserire bene @@@).
 
-Configuration (3) is therefore parametrized as explained in @@@
+Here we list the ways in which we can obtain configuration (3)
+@@@ completare
+
+\underline{Configuration (4)}. It holds:
+\begin{prop}
+\label{conf4no} If we have five points in configuration that are in 
+configuration (4) and such that are eigenpoints of a cubic, then the
+cubic has $7$ eigenpoints which are in configuration (8). In particular,
+configuration (4) is not realizable.
+\end{prop}
+\begin{proof}
+%% il file config4.sage contiene la dimostrazione
+We know that configuration cannot be obtained from a rank 8 $V$-configuration, 
+hence we have to study the case $\delta_1(P_1, P_2, P_4) = 0$,
+$\delta_1(P_2, P_1, P_4) = 0$ and $\delta_1(P_4, P_1, P_2) = 0$,
+which is not difficult.
+\end{proof}
+
+\underline{Configuration (5)} Is realizable.
+\verb+file config5.sage+
+Descrizione del luogo
+
+%% conti nel file config5.sage.
+
+\underline{Configuration (6)} Is not realizable.
+\verb+file config6.sage+
+
+%% conti nel file config6.sage.
 
 
+\underline{Configuration (7)} Is not realizable.
+\verb+file config7.sage+
+
+%% conti nel file config7.sage.
 
 
-\begin{description}
- \item[Case (1)]
- \item[Case (2)]
- We get two possible conditions:
- \begin{align}
-  d_2 &: \langle P_1, P_1 \rangle\cdot \langle P_2, P_4\rangle -
-  \langle P_1, P_2 \rangle \cdot \langle P_1, P_4 \rangle \label{rango9_1} \\
-  d_3 &: \langle P_1,P_2 \rangle \cdot \langle P_1,P_3\rangle \cdot
-  \langle P_4,P_5\rangle -\langle P_1,P_4\rangle \cdot \langle P_1,P_5\rangle
-  \cdot \langle P_2,P_3\rangle  \label{rango9_2}
-\end{align}
-By bilinearity, one has that $d_2$ is equivalent to any of
-\begin{equation}
-\begin{aligned}
-    & \langle P_1, P_1 \rangle\cdot \langle P_3, P_4\rangle -
-  \langle P_1, P_3 \rangle \cdot \langle P_1, P_4 \rangle \,, \\
-    & \langle P_1, P_1 \rangle\cdot \langle P_3, P_5\rangle -
-  \langle P_1, P_3 \rangle \cdot \langle P_1, P_5 \rangle \,, \\
-    & \langle P_1, P_1 \rangle\cdot \langle P_2, P_5\rangle -
-  \langle P_1, P_2 \rangle \cdot \langle P_1, P_5 \rangle \,.
-\end{aligned}
-\end{equation}
-From examples, we know that $d_3$ actually implies Case a star configuration as in Case (3).
- \item[Case (3)]
+\underline{Configuration (8)} Is realizable.
+\verb+file config8.sage+
+descrizione del luogo
 
-\end{description}
+%% conti nel file config8.sage.
+
+
 
 \section{The locus of forms with positive-dimensional eigenscheme}
 
