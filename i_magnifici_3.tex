@@ -1913,31 +1913,6 @@ descrizione del luogo
 
 \section{The locus of forms with positive-dimensional eigenscheme}
 
-\begin{prop}
-Assume that $\dim \Eig{f} = 1$ and that the one-dimensional component of $\Eig{f}$ is a line~$L$.
-Then $L \subseteq \mathrm{Sing}(f)$.
-\end{prop}
-\begin{proof}
-Assume by contradiction that
-%
-\[
- L \subseteq {\overline{R(f)}}.
-\]
-%
-We observe that if $L \subseteq V(f)$, then $L\subset \iso$, by Proposition ....
-This is impossible since $\iso$ is irreducible.
-
-So consider the scheme-theoretic intersection
-%
-\[
-Z:= L \cap \iso,
-\]
-%
-If $Z \subset R(f)$, then $Z \subset V(f)$ by Proposition \ref{pro: relation eigenpoints - tangent space to the isotroquadric}. Since $L \not \subset V(f)$, residually $L$ intersects $V(f)$ in a point. Since such a point is also an eigenpoint and it can't be regular, it is necessarily a singular point of $V(f)$. This gives a contradiction, since every line passing through a singular point has intersection multiplicity $\ge 2$ with $V(f)$.
-Finally, assume that $Z = p_1 + p_2$ as a divisor on~$\iso$, with $p_1 \in R(f)$ and $p_2\in {\overline {R(f)}} \setminus R(f)$. The necessarily $p_2 \in \mathrm{Sing}(f)$, so that residually to~$Z$ the line~$L$ intersects~$V(f)$ in~$p_2$. Therefore $V(f)$ has a singular point $p_2$ on $\iso$ and $V(f)$ intersect tangentially~$\iso$ in~$p_1$.
-The examples show that this never happens ...
-\end{proof}
-
 \begin{prop}\label{p2}
 Let $C = V(f) \subset \p^2$ be a cubic curve.
 Assume that $\dim \Eig{f} = 1$ and that the $1$-dimensional component is a line~$L$.
@@ -2011,19 +1986,6 @@ x_2 \, H_1 - x_1 \, H_2 + x_0 \, H_3 = 0, \quad x_0 \, H_2 + 2(x_1+x_2) \, H_3 +
 Finally, $Z= \{ (0:1:1),(2:1:-1),(-2:1:-1)\}$. Observe that one point is on the singular line $x_0=0$
 and that the Jacobian scheme is non reduced, it consists of a line with an embedded point.
 \end{es}
-
-\begin{rmk}
-Assume $\dim E(f) =1$ and that the $1$-dimensional component is an irreducible conic $\tilde Q$. Let $Q$ be the isotropic quadric. Then we have the following possible cases:
-\begin{itemize}
-\item $\tilde Q = Q$. It seems that this never happens.
-\item set $Z:= \tilde Q \cap Q$. Then $Z\subset R(f)$ , so $V(f)$ is tangent to $Q$ in four points.
-\item $Z$ consists of one singular point for $V(f)$ and one or two regular eigenpoints.
-\item $Z$ consists of two singular points for $V(f)$.
-\item $Z$ consists of a triple point for $V(f)$, with one common tangent with $Q$.
-\end{itemize}
-\end{rmk}
-
-
 
 
 \bibliographystyle{amsalpha}
