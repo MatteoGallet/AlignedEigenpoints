@@ -375,17 +375,36 @@ Moreover, if $P_1, \dotsc, P_n$ are points in the plane, we denote by $\Phi(P_1,
 namely, the $3n \times 10$ matrix obtained by vertically stacking the matrices of conditions of~$P_1, \dotsc, P_n$.
 \end{definition}
 
-\begin{rmk} \textbf{(@@ si puo' dire meglio, usando le derivate parziali @@)}
-By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of
-$\Phi(P)$ is never $\leq 1$.
-Moreover, it holds:
+We introduce a new piece of notation that makes the description of $\Phi(P)$ more compact.
+Let us consider $a_0, \dotsc, a_9$ as formal variables; given a formal linear combination
+%
+\[
+ \Lambda = a_0\lambda_0+\cdots+a_9\lambda_9 \,,
+\]
+%
+denote by $v(\Lambda)$ the $10$-component vector given by
+$(\lambda_0, \dots, \lambda_9)$. In particular, if $X=(x: y: z)$ and
+$f(X) = a_0x^3+a_1x^2y+\cdots+ a_9z^3$ is a degree $3$ homogeneous polynomial, then
+$v(f(X)) = (x^3, x^2y, \dots, z^3)$, while $v \bigl(\de_x(f)(X) \bigr) =
+(3x^2, 2xy, \dots, 0)$. With this notation, if $P=(A: B: C)$, we get:
+%
 \begin{equation}
-  C \, \phi_1(P) - B \, \phi_2(P) + A \, \phi_3(P) = 0,
+\label{equation:vector_conditions}
+\begin{gathered}
+\phi_1(P) = A\cdot v(f_x)(P)-B\cdot v(f_y)(P), \\
+\phi_2(P) = A\cdot v(f_z)(P)-C\cdot v(f_y)(P),\\
+\phi_3(P) = B\cdot v(f_z)(P)-C\cdot v(f_y)(P)
+\end{gathered}
+\end{equation}
+%
+\begin{rmk}
+By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of $\Phi(P)$ is never $\leq 1$. \Cref{equation:vector_conditions} gives
+\begin{equation}
+  C \, \phi_1(P) - B \, \phi_2(P) + A \, \phi_3(P) = 0 \,,
   \label{eq:base}
 \end{equation}
 therefore,
-among the three vectors, at most two of them are linearly independent.
-Hence, the matrix~$\Phi(P)$ has rank~$2$.
+among the three vectors, at most two of them are linearly independent and the matrix~$\Phi(P)$ has rank~$2$.
 \end{rmk}
 
 As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
@@ -844,19 +863,7 @@ To conclude the proof, we use \Cref{lemma:special_case_rank_8} and \Cref{lemma:d
 Questa parte va un po' meditata, per cercare una notazione coerente.@@
 Forse la definizione \Cref{definition:matrix_conditions} va rimaneggiata.
 
-Given a linear combination $\Lambda = a_0\lambda_0+\cdots+a_9\lambda_9$, we
-denote by $v(\Lambda)$ the $10$-component vector given by
-$(\lambda_0, \dots, \lambda_9)$. In particular, if $X=(x: y: z)$ and
-$f(X) = a_0x^3+a_1x^2y+\cdots+ a_9z^3$ is a degree $3$ homogeneous polynomial
-$v(f(X)) = (x^3, x^2y, \dots, z^3)$, while $v(\de_x(f)(X)) = v(\de_x)(f)(X) =%
-(3x^2, 2xy, \dots, 0)$. With this notation if $P=(A: B: C)$, we get:
-%
-\begin{gather*}
-\phi_1(P) = A\cdot v(f_x)(P)-B\cdot v(f_y)(P), \\
-\phi_2(P) = A\cdot v(f_z)(P)-C\cdot v(f_y)(P),\\
-\phi_3(P) = B\cdot v(f_z)(P)-C\cdot v(f_y)(P)
-\end{gather*}
-%
+
 Here we want to consider a $V$-configuration of points $P_1, \dots, P_5$
 such that $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$.
 Moreover, we assume that the rank of the matrix $M$
