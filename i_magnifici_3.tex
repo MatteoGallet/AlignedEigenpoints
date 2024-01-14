@@ -61,6 +61,7 @@
 
 \newcommand{\SO}{\operatorname{SO}}
 \newcommand{\Eig}[1]{\operatorname{Eig}\left( {#1} \right)}
+\newcommand{\Sym}{\operatorname{Sym}}
 \newcommand{\polq}{{\rm Pol}_Q}
 \newcommand{\comment}[1]{}
 
@@ -91,21 +92,22 @@
 \label{introduction}
 \blue{
 Tensors are natural generalizations of matrices in higher dimension, and can be studied via their eigenvectors. There are several notions of eigenvalues and eigenvectors of tensors, as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}. All of them are of interest in several applications, like in the study of hypergraphs and the dynamical systems governed by those, see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developements. Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
-As an example, consider the problem of maximizing a polynomial function $f$ over the unit sphere in $\R^{n+1}$. Eigenvectors of the symmetric tensor $f$ are critical points of this optimization problem. Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: by Lim's Variational Principle \cite{Lim}, given a symmetric tensor $f$, the critical rank one symmetric tensors for $f$ are exactly of the form $v^d$, where $v$ is an eigenvector of $f$. 
+As an example, consider the problem of maximizing a polynomial function $f$ over the unit sphere in $\R^{n+1}$. Eigenvectors of the symmetric tensor $f$ are critical points of this optimization problem. Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: by Lim's Variational Principle \cite{Lim}, given a symmetric tensor $f$, the critical rank one symmetric tensors for $f$ are exactly of the form $v^d$, where $v$ is an eigenvector of $f$.
 This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors to produce an algorithm to compute Waring decompositions of homogeneous polynomials.
 
 When dealing with eigenvectors it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$.
  If we choose a basis for $\C^{n+1}$, then we can identify $T\in \Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$ with a tuple of homogeneous polynomials $(g_0,\dots,g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v\in\C^{n+1}$ such that
 
 \begin{equation}\label{eq: definizione di autovettore}
-(g_0(v), \ldots, g_n(v))=\lambda v\end{equation}
-for some constant $\lambda$. 
+(g_0(v), \ldots, g_n(v))=\lambda v
+\end{equation}
+for some constant $\lambda$.
 
 
-Since %the property of being an eigenvector 
+Since %the property of being an eigenvector
 property \eqref{eq: definizione di autovettore} is preserved under scalar multiplication, it is natural to consider the rational map $T:\p^n\dashrightarrow\p^n$ defined by $T(P)=(g_0(P):\ldots:g_n(P))$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case we define the eigenpoints of a homogeneous polynomial $f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f =(\de_0f,\dots,\de_n f)$.
 
-Moreover, condition \eqref{eq: definizione di autovettore} can be rephrased in the condition that 
+Moreover, condition \eqref{eq: definizione di autovettore} can be rephrased in the condition that
 \begin{equation}
 \label{eq:def_matrix_general}
     \rk \begin{pmatrix}
@@ -113,27 +115,30 @@ Moreover, condition \eqref{eq: definizione di autovettore} can be rephrased in t
     g_0 & g_1 & \dots & g_n
     \end{pmatrix} \le 1,
 \end{equation}
-so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called an {\it eigenscheme}.
+so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called an \emph{eigenscheme}.
 
 The dimension and degree of a general eigenscheme are settled by the following result (see \cite[Theorem 2.1]{CartSturm} and Abo Discriminant):
 
 \begin{lemma}\label{lem:nonempty}
-Let $d\ge 3$ and let $\T\in(\C^{n+1})^{\otimes d}$.
-	 If $T$ is general, then $\dim E(\T)=0$ and $\deg E(\T)=\frac{(d-1)^{n+1}-1}{d-2}$. 
-  
-  Moreover, among the $0$ - dimensional eigenschemes, the general one is reduced.
+Let $d\ge 3$ and let $T \in (\C^{n+1})^{\otimes d}$.
+If $T$ is general, then $\dim E(T)=0$ and $\deg E(T)=\frac{(d-1)^{n+1}-1}{d-2}$.
+
+  Moreover, among the $0$ dimensional eigenschemes, the general one is reduced.
 \end{lemma}
  In the present paper we focus on the geometry eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By the previous Lemma, the general such tensor
  satisfies $\deg E(T)=7$. The known results on the geometry are the following.
 
-\begin{thm} (\cite[Theorem 5.1]{ASS})
+\begin{theorem} (\cite[Theorem 5.1]{ASS})
 A configuration of seven points in $\p^2$ is the eigenconfiguration
 of a $3\times 3 \times 3$-tensor if and only if no six of the seven points lie on a conic.
-\end{thm}
+\end{theorem}
 
 Moreover, we have also the following result (see \cite[Theorem 5.7]{BGV}):
- \begin{theorem}\label{thm : general no d collinear}
-Let $d\ge 3$. The eigenscheme $E(f)$ of a general homogeneous polynomial $f\in\C[x_0,x_1,x_2]_d$ contains no $d$ collinear points. As a consequence, the general symmetric tensor of order $d$ has no $d$ collinear eigenpoints. \end{theorem}
+\begin{theorem}
+\label{thm : general no d collinear}
+Let $d\ge 3$. The eigenscheme $\Eig{f}$ of a general homogeneous polynomial $f \in \C[x_0,x_1,x_2]_d$ contains no $d$ collinear points. As a
+consequence, the general symmetric tensor of order $d$ has no $d$ collinear eigenpoints.
+\end{theorem}
 }
 However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
 
@@ -1551,9 +1556,9 @@ To this aim, denote by ${\mathcal T} \subset \p^9$ the variety of triangles; it 
 see for instance \cite[Section 2.2.2]{3264}. We now consider the variety~${\mathcal N}$ from \Cref{lemma:scroll}.
 \comment{
 given by the union of the nets of cubics of the pencil
-$$
+\[
 {\mathcal N} = \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda f + \mu g} \subset \p^9.
-$$
+\]
 Observe that we can assume that ${\mathcal N}$ is an embedding of a rational projective bundle; indeed, it can be seen as an immersion of the $\p^2$-bundle over $\p^1$ given by the family the planes ${\mathcal P}=
 \{\Lambda_{\lambda f + \mu g}\ : \ (\lambda:\mu)\in \p^1\} \subset \p^1 \times \p^9$. The map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so it is either an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
 If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to $f$, and by $N_1$, $N_2$ and $N_3$ the ones relative to $g$, the vectorial dimension of the linear span
@@ -1691,32 +1696,31 @@ Now we show that any line of the plane can be realized as a line of eigenpoints 
     Without loss of generality we can assume that $t$ is the line $x=0$ if it is not tangent to $\iso$, respectively $x+\iii y=0$ if it is tangent to $\iso$.
 
     In the first case, consider the points
-    $$
+    \[
     P_1=(0:1:0), \ P_2=(0:0:1), \ P_3=(0:1:1), \ P_4=(t+1:1:-1).
-    $$
+    \]
     The cubic polynomials having these points as eigenpoints form the $2$-dimensional family depending on the parameters $m,l$ and $t$
-    $$
+    \[
     (3mt^2+6m t-9 m) x^3+(3 l t^2+(6 l+18 m) t-9 l+18 m) x^2 y+(3 l t^2+6 l t-9 l) z x^2+
-    $$
-    $$
+    \]
+    \[
     +(-l t^4+(-4 l-3 m) t^3+(-2 l-9 m) t^2+(4 l-9 m) t+3 l-3 m) y^3+
-    $$
-    $$
+    \]
+    \[
     +(-l t^4+(-4 l-3 m) t^3+(-2 l-9 m) t^2+(4 l-9 m) t+3 l-3 m) z^3.
-    $$
+    \]
     By setting, for instance $m=l=1$, we get the $1$-dimensional family depending on the affine parameter $t$
-    $$
+    \[
     (3 t^2+6 t-9) x^3+(3 t^2+24 t+9) x^2 y+(3 t^2+6 t-9) z x^2+(-t^4-7 t^3-11 t^2-5 t) y^3+(-t^4-7 t^3-11 t^2-5 t) z^3.
-    $$
+    \]
     A direct computation shows that if $t \neq -1$, the associated eigenscheme is $0$-dimensional, while for $t=-1$ we get the polynomial
-$$
+\[
 -12 x^2 (x+ y+ z).
-$$
+\]
     Similarly, if we consider the line $x+\iii y=0$, we set
-    $$
+    \[
     P_1=(\iii:-1:1), \ P_2=(0:0:1), \ P_3=(-\iii:1:1), \ P_4=(t+1:- \iii:0).
-    $$
-    
+    \]
 \end{proof}
 }
 \subsection{Eigenschemes containing two lines}
@@ -3768,9 +3772,9 @@ To this aim, denote by ${\mathcal T} \subset \p^9$ the variety of triangles; it 
 see for instance \cite[Section 2.2.2]{3264}. We now consider the variety~${\mathcal N}$ from \Cref{lemma:scroll}.
 \comment{
 given by the union of the nets of cubics of the pencil
-$$
+\[
 {\mathcal N} = \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda f + \mu g} \subset \p^9.
-$$
+\]
 Observe that we can assume that ${\mathcal N}$ is an embedding of a rational projective bundle; indeed, it can be seen as an immersion of the $\p^2$-bundle over $\p^1$ given by the family the planes ${\mathcal P}=
 \{\Lambda_{\lambda f + \mu g}\ : \ (\lambda:\mu)\in \p^1\} \subset \p^1 \times \p^9$. The map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so it is either an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
 If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to $f$, and by $N_1$, $N_2$ and $N_3$ the ones relative to $g$, the vectorial dimension of the linear span
