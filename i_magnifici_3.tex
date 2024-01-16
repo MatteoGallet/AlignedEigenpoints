@@ -1689,6 +1689,7 @@ spaces coincide.
 Now we show that any line of the plane can be realized as a line of eigenpoints for some limit polynomial in a family, where thegeneral member has a $0$ dimensional eigenscheme with an aligned triple. The idea is to fix three points on a line and a fourth point varying on another line. We consider a family having such four points as eigenpoints; it turns out that when the fourth point is collinear with the first three points, the line containing them is entirely contained in the eigenscheme.
 
 \begin{prop}
+\label{prop:line_as_limit}
     Any line $t \subset \p^2$ can be realized as the positive dimensional part of a limit eigenscheme in a  family of zero dimensional eigenschemes having an aligned triple.
 \end{prop}
 
@@ -1697,30 +1698,35 @@ Now we show that any line of the plane can be realized as a line of eigenpoints 
 
     In the first case, consider the points
     \[
-    P_1=(0:1:0), \ P_2=(0:0:1), \ P_3=(0:1:1), \ P_4=(t+1:1:-1).
+    P_1=(0:1:0), \ P_2=(0:0:1), \ P_3=(0:1:1), \ P_4=(u+1:1:-1).
     \]
-    The cubic polynomials having these points as eigenpoints form the $2$-dimensional family depending on the parameters $m,l$ and $t$
+    The cubic polynomials having these points as eigenpoints form the $2$-dimensional family depending on the parameters $m$, $l$, and $u$:
+    %
+    \begin{multline*}
+    (3mu^2 + 6mu - 9m) x^3 + (3 l u^2+(6l + 18m)u - 9l + 18m) x^2 y + (3lu^2 + 6lu - 9l) z x^2 + \\
+    +(-l u^4+(-4 l-3 m) u^3+(-2 l-9 m) u^2+(4 l-9 m) u + 3 l-3 m) y^3+ \\
+    +(-l u^4 + (-4 l-3 m)u^3 + (-2l - 9m) u^2 + (4l - 9m)u + 3l - 3m) z^3 \,.
+    \end{multline*}
+    %
+    By setting, for instance $m=l=1$, we get the $1$-dimensional family depending on the affine parameter $u$:
+    %
+    \begin{multline*}
+    (3 u^2+6 u-9) x^3+(3 u^2+24 u+9) x^2 y+(3 u^2+6 u-9) z x^2+\\
+    (-u^4-7 u^3-11 u^2-5 u) y^3+(-u^4-7 u^3-11 u^2-5 u) z^3 \,.
+    \end{multline*}
+    %
+    A direct computation shows that if $u \neq -1$, the associated eigenscheme is $0$-dimensional, while for $u=-1$ we get the polynomial
+    %
     \[
-    (3mt^2+6m t-9 m) x^3+(3 l t^2+(6 l+18 m) t-9 l+18 m) x^2 y+(3 l t^2+6 l t-9 l) z x^2+
+     -12 x^2 (x+ y+ z).
     \]
-    \[
-    +(-l t^4+(-4 l-3 m) t^3+(-2 l-9 m) t^2+(4 l-9 m) t+3 l-3 m) y^3+
-    \]
-    \[
-    +(-l t^4+(-4 l-3 m) t^3+(-2 l-9 m) t^2+(4 l-9 m) t+3 l-3 m) z^3.
-    \]
-    By setting, for instance $m=l=1$, we get the $1$-dimensional family depending on the affine parameter $t$
-    \[
-    (3 t^2+6 t-9) x^3+(3 t^2+24 t+9) x^2 y+(3 t^2+6 t-9) z x^2+(-t^4-7 t^3-11 t^2-5 t) y^3+(-t^4-7 t^3-11 t^2-5 t) z^3.
-    \]
-    A direct computation shows that if $t \neq -1$, the associated eigenscheme is $0$-dimensional, while for $t=-1$ we get the polynomial
-\[
--12 x^2 (x+ y+ z).
-\]
+    %
     Similarly, if we consider the line $x+\iii y=0$, we set
+    %
     \[
     P_1=(\iii:-1:1), \ P_2=(0:0:1), \ P_3=(-\iii:1:1), \ P_4=(t+1:- \iii:0).
     \]
+    %
 \end{proof}
 }
 \subsection{Eigenschemes containing two lines}
