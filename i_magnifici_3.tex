@@ -1,11 +1,27 @@
-\documentclass[11pt, a4paper, reqno, captions=tableheading,bibliography=totoc]{scrartcl}
+%\documentclass[11pt, a4paper, reqno, captions=tableheading,bibliography=totoc]{scrartcl}
+%
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{mathtools}
+%\usepackage{amsthm}
+%\usepackage{amsmath}
 
+%%%%%%%%%%%%%setting di Valentina
+\documentclass{amsart}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathtools}
-\usepackage{amsthm}
-\usepackage{amsmath}
 \usepackage{amssymb}
+\setlength{\parindent}{.4 in}
+\setlength{\textwidth}{5.8 in}
+\setlength{\topmargin} {-.1 in}
+\setlength{\evensidemargin}{0 in}
+%%%%%%%%%%%%%%%%%%%fine setting di Valentina
+%\usepackage{amssymb}
 \usepackage{lmodern}
 \usepackage[english]{babel}
 \hyphenation{ei-gen-scheme}
@@ -1110,44 +1126,234 @@ cubic $\cbc$ since by construction they are proportional to the three minors of 
 \label{proposition:G_split}
  The polynomial $C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$, each linear in $x, y, z$.
 \end{prop}
+\begin{definition}
+%   Let $E(f)$ be zero-dimensional and reduced, and set
+%%
+%\[
+%  M_1 :=y \partial _z f - z \partial _y f, \quad
+%  M_2 := z \partial _x f - x \partial _z f, \quad
+%  M_3 :=x \partial _y f - y \partial _x f. 
+%\]
+%
+The Geiser map associated with a zero dimoensional eigenscheme $E(F)$ is the rational map defined by
+%
+\[
+\gamma_{E(F)} \colon \p ^2 \dasharrow \p^2, \quad 
+\gamma_{E(F)} (P) = (G_1(P):G_2(P):G_3(P))
+\]
+%
+\end{definition}
+
+Geiser maps are a classical topic and several of their properties are understood. As an example, $\gamma_{E(f)}$ is generically finite of degree~$2$, see for instance \cite[Section~8.7.2]{Dolgachev}.
+%Moreover, the ramification locus of~$\widetilde{\gamma _{E(F)}$ is given by the \emph{Jacobian locus}~$\Sigma$ defined by the determinant of the Jacobian $\mathrm{Jac}(I_Z)$, that is the locus of singular points of the net (see
+%    \cite[Book II, Chapter~IX, Theorem~25]{Cool}). When $Z$ is general, the Jacobian locus~$\Sigma$ is a curve of degree~$6$ which is singular at $Z$ as illustrated in \cite[Chapter~IX, Theorem~27]{Cool}. We define $B(Z)$ to be the branch locus of $\widetilde{\gamma_Z}$, that is the direct image of~$\Sigma$. For modern references, see for instance \cite[Section~8.7.2]{Dolgachev} and \cite[Section~7]{OS1}, where it is proven that a general Geiser map is branched along a smooth L\"uroth quartic.
+
+\begin{lemma}
+The Geiser map~$\gamma_{E(F)}$ is surjective, and its fiber over a point $Q = (a:b:c)$ is given by
+%
+\begin{equation}
+\label{eq:fibers}
+    \left\{
+    \begin{array}{l}
+    a x + by + cz = 0, \\[2pt]
+    a \, \partial_x F + b \, \partial_y F + c \, \partial_z F = 0,\\
+ \end{array}\right.
+\end{equation}
+%
+that is, the intersection between the polar line $L_Q$ relative to the isotropic conic and $\mathrm{Pol}_Q F$, the
+first polar curve of~$F$ with respect to~$Q$.
+
+In particular, the only possible curves contracted by the Geiser map~$\gamma _{E(F)}$ are lines.
+\end{lemma}
+
 \begin{proof}
-Consider the Geiser map
+We observe that for any point $P=(A:B:C) \in \p^2 \setminus E(F)$, the homogeneous coordinates
+of the image $\gamma_{E(F)}(P) = \bigl( G_1(P): G_2(P): G_3(P) \bigr)$ are the ones of the unique point in the intersection of the two lines
 %
 \[
- \gamma \colon \p^2 \setminus \Eig{F} \longrightarrow \p^2 =
- \p \bigl( \left\langle G_1, G_2, G_3 \right\rangle^\vee \bigr) \,.
+  Ax + By+ Cz  = 0, \qquad 
+  \partial_x F(P) \, x + \partial_y F(P) \, y+ \partial_z F(P) \, z = 0.
 \]
 %
-By construction, the map $\gamma$ maps a point~$P = (A: B: C)$ to the pencil of cubics passing through~$\Eig{F}$ and~$P$.
-Whenever we have an aligned triple of eigenpoints and we pick $P \in \p^2$ that is aligned with them, then the pencil of cubics is given by the line together with the pencil of conics passing through the remaining four eigenpoints.
-This means that if we have an aligned triple of eigenpoints, then any point on such a line is mapped by $\gamma$ to the same element.
-Hence $\gamma$ contracts the line passing through the three aligned eigenpoints.
-Another description of~$\gamma$ is given by $P \mapsto (G_1(P): G_2(P): G_3(P))$.
-This can hence be written as $P \mapsto P \wedge \nabla(F)(P)$.
-The image of~$P$ is then the intersection point of the two lines:
+So for any $Q = (a:b:c) \in \p^2$, the fiber $\gamma_{E(F)}^{-1}(Q)$ consists of the points $P \in \p^2$ such that
+%
+\begin{equation}
+\label{eq:polars}
+Aa + Bb+ Cc  =0, \quad
+\partial_x F(P) \, a + \partial_y F(P) \, b + \partial_z F(P) \, c = 0,
+\end{equation}
+%
+which proves that $\gamma_Z$ is surjective and that \eqref{eq:fibers} holds.
+   
+To prove that there are no other contracted curves than lines,
+set $Z=E(F)$ and consider the blow-up of the plane $\p^2$ along $Z$. We get a generically finite morphism
 %
 \[
- \left\{
- \begin{array}{l}
-  Ax - By + Cz  = 0\\
-  x \, \partial_x F(P) + y \, \partial_y F(P) + z \, \partial_z F(P) = 0
+  \widetilde \gamma_Z \colon \Bl_Z \p^2 \to \p^2.
+\]
+%
+Observe that the fibers of~$\widetilde{\gamma_Z}$ are generically contained in the divisor~$W$ with bihomogenous equation $x_0 y_0 + x_1 y_1 + x_2 y_2=0$.
+Since both~$\Bl_Z \p^2$ and~$W$ are irreducible, and since $\widetilde{\gamma_Z}$ is the restriction of the second projection $p_2 \colon \p^2 \times \p^2 \rightarrow \p^2$, it follows that $S\subseteq W$;
+in particular, every fiber of~$\widetilde{\gamma_Z}$ is contained in a line and by construction the same holds for every fiber of~$\gamma_Z$. 
+As a consequence, the map $\gamma_Z$ contracts only lines.
+\end{proof}
+
+\begin{prop}
+\label{prop:allineati_contrae} 
+Let $E(F)$ be zero dimensional.
+If $E(F)$ contains an aligned triple of points on a line $L$, then the Geiser map~$\gamma_{E(F)}$ contracts the line~$L$.
+\end{prop}
+
+\begin{proof}
+Consider the isomorphism  $\varphi \colon \p (I_Z(3)) \stackrel{\cong}{\longrightarrow} \p (I_Z(3))^\vee$ associating to each point~$(a:b:c)$ the line $ax + by + cz = 0$.
+For any $P \in \p^2 \setminus E(F)$, the point~$\varphi(\gamma_{E(F)} (P))$ corresponds to the line~$L_P$
+%
+\[
+  G_1 (P) \, x + G_2(P) \, y + G_3(P) \, z = 0,
+\]
+%
+which in turn determines the following
+pencil of cubics $L_P$ in the linear system $\p (I_Z(3))$:
+%
+\[
+  s \cdot \bigl( G_1(P) \, G_2 - G_2(P) \, G_1 \bigr) + t \cdot \bigl( G_1(P) \, G_3 - G_3(P) \, G_1 \bigr),
+\]
+%
+where $(s: t) \in \p^1$, assuming that $G_1(P) \neq 0$ (the other cases are similar).
+It is clear that the base locus of the pencil~$L_P$ contains the eight points of~$E(F) \cup \{P\}$.  
+The composed map $\hat \gamma _{E(F)} \colon \p^2 \dasharrow \p (I_Z(3))^\vee$
+associates with each point $P \in \p^2 \setminus E(F)$ the pencil of cubics through $E(F) \cup P$.
+ 
+If $E(G)$ contains a triple of points on a line~$L$, for any $P \in L \setminus E(F)$
+such a pencil of cubics has $L$ as a fixed component and the other component varies in a pencil of conics through the remaining $4$ points, so $\gamma_{E(F)}$ is constant on $L$.
+\end{proof}
+
+%We know that $G_1, G_2, G_3$ admit the syzygy $z \, G_1 - y \, G_2 + x \, G_3 = 0$.
+%Then, due to the exactness of the Koszul complex of the regular sequence $(x,y,z)$ (see, for instance, \cite[Theorem 7.3.13]{Dolgachev}),
+%we know that $G_1, G_2, G_3$ are the $2\times2$ minors of a matrix of the form
+%%
+%\[
+% \left(
+% \begin{array}{ccc}
+%  x & y & z \\
+%  H_1 & H_2 & H_3
+% \end{array}
+% \right)
+%\]
+%%
+%where $H_1, H_2, H_3$ are quadratic ternary forms. 
+
+%Consider now the map
+%%
+%\[
+%  \bar{\gamma} \colon \p^2 \setminus E(f) \rightarrow \p^2, \quad P \mapsto (H_1(P): H_2(P): H_3(P)).
+%\]
+%%
+%This map is the composition of~$\gamma_{E(f)}$ with a linear isomorphism.
+%In particular, the map $\bar{\gamma}$ contracts both the lines $P_1 +P_2$ and $P_1 +P_4$.
+
+We now turn back to our situation, when we have five points $P_1, \dots, P_5$ forming a $V$-configuration and satisfyling $\delta_2(P_1, \dots, P_5)=0$.
+
+\begin{prop}
+ Let $F$ be the unique cubic polynomial having $P_1, \dots, P_5 \in E(F)$, and assume that $\dim E(F) =0$.
+Then the cubic curve $A_1 G_3 - B_1 G_2 + C1 G_1=0$ contains the lines $P_1 +P_2$ and $P_1 +P_4$.
+\end{prop}
+
+\begin{proof}
+The equation of the line $P_1 +P_2$ can be expressed in the following way
+%
+\begin{equation}
+\label{eq:lineP1P2}
+  \left\langle P_1 \wedge P_2, (x,y,z) \right\rangle = 0;
+\end{equation}
+%
+since it is contracted by $\bar{\gamma}$, and by the description of the fibers given in \eqref{eq:fibers}, we have that such a line is contained in the conic of equation
+%
+\[
+  \left\langle P_1 \wedge P_2, (G_1,G_2,G_3) \right\rangle = 0.
+\]
+%
+As a consequence, for any point $(\bar x: \bar y: \bar z)$ of the line \eqref{eq:lineP1P2}, the following equations are satisfied:
+%
+\[
+\left\{
+\begin{array}{l}
+  \left\langle P_1 \wedge P_2, P_1 \right\rangle = 0\\[2pt]
+  \bigl\langle P_1 \wedge P_2, (\bar x: \bar y: \bar z) \bigr\rangle = 0\\[2pt]
+  \bigl\langle P_1 \wedge P_2, \bigl( G_1(\bar x, \bar y , \bar z), G_2(\bar x, \bar y , \bar z), G_3(\bar x, \bar y , \bar z) \bigr) \bigr\rangle = 0
+\end{array}
+\right.
+\]
+%
+It follows that the linear system in the variables $X,Y,Z$
+%
+\[
+\left\{
+\begin{array}{l}
+  \bigl\langle  P_1, (X,Y,Z) \bigr\rangle = 0\\[2pt]
+  \bigl\langle (\bar x: \bar y: \bar z), (X,Y,Z) \bigr\rangle = 0\\[2pt]
+  \bigl\langle \bigl( G_1(\bar x, \bar y, \bar z), G_2(\bar x, \bar y, \bar z), G_3(\bar x, \bar y, \bar z) \bigr),
+  (X,Y,Z) \bigr\rangle = 0
+\end{array}
+\right.
+\]
+%
+admits as a non-zero solution $P_1 \wedge P_2$,
+hence the determinant of the coefficient matrix
+%
+\[
+ \left(
+ \begin{array}{ccc}
+  A_1 & B_1 & C_1 \\
+  \bar x & \bar y & \bar z \\
+  G_1 & G_2 & G_3
  \end{array}
- \right.
+ \right)
 \]
 %
-Since we know that there is a whole line that is contracted to the same point~$Q$,
-we know that the first equation is a factor of the second.
-Therefore we have $\left\langle Q, (x,y,z) \right\rangle = 0$, so $\left\langle Q, \nabla f (x,y,z) \right\rangle = 0$.
-It then follows that $\left\langle P, (x, y, z) \wedge \nabla f(x,y,z) \right\rangle = 0$, which implies that $A G_1 - B G_2 + C G_3$
-evaluates to zero for each $(x,y,z)$ such that $\left\langle Q, (x,y,z) \right\rangle= 0$, namely for each point in the line $P_1 P_2$.
-This means that the line $P_1 P_2$ is contained in $E$.
-By repeating this argument in the case $P_1 P_4$ we see that $E$ splits into three distinct lines.
+is zero. This is equivalent to saying that $A_1 G_3 - B_1 G_2 +C_1 G_1$ vanishes in all the points $(\bar x, \bar y, \bar z)$ of the line $P_1 +P_2$.
+
+The argument concerning the line $P_1 + P_4$  can be repeated by replacing~$P_2$ with~$P_4$.
 \end{proof}
 }
-
-\blue{
-\textbf{Controllare se la retta $P_6 + P_7$ sia contratta dalla mappa di Geiser}
-}
+%\begin{proof}
+%Consider the Geiser map
+%%
+%\[
+% \gamma \colon \p^2 \setminus \Eig{F} \longrightarrow \p^2 =
+% \p \bigl( \left\langle G_1, G_2, G_3 \right\rangle^\vee \bigr) \,.
+%\]
+%%
+%By construction, the map $\gamma$ maps a point~$P = (A: B: C)$ to the pencil of cubics passing through~$\Eig{F}$ and~$P$.
+%Whenever we have an aligned triple of eigenpoints and we pick $P \in \p^2$ that is aligned with them, then the pencil of cubics is given by the line together with the pencil of conics passing through the remaining four eigenpoints.
+%This means that if we have an aligned triple of eigenpoints, then any point on such a line is mapped by $\gamma$ to the same element.
+%Hence $\gamma$ contracts the line passing through the three aligned eigenpoints.
+%Another description of~$\gamma$ is given by $P \mapsto (G_1(P): G_2(P): G_3(P))$.
+%This can hence be written as $P \mapsto P \wedge \nabla(F)(P)$.
+%The image of~$P$ is then the intersection point of the two lines:
+%%
+%\[
+% \left\{
+% \begin{array}{l}
+%  Ax - By + Cz  = 0\\
+%  x \, \partial_x F(P) + y \, \partial_y F(P) + z \, \partial_z F(P) = 0
+% \end{array}
+% \right.
+%\]
+%%
+%Since we know that there is a whole line that is contracted to the same point~$Q$,
+%we know that the first equation is a factor of the second.
+%Therefore we have $\left\langle Q, (x,y,z) \right\rangle = 0$, so $\left\langle Q, \nabla f (x,y,z) \right\rangle = 0$.
+%It then follows that $\left\langle P, (x, y, z) \wedge \nabla f(x,y,z) \right\rangle = 0$, which implies that $A G_1 - B G_2 + C G_3$
+%evaluates to zero for each $(x,y,z)$ such that $\left\langle Q, (x,y,z) \right\rangle= 0$, namely for each point in the line $P_1 P_2$.
+%This means that the line $P_1 P_2$ is contained in $E$.
+%By repeating this argument in the case $P_1 P_4$ we see that $E$ splits into three distinct lines.
+%\end{proof}
+%}
+%
+%\blue{
+%\textbf{Controllare se la retta $P_6 + P_7$ sia contratta dalla mappa di Geiser}
+%}
 
 According to \Cref{proposition:G_split}, the polynomial
 $C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$,
