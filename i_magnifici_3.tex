@@ -1370,17 +1370,6 @@ The argument concerning the line $P_1 + P_4$  can be repeated by replacing~$P_2$
 %\textbf{Controllare se la retta $P_6 + P_7$ sia contratta dalla mappa di Geiser}
 %}
 
-According to \Cref{proposition:G_split}, the polynomial
-$C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$,
-linear in $x, y, z$, which
-correspond to the line $P_1+P_2$, the line $P_1+P_4$ and the line $P_6+P_7$.
-The factorization of $F$ gives that the factor $r_3$ is:
-\[
-r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
--2 yv_1A_1B_1^4A_2^2B_2A_4^3
-\]
-and is composed by almost $2000$ monomials. The relevant fact is that when we
-evaluate $r_3$ on the coordinates of $P_1$, we get zero. Hence we have:
 \begin{prop}
 \label{proposition:terzo_allineamento}
 If we have a $V$-configuration of five points $P_1, \dots, P_5$
@@ -1390,6 +1379,21 @@ then the unique cubic determined by the condition that $P_1, \dots, P_5$
 are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
 aligned with $P_1$.
 \end{prop}
+\begin{proof}
+Let $F$ be the unique form be such that $P_1, \dotsc, P_5 \in \Eig{F}$.
+According to \Cref{proposition:G_split}, the polynomial
+$C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$,
+linear in $x, y, z$, which
+correspond to the line $P_1+P_2$, the line $P_1+P_4$, and the line $P_6+P_7$.
+The factorization of $F$ gives that the factor $r_3$ is:
+\[
+r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
+-2 yv_1A_1B_1^4A_2^2B_2A_4^3
+\]
+and is composed by almost $2000$ monomials. When we
+evaluate $r_3$ on the coordinates of $P_1$, we get zero.
+\end{proof}
+
 
 \textbf{(@@@ Forse qui va la parte sulle cubiche singolari? @@@)}
 
