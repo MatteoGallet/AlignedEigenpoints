@@ -1394,16 +1394,35 @@ and is composed by almost $2000$ monomials. When we
 evaluate $r_3$ on the coordinates of $P_1$, we get zero.
 \end{proof}
 
+\section{$V$-configurations of rank~$8$}
+\label{rank_8}
+file \verb+contiCasoDegenere2.sage+ and file
+\verb+conf_sigma12_sigma14.sage+\\
+\verb+molti altri file via +\\
+\verb+via indicati nei commenti di latex+
 
-\textbf{(@@@ Forse qui va la parte sulle cubiche singolari? @@@)}
+In this Section we study the possible configurations of
+eigenpoints for cubics with a $V$-configuration
+satisfying the condition $\rk \Phi(P_1, \dots, P_5) = 8$. According
+to~\Cref{theorem:rank_V}, we have to distinguish the two cases
+\begin{eqnarray}
+\delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
+\overline{\delta}_1(P_1, P_4, P_5) = 0,
+\label{rk8_1}\\
+\sigma(P_1, P_2) = 0 \mbox{ and } \sigma(P_1, P_4) = 0
+\label{rk8_2}
+\end{eqnarray}
+(hence condition~(\ref{rk8_2}) means that \emph{the two lines of
+the $V$-configuration are tangent to $\iso$ in $P_2$ and $P_4$}).
 
-Finally, we want to see when, in a $V$-configuration, we have that the point
+To start, we characterize when, for a $V$-configuration $P_1, \dotsc, P_5$, the point
 $P_1$ is singular.
+(\textbf{CONTROLLARE SE STIAMO USANDO L'IPOTESI DEL RANGO 9})
 
 \begin{prop}
 \label{proposition:P1_sing}
-If $P_1, \dots, P_5$ is a $V$ configuration and if $C$ is a cubic which
-has among the eigenpoints $P_1, \dots, P_5$, then $P_1$ is singular if
+If $P_1, \dots, P_5$ is a $V$-configuration and if $\mathcal{C}$ is a cubic which
+has $P_1, \dots, P_5$ among its eigenpoints, then $P_1$ is singular for~$\mathcal{C}$ if
 and only if one of the following conditions is satisfied:
 \begin{enumerate}
 \item $\delta_1(P_1, P_2, P_4) = 0$ and $\overline{\delta}_1(P_1, P_2, P_3) = 0$;
@@ -1426,28 +1445,6 @@ having $P_1, \dots, P_5$ eigenpoints and $P_1$ singular) gives no solution
 for the case $P_1=(1: \iii: 0)$ and the three above conditions for the
 case in which $P = (1: 0: 0)$.
 \end{proof}
-
-\section{$V$-configurations of rank~$8$}
-\label{rank_8}
-file \verb+contiCasoDegenere2.sage+ and file
-\verb+conf_sigma12_sigma14.sage+\\
-\verb+molti altri file via +\\
-\verb+via indicati nei commenti di latex+
-
-In this Section we study the possible configurations of
-eigenpoints for cubics with a $V$-configuration
-satisfying the condition $\rk \Phi(P_1, \dots, P_5) = 8$. According
-to~\Cref{theorem:rank_V}, we have to distinguish the two cases
-\begin{eqnarray}
-\delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
-\overline{\delta}_1(P_1, P_4, P_5) = 0,
-\label{rk8_1}\\
-\sigma(P_1, P_2) = 0 \mbox{ and } \sigma(P_1, P_4) = 0
-\label{rk8_2}
-\end{eqnarray}
-(hence condition~(\ref{rk8_2}) means that \emph{the two lines of
-the $V$-configuration are tangent to $\iso$ in $P_2$ and $P_4$}).
-
 
 Let us start with the first case.
 
@@ -1635,7 +1632,7 @@ II parte della prop.
 @@ ci sono varie ortogonalita' tra i punti che si trovano nel file
 casoDegenere2.pdf e che qui non sono riportate.
 
-\subsection{The locus of cubic ternary forms with an aligned triple of eigenpoints}
+\section{The locus of cubic ternary forms with an aligned triple of eigenpoints}
 \label{locus_one_alignment}
 
 \begin{definition}
