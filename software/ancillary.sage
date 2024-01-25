@@ -584,7 +584,7 @@ class SymbolicCheck:
         return m1 == -54*self.delta1(P1, P2, P4)*self.delta2(P1, P2, P3, P4, P5)
 
     def check_four_aligned(self):
-        '''Proof that in Proposition {proposition:four_aligned} the rank of the matrix \Phi(P_1, P_2, P_3, Q) is at most 7.'''
+        '''Proof that in Proposition {proposition:four_aligned} the rank of the matrix \\Phi(P_1, P_2, P_3, Q) is at most 7.'''
 
         var_xyz = ["x", "y", "z", "u1", "u2", "v1", "v2", "w1", "w2"]
         var_a = ["a"+str(i) for i in range(10)]
