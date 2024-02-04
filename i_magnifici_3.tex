@@ -763,7 +763,7 @@ In the following, we denote by $P + Q$ the line through two distinct points $P$ 
 
 \begin{rmk}\label{rmk: significato di delta1}
  Geometrically, the condition $\delta_1(P_1, P_2, P_4) = 0$ corresponds to the orthogonality of the vector planes corresponding to the lines $P_1 + P_2$ and $P_1 + P_4$,
- \blue{if the three points are not collinear, while 
+ \blue{if the three points are not collinear, while
  $\delta_1(P_1, P_2, P_4) = 0$ implies that $\sigma (P_1,P_2)=0$ if they are collinear.}
 \end{rmk}
 
@@ -807,10 +807,10 @@ With such a notation, the expressions $\delta_1$ and $\delta_2$ become
 $$
 \delta_1(P_1, P_2, P_4) = s_{11} s_{24}-s_{12}s_{14},
 \quad \delta_2(P_1, P_2, P_3, P_4, P_5) =s_{12}s_{13}s_{45}-s_{14}s_{15} s_{23}.
-$$   
+$$
  \end{notation}
  }
- 
+
 \begin{rmk}
 \label{rmk:characteristics_d1_d2}
 \textbf{Verifiche contenute nel file} \verb+formulae.sage+ \\
@@ -824,7 +824,7 @@ It is possible to see that
 \overline{\delta}_1(P_1, P_2, P_3) = s_{11} s_{24}+s_{12}s_{14}=0 &\mbox{iff}&
 P_1 \mbox{ is on~$\iso$ and } P_1 + P_2 + P_3 \mbox{ is tangent to~$\iso$ in $P_1$, or} \\
 && P_3 = (s_{12}^2+s_{11}s_{22})P_1-2s_{11}s_{12}P_2 \mbox{ or} \nonumber \\
-&& P_2 = (s_{13}^2+s_{11}s_{33})P_1-2s_{11}s_{13}P_3 \nonumber 
+&& P_2 = (s_{13}^2+s_{11}s_{33})P_1-2s_{11}s_{13}P_3 \nonumber
 \end{eqnarray}
 
 Moreover, if $\sigma (P_1,P_2)\neq 0$, then
@@ -832,7 +832,7 @@ Moreover, if $\sigma (P_1,P_2)\neq 0$, then
 \label{rmk_delta_3}
 \delta_2(P_1, P_2, P_3, P_4, P_5) =0 & \mbox{iff}
 &P_3 = (s_{14}s_{15}s_{22}-s_{12}^2s_{45})P_1 \nonumber \\
-&& +(s_{11}s_{12}s_{45}-s_{12}s_{14}s_{15})P_2,\mbox{ or}  
+&& +(s_{11}s_{12}s_{45}-s_{12}s_{14}s_{15})P_2,\mbox{ or}
 \end{eqnarray}
 and, similarly, if $\sigma (P_1,P_4) \neq 0$, we have
 \begin{eqnarray}
@@ -1691,9 +1691,9 @@ at least one aligned triple of eigenpoints. We first recall a result by Abo conc
 
 \begin{definition}
     An order $d$ tensor $T \in (\C^n)^{\otimes d}$ is called regular if $\Eig{T}\subset \p^{n-1}$ is reduced of dimension $0$.
-    
 
-We set 
+
+We set
 $$
 \Delta_{n,d}:=\{[T]\in \p ((\C^n)^{\otimes d}) \ | \ \Eig{T} \textrm{\ is \ non \ regular} \}\subset \p ((\C^n)^{\otimes d}) ;
 $$
@@ -1709,7 +1709,7 @@ it is called the {\it eigendiscriminant} (see \cite[Definition 5.5]{Abo}.
     See \cite[Corollary 5.8]{Abo}.
 \end{proof}
 
-When restricting to symmetric tensors the statement is still valid, as they form a linear subspace of 
+When restricting to symmetric tensors the statement is still valid, as they form a linear subspace of
 $\p ((\C^n)^{\otimes d})$ and the generic symmetric tensor has a regular eigenscheme.
 
 In the particular case $n=d=3$, we have that
@@ -1718,13 +1718,13 @@ $$
 \deg \Delta _{3,3}=24.
 $$
 \begin{definition}
-Let 
+Let
 $\sU \subset \p^9$ be the following locus:
 $$
 \sU:= \{[F]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{F} \ \textrm {contains \ a \ unique \ aligned \ triple}\},
 $$
 and define $\mathcal{L} \subseteq \p^9$ as the closure of $\sU$:
- $$ 
+ $$
  \sL := \overline \sU \subset \p^9.
  $$
 \end{definition}
@@ -1736,36 +1736,36 @@ The variety~$\mathcal{L}$ is an irreducible hypersurface.
 \begin{proof}
 Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Then we have a surjective morphism
 $$
-\alpha : \mathcal{U} \to \mathcal {AL}, 
+\alpha : \mathcal{U} \to \mathcal {AL},
 $$
-assigning to each $[F] \in \mathcal{U}$ the unique triple of eigenpoints. Over the irreducible open subset 
+assigning to each $[F] \in \mathcal{U}$ the unique triple of eigenpoints. Over the irreducible open subset
 $$
 \mathcal W := \mathcal {AL}
 \setminus \{(P_1,P_2,P_3)\in\mathcal {AL}
 \ | \ \sigma(P_1,P_2)=0\}
-$$ 
-of aligned triples not lying 
-on a tangent line to the isotropic conic $\iso$, the fibers of $\alpha$ are projective linear systems of dimension $3$ by 
+$$
+of aligned triples not lying
+on a tangent line to the isotropic conic $\iso$, the fibers of $\alpha$ are projective linear systems of dimension $3$ by
 Proposition \ref{manca il riferimento su ancillary    non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
 $$
 \dim \alpha ^{-1} (\mathcal W)
 \subset \sU=8.
 $$
-so $\sL$ is a y hypersurface. Next we claim that 
+so $\sL$ is a y hypersurface. Next we claim that
 $$
 \sU \subseteq \overline {\alpha^{-1} (\mathcal W)},
 $$
 that is, any $[F] \in \sU$ such that $\alpha (F)$
 satisfies $\sigma(P_1,P_2)=0$
-is a limit of $[F_t]\in \alpha^{-1} (\mathcal W)$. 
+is a limit of $[F_t]\in \alpha^{-1} (\mathcal W)$.
 
-Without loss of generality we can assume that the tangent line $l$ to $\iso$ is given by $\iii x-y=0$ and $P_1=(1:\iii:0)$. We consider the pencil of lines $\lambda x + \mu y$ with base point $(0:0:1)$, and 
-for any pair $P_2= (A_2: \iii A_2: C_2), P_3 
+Without loss of generality we can assume that the tangent line $l$ to $\iso$ is given by $\iii x-y=0$ and $P_1=(1:\iii:0)$. We consider the pencil of lines $\lambda x + \mu y$ with base point $(0:0:1)$, and
+for any pair $P_2= (A_2: \iii A_2: C_2), P_3
 =(A_3: \iii A_3 :C_3)\in l$, $P_i \neq P_1$, we set
 $$
-P_1^{\lambda, \mu}=(-\mu : \lambda :0), \quad 
-P_2^{\lambda, \mu}=(-\mu A_2: \lambda A_2:C_2), \quad 
-P_1^{\lambda, \mu}=(-\mu A_3: \lambda A_3:C_3).  
+P_1^{\lambda, \mu}=(-\mu : \lambda :0), \quad
+P_2^{\lambda, \mu}=(-\mu A_2: \lambda A_2:C_2), \quad
+P_1^{\lambda, \mu}=(-\mu A_3: \lambda A_3:C_3).
 $$
 By adding other three linear conditions, we can construct a one-dimensional family of cubics with general
 member in $\sV$ and the special one satisfying $\sigma (P_1,P_2)=0$
@@ -1781,24 +1781,24 @@ The class of any ternary form $[F]$ with two or more aligned triples of eigenpoi
 $
 [F] \in \sL.
 $
-    
+
 \end{prop}
 
 \begin{proof}
 Let $\sV \subset \p^9$ denote the locus of classes $[F]$ of cubic forms adimitting a $V$-configuration among its eigenpoints.
 
- For simplicity we shall only consider the general cubic form 
+ For simplicity we shall only consider the general cubic form
  $[F] \in \sV \setminus \Delta_{3,3}$, that is the ones corresponding to a rank $9$ matrix $\Phi(P_1, \dots, P_5)$; the cases with more alignments can be treated similarly.
 
- Observe that $\sV \setminus \Delta_{3,3}$ is open and nonempty in $\sV$ by 
+ Observe that $\sV \setminus \Delta_{3,3}$ is open and nonempty in $\sV$ by
  Remark \ref{rmk_delta_3}.
 
 We shall consider separately the cases $\delta_1=0$ and $\delta_2=0$.
 
 If $\delta_1=0$, ...
 
-If $\delta_2(P_1, \dots , P_5)=0$, if $F$ is general enough, we have 
-$\rk \Phi(P_1, \dots, P_5)=9$ and $\rk \Phi(P_1, \dots, P_4)=8$. 
+If $\delta_2(P_1, \dots , P_5)=0$, if $F$ is general enough, we have
+$\rk \Phi(P_1, \dots, P_5)=9$ and $\rk \Phi(P_1, \dots, P_4)=8$.
 We can also assume that $\Eig{F}$ has no other collinearities.
 The pencil of cubics with the assigned eigenpoints $P_1, \dots, P_4$
 has a general member in $\sU$ since $[F] \not\in \Delta_{3,3}$ and $P_1,P_2,P_3$ are aligned. This proves the statement.
@@ -1809,8 +1809,8 @@ has a general member in $\sU$ since $[F] \not\in \Delta_{3,3}$ and $P_1,P_2,P_3$
 \end{prop}
 \begin{proof}
 In the symmetric product $(\p^2)^{(5)}$, the locus $\sF$ of
-unordered $5$-tuples of distinct points containing $4$ collinear points is closed; indeed, a $5$-uple $(P_1,\dots,P_5) \in \sF$ if and only if the points don't impose independent conditions to conics, that is if and only if the $5 \times 6$ matrix 
-associated with the 
+unordered $5$-tuples of distinct points containing $4$ collinear points is closed; indeed, a $5$-uple $(P_1,\dots,P_5) \in \sF$ if and only if the points don't impose independent conditions to conics, that is if and only if the $5 \times 6$ matrix
+associated with the
 conditions of passing through $(P_1,\dots,P_5)$ has rank less or equal to $4$.
 
 We then consider the open subset $\mathcal {Y}:=(\p^2)^{(5)} \setminus \sF$. For any
@@ -1823,7 +1823,7 @@ Finally, a $V$-configuration is contained in an eigenscheme of some polynomial i
 such a locus has dimension $7$ (@@@ giustificare).
 
 By setting $\Delta_1 :=\{\delta_1 =0\}$
-and $\Delta_2:=\{\delta_2=0\}$, and by considering in $\sV$ the locus 
+and $\Delta_2:=\{\delta_2=0\}$, and by considering in $\sV$ the locus
 $\mathcal{V}'$ of classes $[F]$ with $\Eig{F}$ containing exactly one $V$-configuration,
 we get a morphism
 $$
@@ -1836,10 +1836,10 @@ Senno' possiamo provare in $(\p^2)^5$ non simmetrizzato.
 
 \end{proof}
  As a consequence we have the following result.
-\begin{cor}
+\begin{corollary}
 \label{lemma:pencil_one_aligned}
  If $F,G \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then any cubic in the pencil $\lambda F + \mu G$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
-\end{cor}
+\end{corollary}
 
 
 
@@ -1908,7 +1908,7 @@ If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to $F$, 
 $\langle M_1,M_2,M_3,N_1,N_2,N_3
 \rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
 
-It follows that if ${\mathcal N}$ is general enough, it is a $3$-dimensional rational normal scroll in 
+It follows that if ${\mathcal N}$ is general enough, it is a $3$-dimensional rational normal scroll in
 $$
 {\mathcal N}\subset \p(\langle M_1,M_2,M_3,N_1,N_2,N_3
 \rangle) \cong \p^5,
