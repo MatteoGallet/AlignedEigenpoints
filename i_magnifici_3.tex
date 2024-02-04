@@ -68,6 +68,8 @@
 \newcommand{\sL}{\mathcal{L}}
 \newcommand{\sU}{\mathcal{U}}
 \newcommand{\sV}{\mathcal{V}}
+\newcommand{\sF}{\mathcal{F}}
+\newcommand{\sY}{\mathcal{Y}}
 \newcommand{\de}{\partial}
 \newcommand{\codim}{\mathrm{codim}}
 
@@ -124,7 +126,7 @@ for some constant $\lambda$.
 
 
 Since %the property of being an eigenvector
-property \eqref{eq: definizione di autovettore} is preserved under scalar multiplication, it is natural to consider the rational map $T:\p^n\dashrightarrow\p^n$ defined by $T(P)=(g_0(P):\ldots:g_n(P))$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case we define the eigenpoints of a homogeneous polynomial $f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f =(\de_0f,\dots,\de_n f)$.
+property \eqref{eq: definizione di autovettore} is preserved under scalar multiplication, it is natural to consider the rational map $T:\p^n\dashrightarrow\p^n$ defined by $T(P)=(g_0(P):\ldots:g_n(P))$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case we define the eigenpoints of a homogeneous polynomial $F$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f =(\de_0f,\dots,\de_n f)$.
 
 Moreover, condition \eqref{eq: definizione di autovettore} can be rephrased in the condition that
 \begin{equation}
@@ -169,7 +171,7 @@ The goal of this paper is to classify all the situations when we have one or mor
 \section{Aligned eigenpoints of ternary cubic form}
 \label{aligned}
 
-We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{f}$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
+We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{F}$ of~$F$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
 %
 \begin{equation}
 \label{eq:def_matrix}
@@ -303,7 +305,7 @@ The orbit $\mathcal{O}_1$ is the set of points of the so-called \emph{isotropic 
 The following result is well known; we recall it for the sake of completeness.
 
 \begin{prop}
- Let $M \in \mathrm{GL}_3(\C)$ and let $f$ be a ternary cubic.
+ Let $M \in \mathrm{GL}_3(\C)$ and let $F$ be a ternary cubic.
  Let $P = (A: B: C)$ be a point in~$\p^2$.
  Then we have
  %
@@ -316,7 +318,7 @@ The following result is well known; we recall it for the sake of completeness.
 In the present proof,
 for convenience, we shall consider the transpose of the defining matrix of an eigenscheme.
 
-A point $P = (A: B: C)$ is an eigenpoint for~$f$ if and only if
+A point $P = (A: B: C)$ is an eigenpoint for~$F$ if and only if
 \begin{equation*}
   \mathrm{rk}  \begin{pmatrix}
     A & \de_x f(P) \\
@@ -392,8 +394,8 @@ a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ter
   \in \bigl( \C[x,y,z]_3 \bigr)^{\oplus 10} \,.
   \label{vector_basis}
  \end{eqnarray}
- For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$f$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
- For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements~$[f]$ of~$\p^9$ that $P$ is an eigenpoint of the ternary cubic form~$f$ can be expressed in the form
+ For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$F$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
+ For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements~$[f]$ of~$\p^9$ that $P$ is an eigenpoint of the ternary cubic form~$F$ can be expressed in the form
  %
  \[
   \Phi(P) \cdot w_f
@@ -1800,24 +1802,48 @@ $\rk \Phi(P_1, \dots, P_5)=9$ and $\rk \Phi(P_1, \dots, P_4)=8$.
 We can also assume that $\Eig{F}$ has no other collinearities.
 The pencil of cubics with the assigned eigenpoints $P_1, \dots, P_4$
 has a general member in $\sU$ since $[F] \not\in \Delta_{3,3}$ and $P_1,P_2,P_3$ are aligned. This proves the statement.
-
-
-
-    
 \end{proof}
-\begin{prop}
-\label{lemma:pencil_one_aligned}
- If $F,G \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then any cubic in the pencil $\lambda F + \mu G$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
-\end{prop}
-
-This is a corollary of the following result.
 
 \begin{prop}
     The locus $\sV$ of cubics that have at least two aligned triples of eigenpoints has codimension~$2$ in~$\p^9$.
 \end{prop}
 \begin{proof}
- The cubics with exactly one $V$-configuration depend of the chice of $7$ parameters. To be completed.
+In the symmetric product $(\p^2)^{(5)}$, the locus $\sF$ of
+unordered $5$-tuples of distinct points containing $4$ collinear points is closed; indeed, a $5$-uple $(P_1,\dots,P_5) \in \sF$ if and only if the points don't impose independent conditions to conics, that is if and only if the $5 \times 6$ matrix 
+associated with the 
+conditions of passing through $(P_1,\dots,P_5)$ has rank less or equal to $4$.
+
+We then consider the open subset $\mathcal {Y}:=(\p^2)^{(5)} \setminus \sF$. For any
+$(P_1,\dots,P_5) \in \sY$, there is a unique conic $C(P_1,\dots,P_5)$ containing such points; we denote by $M(P_1,\dots,P_5)$ the associated symmetric matrix. The locus $\mathfrak{V}$ of $V$-configurations in $\sY$ has dimension $8$ and can be characterized as follows:
+$$
+\mathfrak{V}= \{(P_1,\dots,P_5) \in \sY \ | \ \det (M(P_1,\dots,P_5))=0\ \textrm {and}
+\ M(P_1,\dots,P_5) \cdot P_1 =0\}
+$$
+Finally, a $V$-configuration is contained in an eigenscheme of some polynomial if and only if $\delta_1 (P_i,P_j,P_k) \cdot \delta_2 (P_1,\dots, P_5)=0$ (@@@ ma sono ben definite anche sul prodotto simmetrico?). Observe that
+such a locus has dimension $7$ (@@@ giustificare).
+
+By setting $\Delta_1 :=\{\delta_1 =0\}$
+and $\Delta_2:=\{\delta_2=0\}$, and by considering in $\sV$ the locus 
+$\mathcal{V}'$ of classes $[F]$ with $\Eig{F}$ containing exactly one $V$-configuration,
+we get a morphism
+$$
+\beta : \mathcal{V}' \to (\Delta_1 \cup \Delta_2) \cap \mathfrak{V} \cap \sY.
+$$
+By the results of Section 6, the locus with $\rk \Phi(P_1, \dots,P_5)\le 8$ is closed, so $\beta$ is generically injective and $\dim \mathcal{V}'=\dim \overline {\mathcal{V}'}=7$.
+
+@@@ altra possibilita': imporre direttamente che P1 P2 P3 sono allineati e P1 P4 P5 anche; ma non mi e' chiaro se le equazioni sono ben definite nel prodotto simmetrico, perche' non sono simmetriche.
+Senno' possiamo provare in $(\p^2)^5$ non simmetrizzato.
+
 \end{proof}
+ As a consequence we have the following result.
+\begin{cor}
+\label{lemma:pencil_one_aligned}
+ If $F,G \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then any cubic in the pencil $\lambda F + \mu G$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
+\end{cor}
+
+
+
+
 
 %\begin{definition}
 % We define $\Delta \subset \mathcal{L}$ to be the closure of the locus of cubics with at least two aligned triples of eigenpoints.
@@ -1828,14 +1854,14 @@ This is a corollary of the following result.
 %\end{prop}
 
 In what follows, we shall use the following notation.
-Denote by $M_1$, $M_2$ and $M_3$ the three minors of \Cref{eq:def_matrix} relative to a cubic form $f$ (bisognera' chiamarli $G_i$)
-The net of cubics, which base locus is the eigenscheme~$\Eig{f}$, will be denoted by $\Lambda_f = \langle M_1, M_2, M_3 \rangle$.
+Denote by $M_1$, $M_2$ and $M_3$ the three minors of \Cref{eq:def_matrix} relative to a cubic form $F$ (@@@ bisognera' chiamarli $G_i$ ?)
+The net of cubics, which base locus is the eigenscheme~$\Eig{F}$, will be denoted by $\Lambda_f = \langle M_1, M_2, M_3 \rangle$.
 \begin{lemma}
 \label{lemma:scroll}
- If $f$ and $g$ are general cubics, then
+ If $F$ and $G$ are general cubics, then
  %
  \[
-   \mathcal{N} := \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda f + \mu g} \subset \p^9
+   \mathcal{N} := \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda F + \mu G} \subset \p^9
  \]
  %
  is an embedding of a rational projective bundle and has degree~$3$.
@@ -1844,14 +1870,14 @@ The net of cubics, which base locus is the eigenscheme~$\Eig{f}$, will be denote
 Consider the projective bundle given by the family of planes
 %
 \[
-{\mathcal P} := \{ \Lambda_{\lambda f + \mu g} \, : \, (\lambda: \mu)\in \p^1 \} \subset \p^1 \times \p^9
+{\mathcal P} := \{ \Lambda_{\lambda F + \mu G} \, : \, (\lambda: \mu)\in \p^1 \} \subset \p^1 \times \p^9
 \]
 %
 Then $\mathcal{N}$ is the projection of~$\mathcal{P}$ on the second factor.
-However, the map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
-If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to~$f$, and by $N_1$, $N_2$ and $N_3$ the ones relative to~$g$, the vectorial dimension of the linear span $\left\langle M_1, M_2, M_3, N_1, N_2, N_3 \right\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
+However, the map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_F$ and $\Lambda_G$ should have non-empty intersection.
+If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to~$F$, and by $N_1$, $N_2$ and $N_3$ the ones relative to~$G$, the vectorial dimension of the linear span $\left\langle M_1, M_2, M_3, N_1, N_2, N_3 \right\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
 
-It follows that if $f$ and $g$ are general enough, then $\mathcal{N}$ is a $3$-dimensional rational normal scroll in $$
+It follows that if $F$ and $G$ are general enough, then $\mathcal{N}$ is a $3$-dimensional rational normal scroll in $$
 \mathcal{N} \subset \p(\left\langle M_1, M_2, M_3, N_1, N_2, N_3 \right\rangle) \cong \p^5.
 $$
 Being a variety of minimal degree, its degree is $5+1-3 = 3$.
@@ -1865,7 +1891,7 @@ The degree of $\mathcal L$ is equal to
 \end{theorem}
 
 \begin{proof}
-We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics $\Lambda_f = \langle M_1, M_2, M_3 \rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics $\Lambda_f = \langle M_1, M_2, M_3 \rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $F$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
 To determine the degree of $\mathcal L$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
 
@@ -1878,7 +1904,7 @@ given by the union of the nets of cubics of the pencil
 \]
 Observe that we can assume that ${\mathcal N}$ is an embedding of a rational projective bundle; indeed, it can be seen as an immersion of the $\p^2$-bundle over $\p^1$ given by the family the planes ${\mathcal P}=
 \{\Lambda_{\lambda f + \mu g}\ : \ (\lambda:\mu)\in \p^1\} \subset \p^1 \times \p^9$. The map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so it is either an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
-If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to $f$, and by $N_1$, $N_2$ and $N_3$ the ones relative to $g$, the vectorial dimension of the linear span
+If we denote by $M_1$, $M_2$ and $M_3$ the $2 \times 2$ minors relative to $F$, and by $N_1$, $N_2$ and $N_3$ the ones relative to $g$, the vectorial dimension of the linear span
 $\langle M_1,M_2,M_3,N_1,N_2,N_3
 \rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
 
