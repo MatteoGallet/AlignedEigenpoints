@@ -171,13 +171,13 @@ The goal of this paper is to classify all the situations when we have one or mor
 \section{Aligned eigenpoints of ternary cubic form}
 \label{aligned}
 
-We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{F}$ of~$F$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
+We recall that, given a homogeneous form $F \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{F}$ of~$F$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
 %
 \begin{equation}
 \label{eq:def_matrix}
     \begin{pmatrix}
     x & y & z \\
-    \de_x f & \de_y f & \de_z f
+    \de_x F & \de_y F & \de_z F
     \end{pmatrix}.
 \end{equation}
 %
@@ -1941,17 +1941,18 @@ In this section we consider polynomials having a whole line in the eigenscheme. 
 Finally, we shall prove that such polynomials belong all to the locus $\sL \subset \p^9$.
 
 \begin{prop}\label{p2}
-Let $C = V(f) \subset \p^2$ be a cubic curve.
-Assume that $\dim \Eig{f} = 1$ and that the $1$-dimensional component is a line~$L$.
-Then the residual subscheme $Z := \mathrm{Res}_L \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$L$ is zero-dimensional of degree~$3$.
+Let $C = V(F) \subset \p^2$ be a cubic curve.
+Assume that $\dim \Eig{F} = 1$ and that the $1$-dimensional component is a line~$L$.
+Then the residual subscheme $Z := \mathrm{Res}_L \bigl( \Eig{F} \bigr)$ in~$\Eig{F}$ with respect to~$L$ is zero-dimensional of degree~$3$.
 \end{prop}
 \begin{proof}
-Since $G_1$, $G_2$ and $G_3$ have a common linear component~$L$, by writing
+Let $G_1$, $G_2$, and $G_3$ be the order~$2$ minors determining the eigenscheme of~$F$.
+Since $G_1$, $G_2$, and $G_3$ have a common linear component~$L$, by writing
 \[
-G_i=L \ H_i, \quad i=1,2,3
+ G_i = L \, H_i, \quad i=1,2,3
 \]
-we have that the residual subscheme $Z = \mathrm{Res}_L \bigl( \Eig{f} \bigr)$ is a quasi complete intersection
-determined by the polynomials $H_1$, $H_2$ and $H_3$; indeed, we recall that $\mathcal{I}_{Z, \p^2} = \mathcal{I}_{\Eig{f}), \p^2} (-1)$.
+we have that the residual subscheme $Z = \mathrm{Res}_L \bigl( \Eig{F} \bigr)$ is a quasi complete intersection
+determined by the polynomials $H_1$, $H_2$ and $H_3$; indeed, we recall that $\mathcal{I}_{Z, \p^2} = \mathcal{I}_{\Eig{F}), \p^2} (-1)$.
 
 We have an exact sequence
 \[
@@ -1964,7 +1965,7 @@ so $\mathcal{G}$ is a rank two vector bundle.
 Next we observe that the two independent
 syzygies between the generators $G_i$ give rise to the syzygies:
 \[
-x_2\ H_1 - x_1\ H_2 + x_0\ H_3=0, \qquad \partial_2 f\ H_1 - \partial_1 f \ H_2 +\partial_0 f \ H_3=0,
+z\, H_1 - y\, H_2 + x\, H_3 = 0, \qquad \partial_z F\, H_1 - \partial_y F \, H_2 + \partial_x F \ H_3=0 \,,
 \]
 which occur in degrees $3$ and $4$. We claim that the two relations are independent, again,
 otherwise the $G_i$'s would be identically zero. So we apply \cite[Proposition~12]{Ellia2020}, and we have that $\mathcal {G}$ splits. Observe that as $c_1(\mathcal {I}_{Z,\p^2})=0$, we have $c_1(\mathcal {G})=-6$. Moreover, there is no syzygy in degree $2$, since
@@ -1989,26 +1990,24 @@ c_2 (\mathcal{I}_{Z,\p^2} ) = c_2 \bigl( 3\oo_{\p^2}(-2) \bigr) - c_2 (\mathcal{
 \]
 %
 and $h^0 \bigl( \mathcal{I}_{Z,\p^2}(1) \bigr) = 0$.
-
-
 \end{proof}
 
 
 \begin{es}
 Consider
 \[
-f(x_0,x_1,x_2)=x_0^2 (x_1 - x_2)
+ F(x, y, z) = x^2 (y - z)
 \]
 (Example~\eqref{item: ternary cubic, no regular eigenpoints} with $t=i$).
-We have $L=x_0$,
+We have $L=x$,
 \[
-H_1=x_0^2-2x_1^2+2x_1 x_2, \quad H_2= 2x_2^2-x_0^2-2x_1 x_2, \quad H_3= 2x_1x_2-2x_2^2-x_0x_1 \,.
+ H_1=x^2-2y^2+2y z, \quad H_2= 2z^2-x^2-2y z, \quad H_3= 2yz-2z^2-xy \,.
 \]
 The two syzygies in degree~$3$ are:
 \[
-x_2 \, H_1 - x_1 \, H_2 + x_0 \, H_3 = 0, \quad x_0 \, H_2 + 2(x_1+x_2) \, H_3 + x_0 \, H_1 = 0.
+z \, H_1 - y \, H_2 + x \, H_3 = 0, \quad x \, H_2 + 2(y+z) \, H_3 + x \, H_1 = 0.
 \]
-Finally, $Z= \{ (0:1:1),(2:1:-1),(-2:1:-1)\}$. Observe that one point is on the singular line $x_0=0$
+Finally, $Z= \{ (0:1:1),(2:1:-1),(-2:1:-1) \}$. Observe that one point is on the singular line $x=0$
 and that the Jacobian scheme is non reduced, it consists of a line with an embedded point.
 \end{es}
 
