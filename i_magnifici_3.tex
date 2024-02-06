@@ -136,7 +136,7 @@ Moreover, condition \eqref{eq: definizione di autovettore} can be rephrased in t
     g_0 & g_1 & \dots & g_n
     \end{pmatrix} \le 1,
 \end{equation}
-so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called an \emph{eigenscheme}, denoted $\Eig{T}$.
+so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called \emph{eigenscheme}, denoted $\Eig{T}$.
 
 The dimension and degree of a general eigenscheme are settled by the following result (see \cite[Theorem 2.1]{CartSturm} and Abo Discriminant):
 
@@ -148,13 +148,17 @@ If $T$ is general, then $\dim \Eig{T}=0$ and $\deg \Eig{T}=\frac{(d-1)^{n+1}-1}{
 \end{lemma}
 
 The geometry of eigenpoints is intimately related with the Waring decomposition of a polynomial,
+corresponding to the symmetric Tucker decomposition of the associated symmetric tensor,
 as clearified
-in \cite{DOT} and in \cite{Ott}; indeed, any best rank $k$ approximation of a symmetric tensor lies in the linear
-space, called {critical space},  spanned by the rank $1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ vary among all the eingevectors. It is then reasonable to expect that a deep comprehension of the geometry of the subschemes of an eigenscheme will help to improve the insight in problems of low rank approximation.
+in \cite{DOT} and in \cite{Ott}. Indeed, any best rank $k$ approximation of a symmetric tensor lies in the linear
+space, called {critical space},  spanned by the rank $1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ vary among all the eingevectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will 
+go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO, orthogonally decomposable, tensors, that is symmetric tensors $T$ which admit a decomposition 
+$T= \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0 \ dots , v_n$ an orthogonal family; see \cite{Rob} and \cite{BDHE}
+for further details. The $v_i$'s turn out to be eigenvectors of $T$; so in this case there is a subscheme of the eigenscheme with a very special geometric configuration. 
 
 
- In the present paper we focus on the geometry eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By the previous Lemma, the general such tensor
- satisfies $\deg \Eig{T}=7$. The known results on the geometry are the following.
+ In the present paper we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By Lemma \ref{lem:nonempty}, the general such tensor
+ satisfies $\deg \Eig{T}=7$. A geometric characterization of eigenschemes of ternary forms is given by the following results.
 
 \begin{theorem} (\cite[Theorem 5.1]{ASS})
 A configuration of seven points in $\p^2$ is the eigenconfiguration
@@ -751,7 +755,7 @@ In the following, we denote by $P + Q$ the line through two distinct points $P$ 
 
 \begin{definition}
 \label{definition:delta1}
- Let $P_1$, $P_2$ and~$P_4$ be distinct, not aligned points in the plane.
+ Let $P_1$, $P_2$ and~$P_4$ be distinct points in the plane.
  We define the quantity
  %
  \[
@@ -867,7 +871,7 @@ s_{22} \delta_2 +s_{23}(s_{14}s_{15}s_{22}-s_{12}^2s_{45})=s_{12} s_{45}
 (s_{22}s_{13}- s_{12} s_{13})=
 $$
 $$
-s_{12} s_{45}=\delta_1 (P_2,P_1,P_3)
+s_{12} s_{45}\delta_1 (P_2,P_1,P_3)
 $$
 Now observe that if $\delta_1(P_2,P_1,P_3) \neq 0$, then in all cases we would obtain that $P_3$ would coincide with $P_1$ or $P_2$. It follows that $\delta_1(P_2,P_1,P_3)=0$, and since the three points are aligned, this implies $\sigma (P_2,P_1)=0$ by Remark \ref{rmk: significato di delta1}.
 
