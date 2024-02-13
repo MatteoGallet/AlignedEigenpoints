@@ -1549,7 +1549,8 @@ to~\Cref{theorem:rank_V}, we have to distinguish the two cases
 \delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
 \overline{\delta}_1(P_1, P_4, P_5) = 0,
 \label{rk8_1}\\
-\sigma(P_1, P_2) = 0 \mbox{ and } \sigma(P_1, P_4) = 0
+\sigma(P_1, P_2) = 0 \mbox{, } \sigma(P_1, P_4) = 0 \mbox{, } s_{22} = 0,
+\mbox{ and } s_{44} = 0.
 \label{rk8_2}
 \end{eqnarray}
 (hence condition~(\ref{rk8_2}) means that \emph{the two lines of
@@ -1613,10 +1614,12 @@ do not satisfy other collinearities in addition to those of $P_1, P_2, P_3$
 and $P_1, P_4, P_5$.
 
 \begin{rmk}
-If $P_1, \dots, P_5$ satisfy the conditions~(\ref{rk8_1}),
-it follows that also $\delta_2(P_1, \dots, P_5) = 0$. Since,
-in general, we do not have the collinearity $P_1, P_6, P_7$,
-we see that the hypothesis ``rank $9$''
+\label{rmk:particular_cases}
+If $P_1, \dots, P_5$ satisfy the conditions~(\ref{rk8_1}), as seen,
+in general we have only $P_1, P_2, P_3$ and $P_1, P_4, P_5$ aligned, but
+we do not have $P_1, P_6, P_7$ aligned. Since conditions~(\ref{rk8_1})
+implies that $\delta_2(P_1, \dots, P_5) = 0$, we see 
+that the hypothesis ``rank $9$''
 in~\Cref{proposition:terzo_allineamento} is necessary.
 \end{rmk}
 
@@ -1715,8 +1718,23 @@ $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
 %% il file casoDegenere2.tex contiene anche i risultati scritti
 %% qui sotto.
 
-Among all the possible cubics of the $5$ dimensional variety we get from
-condition~(\ref{rk8_2}) there are some subfamilies in which the eigenpoints
+Now we consider the condition~(\ref{rk8_2}).
+%
+\begin{rmk}
+\label{rmk:particular_cases2}
+The variety of all the cubics with a $V$-configuration
+that satisfies~Equation~\eqref{rk8_2} is five dimensional. 
+A cubic which is a generic example of this variety shows that 
+it is smooth and its eigenpoints have the only collinearities $P_1, P_2, P_3$
+and $P_1, P_4, P_5$. In this case we have $\delta_1(P_1, P_2, P_4) \not= 0$
+and $\delta_2(P_1, \dots, P_5) = 0$. Again, we have another example
+which shows that the hypothesis ``rank $9$''
+in~\Cref{proposition:terzo_allineamento} is necessary.
+\end{rmk}
+%
+In addition to the above remark, we have that, among all
+the possible cubics of the five dimensional variety 
+there are some subfamilies in which the eigenpoints
 have other alignments. More precisely,
 \begin{prop}
 \label{prop:rk8_2B}
@@ -2442,7 +2460,7 @@ ma sistemare
 \end{table}
 
 \Cref{table:all_alignments} lists all the possible configuration
-of 7 distinct points of the plane, according to their collinearities.Here
+of 7 distinct points of the plane, according to their collinearities. Here
 we want to see which of those nine configurations can be realized by
 the seven eigenpoints of a cubic and, in case the configuration is
 realizable, which are the cubics with that configuration of eigenpoints.
@@ -2462,17 +2480,37 @@ must be $9$ or $8$. If the rank is $9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dots, P_5) = 0$, see~\Cref{theorem:rank_V}.
 From \Cref{proposition:terzo_allineamento} we have that the only possibility
 is $\delta_1(P_1, P_2, P_4) = 0$. Hence if we fix two points $P_1$ and $P_2$
-in the plane and we choose $P_4$ such that $\delta_1(P_1, P_2, P_4) = 0$
-(@@ si puo' mettere migliore condizione) and then if we chose $P_3$
+in the plane in an arbitrary way, we choose $P_4$ such that
+$\scl{P_4}{s_{11}P_2-s_{12}P_1}=0$
+(see~Equation~\eqref{rmk_delta_1}) and then we chose $P_3$
 on the line $P_1+P_2$ and $P_5$ on the line $P_1+P_4$, we have a cubic
-with a configuration of type (2). In case of rank $8$, as seen,
+with a configuration of type (2). In case of rank $8$, as seen
+(see~\Cref{rmk:particular_cases}),
 configuration (2) can be
 obtained from the conditions~(\ref{rk8_1}) (and hence are sub-cases
 of the case $\delta_1(P_1, P_2, P_4)=0$). Configuration (2) can also be
-obtained from~(\ref{rk8_2}) in the general case. @@ e' un caso delta1 = 0?
-da verificare.
+obtained from~(\ref{rk8_2}) in the general case.~\Cref{rmk:particular_cases2}
+shows that for the eigenpoints of these cubics condition
+$\delta_1(P_1,P_2, P_4) = 0$ is not satisfied, so we have another family
+of cubics with configuration of type (2). It can be constructed as
+follows: Take any point $P_1$ of the plane (not on $\iso$), take the two
+tangent lines to $\iso$ passing through $P_1$ and let $P_2$ and $P_4$ (on
+$\iso$) be the points of tangency; then take $P_3$ and $P_5$ on the line
+$P_1+P_2$ and $P_1+P_4$. The matrix $\Phi(P_1, \dots, P_5)$ has rank $8$, so
+add to it a row of random elements of $K$. In this way we have a rank $9$
+matrix which gives a cubic whose eigenpoints are in configuration (2) and
+for these points it is not true that $\delta_1(P_1, P_2, P_4) = 0$.
 
-\underline{Configuration (3)} If inside the configuration (3) we
+\underline{Configuration (3)} Suppose we have $7$ eigenpoints such that
+$P_1, P_2, P_3$, $P_1, P_4, P_5$ and $P_1, P_6, P_7$ are aligned. Hence
+$P_1, P_2, P_3, P_4, P_5$, $P_1, P_2, P_3, P_6, P_7$,
+$P_1, P_4, P_5, P_6, P_7$, are three three $V$-configurations. If
+$\delta_2$ of one of them is 
+
+
+
+
+If inside the configuration (3) we
 have a $V$-configuration
 such that the rank of the matrix $\Phi(P_1, \dots, P_5)$ is $8$
 we know that ..... @@ (completare)
@@ -2491,21 +2529,22 @@ $V$-configuration that satisfies a $\delta_2$ condition.
 %% la dim si trova in config3.sage
 The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. As said,
 we assume the matrix $\Phi(P_1, \dots, P_5)$ has
-rank $9$. If
+rank~$9$. If
 $\delta_2(P_1, \dots, P_5) = 0$, we have the thesis, otherwise,
 $\delta_1(P_1, P_2, P_4) = 0$. Then consider the $V$-configuration
 $P_1, P_2, P_3, P_6, P_7$. As above, we suppose $\delta_1(P_1, P_2, P_6) = 0$.
-The two $\delta_1$-equations give two linear equations in the coordinates
+The two equations obtained from the two $\delta_1$ give two
+linear equations in the coordinates
 of $P_2$. Assuming the matrix of the system of linear equations have
 maximal rank, the solution gives a point $P_2$ that coincide, as
 a projective point, to $P_1$, which is impossible. Hence we consider the
 case in which the matrix of the linear system do not have maximal rank.
 This condition implies that $\scl{P_1}{P_1} = 0$, hence $P_1$ is on the
 isotropic conic. W.l.o.g.\ we can assume $P_1 = (1: \iii: 0)$ and again
-we can determine $P_2$ such $\delta_1(P_1, P_2, P_4) = 0$ and
+we can determine $P_2$ such $\delta_1(P_1, P_2, P_4)$ and
 $\delta_1(P_1, P_2, P_6)$ are zero. The matrix $\Phi(P_1, P_4, P_5, P_6, P_7)$
 must have rank $9$ or smaller, then either
-$\delta_2(P_1, P_4, P_5, P_6, P_7)=0$ or $\delta_1(P_1, P4, P_6) = 0$. In
+$\delta_2(P_1, P_4, P_5, P_6, P_7)=0$ or $\delta_1(P_1, P_4, P_6) = 0$. In
 the first case, we have a $\delta_2$ condition among the points, hence
 we assume $\delta_1(P_1, P_4, P_6) = 0$. Solving this equation and
 considering the corresponding points, we get that either
