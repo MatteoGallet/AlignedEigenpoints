@@ -829,11 +829,12 @@ $$
 It is possible to see that
 \blue{
 \begin{eqnarray}
-\label{rmk_delta_1}
+\label{rmk_delta_case1}
 \delta_1(P_1, P_2, P_4) =0  &\mbox{iff} &\scl{P_4}{s_{11}P_2-s_{12}P_1} = 0\\
 &\mbox{iff} &\scl{P_2}{s_{11}P_4-s_{14}P_1} = 0\\
-\label{rmk_delta_2}
-\overline{\delta}_1(P_1, P_2, P_3) = s_{11} s_{24}+s_{12}s_{14}=0 &\mbox{iff}&
+& & @@\mbox{puo' succedere $s_{12}=s_{11}=0$ e va considerato! (o no?)} @@\\
+\label{rmk_delta_case2}
+\overline{\delta}_1(P_1, P_2, P_3) = s_{11} s_{23}+s_{12}s_{13}=0 &\mbox{iff}&
 P_1 \mbox{ is on~$\iso$ and } P_1 + P_2 + P_3 \mbox{ is tangent to~$\iso$ in $P_1$, or} \\
 && P_3 = (s_{12}^2+s_{11}s_{22})P_1-2s_{11}s_{12}P_2 \mbox{ or} \nonumber \\
 && P_2 = (s_{13}^2+s_{11}s_{33})P_1-2s_{11}s_{13}P_3 \nonumber
@@ -841,7 +842,7 @@ P_1 \mbox{ is on~$\iso$ and } P_1 + P_2 + P_3 \mbox{ is tangent to~$\iso$ in $P_
 
 Moreover, if $\sigma (P_1,P_2)\neq 0$, then
 \begin{eqnarray}
-\label{rmk_delta_3}
+\label{rmk_delta_case3}
 \delta_2(P_1, P_2, P_3, P_4, P_5) =0 & \mbox{iff}
 &P_3 = (s_{14}s_{15}s_{22}-s_{12}^2s_{45})P_1 \nonumber \\
 && +(s_{11}s_{12}s_{45}-s_{12}s_{14}s_{15})P_2,\mbox{ or}
@@ -854,7 +855,7 @@ P_5 = (s_{12}s_{13}s_{44}-s_{14}^2s_{23})P_1  \\
 && +(s_{11}s_{14}s_{23}-s_{14}s_{12}s_{13})P_4 \nonumber
 \end{eqnarray}
 
-The statements \ref{rmk_delta_1} and \ref{rmk_delta_2} follow directly from the definition. Let us check \ref{rmk_delta_3}; the expression for $P_3$ can be directly computed from the definition of $\delta_2$, by observing that it is linear in the coordinates of $P_3$. Moreover, we observe that the coefficients
+The statements \ref{rmk_delta_case1} and \ref{rmk_delta_case2} follow directly from the definition. Let us check \ref{rmk_delta_case3}; the expression for $P_3$ can be directly computed from the definition of $\delta_2$, by observing that it is linear in the coordinates of $P_3$. Moreover, we observe that the coefficients
 $s_{14}s_{15}s_{22}-s_{12}^2s_{45}$ and $s_{11}s_{12}s_{45}-s_{12}s_{14}s_{15}$
 are both nonzero under the assumption $P_3 \neq P_1$, $P_3 \neq P_2$ and $\sigma(P_1,P_2) \neq 0$.
 
@@ -1232,7 +1233,7 @@ $\mathcal{H}$ with a random row of elements of the field~$K$.
 Recalling \Cref{rmk:characteristics_d1_d2}, it is quite easy to construct five points $P_1, \dots, P_5$ which are in a $V$-configuration
 and such that $\delta_1(P_1, P_2, P_4)= 0$: the points~$P_1$
 and $P_2$ can be taken in an arbitrary way, $P_4$ has to be chosen in such
-a way that it satisfies Equation~\eqref{rmk_delta_1}
+a way that it satisfies Equation~\eqref{rmk_delta_case1}
 and $P_3$ and $P_5$ have to be chosen on the lines $P_1+P_2$ and $P_1+P_4$,
 respectively. In particular, the corresponding locus of cubic curves
 has dimension $7$.
@@ -1563,9 +1564,12 @@ $P_1$ is singular.
 
 \begin{prop}
 \label{proposition:P1_sing}
-If $P_1, \dots, P_5$ is a $V$-configuration and if $\mathcal{C}$ is a cubic which
-has $P_1, \dots, P_5$ among its eigenpoints, then $P_1$ is singular for~$\mathcal{C}$ if
-and only if one of the following conditions is satisfied:
+If $P_1, \dots, P_5$ is a $V$-configuration and if
+$\mathcal{C}$ is a cubic which
+has $P_1, \dots, P_5$ among its eigenpoints, then $P_1$ is
+singular for~$\mathcal{C}$ if
+and only if $P_1$ is not on $\iso$ and one of the following conditions
+is satisfied:
 \begin{enumerate}
 \item $\delta_1(P_1, P_2, P_4) = 0$ and $\overline{\delta}_1(P_1, P_2, P_3) = 0$;
 \item $\delta_1(P_1, P_2, P_4) = 0$ and $\overline{\delta}_1(P_1, P_4, P_5) = 0$;
@@ -1573,6 +1577,7 @@ and only if one of the following conditions is satisfied:
 $\overline{\delta}_1(P_1, P_4, P_5) = 0$.
 \end{enumerate}
 \end{prop}
+@@ brutto avere C e Ciso, C per cubica, Ciso per conica!@@
 \begin{proof}
 \verb+file: singularCubic_1ii0.sage+ e \verb+singularCubic_100.sage+\\
 As usual, we can split the problem into two cases: $P_1 = (1: \iii: 0)$
@@ -1582,43 +1587,47 @@ $P_1$ and $P_2$ and $P_5$ aligned with $P_1$ and $P_4$). To this matrix we add
 a row which correspond to the condition that $P_1$ is singular, obtaining
 in this way a matrix $M$. After
 suitable manipulations of the matrix $M$, we see that the condition that
-the linear system associated to $M$ (which gives the coefficient of the cubic
+the linear system associated to $M$ (@@ c'e' nome unico?@@
+which gives the coefficient of the cubic
 having $P_1, \dots, P_5$ eigenpoints and $P_1$ singular) gives no solution
 for the case $P_1=(1: \iii: 0)$ and the three above conditions for the
 case in which $P = (1: 0: 0)$.
 \end{proof}
 
-Let us start with the first case.
-
-The three conditions~(\ref{rk8_1}) give (using (\ref{rmk_delta_1})
-and (\ref{rmk_delta_2})) give that we can chose the points as follows:
+Let us start to analyze the two conditions~(\ref{rk8_1}) and~(\ref{rk8_2}).
+The three equations of~(\ref{rk8_1}), give that,
+using~(\ref{rmk_delta_case2}), either $P_1$ is on $\iso$ and
+$P_1+P_2$ is the tangent line to $\iso$ in $P_1$, but this is not compatible
+with the equation $\overline{\delta}_1(P_1, P_4, P_5)=0$, or,
+from~(\ref{rmk_delta_case1}), we can chose the points as follows:
 \begin{itemize}
 \item $P_1$ and $P_2$ in an arbitrary way;
 \item $P_4$ in the $\mathbb{P}^1$
 space of points orthogonal to $s_{11}P_2-s_{12}P_1$;
-\item $P_3 = (s_{12}^2+s_{11}s_{12})P_1-2s_{11}s_{12}P_2$;
-\item $P_5 = (s_{12}^2+s_{11}s_{12})P_1-2s_{11}s_{14}P_4$.
+\item $P_3 = (s_{12}^2+s_{11}s_{22})P_1-2s_{11}s_{12}P_2$;
+\item $P_5 = (s_{14}^2+s_{11}s_{44})P_1-2s_{11}s_{14}P_4$.
 \end{itemize}
 
 Such a choice
-of points gives the matrix $M = \Phi(P_1, \dots, P_5)$ of rank $8$ and
-therefore the linear system associated to $M$, which gives the
+of points gives the matrix $M = \Phi(P_1, \dots, P_5)$ of rank $8$
+%% verifica nel file matrix_of_order_8.sage
+and therefore
+the linear system associated to $M$, @@nome unico?@@ which gives the
 coefficients of the cubics with eigenpoints $P_1, \dots, P_5$, has $\infty^1$
 solutions. This shows that the variety $\mathcal{V}$ of these cubics is
-of dimension $6$ and is parametrized by an open subset of
-$\mathbb{P}^2 \times \mathbb{P}^2\times \mathbb{P}^1\times \mathbb{P}^1$.
+of dimension $6$.
 Moreover, from~\Cref{proposition:P1_sing}, we have that all these cubics
 are singular in $P_1$.
 If we take a random point of this variety, we see that the corresponding
-cubic has $7$ distinct eigenpoints, is singular in $P_1$ and the $7$ points
-do not satisfy other collinearities in addition to those of $P_1, P_2, P_3$
-and $P_1, P_4, P_5$.
+cubic has $7$ distinct eigenpoints, is indeed singular in $P_1$ and the
+$7$ points do not satisfy other collinearities in addition to those of the
+$V$-configuration.
 
 \begin{rmk}
 \label{rmk:particular_cases}
 If $P_1, \dots, P_5$ satisfy the conditions~(\ref{rk8_1}), as seen,
-in general we have only $P_1, P_2, P_3$ and $P_1, P_4, P_5$ aligned, but
-we do not have $P_1, P_6, P_7$ aligned. Since conditions~(\ref{rk8_1})
+in general we have only $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ aligned, but
+we do not have $(P_1, P_6, P_7)$ aligned. Since conditions~(\ref{rk8_1})
 implies that $\delta_2(P_1, \dots, P_5) = 0$, we see 
 that the hypothesis ``rank $9$''
 in~\Cref{proposition:terzo_allineamento} is necessary.
@@ -1641,7 +1650,8 @@ the following results hold:
 \label{three_d_three_alignments}
 If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_1}),
 then, among the $\infty^1$ cubic curves that we get from the
-solution of the linear system whose coefficients matrix is $M$, there is
+solution of the linear system whose coefficients matrix is $M$@@ ancora
+una volta espressione unica@@@, there is
 a cubic curve with $7$ eigenpoints with the following three alignments:
 $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$, $(P_1, P_6, P_7)$. \\
 No choices of $P_1, \dots, P_5$ allow one to obtain further alignments of the
@@ -1689,8 +1699,8 @@ rows (since $P_1$ is numeric, it can be seen that for instance the rows
 of position $0, 1, 3, 5, 6, 8, 10, 12$ are a good choice and avoid to consider
 many exceptions) and let $M_1$ be a matrix obtained in this way.
 We fix two numeric $10$-dimensional vectors $V_a$ and $V_b$ and we construct
-$M_a$ (resp.\ $M_b$) obtained by vertically stacking $V_a$ (resp.\ $V_b$)
-vector to $M_1$. The rank of $M_a$ and $M_b$ is $9$ (unless an unlucky choice
+$M_a$ (resp.\ $M_b$) obtained by vertically stacking vector $V_a$ (resp.\ $V_b$)
+to $M_1$. The rank of $M_a$ and $M_b$ is $9$ (unless an unlucky choice
 of the vectors, in which case they can be changed). The matrices $M_a$ and
 $M_b$ play the same role of the matrix $\mathcal{H}$
 of~\Cref{rank_9}, hence we can do the same construction explained
@@ -1701,8 +1711,9 @@ obtained from $M_b$.
 Hence the line $r = w_ar_a+w_br_b$
 (where $w_a, w_b$ are parameters) is the line passing through the eigenpoints
 $P_6$ and $P_7$
-of the generic cubic of the $\infty^1$ family, i.e.\ the cubic obtained
-the three collinearities $(P_1, P_2, P_3)$,
+of the generic cubic of the $\infty^1$ family. Imposing that it contains
+the point $P_1$ gives a value for $w_a$ and $w_b$ and we get the cubic
+with the three collinearities $(P_1, P_2, P_3)$,
 $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
 
 %% La dimostrazione della prop:rk8_2B di sotto si trova essenzialmente
@@ -1906,7 +1917,7 @@ Let $\sV \subset \p^9$ denote the locus of classes $[F]$ of cubic forms adimitti
  $[F] \in \sV \setminus \Delta_{3,3}$, that is the ones corresponding to a rank $9$ matrix $\Phi(P_1, \dots, P_5)$; the cases with more alignments can be treated similarly.
 
  Observe that all the irreducible components of $\sV \setminus \Delta_{3,3}$ are open and nonempty in $\sV$ by
- Remark \ref{rmk_delta_3}.
+ Remark \ref{rmk_delta_case3}.
 
 If $F$ is general enough, we have
 $\rk \ \Phi(P_1, \dots, P_5)=9$ and $\rk \ \Phi(P_1, \dots, P_4)=8$.
@@ -2483,7 +2494,7 @@ From \Cref{proposition:terzo_allineamento} we have that the only possibility
 is $\delta_1(P_1, P_2, P_4) = 0$. Hence if we fix two points $P_1$ and $P_2$
 in the plane in an arbitrary way, we choose $P_4$ such that
 $\scl{P_4}{s_{11}P_2-s_{12}P_1}=0$
-(see~Equation~\eqref{rmk_delta_1}) and then we chose $P_3$
+(see~Equation~\eqref{rmk_delta_case1}) and then we chose $P_3$
 on the line $P_1+P_2$ and $P_5$ on the line $P_1+P_4$, we have a cubic
 with a configuration of type (2). In case of rank $8$, as seen
 (see~\Cref{rmk:particular_cases}),
