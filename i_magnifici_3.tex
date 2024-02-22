@@ -1495,7 +1495,7 @@ $\Phi(P_1, \dots, P_5)$ (for $P_2$, $P_4$ generic, $P_3$ aligned with
 $P_1$ and $P_2$ and $P_5$ aligned with $P_1$ and $P_4$). To this matrix we add
 a row which correspond to the condition that $P_1$ is singular, obtaining
 in this way a matrix $M$. After
-suitable manipulations of the matrix $M$, we see that $\Lambda(M)$ is empty
+suitable manipulations of $M$, we see that $\Lambda(M)$ is empty
 in the case $P_1=(1: \iii: 0)$, meanwhile if $P_1$ is the point $(1:0:0)$
 and one of the three above conditions is satisfied, then
 $\dim(\Lambda(M)) \geq 0$. 
@@ -1523,7 +1523,7 @@ of the corresponding cubics is $6$.
 Moreover, from~\Cref{proposition:P1_sing}, we have that all these cubics
 are singular in $P_1$.
 If we take a random point of this variety, we see that the corresponding
-cubic has $7$ distinct eigenpoints, is indeed singular in $P_1$ and the
+cubic has $7$ distinct eigenpoints (is indeed singular in $P_1$) and the
 $7$ points do not satisfy other collinearities in addition to those of the
 $V$-configuration.
 
@@ -1541,11 +1541,12 @@ Concerning possible sub-cases with further collinearities of the points,
 the following results hold:
 %%%%
 %% tutti i conti si trovano nei file:
-%% three_d_partA.sage
-%% three_d_partB.sage
-%% three_d_partC.sage
-%% three_d_partD.sage
-%% three_d_partE.sage
+%% three_deltas_I.sage
+%% three_deltas_II.sage
+%% three_deltas_III.sage
+%% three_deltas_IV.sage
+%% c'e' anche il file three_d_alt.sage che puo' essere di aiuto
+%% ma non e' essenziale
 %%
 %% c'e' anche il file three_d_alt.sage che calcola tutti gli autopunti
 %% in configurazione (8) nel caso dei 3 delta = 0.
@@ -1555,7 +1556,7 @@ the following results hold:
 If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_1}),
 then, in $\Lambda(\Phi(P_1, \dotsc, P_5))$ there is
 a cubic curve with $7$ eigenpoints with the following three alignments:
-$(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$, $(P_1, P_6, P_7)$. \\
+$(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$. \\
 No choices of $P_1, \dots, P_5$ allow one to obtain further alignments of the
 $7$ eigenpoints.
 \end{prop}
@@ -1570,7 +1571,8 @@ alignments:
 (P_1, P_2, P_3), (P_1, P_4, P_5), (P_2, P_4, P_6), (P_2, P_5, P_7),
 (P_3, P_4, P_7), (P_3, P_5, P_6)
 \]
-Hence the points $P_6$ and $P_7$ are such that
+Hence the points $P_6$ and $P_7$ are determined by $P_1, \dots, P_5$
+since 
 $P_6 = (P_2+P_4) \cap (P_3+P_5)$
 and $P_7 = (P_3+P_4) \cap (P_2+P_5)$.
 (Of course, a similar result holds if we take $P_3$ in place of $P_2$ or $P_5$
@@ -1613,10 +1615,13 @@ obtained from $M_b$.
 Hence the line $r = w_ar_a+w_br_b$
 (where $w_a, w_b$ are parameters) is the line passing through the eigenpoints
 $P_6$ and $P_7$
-of the generic cubic of the $\infty^1$ family. Imposing that it contains
-the point $P_1$ gives a value for $w_a$ and $w_b$ and we get the cubic
+of the generic cubic of the one dimensional family given by the line
+of $\mathbb{P}^9$ determined by the cubic obtained from $M_a$ and
+the cubic obtained from $M_b$. The condition $P_1 \in r$ 
+determines the value for $w_a$ and $w_b$ and we get the cubic
 with the three collinearities $(P_1, P_2, P_3)$,
 $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
+@@* fin qua
 
 %% La dimostrazione della prop:rk8_2B di sotto si trova essenzialmente
 %% nel file contiCasoDegenere2.sage.
