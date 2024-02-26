@@ -959,6 +959,7 @@ $\rk \ \Phi(P_1, \dots, P_5) \leq 9$ if and only if
 
 %% dimostrazione lemma seguente: per esempio si trova nella prima parte
 %% del file contiCasoDegenere2.sage
+%% 
 \begin{lemma}
 \label{lemma:special_case_rank_8}
 Let $P_1, \dots, P_5$ be a $V$-configuration of points and assume that
@@ -1621,7 +1622,6 @@ the cubic obtained from $M_b$. The condition $P_1 \in r$
 determines the value for $w_a$ and $w_b$ and we get the cubic
 with the three collinearities $(P_1, P_2, P_3)$,
 $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
-@@* fin qua
 
 %% La dimostrazione della prop:rk8_2B di sotto si trova essenzialmente
 %% nel file contiCasoDegenere2.sage.
@@ -1638,11 +1638,25 @@ $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
 %% qui sotto.
 
 Now we consider the condition~(\ref{rk8_2}).
+
 %
+A generic cubic which satisies the condition~(\ref{rk8_2}) is
+a cubic of the one-dimensional linear system
+$\Lambda(\Phi(P_1, \dotsc, P_5))$, where:
+\begin{itemize}
+\item $P_1$ is any point of the plane (not on $\iso$);
+\item $P_2$ and $P_4$ are the points on $\iso$ such that the lines
+$P_1+P_2$ and $P_1+P_4$ are tangent to $\iso$;
+\item $P_3$ is any point on  $P_1+P_2$ (different from $P_1$ and $P_2$)
+and $P_5$ is any point on $P_1+P_4$ (different from $P_1$ and $P_4$).
+\end{itemize}
+
+The variety of all the cubics with a $V$-configuration
+that
+%satisfies~Equation~\eqref{rk8_2}
+satisfies condition~\ref{rk8_2} is therefore five dimensional.
 \begin{rmk}
 \label{rmk:particular_cases2}
-The variety of all the cubics with a $V$-configuration
-that satisfies~Equation~\eqref{rk8_2} is five dimensional. 
 A cubic which is a generic example of this variety shows that 
 it is smooth and its eigenpoints have the only collinearities $P_1, P_2, P_3$
 and $P_1, P_4, P_5$. In this case we have $\delta_1(P_1, P_2, P_4) \not= 0$
@@ -1677,8 +1691,8 @@ we consider again the action of $\SO_3(\C)$ and here we can assume:
 P_1 = (1: 0: 0), \quad P_2 = (0: \iii: 1), \quad P_4 = (0: -\iii: 1)
 \]
 (and $P_3 = u_1P_1+u_2P_2$, $P_5 = v_1P_1+v_2P_4$). In this situation it
-is easy to see that the solution of the system $\Phi(P_1, \dots, P_5)$
-gives the following family of cubic curves:
+is easy to see that $\Lambda(\Phi(P_1, \dots, P_5))$
+is the following family of cubic curves:
 \[
 \mathcal{C}(l_1, l_2) = l_1\mathcal{C}_1+l_2\mathcal{C}_2
 \]
