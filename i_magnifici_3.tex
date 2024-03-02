@@ -1470,7 +1470,7 @@ to~\Cref{theorem:rank_V}, we have to distinguish the two cases
 \  s_{44} = 0.
 \label{rk8_2}
 \end{eqnarray}
-(hence condition~(\ref{rk8_2}) means that \emph{the two lines of
+(we recall that condition~(\ref{rk8_2}) means that \emph{the two lines of
 the $V$-configuration are tangent to $\iso$ in $P_2$ and $P_4$}).
 
 To start, we characterize when, for a $V$-configuration
@@ -1508,9 +1508,9 @@ $\dim(\Lambda(M)) \geq 0$.
 Let us start to analyze the two conditions~(\ref{rk8_1}) and~(\ref{rk8_2}).
 The three equations of~(\ref{rk8_1}), give that,
 using~(\ref{rmk_delta_case2}), either $P_1$ is on $\iso$ and
-$P_1+P_2$ is the tangent line to $\iso$ in $P_1$, but this is not compatible
-with the equation $\overline{\delta}_1(P_1, P_4, P_5)=0$, or,
-from~(\ref{rmk_delta_case1}), we can chose the points as follows:
+$P_1+P_2$ is the tangent line to $\iso$ in $P_1$ (but this is not compatible
+with the equation $\overline{\delta}_1(P_1, P_4, P_5)=0$), or,
+from~(\ref{rmk_delta_case1}), we can choose the points as follows:
 \begin{itemize}
 \item $P_1$ and $P_2$ in an arbitrary way;
 \item $P_4$ in the $\mathbb{P}^1$
@@ -1630,8 +1630,9 @@ $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
 %% rank_8_twoTangIso.sage
 %% Il file confV_tg_iso.sage fa il caso generale (cioe' quando P1
 %% e' il punto (A1, B1, C1) e non (1, 0, 0)) e serve per provare
-%% le formule realtive a P6 e P7 nelal configurazione (5).
-%% Manca ancora un analogo file per il caso (8).
+%% le formule realtive a P6 e P7 nella configurazione (5).
+%% Il vile confV2_tg_iso.sage contiene i conti per la configurazione (8)
+%% e prova la formula P6 = s15*P3+s13*P5
 
 Now we consider the condition~(\ref{rk8_2}).
 
@@ -1651,6 +1652,8 @@ The variety of all the cubics with a $V$-configuration
 that
 %satisfies~Equation~\eqref{rk8_2}
 satisfies condition~(\ref{rk8_2}) is therefore five dimensional.
+%% 2+1+1+1, l'ultimo 1 perche' rango matrice = 8
+
 
 The reciprocal position of the eigenpoints of a cubic of this family
 is described by the following:
@@ -1669,21 +1672,22 @@ $\scl{P_1 \times P_6}{P_2\times P_5}=0$
 In the family there is a sub-family whose eigenpoints have the following
 alignments:
 \[
-(P_1, P_2, P_3),\  (P_1, P_4, P_5),\  (P_1, P_6, P_7),\  (P_2, P_4, P_6)
+(P_1, P_2, P_3),\  (P_1, P_4, P_5),\  (P_1, P_6, P_7),\  (P_2, P_4, P_6).
 \]
-(in this case the points $P_6$ and $P_7$ are given by the formulas:
-$P_6 = s_{11}s_{15}P_3-2s_{13}s_{15}P_1+s_{11}s_{13}P_5$ and
-$P_7 = s_{11}s_{15}P_3+s_{13}s_{15}P_1+s_{11}s_{13}P_5$);\\
+In this case the points $P_6$ and $P_7$ are given by the formulas:
+\[P_6 = s_{11}s_{15}P_3-2s_{13}s_{15}P_1+s_{11}s_{13}P_5, \ \mbox{and} \
+P_7 = s_{11}s_{15}P_3+s_{13}s_{15}P_1+s_{11}s_{13}P_5;
+\]
 and a sub-family whose eigenpoints have the following
 alignments:
 \[
 (P_1, P_2, P_3),\  (P_1, P_4, P_5), \ (P_1, P_6, P_7),\  (P_2, P_5, P_6),\
 (P_3, P_4, P_6),\  (P_3, P_5, P_7)
 \]
-(in this case the points $P_6$ and $P_7$ are given by the formulas:
-$P_6 = 2s_{11}s_{15}P_3+s_{13}s_{25}P_4$ and
-$P_7 = 2s_{11}s_{15}P_3+s_{13}s_{25}P_4+2s_{13}s_{15}P_1$);\\
-moreover, in all cases the lines $P_6+P_7$ and $P_3+P_5$ are ``orthogonal''.\\
+In this case the point $P_6$ (given by the formula
+$P_6 = s_{15}P_3+s_{13}P_5$) is obtained as
+$(P_2+P_5) \cap (P_3+P_4)$ and consequently
+$P_7 = (P_1+P_6) \cap (P_3+P_5)$.\\
 No other collinearities among the eigenpoints are possible.
 \end{prop}
 
