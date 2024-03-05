@@ -2550,46 +2550,50 @@ Descrizione del luogo
 
 
 \underline{Configuration (8)} Is realizable.
-\verb+file config8.sage+
+\verb+file config8N.sage+
 
-@@ da completare 
 
-Presunto lemma:@@
 \begin{lemma}
-Suppose $v_1, v_2, v_3, v_4$ are four vectors of $K^3$. Then the following 
-conditions are equivalent:
-\begin{itemize}
-\item There exist indices $i, j, h, k \in \{1, 2, 3, 4\}$ all distinct
-such that:
-\item $v_k = \scl{v_i}{v_h}\scl{v_j}{v_h}(v_i \times v_j) -
-\scl{v_i}{v_j}\scl{v_j}{v_h}(v_i \times v_h)+
-\scl{v_i}{v_j}\scl{v_i}{v_h}(v_j \times v_h)$;
-\item For all indices $i, j, h, k \in \{1, 2, 3, 4\}$ all distinct, the
-above condition holds;
-\item There exist indices $i, j, h, k \in \{1, 2, 3, 4\}$ all distinct
-such that: @@@$\scl{v_i}{v_h} = 0, \ \scl{}{} = 0, \scl{}{} = 0$
-\end{itemize}
-
-
+  Suppose $P_1, \dots, P_7$ are seven distinct points of the plane with the
+  following alignments:
+\begin{equation}
+  \label{C8_alignments}
+(P_1, P_2, P_5), (P_1, P_3, P_7), (P_1, P_4, P_6), (P_2, P_4, P_7),
+(P_2, P_3, P_6),(P_3, P_4, P_5).
+\end{equation}
+Then 
+\begin{gather}
+P_4 = (P_1 \times P_2)s_{13}s_{23} - s_{12}(P_1 \times P_3)s_{23}+
+  s_{12}s_{13}(P_2 \times P_3);
+  \label{C8:cnd1}
+\end{gather}
+if and only if 
+\begin{gather}
+  \label{C8:cnd2}
+  \scl{P_1\times P_4}{P_2 \times P_3} = 0,\ 
+  \scl{P_1\times P_3}{P_2 \times P_4} = 0,\ 
+  \scl{P_1\times P_2}{P_3 \times P_4} = 0.
+\end{gather}
 \end{lemma}
+\begin{proof}
+@@ file proofLemma8alignments.sage
+\end{proof}
+The above lemma allows to understand when a cubic have the eigenpoints
+aligned according to~(\ref{C8_alignments}).
+%
 \begin{prop}
-Suppose $\mathcal{C}$ is a cubic with $7$ eigenpoints $P_1, \dots, P_7$
-such that have the following $6$ alignments:
-\[(P_1, P_2, P_5), (P_1, P_3, P_7), (P_1, P_4, P_6), (P_2, P_4, P_7),
-(P_2, P_3, P_6),(P_3, P_4, P_5)
-\]
-Then the points satisfy the conditions:
-\begin{itemize}
-\item $P_4 = (P_1 \times P_2)s_{13}s_{23} - s_{12}s_{23}(P_1 \times P_3)+
-s_{12}s_{13}(P_2 \times P_3)$
-\item $P_5 = (P_1+P_2) \cap (P_3+P_4), \ P_6 = (P_1+P_4) \cap (P_2+P_3), \
-P_7 = (P_1+P_3) \cap (P_2+P_4)$.
-\end{itemize}
-Conversely, if $P_1, P_2, P_3$ are any points of the plane and if
-$P_4, P_5, P_6, P_7$ are chosen according to the above cnoditions,
-then $P_1, \dots, P_7$ are the seven eigenpoints of a cubic curve of the
-plane and they are aligned according to the conditions written above.
+  Let $\mathcal{C}$ be a cubic of the plane with the $7$ eigenpoints
+  aligned according to~(\ref{C8_alignments}). Then the two
+  equivalent conditions~(\ref{C8:cnd1}) and~(\ref{C8:cnd2}) are satisfied.
+  Conversely, if $P_1, \dots, P_7$ are seven points of the plane such
+  that condition~(\ref{C8:cnd1}) (or, equivalently,~(\ref{C8:cnd2})) is
+  satisfied, then there exists a cubic $\mathcal{C}$ of the plane
+  whose eigenpoints are $P_1, \dots, P_7$.
+%% conti nel file config8N.sage.
 \end{prop}
+
+\end{document}
+%% conti nel file config8N.sage.
 
 
 %% conti nel file config8.sage.
