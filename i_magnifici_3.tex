@@ -2552,6 +2552,13 @@ Descrizione del luogo
 \underline{Configuration (8)} Is realizable.
 \verb+file config8N.sage+
 
+We will use the following notation:
+if $P_1, P_2, P_3$ are three not aligned, distinct points in the plane,
+we set
+\[
+\Omega(P_1, P_2, P_3) = (P_1 \times P_2)s_{13}s_{23} -
+  s_{12}(P_1 \times P_3)s_{23} + s_{12}s_{13}(P_2 \times P_3).
+\]
 
 \begin{lemma}
   Suppose $P_1, \dots, P_7$ are seven distinct points of the plane with the
@@ -2559,12 +2566,13 @@ Descrizione del luogo
 \begin{equation}
   \label{C8_alignments}
 (P_1, P_2, P_5), (P_1, P_3, P_7), (P_1, P_4, P_6), (P_2, P_4, P_7),
-(P_2, P_3, P_6),(P_3, P_4, P_5).
+(P_2, P_3, P_6),(P_3, P_4, P_5)
 \end{equation}
+and suppose $s_{13}s_{23} \not = 0$ or $s_{12}s_{23} \not = 0$ or
+$s_{12}s_{23} \not = 0$.
 Then
 \begin{gather}
-P_4 = (P_1 \times P_2)s_{13}s_{23} - s_{12}(P_1 \times P_3)s_{23}+
-  s_{12}s_{13}(P_2 \times P_3);
+P_4 = \Omega(P_1, P_2, P_3)
   \label{C8:cnd1}
 \end{gather}
 if and only if
@@ -2574,21 +2582,35 @@ if and only if
   \scl{P_1\times P_3}{P_2 \times P_4} = 0,\
   \scl{P_1\times P_2}{P_3 \times P_4} = 0.
 \end{gather}
+If $s_{12} = s_{13} = s_{23} = 0$ then, for any $P_4$, we have 
+$s_{24} s_{34} \not = 0$ and~(\ref{C8:cnd2}) is equivalent to
+$P_1 = \Omega(P_2, P_3, P_4)$ (or $P_2 = \Omega(P_1, P_3, P_4)$
+or $P_3 = \Omega(P_1, P_2, P_4)$)
 \end{lemma}
 \begin{proof}
 @@ file proofLemma8alignments.sage
 \end{proof}
-The above lemma allows to understand when a cubic have the eigenpoints
+The above lemma allows to understand when a cubic has the eigenpoints
 aligned according to~(\ref{C8_alignments}).
 %
+
 \begin{prop}
   Let $\mathcal{C}$ be a cubic of the plane with the $7$ eigenpoints
-  aligned according to~(\ref{C8_alignments}). Then the two
-  equivalent conditions~(\ref{C8:cnd1}) and~(\ref{C8:cnd2}) are satisfied.
-  Conversely, if $P_1, \dots, P_7$ are seven points of the plane such
-  that condition~(\ref{C8:cnd1}) (or, equivalently,~(\ref{C8:cnd2})) is
-  satisfied, then there exists a cubic $\mathcal{C}$ of the plane
-  whose eigenpoints are $P_1, \dots, P_7$.
+  aligned according to~(\ref{C8_alignments}).
+  Then the relations~(\ref{C8:cnd2}) are satisfied. 
+  Conversely, if $P_1, P_2, P_3$ are three points of the plane
+  and if $s_{12}s_{13} \not = 0$ or $s_{12}s_{23} \not = 0$ or
+  $s_{12}s_{23} \not = 0$, then let $P_4 = \Omega(P_1, P_2, P_3)$
+  and let $P_5 = (P_1+P_2) \cap (P_3+P_4)$,
+  $P_6 = (P_1+P_4) \cap (P_2+P_3)$, $P_7 = (P_1+P_3) \cap (P_2+P_4)$.
+  Then the points $P_1, \dots, P_7$ satisfy the alignments given
+  in~(\ref{C8_alignments}) and there exists a cubic $\mathcal{C}$
+  of the plane whose eigenpoints are $P_1, \dots, P_7$. Moreover, if
+  we have that among $s_{12}, s_{13}, s_{23}$ two of them are zero, 
+  then we can choose $P_4$ any point of the plane and if we construct
+  $P_5, P_6, P_7$ as above, there exists a cubic $\mathcal{C}$ of the
+  plane with the eigenpoints $P_1, \dotsc, P_7$ if and only if
+  all the three scalar product $s_{12}, s_{13}, s_{23}$ are zero. 
 %% conti nel file config8N.sage.
 \end{prop}
 
