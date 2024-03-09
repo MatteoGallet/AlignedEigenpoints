@@ -1438,7 +1438,7 @@ are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
 aligned with $P_1$.
 \end{prop}
 \begin{proof}
-Let $F$ be the unique form be such that $P_1, \dotsc, P_5 \in \Eig{F}$.
+Let $F$ be the unique form such that $P_1, \dotsc, P_5 \in \Eig{F}$.
 According to \Cref{proposition:G_split}, the polynomial
 $C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$,
 linear in $x, y, z$, which
@@ -1473,7 +1473,7 @@ to~\Cref{theorem:rank_V}, we have to distinguish the two cases
 \end{eqnarray}
 (we recall that condition~(\ref{rk8_2}) means that \emph{the two lines of
 the $V$-configuration are tangent to $\iso$ in $P_2$ and $P_4$}).
-
+%
 To start, we characterize when, for a $V$-configuration
 $P_1, \dotsc, P_5$, the point $P_1$ is singular.
 
@@ -1586,7 +1586,7 @@ in place of $P_4$).
 The two above propositions exhaust all the possible configurations
 of collinearities of the eigenpoints in case of condition~(\ref{rk8_1}).
 
-he proof we give to the two propositions above is computational.
+The proof we give to the two propositions above is computational.
 Using the action of $\mathrm{SO}_3(\mathbb{C})$ (see~\Cref{two_orbits}),
 we can assume $P_1= (1: \iii: 0)$ or $P_1= (1: 0: 0)$. As observed
 in the proof of~\Cref{theorem:rank_V}, if $P_1 = (1: \iii: 0)$,\\
@@ -1732,9 +1732,17 @@ cases can be studied in a similar way.
 
 Then, from these equations, all the computations which allow to prove
 the two above propositions are easy.
+%
+\begin{rmk}
+\label{rmk:delta1_and_delta2}
+It is easy to verify that in 
+a $V$-configuration which satisfies~(\ref{C8:cnd2})
+$\delta_1(P_1, P_2, P_4)$ is not zero and
+$\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$,
+meanwhile in~(\ref{C8:cnd1}) both $\delta_1(P_1, P_2, P_4)$ and
+$\delta_2(P_1, P_2, P_3, P_4, P_5)$ are zero.
+\end{rmk}
 
-@@ ci sono varie ortogonalita' tra i punti che si trovano nel file
-casoDegenere2.pdf e che qui non sono riportate.
 
 \blue{
 \section{The locus of cubic ternary forms with an aligned triple of eigenpoints}
@@ -2589,12 +2597,33 @@ $P_1 = \Omega(P_2, P_3, P_4)$ (or $P_2 = \Omega(P_1, P_3, P_4)$
 or $P_3 = \Omega(P_1, P_2, P_4)$)
 \end{lemma}
 \begin{proof}
-@@ file proofLemma8alignments.sage
+%% file proofLemma8alignments.sage
+Assume that at least one of the coefficients $s_{13}s_{23}, s_{12}s_{23}$
+or $s_{12}s_{13}$ is not zero. Hence $\Omega(P_1, P_2, P_3)$ defines a
+projective point and assume it is the point $P_4$. The points $P_5, P_6, P_7$
+are determined by the aligments and it is easy to verify
+that~(\ref{C8_alignments}) holds.
+Conversely, fix three generic points $P_1, P_2, P_3$, take
+$P_6 = u_1P_1+u_2P_3$, $P_4 = v_1P_1+v_2P_6$ and therefore take
+$P_5 = (P_1+P_2) \cap (P_3+P_4)$ and $P_7 = (P_1+P_3) \cap (P_2+P_4)$.
+In our hypotheses, $\Omega(P_1, P_2, P_3)$ is not $0$,
+so defines a projective point $Q_4$.  Consider the ideal $J$ generated
+by $\scl{P_1\times P_4}{P_2\times P_3}$,
+$\scl{P_1\times P_3}{P_2\times P_4}$,
+$\scl{P_1\times P_2}{P_3\times P_4}$. A direct computation shows that
+the order two minors of the matrix whose rows are $P_4$ and $Q_4$ are all
+zero modulo $J$, therefore $P_4 = Q_4$ as projective points.
+If $s_{12} = s_{13} = s_{23} = 0$, then $\Omega(P_1, P_2, P_3) = 0$,
+but, since $P_2 \times P_3$, $P_2 \times P_4$, $P_3 \times P_4$ are linearly
+independent, if $\Omega(P_2, P_3, P_4) = 0$, then $s_{24}s_{34}$ would be
+zero, but this is not possible, since $P_4$ is not on the line $P_1+P_3$
+neither on $P_1+P_2$. Hence, from the first part of the lemma, we have the
+thesis. A similar argument holds for the other cases.
 \end{proof}
+%
 The above lemma allows to understand when a cubic has the eigenpoints
 aligned according to~(\ref{C8_alignments}).
 %
-
 \begin{prop}
   Let $\mathcal{C}$ be a cubic of the plane with the $7$ eigenpoints
   aligned according to~(\ref{C8_alignments}).
@@ -2608,17 +2637,56 @@ aligned according to~(\ref{C8_alignments}).
   in~(\ref{C8_alignments}) and there exists a cubic $\mathcal{C}$
   of the plane whose eigenpoints are $P_1, \dots, P_7$. Moreover, if
   we have that among $s_{12}, s_{13}, s_{23}$ two of them are zero, 
-  then we can choose $P_4$ any point of the plane and if we construct
+  then we can choose for $P_4$ a generic point of the plane and if we construct
   $P_5, P_6, P_7$ as above, there exists a cubic $\mathcal{C}$ of the
   plane with the eigenpoints $P_1, \dotsc, P_7$ if and only if
   all the three scalar product $s_{12}, s_{13}, s_{23}$ are zero. 
-%% conti nel file config8N.sage.
 \end{prop}
-
+%
+\begin{proof}
 %% conti nel file config8N.sage.
+We take four generic points
+$P_1, \dots, P_4$ and $P_5, P_6, P_7$ such that~(\ref{C8_alignments})
+is satisfied. Consider the following three $V$-configurations:
+$V_1 = (P_5, P_1, P_2, P_3, P_4)$, $V_2 = (P_6, P_1, P_4, P_2, P_3)$
+and $(P_7, P_1, P_3, P_2, P_4)$. If the seven points are eigenpoints,
+then necessarily $\Phi(V_1)$, $\Phi(V_2)$, $\Phi(V_3)$ have rank
+smaller than $10$, so, from~\Cref{delta1_and_delta2} and
+from~\Cref({proposition:terzo_allineamento}) 
+we have that 
+\[
+\delta_1(P_5, P_1, P_4) = 0, \quad \delta_1(P_6, P_1, P_2) = 0, \quad 
+\delta_1(P_7, P_3, P_4) = 0.
+\]
+These three equations are equivalent to
+\[
+s_{14}s_{23}-s_{13}s_{24} = 0, \quad s_{12}s_{34}-s_{13}s_{24} = 0,
+\quad s_{12}s_{34}-s_{14}s_{23} = 0
+\]
+This is a linear system in the coordinates of $P_4$. The solution is
+not unique iff $(s_{12} = s_{13} = 0)$ or $(s_{23} = s_{13} = 0)$
+or $(s_{23} = s_{12} = 0)$. This case will be considered afterwards.
+When the solution is unique, we get new coordinates for $P_4$ so we
+re-define $P_4$ and the points constructed from it (i.e.\ $P_5, P_6, P_7$).
+A direct computation shows that the two lines $P_1+P_4$ and $P_2+P_3$,
+the two lines $P_1+P_3$ and $P_3+P_4$ and the two lines $P_1+P_2$, $P_3+P_4$
+are orthogonal, hence condition~(\ref{C8:cnd2}) is satisfied,
+therefore, from the
+previous lemma, $P_4 = \Omega(P_1, P_2, P_3)$. The rank
+of $\Phi(P_1, \dotsc, P_7)$ is less than $10$ (the computation is
+not so immediate, but can be simplified considering only the
+cases in which $P_1$ is one of the points $(1: 0: 0)$ or
+$(1: \iii: 0)$), we get that the seven points
+are the eigenpoints of a cubic. Conversely, if the seven points are
+eigenpoints, the same computations as above, show that
+$P_4 = \Omega(P_1, P_2, P_3)$.\\
+It remains to consider the case in which $s_{12} = s_{13} = 0$ (or one of
+the other two, which are similar). As above, we again compute
+$\delta_1(P_5, P_1, P_4)$, $\delta_1(P_6, P_1, P_2) = 0$ and 
+$\delta_1(P_7, P_3, P_4)$ and we see that these  polynomials are zero
+iff $s_{12} = 0$.
+\end{proof}
 
-
-%% conti nel file config8.sage.
 
 \bibliographystyle{amsalpha}
 \bibliography{biblio}
