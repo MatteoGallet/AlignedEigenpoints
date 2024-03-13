@@ -2394,7 +2394,6 @@ ma sistemare
 
 
 
-
 \section{Possible configurations of the seven eigenpoints}
 \label{further_alignments}
 
@@ -2403,20 +2402,21 @@ ma sistemare
 \centering
 \begin{tabular}{|llll|}\hline
   num. lines  & collinear vertices & name & conf.\\ \hline
- 1& [(1, 2, 3)] & "line" & (1)\\
- 2& [(1, 2, 3), (1, 4, 5)] & "X shape"& (2)\\
- 3& [(1, 2, 3), (1, 4, 5), (1, 6, 7)] & "star" & (3)\\
-  & [(1, 2, 3), (1, 4, 5), (2, 4, 6)] & "triangle" & (4)\\
- 4& [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)] & "triangle + altitude" & (5)\\
-  & [(1, 2, 3), (1, 4, 5), (2, 4, 6), (3, 5, 6)] & "two X shapes" & (6)\\
- 5& [(1, 2, 3), (1, 4, 5), (1, 6, 7),  & "two stars" & (7)\\
+ 1& [(1, 2, 3)] & "line" & $(C_1)$\\
+ 2& [(1, 2, 3), (1, 4, 5)] & "X shape"& $(C_2)$\\
+ 3& [(1, 2, 3), (1, 4, 5), (1, 6, 7)] & "star" & $(C_3)$\\
+  & [(1, 2, 3), (1, 4, 5), (2, 4, 6)] & "triangle" & $(C_4)$\\
+ 4& [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)] & "triangle + altitude"
+& $(C_5)$\\
+  & [(1, 2, 3), (1, 4, 5), (2, 4, 6), (3, 5, 6)] & "two X shapes" & $(C_6)$\\
+ 5& [(1, 2, 3), (1, 4, 5), (1, 6, 7),  & "two stars" & $(C_7)$\\
   & \phantom{[}(2, 4, 6), (2, 5, 7)] & &\\
- 6& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "triangle + three altitudes" & (8)\\
+ 6& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "triangle + three altitudes" & $(C_8)$\\
   & \phantom{[} (2, 4, 6), (2, 5, 7), (3, 4, 7)] & & \\
  7& [(1, 2, 3),
    (1, 4, 5),
    (1, 6, 7),
-   (2, 4, 6), & "Fano matroid" & (9)\\
+   (2, 4, 6), & "Fano matroid" & $(C_9)$\\
   & \phantom{[} (2, 5, 7),
    (3, 4, 7),
    (3, 5, 6)] & & \\ \hline
@@ -2435,11 +2435,17 @@ by seven points of the plane over a field of zero
 characteristic (see \cite{Whitney1935}), therefore we will not consider
 it in our analysis.
 
-\underline{Configuration (1)} can be realized,
+\underline{Configuration $(C_1)$} can be realized,
 \Cref{proposition:three_aligned_ranks} and Section~\ref{locus_one_alignment}
-give a description of the cubics with such a configuration of points.
+give a description of the cubics with such a configuration of points:
+we fix two points $P_1$ and $P_2$ in $\mathbb{P}^2$, we take a generic $P_3$
+on the line $P_1+P_2$, all the cubics with
+$P_1, P_2, P_3$ eigenpoints is $\Lambda(\Phi(P_1, P_2, P_3))$, the three
+dimensional linear subspace of $\mathbb{P}^9$ (four dimensional, if the
+line $P_1+P_2$ is tangent in $P_1, P_2$ or $P_3$ to $\iso$).
 
-\underline{Configuration (2)} means that the points $P_1, \dots, P_5$ are in a
+\underline{Configuration $(C_2)$} means that the points
+$P_1, \dots, P_5$ are in a
 $V$-configuration, hence the rank of the matrix $\Phi(P_1, \dots, P_5)$
 must be $9$ or $8$. If the rank is $9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dots, P_5) = 0$, see~\Cref{theorem:rank_V}.
@@ -2449,53 +2455,28 @@ in the plane in an arbitrary way, we choose $P_4$ such that
 $\scl{P_4}{s_{11}P_2-s_{12}P_1}=0$
 (see~Equation~\eqref{rmk_delta_case1}) and then we chose any $P_3$
 on the line $P_1+P_2$ and any $P_5$ on the line $P_1+P_4$, we have a cubic
-with a configuration of type (2). In case of rank $8$, as seen
+with a configuration of type $(C_2)$. In case of rank $8$, as seen
 (see~\Cref{rmk:particular_cases}),
-configuration (2) can be
+configuration $(C_2)$ can only be
 obtained from the conditions~(\ref{rk8_1}) (and hence are sub-cases
-of the case $\delta_1(P_1, P_2, P_4)=0$). Configuration (2) can also be
-obtained from~(\ref{rk8_2}) in the general case.~\Cref{rmk:particular_cases2}
-shows @@@ qua va sistemato. Non e' vero @@@
-that for the eigenpoints of these cubics condition
-$\delta_1(P_1,P_2, P_4) = 0$ is not satisfied, so we have another family
-of cubics with configuration of type (2). It can be constructed as
-follows: Take any point $P_1$ of the plane (not on $\iso$), take the two
-tangent lines to $\iso$ passing through $P_1$ and let $P_2$ and $P_4$ (on
-$\iso$) be the points of tangency; then take $P_3$ and $P_5$ on the line
-$P_1+P_2$ and $P_1+P_4$. The matrix $\Phi(P_1, \dots, P_5)$ has rank $8$, so
-add to it a row of random elements of $K$. In this way we have a rank $9$
-matrix which gives a cubic whose eigenpoints are in configuration (2) and
-for these points it is not true that $\delta_1(P_1, P_2, P_4) = 0$.
+of the case $\delta_1(P_1, P_2, P_4)=0$).
 
-\underline{Configuration (3)} Suppose we have $7$ eigenpoints such that
-$\{P_1, P_2, P_3\}$, $\{P_1, P_4, P_5\}$ and $\{P_1, P_6, P_7\}$ are
+\underline{Configuration $(C_3)$} Suppose we have $7$ eigenpoints such that
+$(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$ are
 aligned. Hence
-$P_1, P_2, P_3, P_4, P_5$, $P_1, P_2, P_3, P_6, P_7$,
-$P_1, P_4, P_5, P_6, P_7$, are three $V$-configurations. If
-$\delta_2$ of one of them is
+$V_1 = (P_1, P_2, P_3, P_4, P_5)$, $V_2 = (P_1, P_2, P_3, P_6, P_7)$ and
+$V_3 = (P_1, P_4, P_5, P_6, P_7)$, are three $V$-configurations. It holds:
 
-
-
-
-If inside the configuration (3) we
-have a $V$-configuration
-such that the rank of the matrix $\Phi(P_1, \dots, P_5)$ is $8$
-we know that ..... @@ (completare)
-
-Here we assume therefore that we have among the $7$ points of (3),
-five points $P_1, \dots, P_5$ in a $V$-configuration such that the
-rank of the matrix $\Phi(P_1, \dots, P_5)$ is $9$.
-
-Vedi file: \verb+config3.sage+
 \begin{lemma}
 \label{no_delta1_delta1} Suppose we have  seven eigenpoints $P_1, \dots, P_7$
-of a cubic in configuration (3). Then among the $7$ points there is a
+of a cubic in configuration $(C_3)$. Then among the $7$ points there is a
 $V$-configuration that satisfies a $\delta_2$ condition.
 \end{lemma}
 \begin{proof}
 %% la dim si trova in config3.sage
-The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. As said,
-we assume the matrix $\Phi(P_1, \dots, P_5)$ has
+The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. If 
+$\rk \Phi(P_1, \dots, P_5) = 8$, the result comes from~\Cref{rank_8}.
+Therefore, assume that the matrix $\Phi(P_1, \dots, P_5)$ has
 rank~$9$. If
 $\delta_2(P_1, \dots, P_5) = 0$, we have the thesis, otherwise,
 $\delta_1(P_1, P_2, P_4) = 0$. Then consider the $V$-configuration
@@ -2504,7 +2485,8 @@ The two equations obtained from the two $\delta_1$ give two
 linear equations in the coordinates
 of $P_2$. Assuming the matrix of the system of linear equations have
 maximal rank, the solution gives a point $P_2$ that coincide, as
-a projective point, to $P_1$, which is impossible. Hence we consider the
+a projective point, to $P_1$, which is impossible. Hence we are forced to
+consider the
 case in which the matrix of the linear system do not have maximal rank.
 This condition implies that $\scl{P_1}{P_1} = 0$, hence $P_1$ is on the
 isotropic conic. W.l.o.g.\ we can assume $P_1 = (1: \iii: 0)$ and again
@@ -2519,31 +2501,122 @@ $\delta_2(P_1, P_2, P_3, P_6, P_7) = 0$ or
 $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 \end{proof}
 
-From the above lemma, we have that configuration (3) can be
-realized only by a $\delta_2$ condition (a meno dei casi particolari
-da inserire bene @@@).
+As a consequence of the lemma, we have that configuration $(C_3)$ can
+be obtained only if we have 5 points such that
+$\delta_2(P_1, \dotsc, P_5) = 0$.~\Cref{prop:definitionP3} describes how to
+obtain five points which give a configuration $(C_3)$ of eigenpoints.
 
-Here we list the ways in which we can obtain configuration (3)
-@@@ completare
-
-\underline{Configuration (4)}. It holds:
+\underline{Configuration $(C_4)$}. It holds:
 \begin{prop}
-\label{conf4no} If we have five points in configuration that are in
-configuration (4) and such that are eigenpoints of a cubic, then the
-cubic has $7$ eigenpoints which are in configuration (8). In particular,
-configuration (4) is not realizable.
+\label{conf4no} If we have five points that are in
+configuration $(C_4)$ and such that are eigenpoints of a cubic, then the
+cubic has $7$ eigenpoints which are in configuration $(C_8)$. In particular,
+configuration $(C_4)$ is not realizable.
 \end{prop}
 \begin{proof}
 %% il file config4.sage contiene la dimostrazione
-We know that configuration cannot be obtained from a rank 8 $V$-configuration,
-hence we have to study the case $\delta_1(P_1, P_2, P_4) = 0$,
+From the results of~\Cref{rank_8}, we know that $(C_4)$
+cannot be obtained from a rank 8 $V$-configuration,
+hence it remains to consider the case $\delta_1(P_1, P_2, P_4) = 0$,
 $\delta_1(P_2, P_1, P_4) = 0$ and $\delta_1(P_4, P_1, P_2) = 0$,
-which is not difficult.
+which implies
+$\delta_2(P_1, P_2, P_3, P_4, P_5)=0$,
+$\delta_2(P_2, P_1, P_3, P_4, P_6)=0$,
+$\delta_2(P_4, P_1, P_5, P_2, P_6)=0$.
 \end{proof}
 
-\underline{Configuration (5)} Is realizable.
+
+\underline{Configuration $(C_5)$} 
 \verb+file config5.sage+
-Descrizione del luogo
+\begin{prop}
+Suppose we have $7$ points which are eigenpoints of a cubic and are
+aligned according to configuration $(C_5)$. Then we 
+have the following relations among the points:
+\[
+s_{12} = 0, \quad s_{14} = 0, \quad s_{16} = 0
+\]
+and
+\[
+\scl{P_1\times P_2}{P_2\times P_4} = 0, \quad
+\scl{P_1\times P_4}{P_2\times P_4} = 0, \quad
+\scl{P_1\times P_6}{P_2\times P_4} = 0.
+\]
+\end{prop}
+\begin{proof}
+We can define the points as follows: $P_1$, $P_2$ and $P_4$ with generic 
+coordinates, meanwhile $P_3 = u_1P_1+u_2P_2$, $P_5 = v_1P_1+v_2P_4$ and
+$P_6 = w_1P_2+w_2P_4$. The points $(P_2, P_1, P_3, P_4, P_5)$ are in a
+$V$-copnfiguration, hence necessarily $\delta_1(P_2, P_1, P_4)=0$.
+Analogously, $\delta_1(P_4, P_1, P_2) = 0$, $\delta_1(P_6, P_1, P_2) = 0$
+and $\delta_2(P_1, P_2, P_3, P_4, P_5)=0$ (since $P_1, P_6, P_7$ must
+be aligned. The computation of the ideal generated by the four polynomials
+above give an ideal that, after a saturation, is the ideal generated by
+$s_{12}, s_{14}$ and $s_{16}$ is in this ideal. This shows that
+$s_{12} = s_{14}=s_{16}=0$. In particular we see that $P_1 = P_2 \times P_4$,
+so we can redefine the points according to this condition. It is
+immediate to verify that the line $P_2+P_4$ is orthogonal to the
+lines $P_1+P_2$, $P_1+P_4$ and $P_1+P_6$, and this proves the last claim
+of the proposition.
+\end{proof}
+The above proposition gives a necessary condition in order to have
+$P_1, \dots, P_7$ eigenpoints of a cubic curve. The next proposition
+completes the results.
+\begin{prop}
+Let $P_1, \dotsc, P_7$ be seven points of $\mathbb{P}^2$ in configuration 
+$(C_5)$. Then they are eigenpoints if and only if
+\begin{equation}
+s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}) = 0.
+\label{cndC5}
+\end{equation}
+The points $P_3$ and $P_7$ are then given by the following formulas:
+\begin{eqnarray}
+P_3 & = & (s_{12}(s_{26}s_{45}+s_{46}s_{25})-s_{26}s_{15}s_{24}-s_{46}s_{15}s_{22})P_1-
+(s_{11}(s_{26}s_{45}+s_{46}s_{25})-s_{26}s_{15}s_{14}-s_{46}s_{15}s_{12})P_2
+\label{p3formula}\\
+P_7 & = & (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{66})P_1-
+(s_{11}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{14}-s_{24}s_{15}s_{16})P_6 ,
+\label{p7formula}
+\end{eqnarray}
+\end{prop}
+\begin{proof}
+According to the previous proposition, we take $P_2$ and $P_4$ generic, 
+$P_1 = P_2 \times P_4$ and $P_3, P_5, P_6$ generic points on the lines
+$P_1+P_2, P_1+P_4$ and $P_2+P_4$ respectrively. The matrix
+$M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller) but the computations
+of all the order $10$-minors of $M$ takes to much time, so the need another
+strategy to find when $\rk (M) \leq 10$: we select
+only one order 10 minor of $M$; it is a polynomial which
+factorizes into
+several factors (many of them consequence of the specific minor chosen).
+We select the factor which involves all the variables used in the definition
+of the points (call it $f$) and we claim it is zero if and only if the
+rank of $M$
+is smaller than $10$. In order to see this, we specialize the point $P_1$
+into the point $(1:0:0)$. In this situation the order $10$ minors of $M$
+specialized on this point $P_1$ are easy to compute and it is easy to
+verify that they are zero if and only if the polynomial $f$, specialized
+on the point $(1:0:0)$ is zero. To complete the proof of the claim, we should
+also take for $P_1$ the point $(1:i:0)$, but this is not necessary, since
+the configuration of the points implies that $\scl{P_1}{P_1}=0$ is not
+possible. A manipulation of the polynomial $f$ gives that it given by
+$((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}))/s_{11}$
+hence the points $P_1, \dots, P_6$ are eigenpoints iff~(\ref{cndC5}) is
+satisfied. If in~(\ref{cndC5}) in place of $P_3$ we substitute $u_1P_1+u_2P_2$,
+we find $u_1$ and $u_2$ which give the formula~(\ref{p3formula}) for $P_3$.
+If we exchange $P_2$ with $P_6$ and $P_3$ with $P_7$ in the configuration
+$(C_5)$, we see that $P_7$ is given from~(\ref{p3formula}), exchanging
+$P_2$ and $P_6$. In this way we get the formula~(\ref{p7formula}) for
+$P_7$.
+\end{proof}
+\begin{rmk}
+The family of all the cubics with the eigenpoints in configuration $(C_5)$
+are therefore obtained taking $P_2, P_4$ generic, $P_1 = P_2 \times P_4$,
+$P_5$ generic on the line $P_1+P_4$ and $P_3$ given by the
+formula~(\ref{p3formula}).
+It is easy to see that the cubics with eigenpoints in configuration $(C_5)$
+described in~\Cref{prop:rk8_2B} are a sub-family of the cubics here described,
+obtained by the conditions $s_{22} = s_{44} = 0$.
+\end{rmk}
 
 %% conti nel file config5.sage.
 
@@ -2687,6 +2760,7 @@ $\delta_1(P_5, P_1, P_4)$, $\delta_1(P_6, P_1, P_2) = 0$ and
 $\delta_1(P_7, P_3, P_4)$ and we see that these  polynomials are zero
 iff $s_{12} = 0$.
 \end{proof}
+
 
 
 \bibliographystyle{amsalpha}
