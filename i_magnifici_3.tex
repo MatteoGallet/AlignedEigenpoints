@@ -1755,18 +1755,18 @@ The results of the previous sections allow one to determine the dimension and th
 at least one aligned triple of eigenpoints. We first recall a result by Abo concerning the locus of cubics with a non reduced or positive-dimensional eigenscheme.
 
 \begin{definition}
-    An order $d$ tensor $T \in (\C^n)^{\otimes d}$ is called regular if $\Eig{T}\subset \p^{n-1}$ is reduced of dimension $0$.
-
+    An order $d$ tensor $T \in (\C^n)^{\otimes d}$ is called \emph{regular} if $\Eig{T}\subset \p^{n-1}$ is reduced of dimension $0$.
 
 We set
 $$
-\Delta_{n,d}:=\{[T]\in \p ((\C^n)^{\otimes d}) \ | \ \Eig{T} \textrm{\ is \ non \ regular} \}\subset \p ((\C^n)^{\otimes d}) ;
+\Delta_{n,d} := \{[T]\in \p \bigl( (\C^n)^{\otimes d} \bigr) \ | \ \Eig{T} \textrm{\ is \ non \ regular} \} \subset \p \bigl( (\C^n)^{\otimes d} \bigr) \,.
 $$
-it is called the {\it eigendiscriminant} (see \cite[Definition 5.5]{Abo}.
+The locus~$\Delta_{n,d}$ is called the \emph{eigendiscriminant} (see \cite[Definition 5.5]{Abo}).
 \end{definition}
 
 \begin{theorem}
-   The eigendiscriminant $\Delta_{n,d}\subseteq \p ((\C^n)^{\otimes d})$ is an irreducible hypersurface of
+\label{theorem:eigendiscriminant}
+   The eigendiscriminant $\Delta_{n,d}\subseteq \p \bigl( (\C^n)^{\otimes d} \bigr)$ is an irreducible hypersurface of
    degree $n(n-1)(d-1)^{n-1}$.
 \end{theorem}
 
@@ -1774,8 +1774,7 @@ it is called the {\it eigendiscriminant} (see \cite[Definition 5.5]{Abo}.
     See \cite[Corollary 5.8]{Abo}.
 \end{proof}
 
-When restricting to symmetric tensors the statement is still valid, as they form a linear subspace of
-$\p ((\C^n)^{\otimes d})$ and the generic symmetric tensor has a regular eigenscheme.
+When restricting to symmetric tensors, the statement of \Cref{theorem:eigendiscriminant} is still valid, as they form a linear subspace of~$\p \bigl( (\C^n)^{\otimes d} \bigr)$ and the generic symmetric tensor has a regular eigenscheme.
 
 In the particular case $n=d=3$, we have that
 the eigendiscriminant hypersurface has degree
@@ -1794,19 +1793,19 @@ and define $\mathcal{L} \subseteq \p^9$ as the closure of $\sU$:
 \end{definition}
 
 \begin{theorem}
+\label{theorem:irreducible}
 The variety~$\mathcal{L}$ is an irreducible hypersurface.
 \end{theorem}
 
 \begin{proof}
 Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$. Consider now the open subset
 $$
-\sV = \{ [(P_1, P_2, u_1 P_1 +u_2P_2)]\in \mathcal {AL} \ | \ \text{first\ six \ columns \ of \ $\phi
-(P_1, P_2, u_1 P_1 +u_2P_2)$ \ are \ independent}\}.
+\sV = \{ [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal {AL} \ | \ \text{the\ first\ six\ columns\ of\ } \Phi
+(P_1, P_2, u_1 P_1 +u_2P_2) \text{\ are\ independent}\}.
 $$
 Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV$, the coefficients of any element
 $[f] =[{\mathcal B} \cdot w_f]$ of the linear system
-$\Lambda (\phi
-(P_1, P_2, u_1 P_1 +u_2P_2))$ can be expressed in the form
+$\Lambda \bigl( \Phi (P_1, P_2, u_1 P_1 +u_2P_2) \bigr)$ can be expressed in the form
 $$
 w_f = (b_0,
 b_1,
@@ -1818,13 +1817,9 @@ $$
 where $b_i=b_i (P_1,P_2,a_6,a_7,a_8,a_9)$ are suitable rational functions. In particular we have an
 injective morphism
 $\alpha : \sV \times \p^3 \to \sL$, and it is simple to check that it is dominant. The claim follows.
-
-
-
-
-
 \end{proof}
- As a consequence we have the following result.
+
+ As a consequence, we have the following result.
 \begin{corollary}
 \label{lemma:pencil_one_aligned}
  If $[f],[g] \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then any cubic in the pencil $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
