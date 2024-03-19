@@ -1827,7 +1827,7 @@ $\alpha : \sV \times \p^3 \to \sL$, and it is simple to check that it is dominan
  As a consequence we have the following result.
 \begin{corollary}
 \label{lemma:pencil_one_aligned}
- If $F,G \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then any cubic in the pencil $\lambda F + \mu G$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
+ If $[f],[g] \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then any cubic in the pencil $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
 \end{corollary}
 
 
@@ -1842,20 +1842,22 @@ $\alpha : \sV \times \p^3 \to \sL$, and it is simple to check that it is dominan
 %  The variety~$\Delta$ has dimension~$7$ and it is the union of two irreducible components~$\Delta_1$ and~$\Delta_2$.
 %\end{prop}
 
-In what follows, we shall use the following notation.
-Denote by
 
 
-If $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
-to a cubic form $F$, denote by $\Sigma_F \langle g_1, g_2, g_3 \rangle$,
-the net of cubics, which base locus is the eigenscheme~$\Eig{F}$.
+
+In what follows, we will use the following notation: if $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
+to a cubic form $f$, we denote by 
+$$
+\Sigma_f =\p( \langle g_1, g_2, g_3 \rangle),
+$$
+the net of cubics, which base locus is the eigenscheme~$\Eig{f}$.
 %
 \begin{lemma}
 \label{lemma:scroll}
- If $F$ and $G$ are general cubics, then
+ If $f$ and $g$ are general cubics, then
  %
  \[
-   \mathcal{N} := \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda F + \mu G} \subset \p^9
+   \mathcal{N} := \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda f + \mu g} \subset \p^9
  \]
  %
  is an embedding of a rational projective bundle and has degree~$3$.
@@ -1864,14 +1866,14 @@ the net of cubics, which base locus is the eigenscheme~$\Eig{F}$.
 Consider the projective bundle given by the family of planes
 %
 \[
-{\mathcal P} := \{ \Lambda_{\lambda F + \mu G} \, : \, (\lambda: \mu)\in \p^1 \} \subset \p^1 \times \p^9
+{\mathcal P} := \{ \Lambda_{\lambda f + \mu g} \, : \, (\lambda: \mu)\in \p^1 \} \subset \p^1 \times \p^9
 \]
 %
 Then $\mathcal{N}$ is the projection of~$\mathcal{P}$ on the second factor.
-However, the map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_F$ and $\Lambda_G$ should have non-empty intersection.
-If we denote by $g_1$, $g_2$ and $g_3$ the $2 \times 2$ minors relative to~$F$, and by $h_1$, $h_2$ and $h_3$ the ones relative to~$G$, the vectorial dimension of the linear span $\left\langle g_1, g_2, g_3, h_1, h_2, h_3 \right\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
+However, the map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
+If we denote by $g_1$, $g_2$ and $g_3$ the $2 \times 2$ minors relative to~$f$, and by $h_1$, $h_2$ and $h_3$ the ones relative to~$g$, the vectorial dimension of the linear span $\left\langle g_1, g_2, g_3, h_1, h_2, h_3 \right\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
 
-It follows that if $F$ and $G$ are general enough, then $\mathcal{N}$ is a $3$-dimensional rational normal scroll in
+It follows that if $f$ and $g$ are general enough, then $\mathcal{N}$ is a $3$-dimensional rational normal scroll in
 \[
 \mathcal{N} \subset \p(\left\langle g_1, g_2, g_3, h_1, h_2, h_3 \right\rangle) \cong \p^5.
 \]
@@ -1887,7 +1889,7 @@ The degree of $\mathcal L$ is equal to
 
 \begin{proof}
 We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics
-$\Lambda_f = \langle g_1, g_2, g_3 \rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $F$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+$\Lambda_f = \langle g_1, g_2, g_3 \rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
 To determine the degree of $\mathcal L$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
 
@@ -1932,7 +1934,7 @@ Note that, since each net containing a triangle, actually contains exactly $3$ o
 \frac {{\mathcal T} \cdot {\mathcal N}}{3} =\frac{{15} \cdot {3}}{3}=15 \,.
 \]
 %
-This hence implies that $\deg {\mathcal L} = 15$.
+This implies that $\deg {\mathcal L} = 15$.
 \end{proof}
 
 \begin{es}
