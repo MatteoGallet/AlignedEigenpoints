@@ -114,23 +114,23 @@
 \section{Introduction}
 \label{introduction}
 
-Tensors are natural generalizations of matrices in higher dimension, and can be studied via their eigenvectors. There are several notions of eigenvalues and eigenvectors of tensors, as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}. All of them are of interest in several applications, like in the study of hypergraphs and the dynamical systems governed by those, see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developements. Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
+Tensors are natural generalizations of matrices in higher dimension and can be studied via their eigenvectors. There are several notions of eigenvalues and eigenvectors of tensors, as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}. All of them are of interest in several applications, like in the study of hypergraphs and the dynamical systems governed by those, see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developements. Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
 As an example, consider the problem of maximizing a polynomial function $f$ over the unit sphere in $\R^{n+1}$. Eigenvectors of the symmetric tensor $f$ are critical points of this optimization problem. Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: by Lim's Variational Principle \cite{Lim}, given a symmetric tensor $f$, the critical rank one symmetric tensors for $f$ are exactly of the form $v^d$, where $v$ is an eigenvector of $f$.
 This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors to produce an algorithm to compute Waring decompositions of homogeneous polynomials.
 
 When dealing with eigenvectors it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$.
  If we choose a basis for $\C^{n+1}$, then we can identify $T\in \Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$ with a tuple of homogeneous polynomials $(g_0,\dots,g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v\in\C^{n+1}$ such that
 
-\begin{equation}\label{eq: definizione di autovettore}
+\begin{equation}\label{eq:eigenvector_definition}
 (g_0(v), \ldots, g_n(v))=\lambda v
 \end{equation}
 for some constant $\lambda$.
 
 
 Since %the property of being an eigenvector
-property \eqref{eq: definizione di autovettore} is preserved under scalar multiplication, it is natural to consider the rational map $T:\p^n\dashrightarrow\p^n$ defined by $T(P)=(g_0(P):\ldots:g_n(P))$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case we define the eigenpoints of a homogeneous polynomial $F$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f =(\de_0f,\dots,\de_n f)$.
+property \eqref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T:\p^n\dashrightarrow\p^n$ defined by $T(P)=(g_0(P):\ldots:g_n(P))$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case we define the eigenpoints of a homogeneous polynomial $F$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0f,\dots,\de_n f)$.
 
-Moreover, condition \eqref{eq: definizione di autovettore} can be rephrased in the condition that
+Moreover, condition \eqref{eq:eigenvector_definition} can be rephrased in the condition that
 \begin{equation}
 \label{eq:def_matrix_general}
     \rk \begin{pmatrix}
@@ -1205,7 +1205,7 @@ First, we choose $P_1$, $P_2$, $P_4$ arbitrarily; we choose $P_5$ on the line $P
 Also in this case the locus of cubics is of dimension $7$.
 \end{rmk}
 
-Cubics whose eigenpoints satisfy the condition $\delta_2(P_1, \dotsc, P_5) = 0$ and $\rk \Phi(P_1, \dotsc, P_5) = 9$ exhibit further peculiaties. It turns out that the $7$ eigenpoints of such cubics satisfy the further
+Cubics whose eigenpoints satisfy the condition $\delta_2(P_1, \dotsc, P_5) = 0$ and $\rk \Phi(P_1, \dotsc, P_5) = 9$ exhibit further peculiarities. It turns out that the $7$ eigenpoints of such cubics satisfy the further
 condition that also $P_6$ and $P_7$ are aligned with $P_1$. To explain
 why, we proceed as follows.
 
@@ -1583,7 +1583,7 @@ and $P_7 = (P_3+P_4) \cap (P_2+P_5)$.
 (Of course, a similar result holds if we take $P_3$ in place of $P_2$ or $P_5$
 in place of $P_4$).
 \end{prop}
-The two above propositions exhaust all the possible configurations
+The two propositions above exhaust all the possible configurations
 of collinearities of the eigenpoints in case of condition~(\ref{rk8_1}).
 
 The proof we give to the two propositions above is computational.
@@ -1737,7 +1737,7 @@ the two above propositions are easy.
 %
 \begin{rmk}
 \label{rmk:delta1_and_delta2}
-It is easy to verify that in 
+It is easy to verify that in
 a $V$-configuration which satisfies~(\ref{C8:cnd2}), we have that
 $\delta_1(P_1, P_2, P_4)\neq 0$ and
 $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$,
@@ -1798,21 +1798,21 @@ The variety~$\mathcal{L}$ is an irreducible hypersurface.
 \end{theorem}
 
 \begin{proof}
-Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$. Consider now the open subset 
+Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$. Consider now the open subset
 $$
 \sV = \{ [(P_1, P_2, u_1 P_1 +u_2P_2)]\in \mathcal {AL} \ | \ \text{first\ six \ columns \ of \ $\phi
 (P_1, P_2, u_1 P_1 +u_2P_2)$ \ are \ independent}\}.
 $$
-Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV$, the coefficients of any element 
-$[f] =[{\mathcal B} \cdot w_f]$ of the linear system 
+Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV$, the coefficients of any element
+$[f] =[{\mathcal B} \cdot w_f]$ of the linear system
 $\Lambda (\phi
-(P_1, P_2, u_1 P_1 +u_2P_2))$ can be expressed in the form 
+(P_1, P_2, u_1 P_1 +u_2P_2))$ can be expressed in the form
 $$
 w_f = (b_0,
 b_1,
 b_2,
 b_3,
-b_4, 
+b_4,
 b_5, a_6,a_7,a_8,a_9),
 $$
 where $b_i=b_i (P_1,P_2,a_6,a_7,a_8,a_9)$ are suitable rational functions. In particular we have an
@@ -1846,7 +1846,7 @@ $\alpha : \sV \times \p^3 \to \sL$, and it is simple to check that it is dominan
 
 
 In what follows, we will use the following notation: if $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
-to a cubic form $f$, we denote by 
+to a cubic form $f$, we denote by
 $$
 \Sigma_f =\p( \langle g_1, g_2, g_3 \rangle),
 $$
@@ -1926,8 +1926,8 @@ The following pencil of cubic forms admits exactly $15$ cubics with an aligned t
 
 \section{Eigenschemes of positive dimension}
 \label{positive_dim}
-    In this section we consider positive dimensional eigenschemes. By a result in \cite[...]{BGV}, an eigenscheme cannot be of pure dimension $1$, and the possible $1$-dimensional components are of degree $1$ or $2$. In wha follows we shall determine the degree of the
-    $0$-dimensional residual scheme in both cases.
+
+In this section we consider positive dimensional eigenschemes. By a result in \cite[...]{BGV}, an eigenscheme cannot be of pure dimension $1$, and the possible $1$-dimensional components are of degree $1$ or $2$. In what follows we shall determine the degree of the $0$-dimensional residual scheme in both cases.
 
 \begin{prop}\label{p2}
 Let $C = V(f) \subset \p^2$ be a cubic curve.
@@ -1940,7 +1940,7 @@ then the residual subscheme $Z := \mathrm{Res}_q \bigl( \Eig{f} \bigr)$ in~$\Eig
 \end{enumerate}
 \end{prop}
 \begin{proof}
-(1) 
+(1)
 Let $g_1$, $g_2$, and $g_3$ be the order~$2$ minors determining the eigenscheme of~$f$.
 Since $g_1$, $g_2$, and $g_3$ have a common linear component~$l$, by writing
 \[
@@ -1962,7 +1962,7 @@ z\, h_1 - y\, h_2 + x\, h_3 = 0, \qquad \partial_z f\, h_1 - \partial_y f \, h_2
 \]
 which occur in degrees $3$ and $4$. We claim that the two relations are independent, again,
 otherwise the $g_i$'s would be identically zero. So we apply \cite[Proposition~12]{Ellia2020}, and we have that $\mathcal {G}$ splits. Observe that as $c_1(\mathcal {I}_{Z,\p^2})=0$, we have $c_1(\mathcal {G})=-6$. Moreover, there is no syzygy in degree $2$, since
-otherwise the $h_i$ would be linearly dependent, so the $h_i$ would belong to a pencil, which is a contradiction (giustificare).
+otherwise the $h_i$ would be linearly dependent, so the $h_i$ would belong to a pencil, which is a contradiction \textbf{(giustificare)}.
 
 It follows that the splitting of $\mathcal{G}$ is of the form
 %
@@ -2103,7 +2103,7 @@ di~(\ref{cubiche_con_retta_autop_tg}) sono di dimensione
 in~(\ref{cubiche_con_retta_autop_tg})?
 
 \medskip
-Now we show that any line of the plane can be realized as a line of eigenpoints for some limit polynomial in a family, where thegeneral member has a $0$ dimensional eigenscheme with an aligned triple. The idea is to fix three points on a line and a fourth point varying on another line. We consider a family having such four points as eigenpoints; it turns out that when the fourth point is collinear with the first three points, the line containing them is entirely contained in the eigenscheme.
+Now we show that any line of the plane can be realized as a line of eigenpoints for some limit polynomial in a family, where the general member has a $0$ dimensional eigenscheme with an aligned triple. The idea is to fix three points on a line and a fourth point varying on another line. We consider a family having such four points as eigenpoints; it turns out that when the fourth point is collinear with the first three points, the line containing them is entirely contained in the eigenscheme.
 
 \begin{prop}
 \label{prop:line_as_limit}
@@ -2401,7 +2401,7 @@ $V$-configuration that satisfies a $\delta_2$ condition.
 \end{lemma}
 \begin{proof}
 %% la dim si trova in config3.sage
-The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. If 
+The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. If
 $\rk \Phi(P_1, \dots, P_5) = 8$, the result comes from~\Cref{rank_8}.
 Therefore, assume that the matrix $\Phi(P_1, \dots, P_5)$ has
 rank~$9$. If
@@ -2453,11 +2453,11 @@ $\delta_2(P_4, P_1, P_5, P_2, P_6)=0$.
 \end{proof}
 
 
-\underline{Configuration $(C_5)$} 
+\underline{Configuration $(C_5)$}
 \verb+file config5.sage+
 \begin{prop}
 Suppose we have $7$ points which are eigenpoints of a cubic and are
-aligned according to configuration $(C_5)$. Then we 
+aligned according to configuration $(C_5)$. Then we
 have the following relations among the points:
 \[
 s_{12} = 0, \quad s_{14} = 0, \quad s_{16} = 0
@@ -2470,10 +2470,10 @@ and
 \]
 \end{prop}
 \begin{proof}
-We can define the points as follows: $P_1$, $P_2$ and $P_4$ with generic 
+We can define the points as follows: $P_1$, $P_2$ and $P_4$ with generic
 coordinates, meanwhile $P_3 = u_1P_1+u_2P_2$, $P_5 = v_1P_1+v_2P_4$ and
 $P_6 = w_1P_2+w_2P_4$. The points $(P_2, P_1, P_3, P_4, P_5)$ are in a
-$V$-copnfiguration, hence necessarily $\delta_1(P_2, P_1, P_4)=0$.
+$V$-configuration, hence necessarily $\delta_1(P_2, P_1, P_4)=0$.
 Analogously, $\delta_1(P_4, P_1, P_2) = 0$, $\delta_1(P_6, P_1, P_2) = 0$
 and $\delta_2(P_1, P_2, P_3, P_4, P_5)=0$ (since $P_1, P_6, P_7$ must
 be aligned. The computation of the ideal generated by the four polynomials
@@ -2485,11 +2485,13 @@ immediate to verify that the line $P_2+P_4$ is orthogonal to the
 lines $P_1+P_2$, $P_1+P_4$ and $P_1+P_6$, and this proves the last claim
 of the proposition.
 \end{proof}
+
 The above proposition gives a necessary condition in order to have
 $P_1, \dots, P_7$ eigenpoints of a cubic curve. The next proposition
 completes the results.
+
 \begin{prop}
-Let $P_1, \dotsc, P_7$ be seven points of $\mathbb{P}^2$ in configuration 
+Let $P_1, \dotsc, P_7$ be seven points of $\mathbb{P}^2$ in configuration
 $(C_5)$. Then they are eigenpoints if and only if
 \begin{equation}
 s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}) = 0.
@@ -2506,9 +2508,9 @@ P_7 & = & (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{6
 \end{eqnarray}
 \end{prop}
 \begin{proof}
-According to the previous proposition, we take $P_2$ and $P_4$ generic, 
+According to the previous proposition, we take $P_2$ and $P_4$ generic,
 $P_1 = P_2 \times P_4$ and $P_3, P_5, P_6$ generic points on the lines
-$P_1+P_2, P_1+P_4$ and $P_2+P_4$ respectrively. The matrix
+$P_1+P_2, P_1+P_4$ and $P_2+P_4$, respectively. The matrix
 $M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller) but the computations
 of all the order $10$-minors of $M$ takes to much time, so the need another
 strategy to find when $\rk (M) \leq 10$: we select
@@ -2535,6 +2537,7 @@ $(C_5)$, we see that $P_7$ is given from~(\ref{p3formula}), exchanging
 $P_2$ and $P_6$. In this way we get the formula~(\ref{p7formula}) for
 $P_7$.
 \end{proof}
+
 \begin{rmk}
 The family of all the cubics with the eigenpoints in configuration $(C_5)$
 are therefore obtained taking $P_2, P_4$ generic, $P_1 = P_2 \times P_4$,
@@ -2592,7 +2595,7 @@ if and only if
   \scl{P_1\times P_3}{P_2 \times P_4} = 0,\
   \scl{P_1\times P_2}{P_3 \times P_4} = 0.
 \end{gather}
-If $s_{12} = s_{13} = s_{23} = 0$ then, for any $P_4$, we have 
+If $s_{12} = s_{13} = s_{23} = 0$ then, for any $P_4$, we have
 $s_{24} s_{34} \not = 0$ and~(\ref{C8:cnd2}) is equivalent to
 $P_1 = \Omega(P_2, P_3, P_4)$ (or $P_2 = \Omega(P_1, P_3, P_4)$
 or $P_3 = \Omega(P_1, P_2, P_4)$)
@@ -2602,7 +2605,7 @@ or $P_3 = \Omega(P_1, P_2, P_4)$)
 Assume that at least one of the coefficients $s_{13}s_{23}, s_{12}s_{23}$
 or $s_{12}s_{13}$ is not zero. Hence $\Omega(P_1, P_2, P_3)$ defines a
 projective point and assume it is the point $P_4$. The points $P_5, P_6, P_7$
-are determined by the aligments and it is easy to verify
+are determined by the alignments and it is easy to verify
 that~(\ref{C8_alignments}) holds.
 Conversely, fix three generic points $P_1, P_2, P_3$, take
 $P_6 = u_1P_1+u_2P_3$, $P_4 = v_1P_1+v_2P_6$ and therefore take
@@ -2628,7 +2631,7 @@ aligned according to~(\ref{C8_alignments}).
 \begin{prop}
   Let $\mathcal{C}$ be a cubic of the plane with the $7$ eigenpoints
   aligned according to~(\ref{C8_alignments}).
-  Then the relations~(\ref{C8:cnd2}) are satisfied. 
+  Then the relations~(\ref{C8:cnd2}) are satisfied.
   Conversely, if $P_1, P_2, P_3$ are three points of the plane
   and if $s_{12}s_{13} \not = 0$ or $s_{12}s_{23} \not = 0$ or
   $s_{12}s_{23} \not = 0$, then let $P_4 = \Omega(P_1, P_2, P_3)$
@@ -2637,11 +2640,11 @@ aligned according to~(\ref{C8_alignments}).
   Then the points $P_1, \dots, P_7$ satisfy the alignments given
   in~(\ref{C8_alignments}) and there exists a cubic $\mathcal{C}$
   of the plane whose eigenpoints are $P_1, \dots, P_7$. Moreover, if
-  we have that among $s_{12}, s_{13}, s_{23}$ two of them are zero, 
+  we have that among $s_{12}, s_{13}, s_{23}$ two of them are zero,
   then we can choose for $P_4$ a generic point of the plane and if we construct
   $P_5, P_6, P_7$ as above, there exists a cubic $\mathcal{C}$ of the
   plane with the eigenpoints $P_1, \dotsc, P_7$ if and only if
-  all the three scalar product $s_{12}, s_{13}, s_{23}$ are zero. 
+  all the three scalar product $s_{12}, s_{13}, s_{23}$ are zero.
 \end{prop}
 %
 \begin{proof}
@@ -2654,9 +2657,9 @@ and $(P_7, P_1, P_3, P_2, P_4)$. If the seven points are eigenpoints,
 then necessarily $\Phi(V_1)$, $\Phi(V_2)$, $\Phi(V_3)$ have rank
 smaller than $10$, so, from~\Cref{delta1_and_delta2} and
 from~\Cref{proposition:terzo_allineamento}
-we have that 
+we have that
 \[
-\delta_1(P_5, P_1, P_4) = 0, \quad \delta_1(P_6, P_1, P_2) = 0, \quad 
+\delta_1(P_5, P_1, P_4) = 0, \quad \delta_1(P_6, P_1, P_2) = 0, \quad
 \delta_1(P_7, P_3, P_4) = 0.
 \]
 These three equations are equivalent to
@@ -2683,7 +2686,7 @@ eigenpoints, the same computations as above, show that
 $P_4 = \Omega(P_1, P_2, P_3)$.\\
 It remains to consider the case in which $s_{12} = s_{13} = 0$ (or one of
 the other two, which are similar). As above, we again compute
-$\delta_1(P_5, P_1, P_4)$, $\delta_1(P_6, P_1, P_2) = 0$ and 
+$\delta_1(P_5, P_1, P_4)$, $\delta_1(P_6, P_1, P_2) = 0$ and
 $\delta_1(P_7, P_3, P_4)$ and we see that these  polynomials are zero
 iff $s_{12} = 0$.
 \end{proof}
