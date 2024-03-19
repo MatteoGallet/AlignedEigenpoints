@@ -1738,8 +1738,8 @@ the two above propositions are easy.
 \begin{rmk}
 \label{rmk:delta1_and_delta2}
 It is easy to verify that in 
-a $V$-configuration which satisfies~(\ref{C8:cnd2})
-$\delta_1(P_1, P_2, P_4)$ is not zero and
+a $V$-configuration which satisfies~(\ref{C8:cnd2}), we have that
+$\delta_1(P_1, P_2, P_4)\neq 0$ and
 $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$,
 meanwhile in~(\ref{C8:cnd1}) both $\delta_1(P_1, P_2, P_4)$ and
 $\delta_2(P_1, P_2, P_3, P_4, P_5)$ are zero.
@@ -1785,7 +1785,7 @@ $$
 \begin{definition}
 Let $\sU \subset \p^9$ be the following locus:
 $$
-\sU:= \{[F]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{F} \ \textrm {contains \ a \ unique \ aligned \ triple}\},
+\sU:= \{[F]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{F} \ \textrm {contains \ an \ aligned \ triple}\},
 $$
 and define $\mathcal{L} \subseteq \p^9$ as the closure of $\sU$:
  $$
@@ -1798,103 +1798,31 @@ The variety~$\mathcal{L}$ is an irreducible hypersurface.
 \end{theorem}
 
 \begin{proof}
-Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Then we have a surjective morphism
+Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$. Consider now the open subset 
 $$
-\alpha : \mathcal{U} \to \mathcal {AL},
+\sV = \{ [(P_1, P_2, u_1 P_1 +u_2P_2)]\in \mathcal {AL} \ | \ \text{first\ six \ columns \ of \ $\phi
+(P_1, P_2, u_1 P_1 +u_2P_2)$ \ are \ independent}\}.
 $$
-assigning to each $[F] \in \mathcal{U}$ the unique triple of eigenpoints. Over the irreducible open subset
+Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV$, the coefficients of any element 
+$[f] =[{\mathcal B} \cdot w_f]$ of the linear system 
+$\Lambda (\phi
+(P_1, P_2, u_1 P_1 +u_2P_2))$ can be expressed in the form 
 $$
-\mathcal W := \mathcal {AL}
-\setminus \{(P_1,P_2,P_3)\in\mathcal {AL}
-\ | \ \sigma(P_1,P_2)=0, s_{11} s_{22} s_{33}=0\}
+w_f = (b_0,
+b_1,
+b_2,
+b_3,
+b_4, 
+b_5, a_6,a_7,a_8,a_9),
 $$
-of aligned triples not lying
-on a tangent line to the isotropic conic $\iso$, with tangency point one of the $P_i$'s, the fibers of $\alpha$ are projective linear systems of dimension $3$ by
-Proposition \ref{manca il riferimento su ancillary    non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
-$$
-\dim \alpha ^{-1} (\mathcal W)
-\subset \sU=8 ,
-$$
-so $\sL$ is a hypersurface. Next we set
-$$
-\Sigma:=\{(P_1,P_2,P_3)\in\mathcal {AL}
-\ | \ \sigma(P_1,P_2)=0, s_{11} s_{22} s_{33}=0\}
-$$
-and we observe that $\Sigma \subset \overline {\mathcal {AL}}$. Being $\alpha$ a morphism we get
-that
-$$
-\sU \subseteq \overline {\alpha^{-1} (\mathcal W)}.
-$$
-
-%that is, any $[F] \in \sU$ such that $\alpha (F)$
-%satisfies $\sigma(P_1,P_2)=0$
-%is a limit of $[F_t]\in \alpha^{-1} (\mathcal W)$.
-%
-%Without loss of generality we can assume that the tangent line $l$ to $\iso$ is given by $\iii x-y=0$ and $P_1=(1:\iii:0)$. We consider the pencil of lines $\lambda x + \mu y$ with base point $(0:0:1)$, and
-%for any pair $P_2= (A_2: \iii A_2: C_2), P_3
-%=(A_3: \iii A_3 :C_3)\in l$, $P_i \neq P_1$, we set
-%$$
-%P_1^{\lambda, \mu}=(-\mu : \lambda :0), \quad
-%P_2^{\lambda, \mu}=(-\mu A_2: \lambda A_2:C_2), \quad
-%P_1^{\lambda, \mu}=(-\mu A_3: \lambda A_3:C_3).
-%$$
-%By adding other three linear conditions, we can construct a one-dimensional family of cubics with general
-%member in $\sV$ and the special one satisfying $\sigma (P_1,P_2)=0$
+where $b_i=b_i (P_1,P_2,a_6,a_7,a_8,a_9)$ are suitable rational functions. In particular we have an
+injective morphism
+$\alpha : \sV \times \p^3 \to \sL$, and it is simple to check that it is dominant. The claim follows.
 
 
 
-It follows that $\sU$ is irreducible, and therefore $\sL$ is irreducible too.
-\end{proof}
 
-\begin{prop}
-The class of any ternary form $[F]$ with two or more aligned triples of eigenpoints satisfies
-$
-[F] \in \sL.
-$
 
-\end{prop}
-
-\begin{proof}
-Let $\sV \subset \p^9$ denote the locus of classes $[F]$ of cubic forms adimitting a $V$-configuration among its eigenpoints.
-
- For simplicity we shall only consider the general cubic form
- $[F] \in \sV \setminus \Delta_{3,3}$, that is the ones corresponding to a rank $9$ matrix $\Phi(P_1, \dots, P_5)$; the cases with more alignments can be treated similarly.
-
- Observe that all the irreducible components of $\sV \setminus \Delta_{3,3}$ are open and nonempty in $\sV$ by
- Remark \ref{rmk_delta_case3}.
-
-If $F$ is general enough, we have
-$\rk \ \Phi(P_1, \dots, P_5)=9$ and $\rk \ \Phi(P_1, \dots, P_4)=8$.
-We can also assume that $\Eig{F}$ has no other collinearities.
-The pencil of cubics with the assigned eigenpoints $P_1, \dots, P_4$
-has a general member in $\sU$ since $[F] \not\in \Delta_{3,3}$ and $P_1,P_2,P_3$ are aligned. This proves the statement.
-\end{proof}
-
-\begin{prop}
-    The locus $\sV$ of cubics that have at least two aligned triples of eigenpoints has codimension~$2$ in~$\p^9$.
-\end{prop}
-\begin{proof}
-In the product $(\p^2)^{5}$, the locus $\sF$ of
-unordered $5$-tuples of distinct points containing $4$ collinear points is closed; indeed, a $5$-uple $(P_1,\dots,P_5)$ is in $\sF$ if and only if the points do not impose independent conditions to conics, that is if and only if the $5 \times 6$ matrix
-associated with the
-conditions of passing through $(P_1,\dots,P_5)$ has rank less or equal to $4$.
-
-We then consider the open subset $\mathcal {Y}:=(\p^2)^{5} \setminus \sF$.
-The locus $\mathfrak{V}$ of $V$-configurations in $\sY$ has dimension $8$ and can be characterized as follows:
-$$
-\mathfrak{V}= \{(P_1,\dots,P_5) \in \sY \ | \ \langle P_1 \times P_2, P_3\rangle=0, \ \langle P_1 \times P_4, P_5\rangle=0\}.
-$$
-Finally, a $V$-configuration is contained in an eigenscheme of some polynomial if and only if $\delta_1 (P_i,P_j,P_k) \cdot \delta_2 (P_1,\dots, P_5)=0$.
-
-By setting $\Delta_{ijk} :=\{\delta_1 (P_i, P_j,P_k)=0\}$
-and $\Delta_2:=\{\delta_2=0\}$, and by considering in $\sV$ the locus
-$\mathcal{V}'$ of classes $[F]$ with $\Eig{F}$ containing exactly one $V$-configuration,
-we get a morphism
-$$
-\beta : \mathcal{V}' \to (\bigcup_{i,j,k}\Delta_{i,j,k} \cup \Delta_2) \cap \mathfrak{V} \cap \sY.
-$$
-By the results of Section 6, the locus with $\rk \Phi(P_1, \dots,P_5)\le 8$ is closed, so $\beta$ is generically injective and $\dim \mathcal{V}'=\dim \overline {\mathcal{V}'}=7$.
-%
 \end{proof}
  As a consequence we have the following result.
 \begin{corollary}
@@ -2768,3 +2696,101 @@ iff $s_{12} = 0$.
 \bibliography{biblio}
 
 \end{document}
+
+Then we have a surjective morphism
+$$
+\alpha : \mathcal{U} \to \mathcal {AL},
+$$
+assigning to each $[F] \in \mathcal{U}$ the unique triple of eigenpoints. Over the irreducible open subset
+$$
+\mathcal W := \mathcal {AL}
+\setminus \{(P_1,P_2,P_3)\in\mathcal {AL}
+\ | \ \sigma(P_1,P_2)=0, s_{11} s_{22} s_{33}=0\}
+$$
+of aligned triples not lying
+on a tangent line to the isotropic conic $\iso$, with tangency point one of the $P_i$'s, the fibers of $\alpha$ are projective linear systems of dimension $3$ by
+Proposition \ref{manca il riferimento su ancillary    non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
+$$
+\dim \alpha ^{-1} (\mathcal W)
+\subset \sU=8 ,
+$$
+so $\sL$ is a hypersurface. Next we set
+$$
+\Sigma:=\{(P_1,P_2,P_3)\in\mathcal {AL}
+\ | \ \sigma(P_1,P_2)=0, s_{11} s_{22} s_{33}=0\}
+$$
+and we observe that $\Sigma \subset \overline {\mathcal {AL}}$. Being $\alpha$ a morphism we get
+that
+$$
+\sU \subseteq \overline {\alpha^{-1} (\mathcal W)}.
+$$
+
+%that is, any $[F] \in \sU$ such that $\alpha (F)$
+%satisfies $\sigma(P_1,P_2)=0$
+%is a limit of $[F_t]\in \alpha^{-1} (\mathcal W)$.
+%
+%Without loss of generality we can assume that the tangent line $l$ to $\iso$ is given by $\iii x-y=0$ and $P_1=(1:\iii:0)$. We consider the pencil of lines $\lambda x + \mu y$ with base point $(0:0:1)$, and
+%for any pair $P_2= (A_2: \iii A_2: C_2), P_3
+%=(A_3: \iii A_3 :C_3)\in l$, $P_i \neq P_1$, we set
+%$$
+%P_1^{\lambda, \mu}=(-\mu : \lambda :0), \quad
+%P_2^{\lambda, \mu}=(-\mu A_2: \lambda A_2:C_2), \quad
+%P_1^{\lambda, \mu}=(-\mu A_3: \lambda A_3:C_3).
+%$$
+%By adding other three linear conditions, we can construct a one-dimensional family of cubics with general
+%member in $\sV$ and the special one satisfying $\sigma (P_1,P_2)=0$
+
+
+
+It follows that $\sU$ is irreducible, and therefore $\sL$ is irreducible too.
+\end{proof}
+
+\begin{prop}
+The class of any ternary form $[F]$ with two or more aligned triples of eigenpoints satisfies
+$
+[F] \in \sL.
+$
+
+\end{prop}
+
+\begin{proof}
+Let $\sV \subset \p^9$ denote the locus of classes $[F]$ of cubic forms adimitting a $V$-configuration among its eigenpoints.
+
+ For simplicity we shall only consider the general cubic form
+ $[F] \in \sV \setminus \Delta_{3,3}$, that is the ones corresponding to a rank $9$ matrix $\Phi(P_1, \dots, P_5)$; the cases with more alignments can be treated similarly.
+
+ Observe that all the irreducible components of $\sV \setminus \Delta_{3,3}$ are open and nonempty in $\sV$ by
+ Remark \ref{rmk_delta_case3}.
+
+If $F$ is general enough, we have
+$\rk \ \Phi(P_1, \dots, P_5)=9$ and $\rk \ \Phi(P_1, \dots, P_4)=8$.
+We can also assume that $\Eig{F}$ has no other collinearities.
+The pencil of cubics with the assigned eigenpoints $P_1, \dots, P_4$
+has a general member in $\sU$ since $[F] \not\in \Delta_{3,3}$ and $P_1,P_2,P_3$ are aligned. This proves the statement.
+\end{proof}
+
+\begin{prop}
+    The locus $\sV$ of cubics that have at least two aligned triples of eigenpoints has codimension~$2$ in~$\p^9$.
+\end{prop}
+\begin{proof}
+In the product $(\p^2)^{5}$, the locus $\sF$ of
+unordered $5$-tuples of distinct points containing $4$ collinear points is closed; indeed, a $5$-uple $(P_1,\dots,P_5)$ is in $\sF$ if and only if the points do not impose independent conditions to conics, that is if and only if the $5 \times 6$ matrix
+associated with the
+conditions of passing through $(P_1,\dots,P_5)$ has rank less or equal to $4$.
+
+We then consider the open subset $\mathcal {Y}:=(\p^2)^{5} \setminus \sF$.
+The locus $\mathfrak{V}$ of $V$-configurations in $\sY$ has dimension $8$ and can be characterized as follows:
+$$
+\mathfrak{V}= \{(P_1,\dots,P_5) \in \sY \ | \ \langle P_1 \times P_2, P_3\rangle=0, \ \langle P_1 \times P_4, P_5\rangle=0\}.
+$$
+Finally, a $V$-configuration is contained in an eigenscheme of some polynomial if and only if $\delta_1 (P_i,P_j,P_k) \cdot \delta_2 (P_1,\dots, P_5)=0$.
+
+By setting $\Delta_{ijk} :=\{\delta_1 (P_i, P_j,P_k)=0\}$
+and $\Delta_2:=\{\delta_2=0\}$, and by considering in $\sV$ the locus
+$\mathcal{V}'$ of classes $[F]$ with $\Eig{F}$ containing exactly one $V$-configuration,
+we get a morphism
+$$
+\beta : \mathcal{V}' \to (\bigcup_{i,j,k}\Delta_{i,j,k} \cup \Delta_2) \cap \mathfrak{V} \cap \sY.
+$$
+By the results of Section 6, the locus with $\rk \Phi(P_1, \dots,P_5)\le 8$ is closed, so $\beta$ is generically injective and $\dim \mathcal{V}'=\dim \overline {\mathcal{V}'}=7$.
+%
