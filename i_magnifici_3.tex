@@ -403,7 +403,7 @@ a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ter
 \begin{definition}
 \label{definition:matrix_conditions}
  Consider $\p^9 = \p(\C[x,y,z]_3)$, the space of all ternary cubics.
- Through this paper, we will consider the standard monomial basis for $\C[x,y,z]_3$ and we set the following vector~$\mathcal{B}$
+ Through this paper, we will consider the standard monomial basis for $\C[x,y,z]_3$ and we set~$\mathcal{B}$ to be the following vector
  \begin{eqnarray}
   \mathcal{B} = (x^3, x^2 y, x y^2, y^3, x^2 z, x y z, y^2 z, x z^2, y z^2, z^3)
   \in \bigl( \C[x,y,z]_3 \bigr)^{\oplus 10} \,.
@@ -1784,7 +1784,7 @@ $$
 \begin{definition}
 Let $\sU \subset \p^9$ be the following locus:
 $$
-\sU:= \{[F]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{F} \ \textrm {contains \ an \ aligned \ triple}\},
+\sU:= \{[f]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{f} \ \textrm {contains \ an \ aligned \ triple}\},
 $$
 and define $\mathcal{L} \subseteq \p^9$ as the closure of $\sU$:
  $$
@@ -1798,31 +1798,115 @@ The variety~$\mathcal{L}$ is an irreducible hypersurface.
 \end{theorem}
 
 \begin{proof}
-Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$. Consider now the open subset
+We first prove that $\dim \mathcal{L}=8$. As there exist
+polynomials $f$ such that $\Eig{f}$ has no aligned triple, we have $\dim \mathcal{L} \le 8$.
+
+
+Consider the symmetric product $(\p^2) ^{(3)}$ and set $\mathcal {AL} \subset (\p^2) ^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal {AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order $3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$. 
+
+If we set
 $$
-\sV = \{ [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal {AL} \ | \ \text{the\ first\ six\ columns\ of\ } \Phi
-(P_1, P_2, u_1 P_1 +u_2P_2) \text{\ are\ independent}\}.
+\sU':= \{[f]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{f} \ \textrm {contains \ exactly \ $1$ \ aligned \ triple}\},
 $$
-Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV$, the coefficients of any element
+we have a surjective morphism
+$$
+\alpha : \mathcal{U}' \to \mathcal {AL},
+$$
+assigning to each $[f] \in \mathcal{U}'$ the unique triple of eigenpoints. Over the irreducible open subset
+$$
+\mathcal W := \mathcal {AL}
+\setminus \{(P_1,P_2,P_3)\in\mathcal {AL}
+\ | \ \sigma(P_1,P_2)=0, s_{11} s_{22} s_{33}=0\}
+$$
+of aligned triples not lying
+on a tangent line to the isotropic conic $\iso$ and with tangency point one of the $P_i$'s, the fibers of $\alpha$ are projective linear systems of dimension $3$ by
+Proposition \ref{manca il riferimento su ancillary    non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
+$$
+\dim \alpha ^{-1} (\mathcal W)
+\subset \sU=8 ,
+$$
+so $\sL$ is a hypersurface. 
+
+
+To prove the irreducibility, we observe that since the eigenpoint condition corresponds to two linear conditions on the coefficients of cubic polynomials, by linear algebra methods we can determine a local parametrization of $\sL$.
+Specifically, given a general aligned triple $(P_1, P_2, u_1 P_1 +u_2P_2)$, the matrix of conditions $\Phi(P_1, P_2, u_1 P_1 +u_2P_2)$ has rank $6$, so the associated linear system 
+$\Lambda (\Phi(P_1, P_2, u_1 P_1 +u_2P_2))$ has dimension $3$. We can then express $6$ coefficients of the general polynomial 
+$[f]\in \Lambda (\Phi(P_1, P_2, u_1 P_1 +u_2P_2))$ as rational function of $P_1,P_2,u_1,u_2$ and of the remaining $4$ coefficients. The free coefficients depend on the position of a non zero minor of order six, which, in principle, could involve any choice of columns. In fact this is not the case, as it turns out, that the last $3$ columns of the matrix 
+$\Phi(P_1, P_2, u_1 P_1 +u_2P_2)$ are always in the linear span of the first $7$ columns.
+
+\blue{inserire una giustificazione}
+
+As a consequence, local parametrizations of $\sL$ can be given by considering the following open subsets:
+for any multiindex
+$$
+I =\{i_1,\dots,i_6\}\subset \{ 1, 2,\dots 7\}, 
+$$
+we set
+$$
+\sV_I := \{ [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal {AL} \ | \ \text{the\  columns\ of\ } \Phi
+(P_1, P_2, u_1 P_1 +u_2P_2) \text{\ relative \ to} \ I\ \text{are\ independent}\}.
+$$
+Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV_I$, the coefficients of any element
 $[f] =[{\mathcal B} \cdot w_f]$ of the linear system
 $\Lambda \bigl( \Phi (P_1, P_2, u_1 P_1 +u_2P_2) \bigr)$ can be expressed in the form
-$$
-w_f = (b_0,
+\begin{equation}\label{eq: parametrizzazione}
+w_f =(b_0,
 b_1,
 b_2,
 b_3,
 b_4,
-b_5, a_6,a_7,a_8,a_9),
+b_5, b_6,b_7,b_8,b_9)=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9),
+\end{equation}
+where $b_i=b_i (P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$ for $i\in I$ and $j\not \in I$, $1\le j \le 7$, are suitable rational functions. On such an open subset we have then the rational
+map
 $$
-where $b_i=b_i (P_1,P_2,a_6,a_7,a_8,a_9)$ are suitable rational functions. In particular we have an
-injective morphism
-$\alpha : \sV \times \p^3 \to \sL$, and it is simple to check that it is dominant. The claim follows.
+\alpha_I : \sV_I \times \p^3 \to \sL, \quad 
+\alpha_I (P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)=
+[{\mathcal B} \cdot w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)].
+$$
+Next we observe that for any $I \subset \{1,\dots, 7\}$, the image 
+$$
+W_I:=\alpha_I (\sV_I \times \p^3)
+$$
+is irreducible, being image of an irreducible variety, and it
+contains an open subset. Indeed, assume for simplicity that 
+$I=\{1,2,3,4,5,6\}$; an element $[f]\in W_I$ is represented by the determinant of the
+matrix given by the rows $ 0,1,3,4,6,7$ of $\Phi (P_1, P_2, u_1 P_1 +u_2P_2)$ and the additional $4$ rows
+\[
+ \left(
+ \begin{array}{cccccc}
+  0 & \dots & 1&0&0&-b_6 \\
+ 0 & \dots & 0&1&0&-b_7 \\
+ 0 & \dots & 0&0&1&-b_8 \\
+  & & &\mathcal {B} & & \\
+ \end{array}
+ \right).
+\]
+In particular, the the coefficient $b_9$ of $z^3$ is equal to the determinant of the order six minor of $\Phi (P_1, P_2, u_1 P_1 +u_2P_2)$ relative to the first $6$ columns. It follows that $W_I \supset \sL \cap \{ a_9 \neq 0\}$.
+
+\blue{assicurarsi che funziona anche negli altri casi}
+
+Finally, we claim that the irreducible subvarieties $W_I$, $I\subset \{1,\dots, 7\}$ have a common non-empty intersection
+including internal points. Indeed, an example of a polynomial 
+class $[g]$ with an aligned triple of eigenpoints and satisfying
+$$
+[g] \in \bigcap _I W_I \cap \Delta_{3,3}
+$$
+is given by the following ...
+
+
+
+\blue {assicurarsi che l'esempio trovato con Sandro abbia autoschema $0$-dimensionale e ridotto}.
+
+
+Hence $\sL$ is covered by irreducible open subsets, each intersecting every other, so it is irreducible.
+
 \end{proof}
 
  As a consequence, we have the following result.
 \begin{corollary}
 \label{lemma:pencil_one_aligned}
- If $[f],[g] \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then any cubic in the pencil $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has at most one aligned triple of eigenpoints.
+ If $[f],[g] \in \p^9 \setminus \Delta_{3,3}$ are general cubics, then there is a finite number of cubics in the pencil $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ having aligned triples of eigenpoints.
 \end{corollary}
 
 
