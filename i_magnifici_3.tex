@@ -170,8 +170,7 @@ of a $3\times 3 \times 3$-tensor if and only if no six of the seven points lie o
 Moreover, we have also the following result (see \cite[Theorem 5.7]{BGV}):
 \begin{theorem}
 \label{thm : general no d collinear}
-Let $d\ge 3$. The eigenscheme $\Eig{f}$ of a general homogeneous polynomial $f \in \C[x_0,x_1,x_2]_d$ contains no $d$ collinear points. As a
-consequence, the general symmetric tensor of order $d$ has no $d$ collinear eigenpoints.
+Let $d\ge 3$. The eigenscheme $\Eig{f}$ of a general homogeneous polynomial $f \in \C[x_0,x_1,x_2]_d$ contains no $d$ collinear points. 
 \end{theorem}
 
 However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
@@ -186,13 +185,13 @@ The goal of this paper is to classify all the situations when we have one or mor
 \section{Aligned eigenpoints of ternary cubic form}
 \label{aligned}
 
-We recall that, given a homogeneous form $F \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{F}$ of~$F$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
+We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{f}$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
 %
 \begin{equation}
 \label{eq:def_matrix}
     \begin{pmatrix}
     x & y & z \\
-    \de_x F & \de_y F & \de_z F
+    \de_x f & \de_y f & \de_z f
     \end{pmatrix}.
 \end{equation}
 %
@@ -1067,11 +1066,11 @@ $\mathcal{H}_i$ is the order $9$ minor of
 $\mathcal{H}$ given by erasing the $i$-th column ($i=1, \dots, 10)$, then,
 from Cramer's rule, a polynomial defining $\cbc$ is given by
 \[
- F(X) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_i
+ f(X) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_i
 \]
 (where $\mathcal{B}$ is as in \Cref{vector_basis}). In other words,
 \[
-F(X) = \det \left( \begin{array}{c} \mathcal{H}\\ \mathcal{B}
+f(X) = \det \left( \begin{array}{c} \mathcal{H}\\ \mathcal{B}
  \end{array} \right)
 \]
 From the matrix $\mathcal{H}$ it is moreover possible to construct
@@ -1083,7 +1082,7 @@ If $g_1, g_2, g_3$ are the three minors of the matrix
 \left(
 \begin{array}{ccc}
 x & y & z \\
-\de_xF(X) & \de_yF(X) & \de_z F(X)
+\de_x f(X) & \de_y f(X) & \de_z f(X)
 \end{array}
 \right)
 \]
@@ -1102,7 +1101,7 @@ they can be computed by:
 \end{prop}
 \begin{proof} We have:
 \begin{eqnarray*}
-g_1 & =  & x \cdot \de_y F(X)- y \cdot \de_xF(X) \\
+g_1 & =  & x \cdot \de_y f(X)- y \cdot \de_x f(X) \\
 & = &
 x\cdot \de_y \det \left( \begin{array}{c} \mathcal{H}\\ \mathcal{B}
 \end{array} \right) -y \cdot
@@ -1115,8 +1114,8 @@ y \cdot \de_x \mathcal{B}
 \phi_1(X)
 \end{array} \right)
 \end{eqnarray*}
-and similarly for $g_2 = x \cdot \de_z F(X)- z \cdot \de_xF(X)$
-and $g_3 = y \cdot \de_z F(X)- z \cdot \de_yF(X)$.
+and similarly for $g_2 = x \cdot \de_z f(X)- z \cdot \de_x f(X)$
+and $g_3 = y \cdot \de_z f(X)- z \cdot \de_y f(X)$.
 \end{proof}
 
 
@@ -1170,9 +1169,6 @@ The common zeros of $g_1, g_2, g_3$ are the points $p_1, \dots, p_5$
 and the points $p_6 = (21: 34: -8)$ and $p_7 = (19: 35: -9)$.
 \end{es}
 
-\blue{
-\textbf{Fare confronto con tensori ODECO}
-}
 
 \begin{rmk}
 In case the matrix $\Phi(P_1, \dots, P_5)$ has rank $8$, as in \Cref{rank_8}, the family of
@@ -1217,11 +1213,11 @@ $\rk \,(\mathcal{H}) = 9$ ensures that
 $g_1, g_2$ and $g_3$ cannot be zero and are polynomials of degree
 $3$ in $x, y, z$.
 The computation shows that three polynomials have a common factor,
-hence are of the form $\Omega G_1$, $\Omega G_2$, $\Omega G_3$, where
+hence are of the form $\Omega g_1$, $\Omega g_2$, $\Omega g_3$, where
 $\Omega$ is a polynomial in the variables
 $A_1, B_1, C_1, A_2, B_2, C_2, A_4, B_4, C_4, v_1, v_2$ but
 does not contain the variables $x, y, z$.
-Hence $G_1, G_2, G_3$ are again
+Hence $g_1, g_2, g_3$ are again
 degree three polynomials in $x, y, z$, with coefficients in the variables
 $A_1, \dots, C_4, v_1, v_2$. Their common zeros are the eigenpoints of the
 cubic $\cbc$ since by construction they are proportional to the three minors of the matrix
@@ -1230,7 +1226,7 @@ cubic $\cbc$ since by construction they are proportional to the three minors of 
  \left(
  \begin{array}{ccc}
   x & y & z \\
-  \partial_x F & \partial_x F & \partial_x F
+  \partial_x f & \partial_x f & \partial_x f
  \end{array}
  \right)
 \]
@@ -1238,7 +1234,7 @@ cubic $\cbc$ since by construction they are proportional to the three minors of 
 
 \begin{prop}
 \label{proposition:G_split}
- Assume that $P_1, \dots, P_5 $ satisfy $\delta_2(P_1, \dotsc, P_5) = 0$ and $\rk \Phi(P_1, \dotsc, P_5) = 9$. Then the cubic curve $A_1 G_3 - B_1 G_2 + C_1 G_1=0$ contains the lines $P_1 +P_2$ and $P_1 +P_4$.
+ Assume that $P_1, \dots, P_5 $ satisfy $\delta_2(P_1, \dotsc, P_5) = 0$ and $\rk \Phi(P_1, \dotsc, P_5) = 9$. Then the cubic curve $A_1 g_3 - B_1 g_2 + C_1 g_1=0$ contains the lines $P_1 +P_2$ and $P_1 +P_4$.
 
 % The polynomial $C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$, each linear in $x, y, z$.
 \end{prop}
@@ -1251,11 +1247,11 @@ cubic $\cbc$ since by construction they are proportional to the three minors of 
 %  M_3 :=x \partial _y f - y \partial _x f.
 %\]
 %
-The Geiser map associated with a zero dimensional eigenscheme $\Eig{F}$ is the rational map defined by
+The Geiser map associated with a zero dimensional eigenscheme $\Eig{f}$ is the rational map defined by
 %
 \[
-\gamma_{\Eig{F}} \colon \p ^2 \dasharrow \p^2, \quad
-\gamma_{\Eig{F}} (P) = (G_1(P):G_2(P):G_3(P)) \,,
+\gamma_{\Eig{f}} \colon \p ^2 \dasharrow \p^2, \quad
+\gamma_{\Eig{F}} (P) = (g_1(P):g_2(P):g_3(P)) \,,
 \]
 %
 where $\p^2 = \p(I_{\Eig{f}}(3)^{\vee})$.
@@ -1273,34 +1269,34 @@ The Geiser map~$\gamma_{E(F)}$ is surjective, and its fiber over a point $Q = (a
     \left\{
     \begin{array}{l}
     a x + by + cz = 0, \\[2pt]
-    a \, \partial_x F + b \, \partial_y F + c \, \partial_z F = 0,\\
+    a \, \partial_x f + b \, \partial_y f + c \, \partial_z f = 0,\\
  \end{array}\right.
 \end{equation}
 %
-that is, the intersection between the polar line $L_Q$ relative to the isotropic conic and $\mathrm{Pol}_Q F$, the
+that is, the intersection between the polar line $L_Q$ relative to the isotropic conic and $\mathrm{Pol}_Q f$, the
 first polar curve of~$F$ with respect to~$Q$.
 
-In particular, the only possible curves contracted by the Geiser map~$\gamma _{E(F)}$ are lines.
+In particular, the only possible curves contracted by the Geiser map~$\gamma _{E(f)}$ are lines.
 \end{lemma}
 
 \begin{proof}
-We observe that for any point $P=(A:B:C) \in \p^2 \setminus \Eig{F}$, the homogeneous coordinates
-of the image $\gamma_{\Eig{F}}(P) = \bigl( G_1(P): G_2(P): G_3(P) \bigr)$ are the ones of the unique point in the intersection of the two lines
+We observe that for any point $P=(A:B:C) \in \p^2 \setminus \Eig{f}$, the homogeneous coordinates
+of the image $\gamma_{\Eig{f}}(P) = \bigl( g_1(P): g_2(P): g_3(P) \bigr)$ are the ones of the unique point in the intersection of the two lines
 %
 \[
   Ax + By+ Cz  = 0, \qquad
-  \partial_x F(P) \, x + \partial_y F(P) \, y+ \partial_z F(P) \, z = 0.
+  \partial_x f(P) \, x + \partial_y f(P) \, y+ \partial_z f(P) \, z = 0.
 \]
 %
-So for any $Q = (a:b:c) \in \p^2$, the fiber $\gamma_{\Eig{F}}^{-1}(Q)$ consists of the points $P \in \p^2$ such that
+So for any $Q = (a:b:c) \in \p^2$, the fiber $\gamma_{\Eig{f}}^{-1}(Q)$ consists of the points $P \in \p^2$ such that
 %
 \begin{equation}
 \label{eq:polars}
 Aa + Bb+ Cc = 0, \quad
-\partial_x F(P) \, a + \partial_y F(P) \, b + \partial_z F(P) \, c = 0,
+\partial_x f(P) \, a + \partial_y f(P) \, b + \partial_z f(P) \, c = 0,
 \end{equation}
 %
-which proves that $\gamma_{\Eig{F}}$ is surjective and that \eqref{eq:fibers} holds.
+which proves that $\gamma_{\Eig{f}}$ is surjective and that \eqref{eq:fibers} holds.
 %To prove that there are no other contracted curves than lines,
 %set $Z=E(F)$ and consider the blow-up of the plane $\p^2$ along $Z$. We get a generically finite morphism
 %%
@@ -1316,32 +1312,32 @@ which proves that $\gamma_{\Eig{F}}$ is surjective and that \eqref{eq:fibers} ho
 
 \begin{prop}
 \label{prop:allineati_contrae}
-Let $\Eig{F}$ be zero dimensional.
-If $\Eig{F}$ contains a triple of points on a line $L$, then the Geiser map~$\gamma_{\Eig{F}}$ contracts $L$.
+Let $\Eig{f}$ be zero dimensional.
+If $\Eig{f}$ contains a triple of points on a line $L$, then the Geiser map~$\gamma_{\Eig{f}}$ contracts $L$.
 \end{prop}
 
 \begin{proof}
 %Consider the isomorphism  $\varphi \colon \p (I_{\Eig{F}}(3))^{\vee} \stackrel{\cong}{\longrightarrow} \p (I_{\Eig{F}}(3))$ associating with each point~$(a:b:c)$ the line $ax + by + cz = 0$.
 %For any $P \in \p^2 \setminus \Eig{F}$, the point~$\varphi(\gamma_{\Eig{F}} (P))$ corresponds to the line~$L_P$ given by
 %
-For any $P \in \p^2 \setminus \Eig{F}$, the point~$\gamma_{\Eig{F}} (P)\in \p (I_{\Eig{F}}(3))^{\vee}$ corresponds to the line~$L_P$ given by
+For any $P \in \p^2 \setminus \Eig{f}$, the point~$\gamma_{\Eig{f}} (P)\in \p (I_{\Eig{f}}(3))^{\vee}$ corresponds to the line~$L_P$ given by
 \[
-  G_1 (P) \, x + G_2(P) \, y + G_3(P) \, z = 0,
+  g_1 (P) \, x + g_2(P) \, y + g_3(P) \, z = 0,
 \]
 %
 which in turn determines the following
-pencil of cubics $L_P$ in the linear system $\p (I_{\Eig{F}}(3))$:
+pencil of cubics $L_P$ in the linear system $\p (I_{\Eig{f}}(3))$:
 %
 \[
-  s \cdot \bigl( G_1(P) \, G_2 - G_2(P) \, G_1 \bigr) + t \cdot \bigl( G_1(P) \, G_3 - G_3(P) \, G_1 \bigr),
+  s \cdot \bigl( g_1(P) \, g_2 - g_2(P) \, g_1 \bigr) + t \cdot \bigl( g_1(P) \, g_3 - g_3(P) \, g_1 \bigr),
 \]
 %
-where $(s: t) \in \p^1$, assuming that $G_1(P) \neq 0$ (the other cases are similar).
-It is clear that the base locus of the pencil~$L_P$ contains the eight points of~$\Eig{F} \cup \{P\}$.
-So $\gamma_{\Eig{F}} \colon \p^2 \dasharrow \p (I_{\Eig{F}}(3))^\vee$
-associates with each point $P \in \p^2 \setminus \Eig{F}$ the pencil of cubics through $\Eig{F} \cup P$.
+where $(s: t) \in \p^1$, assuming that $g_1(P) \neq 0$ (the other cases are similar).
+It is clear that the base locus of the pencil~$L_P$ contains the eight points of~$\Eig{f} \cup \{P\}$.
+So $\gamma_{\Eig{f}} \colon \p^2 \dasharrow \p (I_{\Eig{f}}(3))^\vee$
+associates with each point $P \in \p^2 \setminus \Eig{f}$ the pencil of cubics through $\Eig{f} \cup P$.
 
-If $\Eig{G}$ contains a triple of points on a line~$L$, for any $P \in L \setminus \Eig{F}$ such a pencil of cubics has $L$ as a fixed component and the other component varies in a pencil of conics through the remaining $4$ points, so $\gamma_{\Eig{F}}$ is constant on~$L$.
+If $\Eig{f}$ contains a triple of points on a line~$L$, for any $P \in L \setminus \Eig{f}$ such a pencil of cubics has $L$ as a fixed component and the other component varies in a pencil of conics through the remaining $4$ points, so $\gamma_{\Eig{f}}$ is constant on~$L$.
 \end{proof}
 
 %We know that $G_1, G_2, G_3$ admit the syzygy $z \, G_1 - y \, G_2 + x \, G_3 = 0$.
@@ -1382,7 +1378,7 @@ The equation of the line $P_1 +P_2$ can be expressed in the following way
 since it is contracted by $\gamma_{\Eig{F}}$, and by the description of the fibers given in \eqref{eq:fibers}, we have that such a line is contained in the conic of equation
 %
 \[
-  \left\langle P_1 \times P_2, (\de_x F, \de_y F, \de_z F) \right\rangle = 0.
+  \left\langle P_1 \times P_2, (\de_x f, \de_y f, \de_z f) \right\rangle = 0.
 \]
 %
 As a consequence, for any point $\overline{P} = (\bar x: \bar y: \bar z)$ of the line \eqref{eq:lineP1P2}, the following equations are satisfied:
@@ -1404,7 +1400,7 @@ It follows that the linear system in the variables $X,Y,Z$
 \begin{array}{l}
   \bigl\langle  P_1, (X,Y,Z) \bigr\rangle = 0\\[2pt]
   \bigl\langle \overline{P}, (X,Y,Z) \bigr\rangle = 0\\[2pt]
-  \bigl\langle \nabla F (\overline{P}),
+  \bigl\langle \nabla f (\overline{P}),
   (X,Y,Z) \bigr\rangle = 0
 \end{array}
 \right.
@@ -1418,12 +1414,12 @@ hence the determinant of the order~$3$ coefficient matrix
  \begin{array}{c}
   P_1 \\
   \overline{P} \\
-  \nabla F (\overline{P})
+  \nabla f (\overline{P})
  \end{array}
  \right)
 \]
 %
-is zero. This is equivalent to saying that $A_1 G_3 - B_1 G_2 +C_1 G_1$ vanishes in all the points $\overline{P}$ of the line $P_1 +P_2$.
+is zero. This is equivalent to saying that $A_1 g_3 - B_1 g_2 +C_1 g_1$ vanishes in all the points $\overline{P}$ of the line $P_1 +P_2$.
 
 The argument concerning the line $P_1 + P_4$  can be repeated by replacing~$P_2$ with~$P_4$.
 \end{proof}
@@ -1438,9 +1434,9 @@ are eigenpoints, has also the two other eigenpoints $P_6$ and $P_7$
 aligned with $P_1$.
 \end{prop}
 \begin{proof}
-Let $F$ be the unique form such that $P_1, \dotsc, P_5 \in \Eig{F}$.
+Let $f$ be the unique form such that $P_1, \dotsc, P_5 \in \Eig{f}$.
 According to \Cref{proposition:G_split}, the polynomial
-$C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$,
+$C_1g_1-B_1g_2+A_1g_3$ splits into three factors $r_1$, $r_2$, $r_3$,
 linear in $x, y, z$, which
 correspond to the line $P_1+P_2$, the line $P_1+P_4$, and the line $P_6+P_7$.
 The factorization of $F$ gives that the factor $r_3$ is:
@@ -1903,6 +1899,17 @@ Hence $\sL$ is covered by irreducible open subsets, each intersecting every othe
 
 \end{proof}
 
+
+\begin{prop}
+    The locus $\sV \subset \sL \subset \p^9$ of cubic forms with two or more aligned triples of eigenpoints has dimension
+    $$
+    \dim \sV=7.
+    $$
+\end{prop}
+\begin{proof}
+   By Theorem \ref{theorem:rank_V}, five points forming a $V$-configuration are eigenpoints of some cubic form of and noly if $\delta_1 (P_1,P_2,P_4) \cdot 
+   \delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. Moreover, there is an open subset of the space of $V$-configurations, where the rank of the condition matrix is $9$. As such a space has dimension $8$ and the two equations define two divisors, such a locus is of dimension $7$ and it is birational to $\sV$.
+\end{proof}
  As a consequence, we have the following result.
 \begin{corollary}
 \label{lemma:pencil_one_aligned}
