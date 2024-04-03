@@ -135,22 +135,21 @@ Via Valerio 12/1, 34127 Trieste, Italy}
 \label{introduction}
 
 Tensors are natural generalizations of matrices in higher dimension and can be studied via their eigenvectors. There are several notions of eigenvalues and eigenvectors of tensors, as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}. All of them are of interest in several applications, like in the study of hypergraphs and the dynamical systems governed by those, see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developements. Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
-As an example, consider the problem of maximizing a polynomial function $f$ over the unit sphere in $\R^{n+1}$. Eigenvectors of the symmetric tensor $f$ are critical points of this optimization problem. Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: by Lim's Variational Principle \cite{Lim}, given a symmetric tensor $f$, the critical rank one symmetric tensors for $f$ are exactly of the form $v^d$, where $v$ is an eigenvector of $f$.
+As an example, consider the problem of maximizing a polynomial function~$f$ over the unit sphere in~$\R^{n+1}$: eigenvectors of the symmetric tensor~$f$ are critical points of this optimization problem. Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: by Lim's Variational Principle \cite{Lim}, given a symmetric tensor~$f$, the critical rank-one symmetric tensors for~$f$ are exactly of the form~$v^d$, where $v$ is an eigenvector of~$f$.
 This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors to produce an algorithm to compute Waring decompositions of homogeneous polynomials.
 
-When dealing with eigenvectors it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$.
+When dealing with eigenvectors, it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$.
  If we choose a basis for $\C^{n+1}$, then we can identify $T\in \Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$ with a tuple of homogeneous polynomials $(g_0,\dots,g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v\in\C^{n+1}$ such that
-
+%
 \begin{equation}\label{eq:eigenvector_definition}
 (g_0(v), \ldots, g_n(v))=\lambda v
 \end{equation}
 for some constant $\lambda$.
-
-
+%
 Since %the property of being an eigenvector
-property \eqref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T:\p^n\dashrightarrow\p^n$ defined by $T(P)=(g_0(P):\ldots:g_n(P))$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case we define the eigenpoints of a homogeneous polynomial $F$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0f,\dots,\de_n f)$.
+property \eqref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n\dashrightarrow\p^n$ defined by $T(P)=\bigl(g_0(P):\ldots:g_n(P)\bigr)$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0f,\dots,\de_n f)$.
 
-Moreover, condition \eqref{eq:eigenvector_definition} can be rephrased in the condition that
+Moreover, condition \eqref{eq:eigenvector_definition} can be rephrased as the condition
 \begin{equation}
 \label{eq:def_matrix_general}
     \rk \begin{pmatrix}
@@ -160,20 +159,20 @@ Moreover, condition \eqref{eq:eigenvector_definition} can be rephrased in the co
 \end{equation}
 so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called \emph{eigenscheme}, denoted $\Eig{T}$.
 
-The dimension and degree of a general eigenscheme are settled by the following result (see \cite[Theorem 2.1]{CartSturm} and Abo Discriminant):
+The dimension and degree of a general eigenscheme are settled by the following result (see \cite[Theorem 2.1]{CartSturm} and Abo Discriminant \textbf{AGGIUNGERE REFERENZA}):
 
 \begin{lemma}\label{lem:nonempty}
 Let $d\ge 3$ and let $T \in (\C^{n+1})^{\otimes d}$.
 If $T$ is general, then $\dim \Eig{T}=0$ and $\deg \Eig{T}=\frac{(d-1)^{n+1}-1}{d-2}$.
 
-  Moreover, among the $0$ dimensional eigenschemes, the general one is reduced.
+  Moreover, among $0$-dimensional eigenschemes, the general one is reduced.
 \end{lemma}
 
 The geometry of eigenpoints is intimately related with the Waring decomposition of a polynomial,
 corresponding to the symmetric Tucker decomposition of the associated symmetric tensor,
 as clearified
 in \cite{DOT} and in \cite{Ott}. Indeed, any best rank $k$ approximation of a symmetric tensor lies in the linear
-space, called {critical space},  spanned by the rank $1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ vary among all the eingevectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
+space, called {critical space},  spanned by the rank $1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ varies among all the eingevectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
 go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO, orthogonally decomposable, tensors, that is symmetric tensors $T$ which admit a decomposition
 $T= \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0 \ dots , v_n$ an orthogonal family; see \cite{Rob} and \cite{BDHE}
 for further details. The $v_i$'s turn out to be eigenvectors of $T$; so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
