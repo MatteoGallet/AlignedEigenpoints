@@ -165,14 +165,14 @@ The dimension and degree of a general eigenscheme are settled by the following r
 Let $d\ge 3$ and let $T \in (\C^{n+1})^{\otimes d}$.
 If $T$ is general, then $\dim \Eig{T}=0$ and $\deg \Eig{T}=\frac{(d-1)^{n+1}-1}{d-2}$.
 
-  Moreover, among $0$-dimensional eigenschemes, the general one is reduced.
+Moreover, among $0$-dimensional eigenschemes, the general one is reduced.
 \end{lemma}
 
 The geometry of eigenpoints is intimately related with the Waring decomposition of a polynomial,
 corresponding to the symmetric Tucker decomposition of the associated symmetric tensor,
 as clarified
 in \cite{DOT} and in \cite{Ott}. Indeed, any best rank $k$ approximation of a symmetric tensor lies in the linear
-space, called {critical space},  spanned by the rank $1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ varies among all the eigenvectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
+space, called {critical space}, spanned by the rank $1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ varies among all the eigenvectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
 go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO ("orthogonally decomposable") tensors, that is symmetric tensors~$T$ that admit a decomposition
 $T= \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0 \ dots , v_n$ an orthogonal family; see \cite{Rob} and \cite{BDHE}
 for further details. The $v_i$'s turn out to be eigenvectors of $T$; so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
@@ -253,7 +253,7 @@ In what follows, it will be useful to fix particular coordinates for points and 
   \mathrm{SO}_3(\mathbb{C}) :=
   \bigl\{
    M \in \mathrm{GL}_3(\C) \, \mid \,
-   M M^t = I_3 \  \text{and} \  \det(M) = 1
+   M M^t = I_3 \ \text{and} \ \det(M) = 1
   \bigr\} \,.
  \]
  %
@@ -270,7 +270,7 @@ In what follows, it will be useful to fix particular coordinates for points and 
 
  Moreover, the group~$\mathrm{SO}_3(\mathbb{C})$ acts also on ternary forms via
  \[
-  M \cdot f (x,y,z) = f(M^{-1} \cdot \prescript{t} {}( x \ y \ z )  ).
+  M \cdot f (x,y,z) = f(M^{-1} \cdot \prescript{t} {}( x \ y \ z ) ).
  \]
 \end{definition}
 
@@ -282,7 +282,7 @@ In what follows, it will be useful to fix particular coordinates for points and 
   \mathcal{O}_1 &:=
   \bigl\{
    P \in \p^2(\C) \, | \,
-   P = (a:b:c) \  \text{with} \  a^2 + b^2 + c^2 = 0
+   P = (a:b:c) \ \text{with} \ a^2 + b^2 + c^2 = 0
   \bigr\} \\
   \mathcal{O}_2 &:= \p^2(\C) \setminus \mathcal{O}_1
  \end{align*}
@@ -362,7 +362,7 @@ A point $P = (A: B: C)$ is an eigenpoint for~$f$ if and only if
 which is equivalent to
 \begin{equation}
 \label{eq:def_matrix_M}
-    \mathrm{rk} \quad  M  \cdot \begin{pmatrix}
+    \mathrm{rk} \quad M \cdot \begin{pmatrix}
     A & \de_x f(P) \\
     B & \de_y f(P)  \\
     C & \de_z f(P)
@@ -376,7 +376,7 @@ is equivalent to
 \label{eq:transformed}
   \rk
   \begin{pmatrix}
-    A' &  \\
+    A' & \\
     B' & M \cdot \nabla f (P) \\
     C' & \\
   \end{pmatrix}=1.
@@ -385,22 +385,22 @@ is equivalent to
 Now we consider the polynomial $M \cdot f$ and we observe that the chain rule gives
 %
 \begin{gather*}
-\partial_x (M\cdot f) = \partial_x \bigl( f(M^{-1}  \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(1)}(\nabla f) \bigl( M^{-1}\   \prescript{t} {} (x \ y \ z) \bigr) \,, \\
-\partial_y (M\cdot f) = \partial_y \bigl( f(M^{-1}  \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(2)}(\nabla f) \bigl( M^{-1}\   \prescript{t} {} (x \ y \ z) \bigr) \,, \\
-\partial_z (M\cdot f) = \partial_z  \bigl( f(M^{-1}  \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(3)}(\nabla f) \bigl( M^{-1}\   \prescript{t} {} (x \ y \ z) \bigr) \,,
+\partial_x (M\cdot f) = \partial_x \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(1)}(\nabla f) \bigl( M^{-1}\  \prescript{t} {} (x \ y \ z) \bigr) \,, \\
+\partial_y (M\cdot f) = \partial_y \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(2)}(\nabla f) \bigl( M^{-1}\  \prescript{t} {} (x \ y \ z) \bigr) \,, \\
+\partial_z (M\cdot f) = \partial_z \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(3)}(\nabla f) \bigl( M^{-1}\  \prescript{t} {} (x \ y \ z) \bigr) \,,
 \end{gather*}
 %
 where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Hence
 %
 \[
-\nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\   \prescript{t} {} (x \ y \ z)),
+\nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\  \prescript{t} {} (x \ y \ z)),
 \]
 %
 so we have
 %
 \[
 \nabla (M \cdot f)(Q)=\nabla (M \cdot f)(M \cdot P)=
-\prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\   M \cdot P)=\prescript{t} {} M^{-1} \cdot (\nabla f)(P).
+\prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\  M \cdot P)=\prescript{t} {} M^{-1} \cdot (\nabla f)(P).
 \]
 %
 Finally, if we choose $M \in \mathrm{SO}_3(\mathbb{C})$, we have
@@ -445,7 +445,7 @@ Written as vectors, they are
 \begin{gathered}
 \scalemath{0.9}{(-3A^2B, A(A^2 - 2B^2), B(2A^2 - B^2), 3AB^2,
  -2ABC, C(A^2 - B^2), 2 ABC,
- -B  C^2, A  C^2, 0)} \,, \\
+ -B C^2, A C^2, 0)} \,, \\
 \scalemath{0.9}{(-3A^2 C,
 -2ABC,
 -CB^2,
@@ -515,7 +515,7 @@ among the three vectors, at most two of them are linearly independent and the ma
 As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
 \begin{equation}
 \label{bound_rank}
-\rk  \  \Phi(P_1, \dots, P_n) \leq \min \left\{2n, 10 \right\} \,.
+\rk \ \Phi(P_1, \dots, P_n) \leq \min \left\{2n, 10 \right\} \,.
 \end{equation}
 
 \subsection{Possible ranks of the matrix of conditions}
@@ -543,9 +543,9 @@ to speed up the computations.
 Let $l_1 < \cdots <l_n$ be $n$ indices (where $3 \leq n \leq 10$) and let $P = (A: B: C)$ be a point of the plane.
 Construct three $1 \times n$ matrices $w_1$, $w_2$, $w_3$ by extracting the entries of position $l_1, \dotsc, l_n$ from $\phi_1(P)$, $\phi_2(P)$, and~$\phi_3(P)$, respectively. If $L$ is a $(n-2) \times n$ matrix, set:
   \[
-  L_1 := \left(\begin{array}{c}w_1 \\ w_2 \\ L\end{array}  \right), \quad
-  L_2 := \left(\begin{array}{c}w_1 \\ w_3 \\ L\end{array}  \right), \quad
-  L_3 := \left(\begin{array}{c}w_2 \\ w_3 \\ L\end{array}  \right)
+  L_1 := \left(\begin{array}{c}w_1 \\ w_2 \\ L\end{array} \right), \quad
+  L_2 := \left(\begin{array}{c}w_1 \\ w_3 \\ L\end{array} \right), \quad
+  L_3 := \left(\begin{array}{c}w_2 \\ w_3 \\ L\end{array} \right)
   \]
   Then
   \[
@@ -610,7 +610,7 @@ has a double root, and this proves the statement.
   \item $\sigma(P_1, P_2) = 0$;
   \item $\sigma(Q_1, Q_2) = 0$ for all pairs of distinct points $Q_1, Q_2 \in r$;
   \item the line $r$ is tangent to~$\iso$ at some point;
-  \item there exists a point $T \in r$ such that  $T \in \iso$ and $\scl{T}{Q} = 0$ for all $Q \in r$, $Q \neq T$; in this case we say that $T$ is \emph{orthogonal} to $r$.
+  \item there exists a point $T \in r$ such that $T \in \iso$ and $\scl{T}{Q} = 0$ for all $Q \in r$, $Q \neq T$; in this case we say that $T$ is \emph{orthogonal} to $r$.
   \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -642,7 +642,7 @@ We claim that we can greatly simplify the computations.
 
 Indeed, consider the matrix~$M$ constructed with the following six rows:
 \[
-\phi_{i_1}(P_1), \ \phi_{i_2}(P_1), \ \phi_{j_1}(P_2),\  \phi_{j_2}(P_2),
+\phi_{i_1}(P_1), \ \phi_{i_2}(P_1), \ \phi_{j_1}(P_2),\ \phi_{j_2}(P_2),
 \phi_{k_1}(P_3), \ \phi_{k_2}(P_3)
 \]
 where $i_1 \not= i_2 \in \{1, 2, 3\}$; $j_1 \not= j_2 \in \{1, 2, 3\}$;
@@ -683,7 +683,7 @@ $4$-minors of $\Phi(P_1, P_2, P_3)$ are zero.
 \end{proof}
 
 \begin{prop}
-\label{manca il riferimento su ancillary    non e': condition_rank_aligned}
+\label{manca il riferimento su ancillary  non e': condition_rank_aligned}
 %%%  conto si trova su file prop47_5ago.sage
 Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 %
@@ -734,8 +734,8 @@ The direct inspection of the ideal obtained from these procedures gives the thes
 Let $Q_1, \dotsc, Q_4$ be four distinct aligned points of the plane and
 let $r$ be the line through them. Then:
 \begin{itemize}
-\item $6 \leq \rk  \ \Phi(Q_1, \dotsc, Q_4) \leq 7$;
-\item $\rk  \ \Phi(Q_1, \dotsc, Q_4) = 6$ if and only if $r$ is tangent
+\item $6 \leq \rk \ \Phi(Q_1, \dotsc, Q_4) \leq 7$;
+\item $\rk \ \Phi(Q_1, \dotsc, Q_4) = 6$ if and only if $r$ is tangent
 to~$\iso$.
 \end{itemize}
 \end{prop}
@@ -765,8 +765,8 @@ In a similar way, it is possible to generalize the above proposition:
 Let $Q_1, \dotsc, Q_r$ be $r\geq 4$ distinct aligned points of the plane and
 let $r$ be the line through them. Then:
 \begin{itemize}
-\item $6 \leq \rk  \ \Phi(Q_1, \dotsc, Q_r) \leq 7$;
-\item $\rk  \ \Phi(Q_1, \dotsc, Q_r) = 6$ if and only if $r$ is tangent
+\item $6 \leq \rk \ \Phi(Q_1, \dotsc, Q_r) \leq 7$;
+\item $\rk \ \Phi(Q_1, \dotsc, Q_r) = 6$ if and only if $r$ is tangent
 to~$\iso$.
 \end{itemize}
 \end{prop}
@@ -850,7 +850,7 @@ It is possible to see that
 %
 \begin{align}
 \label{rmk_delta_case1}
-\delta_1(P_1, P_2, P_4) = 0  \mbox{ iff } &\scl{P_4}{s_{11}P_2-s_{12}P_1} = 0\\
+\delta_1(P_1, P_2, P_4) = 0 \mbox{ iff } &\scl{P_4}{s_{11}P_2-s_{12}P_1} = 0\\
  \mbox{iff } &\scl{P_2}{s_{11}P_4-s_{14}P_1} = 0 \nonumber
 \end{align}
 \begin{align}
@@ -886,7 +886,7 @@ is satisfied:
 \label{defP3_2}
 \item $\sigma(P_1, P_2) = 0$ and $\sigma(P_1, P_4) = 0$;
 \label{defP3_3}
-\item $P_3 = (s_{14}s_{15}s_{22}-s_{12}^2s_{45})P_1   +s_{12}(s_{11}s_{45}-s_{14}s_{15})P_2$.
+\item $P_3 = (s_{14}s_{15}s_{22}-s_{12}^2s_{45})P_1  +s_{12}(s_{11}s_{45}-s_{14}s_{15})P_2$.
 \label{defP3_4}
 \end{enumerate}
 \end{prop}
@@ -1056,14 +1056,14 @@ This shows the first item.
 
 The second item follows from \Cref{prop:d1d2}.
 
-We are left to proving the third item. By \Cref{lemma:special_case_rank_8} and \Cref{prop:d1d2}, the two conditions imply that the rank is~$8$.  
+We are left to proving the third item. By \Cref{lemma:special_case_rank_8} and \Cref{prop:d1d2}, the two conditions imply that the rank is~$8$.
 
 For the converse, by \Cref{invariance}, we distinguish two possibilities:
 $P_1 = (1:\iii :0)$ and
 $P_1 = (1: 0: 0)$.
 Let $P_2 = (A_2: B_2: C_2)$, $P_4 = (A_4: B_4: C_4)$ and
 $P_3 = u_1P_1+u_2P_2$, $P_5 = v_1P_1+v_2P_4$ be the other points.
-If $P_1 = (1: \iii: 0)$, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\rk  M \leq 9$ if and only if $\rk  M' \leq 7$.
+If $P_1 = (1: \iii: 0)$, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\rk M \leq 9$ if and only if $\rk M' \leq 7$.
 The computations require several other strategies, but at the end we are
 able to see that in this case (i.e.\ the case in which $P_1$ is on~$\iso$), the matrix $M'$ cannot have rank less then $7$.
 If $P_1 = (1: 0: 0)$, then the ideal of the order $9$ minors of
@@ -1089,7 +1089,7 @@ $\delta_1(P_1, P_2, P_4) = 0$ or $\delta_2(P_1, \dots, P_5) = 0$, assuming the r
 
 Since the rank of $\Phi(P_1, \dots, P_5)$ is~$9$, there exists precisely one cubic curve $\cbc$ having $P_1, \dots, P_5$ among its eigenpoints. Another immediate consequence of the rank $9$ condition is that the
 matrix $\Phi(P_1, \dots, P_5)$ has $9$ linearly independent rows, so
-we can extract from it a  $9 \times 10$-submatrix
+we can extract from it a $9 \times 10$-submatrix
 $\mathcal{H}$ whose order $9$ minors are not all zero. If
 $\mathcal{H}_i$ is the order $9$ minor of
 $\mathcal{H}$ given by erasing the $i$-th column ($i=1, \dots, 10)$, then,
@@ -1130,7 +1130,7 @@ they can be computed by:
 \end{prop}
 \begin{proof} We have:
 \begin{eqnarray*}
-g_1 & =  & x \cdot \de_y f(X)- y \cdot \de_x f(X) \\
+g_1 & = & x \cdot \de_y f(X)- y \cdot \de_x f(X) \\
 & = &
 x\cdot \de_y \det \left( \begin{array}{c} \mathcal{H}\\ \mathcal{B}
 \end{array} \right) -y \cdot
@@ -1319,7 +1319,7 @@ We observe that for any point $P=(A:B:C) \in \p^2 \setminus \Eig{f}$, the homoge
 of the image $\gamma_{\Eig{f}}(P) = \bigl( g_1(P): g_2(P): g_3(P) \bigr)$ are the ones of the unique point in the intersection of the two lines
 %
 \[
-  Ax + By+ Cz  = 0, \qquad
+  Ax + By+ Cz = 0, \qquad
   \partial_x f(P) \, x + \partial_y f(P) \, y+ \partial_z f(P) \, z = 0.
 \]
 %
@@ -1415,7 +1415,7 @@ since it is contracted by $\gamma_{\Eig{f}}$, and by the description of the fibe
   \left\langle P_1 \times P_2, (\de_x f, \de_y f, \de_z f) \right\rangle = 0.
 \]
 %
-As a consequence, for any point $\overline{P} = (\bar x: \bar y: \bar z)$ of the line  from \Cref{eq:lineP1P2}, the following equations are satisfied:
+As a consequence, for any point $\overline{P} = (\bar x: \bar y: \bar z)$ of the line from \Cref{eq:lineP1P2}, the following equations are satisfied:
 %
 \[
 \left\{
@@ -1432,7 +1432,7 @@ It follows that the linear system in the variables $X,Y,Z$
 \[
 \left\{
 \begin{array}{l}
-  \bigl\langle  P_1, (X,Y,Z) \bigr\rangle = 0 \,,\\[2pt]
+  \bigl\langle P_1, (X,Y,Z) \bigr\rangle = 0 \,,\\[2pt]
   \bigl\langle \overline{P}, (X,Y,Z) \bigr\rangle = 0 \,,\\[2pt]
   \bigl\langle \nabla f (\overline{P}),
   (X,Y,Z) \bigr\rangle = 0 \,.
@@ -1455,7 +1455,7 @@ hence the determinant of the order~$3$ coefficient matrix
 %
 is zero. This is equivalent to saying that $A_1 g_3 - B_1 g_2 +C_1 g_1$ vanishes at all the points~$\overline{P}$ of the line $P_1 \vee P_2$.
 
-The argument concerning the line $P_1 \vee P_4$  can be repeated by replacing~$P_2$ with~$P_4$.
+The argument concerning the line $P_1 \vee P_4$ can be repeated by replacing~$P_2$ with~$P_4$.
 \end{proof}
 %
 \begin{prop}
@@ -1498,8 +1498,8 @@ to~\Cref{theorem:rank_V}, we have to distinguish the two cases
 \delta_1(P_1, P_2, P_4)=\overline{\delta}_1(P_1, P_2, P_3) =
 \overline{\delta}_1(P_1, P_4, P_5) = 0,
 \label{rk8_1}\\
-\sigma(P_1, P_2) = 0, \  \sigma(P_1, P_4) = 0 \ \ \mbox{and} \ \ s_{22} = 0,
-\  s_{44} = 0.
+\sigma(P_1, P_2) = 0, \ \sigma(P_1, P_4) = 0 \ \ \mbox{and} \ \ s_{22} = 0,
+\ s_{44} = 0.
 \label{rk8_2}
 \end{gather}
 %
@@ -1680,7 +1680,7 @@ $\Lambda(\Phi(P_1, \dotsc, P_5))$, where:
 \item $P_1$ is any point of the plane (not on $\iso$);
 \item $P_2$ and $P_4$ are the two tangency points to $\iso$ given by the lines
 from $P_1$;
-\item $P_3$ is any point on  $P_1+P_2$ (different from $P_1$ and $P_2$)
+\item $P_3$ is any point on $P_1+P_2$ (different from $P_1$ and $P_2$)
 and $P_5$ is any point on $P_1+P_4$ (different from $P_1$ and~$P_4$).
 \end{itemize}
 
@@ -1709,7 +1709,7 @@ In the family there is a sub-family of cubics
 whose eigenpoints have the following
 alignments:
 \[
-(P_1, P_2, P_3),\  (P_1, P_4, P_5),\  (P_1, P_6, P_7),\  (P_2, P_4, P_6).
+(P_1, P_2, P_3),\ (P_1, P_4, P_5),\ (P_1, P_6, P_7),\ (P_2, P_4, P_6).
 \]
 In this case the points $P_6$ and $P_7$ are given by the formulas:
 \[P_6 = s_{11}s_{15}P_3-2s_{13}s_{15}P_1+s_{11}s_{13}P_5, \ \mbox{and} \
@@ -1718,8 +1718,8 @@ P_7 = s_{11}s_{15}P_3+s_{13}s_{15}P_1+s_{11}s_{13}P_5;
 and a sub-family whose eigenpoints have the following
 alignments:
 \[
-(P_1, P_2, P_3),\  (P_1, P_4, P_5), \ (P_1, P_6, P_7),\  (P_2, P_5, P_6),\
-(P_3, P_4, P_6),\  (P_3, P_5, P_7)
+(P_1, P_2, P_3),\ (P_1, P_4, P_5), \ (P_1, P_6, P_7),\ (P_2, P_5, P_6),\
+(P_3, P_4, P_6),\ (P_3, P_5, P_7)
 \]
 In this case the point $P_6$ (given by the formula
 $P_6 = s_{15}P_3+s_{13}P_5$) is obtained as
@@ -1744,7 +1744,7 @@ where
   \mathcal{C}_1 & = x \cdot \left(2x^{2} + 3 y^{2} + 3 z^{2}\right)\\
   \mathcal{C}_2 & = (y + \iii z) \cdot (y - \iii z)
 \cdot \left(2 \iii x u_{2} v_{2} + y (u_{2} v_{1}- u_{1} v_{2})
-- \iii z (u_{2} v_{1}  + u_{1} v_{2})\right)
+- \iii z (u_{2} v_{1} + u_{1} v_{2})\right)
 \end{align*}
 %% C_1 and C_2 are in the file rank_8_twoTangIso.sage, see ***C1_C2***
 %%
@@ -1854,7 +1854,7 @@ $$
 $$
 of aligned triples not lying
 on a tangent line to the isotropic conic $\iso$ and with tangency point one of the $P_i$'s, the fibers of $\alpha$ are projective linear systems of dimension $3$ by
-Proposition \ref{manca il riferimento su ancillary    non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
+Proposition \ref{manca il riferimento su ancillary  non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
 $$
 \dim \alpha ^{-1} (\mathcal W)
 \subset \sU=8 ,
@@ -1910,7 +1910,7 @@ I =\{i_1,\dots,i_6\}\subset \{ 0, 1,\dots 6\},
 $$
 we set
 $$
-\sV_I := \{ [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal {AL} \ | \ \text{the\  columns\ of\ } \Phi
+\sV_I := \{ [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal {AL} \ | \ \text{the\ columns\ of\ } \Phi
 (P_1, P_2, u_1 P_1 +u_2P_2) \text{\ relative \ to} \ I\ \text{are\ independent}\}.
 $$
 Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV_I$, the coefficients of any element
@@ -1973,8 +1973,8 @@ Hence $\sL$ is covered by irreducible open subsets, each intersecting every othe
     $$
 \end{prop}
 \begin{proof}
-   By Theorem \ref{theorem:rank_V}, five points forming a $V$-configuration are eigenpoints of some cubic form of and only if $\delta_1 (P_1,P_2,P_4) \cdot
-   \delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. Moreover, there is an open subset of the space of $V$-configurations, where the rank of the condition matrix is $9$. As such a space has dimension $8$ and the two equations define two divisors, such a locus is of dimension $7$ and it is birational to $\sV$.
+   By \Cref{theorem:rank_V}, five points forming a $V$-configuration are eigenpoints of some cubic form of and only if $\delta_1 (P_1,P_2,P_4) \cdot
+   \delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. Moreover, there is an open subset of the space of $V$-configurations, where the rank of the condition matrix is~$9$. As such a space has dimension $8$ and the two equations define two divisors, such a locus is of dimension~$7$ and it is birational to~$\sV$.
 \end{proof}
  As a consequence, we have the following result.
 \begin{corollary}
@@ -1984,10 +1984,6 @@ Hence $\sL$ is covered by irreducible open subsets, each intersecting every othe
  $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has no aligned triples of eigenpoints, and there is a finite number of cubics having exactly one aligned triple.
 \end{corollary}
 
-
-
-
-
 %\begin{definition}
 % We define $\Delta \subset \mathcal{L}$ to be the closure of the locus of cubics with at least two aligned triples of eigenpoints.
 %\end{definition}
@@ -1996,15 +1992,12 @@ Hence $\sL$ is covered by irreducible open subsets, each intersecting every othe
 %  The variety~$\Delta$ has dimension~$7$ and it is the union of two irreducible components~$\Delta_1$ and~$\Delta_2$.
 %\end{prop}
 
-
-
-
 In what follows, we will use the following notation: if $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
-to a cubic form $f$, we denote by
+to a cubic form~$f$, we denote by
 $$
-\Sigma_f =\p( \langle g_1, g_2, g_3 \rangle),
+\Sigma_f = \p( \langle g_1, g_2, g_3 \rangle),
 $$
-the net of cubics, which base locus is the eigenscheme~$\Eig{f}$.
+the net of cubics, whose base locus is the eigenscheme~$\Eig{f}$.
 %
 \begin{lemma}
 \label{lemma:scroll}
@@ -2020,57 +2013,46 @@ the net of cubics, which base locus is the eigenscheme~$\Eig{f}$.
 Consider the projective bundle given by the family of planes
 %
 \[
-{\mathcal P} := \{ \Lambda_{\lambda f + \mu g} \, : \, (\lambda: \mu)\in \p^1 \} \subset \p^1 \times \p^9
+ \mathcal{P} := \{ \Lambda_{\lambda f + \mu g} \, : \, (\lambda: \mu) \in \p^1 \} \subset \p^1 \times \p^9
 \]
 %
 Then $\mathcal{N}$ is the projection of~$\mathcal{P}$ on the second factor.
-However, the map ${\mathcal P} \to {\mathcal N}$ contracts no subvariety of any plane of ${\mathcal P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
+However, the map $\mathcal{P} \to \mathcal{N}$ contracts no subvariety of any plane of ${\mathcal P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and $\Lambda_g$ should have non-empty intersection.
 If we denote by $g_1$, $g_2$ and $g_3$ the $2 \times 2$ minors relative to~$f$, and by $h_1$, $h_2$ and $h_3$ the ones relative to~$g$, the vectorial dimension of the linear span $\left\langle g_1, g_2, g_3, h_1, h_2, h_3 \right\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of $\p^9 \times \p^9$.
 
 It follows that if $f$ and $g$ are general enough, then $\mathcal{N}$ is a $3$-dimensional rational normal scroll in
+%
 \[
 \mathcal{N} \subset \p(\left\langle g_1, g_2, g_3, h_1, h_2, h_3 \right\rangle) \cong \p^5.
 \]
+%
 Being a variety of minimal degree, its degree is $5+1-3 = 3$.
 \end{proof}
 
 \begin{theorem}
-The degree of $\mathcal L$ is equal to
+The degree of $\mathcal{L}$ is equal to
+%
 \[
-  \deg \ \mathcal L =  15.
+  \deg \ \mathcal{L} = 15 \,.
 \]
+%
 \end{theorem}
 
 \begin{proof}
 We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics
-$\Lambda_f = \langle g_1, g_2, g_3 \rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net $\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+$\Lambda_f = \left\langle g_1, g_2, g_3 \right\rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net~$\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
-To determine the degree of $\mathcal L$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
+To determine the degree of $\mathcal{L}$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
 
-To this aim, denote by ${\mathcal T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is $6$ and its degree is $15$,
-see for instance \cite[Section 2.2.2]{3264}. We now consider the variety~${\mathcal N}$ from \Cref{lemma:scroll}.
-%%
-%
-% Tutta questa parte non e' visibile perche' inserita dentro
-% la perversione di un \comment che, nel preambolo, e' stato definito
-% come l'insieme vuoto.
-%
-%
-
-%
-%
-%
-%
-%
-%
-
-Note that, since each net containing a triangle, actually contains exactly $3$ of them, the number of nets of ${\mathcal N}$ containing some triangle is given by
+To this aim, denote by ${\mathcal T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is~$6$ and its degree is~$15$,
+see for instance \cite[Section~2.2.2]{3264}. We now consider the variety~$\mathcal{N}$ from \Cref{lemma:scroll}.
+Note that, since each net containing a triangle, actually contains exactly $3$ of them, the number of nets of $\mathcal{N}$ containing some triangle is given by
 %
 \[
-\frac {{\mathcal T} \cdot {\mathcal N}}{3} =\frac{{15} \cdot {3}}{3}=15 \,.
+ \frac{\mathcal{T} \cdot \mathcal{N}}{3} = \frac{{15} \cdot {3}}{3} = 15 \,.
 \]
 %
-This implies that $\deg {\mathcal L} = 15$.
+This implies that $\deg \mathcal{L} = 15$.
 \end{proof}
 
 \begin{es}
@@ -2081,17 +2063,22 @@ The following pencil of cubic forms admits exactly $15$ cubics with an aligned t
 \section{Eigenschemes of positive dimension}
 \label{positive_dim}
 
-In this section we consider positive dimensional eigenschemes. By a result in \cite[...]{BGV}, an eigenscheme cannot be of pure dimension $1$, and the possible $1$-dimensional components are of degree $1$ or $2$. In what follows we shall determine the degree of the $0$-dimensional residual scheme in both cases.
+In this section, we consider positive dimensional eigenschemes.
+By \cite{BGV}, an eigenscheme cannot be of pure dimension~$1$, and the possible $1$-dimensional components are of degree~$1$ or~$2$.
+In what follows, we shall determine the degree of the $0$-dimensional residual scheme in both cases.
 
-\begin{prop}\label{p2}
+\begin{prop}
+\label{p2}
 Let $C = V(f) \subset \p^2$ be a cubic curve.
 Assume that $\dim \Eig{f} = 1$.
+%
 \begin{enumerate}
 \item If the $1$-dimensional component of $\Eig{f}$ is a line~$L$,
 then the residual subscheme $Z := \mathrm{Res}_l \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$l$ has degree~$3$.
 \item If the $1$-dimensional component of $\Eig{f}$ is a conic~$q$,
 then the residual subscheme $Z := \mathrm{Res}_q \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
 \end{enumerate}
+%
 \end{prop}
 \begin{proof}
 (1)
@@ -2168,7 +2155,7 @@ $$
 0\to R\xrightarrow{\alpha} R^{\oplus 3} \xrightarrow{\beta} R^{\oplus 3} \xrightarrow{\gamma} R \to R/(x,y,z)
 \to 0,
 $$
-where the maps are  $\alpha(p)=(p x,p y,p z)$, $\gamma (w_1,w_2,w_3)=w_1 x + w_2 y + w_3 z$ and $\beta$ is defined by the matrix
+where the maps are $\alpha(p)=(p x,p y,p z)$, $\gamma (w_1,w_2,w_3)=w_1 x + w_2 y + w_3 z$ and $\beta$ is defined by the matrix
 $$
 \left(
 \begin{array}{ccc}
@@ -2234,37 +2221,39 @@ In this section, we consider polynomials having a whole line in the eigenscheme.
 
 Finally, we shall prove that such polynomials belong all to the locus $\sL \subset \p^9$.
 
-
 \begin{lemma}
 \label{4ptiSuRetta2}
-Suppose $P_1, P_2, P_3, P_4$ are four distinct points belonging to a line $t$
-and let
-$C$ be a cubic such that has $P_1, \dots, P_4$ among its eigenpoints. Then
-all the points of $t$ are eigenpoints of~$C$. Moreover,
+Suppose $P_1, P_2, P_3, P_4$ are four distinct points belonging to a line~$t$
+and let $C$ be a cubic such that has $P_1, \dots, P_4$ among its eigenpoints. 
+Then all the points of $t$ are eigenpoints of~$C$.
+Moreover,
+%
 \begin{equation*}
-6 \leq \rk  \  \Phi(P_1, P_2, P_3, P_4) \leq 7
+6 \leq \rk \ \Phi(P_1, P_2, P_3, P_4) \leq 7
 \end{equation*}
-and the rank is $6$ if and only if $\sigma(P_1, P_2) = 0$, i.e.\ if
+%
+and the rank is~$6$ if and only if $\sigma(P_1, P_2) = 0$, i.e.\ if
 and only if $t$ is tangent to the isotropic conic. If the rank of
-the above matrix is $7$, then all the cubics which have the line $t$
-of eigenpoints are given by $t^2l$ where $l$ is any line of the plane.
+the above matrix is~$7$, then all the cubics which have the line $t$
+of eigenpoints are given by~$t^2 \ell$ where $\ell$ is any line of the plane.
 \end{lemma}
 \begin{proof}
 \verb+file: fourCollinearPoints.sage+\\
-It is not restrictive to assume that one of the points (say $P_1$) is
-the point $(1: 0: 0)$.
-With this simplification, the computation of the order $6$ and order $7$
+It is not restrictive to assume that one of the points (say~$P_1$) is
+the point~$(1: 0: 0)$.
+With this simplification, the computation of the order~$6$ and order~$7$
 minors of $\phi(P_1, \dots, P_4)$ is not hard and
 the first part of the thesis follows. If the rank of $\Phi(P_1, \dots, P_4)$
 is $7$, then the cubics which have $P_1, \dots, P_4$ as eigenpoints
-give a two dimensional linear subspace $W$ of $\p^9$, but also all
-the cubics defined by $t^2l$ have $P_1, \dots, P_4$ as eigenpoints and are
-a linear space of $\p^9$ contained in $W$. Hence the two linear
+give a two-dimensional linear subspace~$W$ of~$\p^9$, but also all
+the cubics defined by $t^2 \ell$ have $P_1, \dots, P_4$ as eigenpoints and are
+a two-dimensional linear space of~$\p^9$ contained in~$W$. Hence the two linear
 spaces coincide.
 \end{proof}
 
 \begin{prop}
-Given a line $t$ of the plane, if $t$ is not tangent to the isotropic
+\label{prop:eigenline_non_tangent}
+Given a line~$t$ of the plane, if $t$ is not tangent to the isotropic
 conic, then all the cubics which have, among their
 eigenpoints, the points of $t$ are defined by the polynomial $t^2l$,
 where $l$ is any line of the plane. If $t$ is tangent to $\iso$, then
@@ -2275,12 +2264,12 @@ defined by the polynomials
 t^2l+\lambda C(r),
 \end{equation}
 where $\lambda \in K$ and $r$ is a line
-passing through the tangent point $\iso\cap t$ (and $C(r)$ is defined
-in~(\ref{2_lines_of_eigenpoints})). Conversely, if $r$ is a line and
+passing through the tangent point $\iso\cap t$ and $C(r)$ is defined
+in \Cref{2_lines_of_eigenpoints}. Conversely, if $r$ is a line and
 $t$ is another line, tangent $\iso$ in one of the two points of intersections
 of $r$ with $\iso$, then all the cubics given
-by~(\ref{cubiche_con_retta_autop_tg}) have, among their eigenpoints,
-the line $t$.
+by \Cref{cubiche_con_retta_autop_tg} have, among their eigenpoints,
+the line~$t$.
 \end{prop}
 \begin{proof}
 \verb+una_retta_tg_autop.sage+\\
@@ -2297,26 +2286,26 @@ four cubics:
 H_1 = t^2x, \quad H_2 = t^2y, \quad H_3 = t^2z, \quad H_4 = C(r)
 \]
 %
-where $r$ is a line passing through $P$ (if, for instance, $r$
+where $r$ is a line passing through~$P$ (if, for instance, $r$
 is $z$, then $H_4 = z(x^2 + y^2 + 2/3z^2)$. Hence the cubics are of the
-form~(\ref{cubiche_con_retta_autop_tg}). Conversely, it is easy to verify
+form of \Cref{cubiche_con_retta_autop_tg}. Conversely, it is easy to verify
 that all the cubics $C(r)$ of~(\ref{cubiche_con_retta_autop_tg}) are
 linear combinations of $H_1, \dots, H_4$, hence it is enough
 to see that every linear combination of $H_1, \dots, H_4$ gives a
-cubic which has the line $t$ among its eigenpoints, and the this result
+cubic which has the line~$t$ among its eigenpoints, and the this result
 follows from an explicit computation.
 \end{proof}
 
 \begin{prop}
-Let $t$ be a line tangent to the isotropic conic in a point $P$. Then all the
-cubics of the family~(\ref{cubiche_con_retta_autop_tg}) are singular in
-$P$ and $t$ is one of the two tangents to the cubic in $P$.
+Let $t$ be a line tangent to the isotropic conic in a point~$P$. 
+Then all the cubics of the family from \Cref{cubiche_con_retta_autop_tg} are singular in~$P$ and $t$ is one of the two tangents to the cubic in~$P$.
 \end{prop}
 \begin{proof}
-As seen in the previous proposition, up to the action of $\SO$, all the
+As seen in \Cref{prop:eigenline_non_tangent}, up to the action of~$\SO_3(\C)$, all the
 cubics are a linear combination of $H_1, \dots, H_4$ and a direct
 computation gives the thesis.
 \end{proof}
+
 NOTA: Le cubiche con P1 singolare e tangente in P1 data da tg1 sono
 un sistema lineare di dimensione 6, le cubiche
 di~(\ref{cubiche_con_retta_autop_tg}) sono di dimensione
@@ -2328,7 +2317,7 @@ Now we show that any line of the plane can be realized as a line of eigenpoints 
 
 \begin{prop}
 \label{prop:line_as_limit}
-    Any line $t \subset \p^2$ can be realized as the positive dimensional part of a limit eigenscheme in a  family of zero dimensional eigenschemes having an aligned triple.
+    Any line $t \subset \p^2$ can be realized as the positive dimensional part of a limit eigenscheme in a family of zero dimensional eigenschemes having an aligned triple.
 \end{prop}
 
 \begin{proof}
@@ -2407,7 +2396,7 @@ of eigenpoints.
 In this way we see that $t_1$ and $t_2$ must be tangent to $\iso$ (in
 $Q_1$ and $Q_2$ respectively). Let $Q_3 = t_1 \cap t_2$. We can assume
 that $Q_3 = (1: 0: 0)$, hence $t_1$, $t_2$ and $r$ have equations,
-respectively, $x+\iii y=0$, $x-\iii y = 0$ and  $x=0$.
+respectively, $x+\iii y=0$, $x-\iii y = 0$ and $x=0$.
 If we impose to the generic cubic of the plane to have
 $t_1$ and $t_2$ of eigenpoints, we get only one cubic defined by
 $x(2x^2 + 3y^2 + 3z^2)$, which is of the
@@ -2532,7 +2521,7 @@ isotropic conic, as a consequence
 of~\Cref{lemma:fourOnIso} and~\Cref{lemma3ptiSuCiso} must be bitangent,
 in two points $P_1$ and $P_2$, to $\iso$. Then we get the thesis
 from~\Cref{lemma:bitangentToCiso}. If $\Gamma$ is reducible,
-from~\Cref{cubiche_con_2_rette}  we have that $\Gamma$ splits
+from~\Cref{cubiche_con_2_rette} we have that $\Gamma$ splits
 into two tangent lines to $\iso$.
 \end{proof}
 \begin{rmk}
@@ -2557,7 +2546,7 @@ ma sistemare
  4& [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)] & "triangle + altitude"
 & $(C_5)$\\
   & [(1, 2, 3), (1, 4, 5), (2, 4, 6), (3, 5, 6)] & "two X shapes" & $(C_6)$\\
- 5& [(1, 2, 3), (1, 4, 5), (1, 6, 7),  & "two stars" & $(C_7)$\\
+ 5& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "two stars" & $(C_7)$\\
   & \phantom{[}(2, 4, 6), (2, 5, 7)] & &\\
  6& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "triangle + three altitudes" & $(C_8)$\\
   & \phantom{[} (2, 4, 6), (2, 5, 7), (3, 4, 7)] & & \\
@@ -2616,7 +2605,7 @@ $V_1 = (P_1, P_2, P_3, P_4, P_5)$, $V_2 = (P_1, P_2, P_3, P_6, P_7)$ and
 $V_3 = (P_1, P_4, P_5, P_6, P_7)$, are three $V$-configurations. It holds:
 
 \begin{lemma}
-\label{no_delta1_delta1} Suppose we have  seven eigenpoints $P_1, \dots, P_7$
+\label{no_delta1_delta1} Suppose we have seven eigenpoints $P_1, \dots, P_7$
 of a cubic in configuration $(C_3)$. Then among the $7$ points there is a
 $V$-configuration that satisfies a $\delta_2$ condition.
 \end{lemma}
@@ -2785,8 +2774,6 @@ The above proposition gives a necessary condition in order to have
 $P_1, \dots, P_7$ eigenpoints of a cubic curve. The next proposition
 completes the results.
 
-    
-
 \begin{rmk}
 The family of all the cubics with the eigenpoints in configuration $(C_5)$
 are therefore obtained taking $P_2, P_4$ generic, $P_1 = P_2 \times P_4$,
@@ -2860,7 +2847,7 @@ Conversely, fix three generic points $P_1, P_2, P_3$, take
 $P_6 = u_1P_1+u_2P_3$, $P_4 = v_1P_1+v_2P_6$ and therefore take
 $P_5 = (P_1+P_2) \cap (P_3+P_4)$ and $P_7 = (P_1+P_3) \cap (P_2+P_4)$.
 In our hypotheses, $\Omega(P_1, P_2, P_3)$ is not $0$,
-so defines a projective point $Q_4$.  Consider the ideal $J$ generated
+so defines a projective point $Q_4$. Consider the ideal $J$ generated
 by $\scl{P_1\times P_4}{P_2\times P_3}$,
 $\scl{P_1\times P_3}{P_2\times P_4}$,
 $\scl{P_1\times P_2}{P_3\times P_4}$. A direct computation shows that
@@ -2936,7 +2923,7 @@ $P_4 = \Omega(P_1, P_2, P_3)$.\\
 It remains to consider the case in which $s_{12} = s_{13} = 0$ (or one of
 the other two, which are similar). As above, we again compute
 $\delta_1(P_5, P_1, P_4)$, $\delta_1(P_6, P_1, P_2) = 0$ and
-$\delta_1(P_7, P_3, P_4)$ and we see that these  polynomials are zero
+$\delta_1(P_7, P_3, P_4)$ and we see that these polynomials are zero
 iff $s_{12} = 0$.
 \end{proof}
 
@@ -2981,7 +2968,7 @@ $$
 $$
 of aligned triples not lying
 on a tangent line to the isotropic conic $\iso$, with tangency point one of the $P_i$'s, the fibers of $\alpha$ are projective linear systems of dimension $3$ by
-Proposition \ref{manca il riferimento su ancillary    non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
+Proposition \ref{manca il riferimento su ancillary  non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
 $$
 \dim \alpha ^{-1} (\mathcal W)
 \subset \sU=8 ,
