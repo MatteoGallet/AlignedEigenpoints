@@ -173,7 +173,7 @@ corresponding to the symmetric Tucker decomposition of the associated symmetric 
 as clarified
 in \cite{DOT} and in \cite{Ott}. Indeed, any best rank $k$ approximation of a symmetric tensor lies in the linear
 space, called {critical space},  spanned by the rank $1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ varies among all the eigenvectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
-go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO, orthogonally decomposable, tensors, that is symmetric tensors $T$ which admit a decomposition
+go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO ("orthogonally decomposable") tensors, that is symmetric tensors~$T$ that admit a decomposition
 $T= \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0 \ dots , v_n$ an orthogonal family; see \cite{Rob} and \cite{BDHE}
 for further details. The $v_i$'s turn out to be eigenvectors of $T$; so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
 \textbf{(CITARE \cite{Ottaviani24})}
@@ -188,7 +188,7 @@ of a $3\times 3 \times 3$-tensor if and only if no six of the seven points lie o
 
 Moreover, we have also the following result (see \cite[Theorem 5.7]{BGV}):
 \begin{theorem}
-\label{thm : general no d collinear}
+\label{thm:general_no_d_collinear}
 Let $d\ge 3$. The eigenscheme $\Eig{f}$ of a general homogeneous polynomial $f \in \C[x_0,x_1,x_2]_d$ contains no $d$ collinear points.
 \end{theorem}
 
@@ -726,7 +726,7 @@ The direct inspection of the ideal obtained from these procedures gives the thes
 \end{proof}
 
 \begin{rmk}
- As we clarified in \Cref{...}, four aligned eigenpoints are never contained in a zero-dimensional, eigenscheme. In \Cref{...}, we will show that if an eigenscheme contains four distinct aligned eigenpoints, then it contains the whole line joining them.
+ As we clarified in \Cref{thm:general_no_d_collinear}, four aligned eigenpoints are never contained in a zero-dimensional, eigenscheme. In \Cref{4ptiSuRetta2}, we will show that if an eigenscheme contains four distinct aligned eigenpoints, then it contains the whole line joining them.
 \end{rmk}
 
 \begin{prop}
@@ -2374,9 +2374,9 @@ $$
 3(u-1)x^3+3(u-1)zx^2-9\iii x^2y+9(u+1) xy^2+3 \iii (u+2)(u-1)zyx+3\iii (2u+1)y^3+(-3u^2+3)y^2 z- u z^3 (u-1).
 $$
 A direct computation shows that if $u \neq 0$, the associated eigenscheme is $0$-dimensional, while for $u=0$ we get the polynomial
-$$
--3(x+\iii y+z)(x+\iii y)^2. 
-$$ 
+\[
+-3(x+\iii y+z)(x+\iii y)^2. \qedhere
+\]
 \end{proof}
 
 \subsection{Eigenschemes containing two lines}
