@@ -800,67 +800,68 @@ In the following, we denote by~$P \vee Q$ the line through two distinct points~$
 
 \begin{definition}
 \label{definition:delta1}
- Let $P_1$, $P_2$ and~$P_4$ be distinct points in the plane.
- We define the homogeneous polynomial of degree~$(2,1,1)$ on $\p^2 \times \p^2 \times \p^2$:
- %
- \[
-   \delta_1(P_1, P_2, P_4) :=
-   \scl{P_1}{P_1} \scl{P_2}{P_4} - \scl{P_1}{P_2}\scl{P_1}{P_4} =
-   \scl{P_1\times P_2}{P_1 \times P_4} \,,
+Let $P_1$, $P_2$ and~$P_4$ be distinct points in the plane.
+We define the homogeneous polynomial of degree~$(2,1,1)$ on $\p^2 \times \p^2 \times \p^2$:
+%
+\[
+  \delta_1(P_1, P_2, P_4) :=
+  \scl{P_1}{P_1} \scl{P_2}{P_4} - \scl{P_1}{P_2}\scl{P_1}{P_4} =
+  \scl{P_1\times P_2}{P_1 \times P_4} \,,
 \]
 %
 where $\times$ denotes the cross product, i.e.,
 %
 \[
-  P_1 \times P_2 = (B_1 C_2 - C_1 B_2, \, C_1 A_2 - A_1 C_2, \, A_1 B_2 - B_1 A_2) \,.
+  P_1 \times P_2 = 
+  (B_1 C_2 - C_1 B_2, \, C_1 A_2 - A_1 C_2, \, A_1 B_2 - B_1 A_2) \,.
 \]
 %
 and $P_1 = (A_1: B_1: C_1)$ and similarly for $P_2$ and $P_4$.
 \end{definition}
 
-\begin{rmk}\label{rmk: significato di delta1}
- Geometrically, the condition $\delta_1(P_1, P_2, P_4) = 0$ corresponds to the orthogonality of the vector planes corresponding to the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$, if the three points are not collinear, while
- $\delta_1(P_1, P_2, P_4) = 0$ implies that $\sigma (P_1,P_2)=0$ if they are collinear.
+\begin{rmk}
+\label{rmk:delta1_meaning}
+Geometrically, the condition $\delta_1(P_1, P_2, P_4) = 0$ corresponds to the orthogonality of the vector planes corresponding to the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$, if the three points are not collinear, while
+$\delta_1(P_1, P_2, P_4) = 0$ implies that $\sigma (P_1,P_2)=0$ if they are collinear.
 \end{rmk}
-
 
 \begin{definition}
 \label{definition:delta1b}
- Let $P_1$, $P_2$ and~$P_3$ be distinct aligned points in the plane.
- We define the polynomial
- %
- \[
+Let $P_1$, $P_2$ and~$P_3$ be distinct aligned points in the plane.
+We define the polynomial
+%
+\[
   \overline{\delta}_1(P_1, P_2, P_3) :=
   \scl{P_1}{P_1} \scl{P_2}{P_3} + \scl{P_1}{P_2}\scl{P_1}{P_3} \,.
-  \]
- %
+\]
+%
 \end{definition}
 
 \begin{definition}
-\label{Vconf}
+\label{definition:Vconf}
 Let $P_1, P_2, P_3, P_4, P_5$ be five distinct points of the plane~$\p^2$
 such that $P_1, P_2, P_3$ and $P_1, P_4, P_5$ are aligned.
 We call such a configuration a \emph{$V$-configuration}.
 \end{definition}
 
-
 \begin{definition}
- Let $P_1, \dots, P_5$ be a $V$-configuration.
+Let $P_1, \dots, P_5$ be a $V$-configuration.
 We define the polynomial
- %
- \[
+%
+\[
   \delta_2(P_1, P_2, P_3, P_4, P_5) :=
   \scl{P_1}{P_2} \scl{P_1}{P_3} \scl{P_4}{P_5} -
   \scl{P_1}{P_4} \scl{P_1}{P_5} \scl{P_2}{P_3} \,.
- \]
- %
+\]
+%
 \end{definition}
-%%
-Recall that $\scl{P_i}{P_j}$ is also denoted by $s_{ij}$.
-Then the expressions $\delta_1$ and $\delta_2$ become
+
+Recall that $\scl{P_i}{P_j}$ is also denoted by~$s_{ij}$.
+Then the expressions~$\delta_1$ and~$\delta_2$ become
+%
 \[
-\delta_1(P_1, P_2, P_4) = s_{11} s_{24}-s_{12}s_{14},
-\quad \delta_2(P_1, P_2, P_3, P_4, P_5) =s_{12}s_{13}s_{45}-s_{14}s_{15} s_{23}.
+  \delta_1(P_1, P_2, P_4) = s_{11} s_{24}-s_{12}s_{14} \,, \quad
+  \delta_2(P_1, P_2, P_3, P_4, P_5) = s_{12}s_{13}s_{45}-s_{14}s_{15} s_{23}.
 \]
 %
 \begin{rmk}
