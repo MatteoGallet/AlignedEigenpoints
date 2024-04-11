@@ -152,7 +152,7 @@ property \eqref{eq:eigenvector_definition} is preserved under scalar multiplicat
 Moreover, condition \eqref{eq:eigenvector_definition} can be rephrased as the condition
 \begin{equation}
 \label{eq:def_matrix_general}
-   \rk 
+   \rk
    \begin{pmatrix}
      x_0 & x_1 & \dots & x_n \\
      g_0 & g_1 & \dots & g_n
@@ -609,7 +609,7 @@ The bilinearity and symmetry of the form $\scl{}{}$ gives the quadratic polynomi
 %
 \begin{equation}
 \label{eq:intersection_isotropic}
-  \scl{t P_1 + sP_2}{t P_1 + sP_2} = 
+  \scl{t P_1 + sP_2}{t P_1 + sP_2} =
   \scl{P_1}{P_1} t^2 + 2\scl{P_1}{P_2} ts + \scl{P_2}{P_2}s^2,
 \end{equation}
 %
@@ -652,8 +652,8 @@ $r$ be the line passing through them. Then:
 \begin{proof} We denote the coordinates of the points as follows:
 %
 \[
-  P_1 = (A_1: B_1: C_1) \,, \quad 
-  P_2 = (A_2: B_2: C_2) \,, \quad 
+  P_1 = (A_1: B_1: C_1) \,, \quad
+  P_2 = (A_2: B_2: C_2) \,, \quad
   P_3 = u_1P_1 + u_2P_2 \,.
 \]
 %
@@ -663,15 +663,15 @@ We claim that we can greatly simplify the computations.
 Indeed, consider the matrix~$M$ constructed with the following six rows:
 %
 \[
-  \phi_{i_1}(P_1), \ \phi_{i_2}(P_1), \ 
-  \phi_{j_1}(P_2),\ \phi_{j_2}(P_2), \ 
+  \phi_{i_1}(P_1), \ \phi_{i_2}(P_1), \
+  \phi_{j_1}(P_2),\ \phi_{j_2}(P_2), \
   \phi_{k_1}(P_3), \ \phi_{k_2}(P_3)
 \]
 %
 where $i_1 \not= i_2 \in \{1, 2, 3\}$; $j_1 \not= j_2 \in \{1, 2, 3\}$;
 $k_1 \not= k_2 \in \{1, 2, 3\}$.
 First, assume that $i_1=j_1=k_1=1$ and $i_2=j_2=k_2=2$.
-Fix six columns $1\leq l_1 < \cdots < l_6 \leq 10$ of~$M$ and let $N$ be the order~$6$ matrix obtained from $M$ with these columns. 
+Fix six columns $1\leq l_1 < \cdots < l_6 \leq 10$ of~$M$ and let $N$ be the order~$6$ matrix obtained from $M$ with these columns.
 Since two rows of $N$ are obtained from
 entries of~$\phi_1(P_1)$ and of~$\phi_2(P_1)$,
 \Cref{lemma:minors} gives that $A_1$ divides $\det(N)$. For a similar
@@ -680,7 +680,7 @@ $\det(N) = A_1A_2(u_1A_1+u_2A_2)\cdot D$ for a suitable~$D$.
 Again by \Cref{lemma:minors}, we also see that if we take different values of $i_1, i_2, j_1, j_2, k_1, k_2$ in the definition of~$M$ above, then
 the corresponding~$\det(N)$ would be of the form $X_1X_2X_3\cdot D$ where
 $X_1$ is a coordinate of~$P_1$, $X_2$ is a coordinate of~$P_2$, and $X_3$ is
-a coordinate of~$P_3$ (and $D$ is the same as above). 
+a coordinate of~$P_3$ (and $D$ is the same as above).
 Since each of the three
 points have at least one non-zero coordinate, if the order six minor
 constructed with the columns $l_1, \dots, l_6$ is zero, then necessarily $D$
@@ -1092,11 +1092,11 @@ gives that there a few possibilities which can be summarized by the
 following conditions: either $\delta_1(P_1, P_2, P_4) = 0$,
 \ $\overline{\delta}_1(P_1, P_2, P_3) = 0$,
 \ $\overline{\delta}_1(P_1, P_4, P_5) = 0$, or the line~$P_1 \vee P_2$ is tangent to~$\iso$ (in $P_2$ or $P_3$) and the line~$P_1 \vee P_4$ is tangent to~$\iso$ (in $P_4$ or $P_5$). We see that in the second case it is necessarily $\delta_1(P_1,P_2,P_4)
-\neq 0$; indeed, in the case $P_2, P_4 \in \iso$, then $\scl{P_2 +P_4}{P_2+P_4}= \scl{P_2}{P_2} + \scl{P_4}{P_4}+2\scl{P_2}{P_4} =2\scl{P_2}{P_4} \neq 0$, as 
-the point~$P_2 + P_4$ is different from both~$P_2$ and~$P_4$, and the line~$P_2 \vee P_4$ has no other intersection points with~$\iso$. It follows that 
+\neq 0$; indeed, in the case $P_2, P_4 \in \iso$, then $\scl{P_2 +P_4}{P_2+P_4}= \scl{P_2}{P_2} + \scl{P_4}{P_4}+2\scl{P_2}{P_4} =2\scl{P_2}{P_4} \neq 0$, as
+the point~$P_2 + P_4$ is different from both~$P_2$ and~$P_4$, and the line~$P_2 \vee P_4$ has no other intersection points with~$\iso$. It follows that
 $\delta_1 (P_1,P_2,P_4)=s_{11}s_{24} \neq 0$, as $P_1 \not\in \iso$. The cases $P_3 \in \iso$, respectively $P_5\in \iso$, are similar.
 
-Therefore, if $\rk \ \Phi(P_1, \dots, P_5) = 8$, then one of the two conditions above must hold. 
+Therefore, if $\rk \ \Phi(P_1, \dots, P_5) = 8$, then one of the two conditions above must hold.
 \end{proof}
 
 \section{\texorpdfstring{$V$}{V}-configurations of rank~\texorpdfstring{$9$}{9}}
@@ -1254,7 +1254,7 @@ $V$-configuration).
 \begin{rmk}
 \label{rmk:construction_five_d2}
 If we want a $V$-configuration that satisfies the condition
-$\delta_2(P_1, \dots, P_5) = 0$, we choose $P_1$, $P_2$, $P_4$ arbitrarily; 
+$\delta_2(P_1, \dots, P_5) = 0$, we choose $P_1$, $P_2$, $P_4$ arbitrarily;
 we choose $P_3$ on the line~$P_1 \vee P_2$ and $P_5$ on the line~$P_1 \vee P_4$ so that $P_3$ satisfies \Cref{prop:definitionP3} and \Cref{defP3_4}.
 
 Also in this case, the locus of cubics is of dimension~$7$.
@@ -2161,13 +2161,13 @@ The proof relies on the exactness of the Kozsul complex associated with the regu
 
 
 \begin{lemma}\label{lem: Kozsul}
-Let $h_1,h_2,h_3\in\C[x,y,z]_d$ with $d \ge 1$. Then 
+Let $h_1,h_2,h_3\in\C[x,y,z]_d$ with $d \ge 1$. Then
 \begin{equation}\label{relazione lineare}
 xh_1-yh_2+zh_3=0
 \end{equation}
  if and only if there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that
 \begin{equation}\label{eq: minors lemma}
-    h_1 = ym_3-zm_2,\qquad h_2 = zm_1-xm_3,\qquad 
+    h_1 = ym_3-zm_2,\qquad h_2 = zm_1-xm_3,\qquad
     h_3 = xm_2-ym_1.
 \end{equation}
 
@@ -2217,7 +2217,7 @@ By \Cref{lem: Kozsul}, the triple $(h_1,h_2,h_3)$ is the triple of order two min
     m_1 & m_2 & m_3
     \end{pmatrix}.
 \]
-for suitable forms $m_i \in \C[x,y,z]_r$, where $r =2 - \deg g \ge 0$. By the assumption that $g$ is the greatest common factor of the three minors $g_1$, $g_2$ and $g_3$, we have that the zero scheme of $(h_1,h_2,h_3)$ is $0$-dimensional, and 
+for suitable forms $m_i \in \C[x,y,z]_r$, where $r =2 - \deg g \ge 0$. By the assumption that $g$ is the greatest common factor of the three minors $g_1$, $g_2$ and $g_3$, we have that the zero scheme of $(h_1,h_2,h_3)$ is $0$-dimensional, and
 by \Cref{lem:nonempty} its degree is $3$ if $r=1$, and the degree is $1$ if $r=0$.
 
 
@@ -2250,7 +2250,7 @@ Finally, we shall prove that such polynomials belong all to the locus $\sL \subs
 \begin{lemma}
 \label{4ptiSuRetta2}
 Suppose $P_1, P_2, P_3, P_4$ are four distinct points belonging to a line~$t$
-and let $C$ be a cubic such that has $P_1, \dots, P_4$ among its eigenpoints. 
+and let $C$ be a cubic such that has $P_1, \dots, P_4$ among its eigenpoints.
 Then all the points of $t$ are eigenpoints of~$C$.
 Moreover,
 %
@@ -2323,7 +2323,7 @@ follows from an explicit computation.
 \end{proof}
 
 \begin{prop}
-Let $t$ be a line tangent to the isotropic conic in a point~$P$. 
+Let $t$ be a line tangent to the isotropic conic in a point~$P$.
 Then all the cubics of the family from \Cref{cubiche_con_retta_autop_tg} are singular in~$P$ and $t$ is one of the two tangents to the cubic in~$P$.
 \end{prop}
 \begin{proof}
@@ -2699,9 +2699,9 @@ which implies
 \underline{Configuration $(C_5)$}
 \verb+file config5.sage+
 \begin{prop}
-%\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)} 
+%\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
 Suppose we have $7$ points which are eigenpoints of a cubic and are
-aligned according to configuration $(C_5)$. Then 
+aligned according to configuration $(C_5)$. Then
 it holds
 \[
 P_1 = P_2 \times P_4,
@@ -2721,7 +2721,7 @@ P_7 & = & (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{6
 
 
 
-Conversely, if $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration such that 
+Conversely, if $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration such that
 \[
 P_1=P_2 \times P_4,
 \]
@@ -2740,7 +2740,7 @@ $V$-configuration and we may assume that $\rk \, \Phi(P_2, P_1, P_3, P_4, P_6) =
 Analogously, $\delta_1(P_4, P_1, P_2) = 0$ and $\delta_1(P_6, P_1, P_2) = 0$. Moreover, by \Cref{no_delta1_delta1} and by possibly relabelling the points, we may assume that $\delta_2(P_1, P_2, P_3, P_4, P_5)=0$. The saturation of the ideal generated by the four polynomials
 above by the condition that $P_1$, $P_2$, and $P_4$ are not aligned equals the ideal generated by
 $s_{12}, s_{14}$, which also contains~$s_{16}$. This shows that
-$s_{12} = s_{14}=s_{16}=0$. In particular, we see that $P_1 = P_2 \times P_4$. 
+$s_{12} = s_{14}=s_{16}=0$. In particular, we see that $P_1 = P_2 \times P_4$.
 
 To prove \eqref{cndC5}, we take $P_2$ and $P_4$ generic,
 $P_1 = P_2 \times P_4$ and $P_3, P_5, P_6$ generic points on the lines
@@ -2764,7 +2764,7 @@ the configuration of the points implies that $\scl{P_1}{P_1}=0$ is not
 possible. A manipulation of the polynomial $f$ gives that it given by
 $((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}))/s_{11}$
 hence the points $P_1, \dots, P_6$ are eigenpoints iff~(\ref{cndC5}) is
-satisfied. 
+satisfied.
 
 If in~(\ref{cndC5}) in place of $P_6$ we substitute $w_1P_2+w_2P_4$,
 we find $w_1$ and $w_2$ which give the formula~(\ref{p6formula}) for $P_6$.
@@ -2775,7 +2775,7 @@ Finally, to prove \eqref{p7formula}, we observe that if we change $P_3$ with $P_
 
 %If we exchange $P_2$ with $P_6$ and $P_3$ with $P_7$ in the configuration
 %$(C_5)$, we see that $P_7$ is given from~(\ref{p7formula}), exchanging
-%$P_2$ and $P_6$. 
+%$P_2$ and $P_6$.
 %In this way we get the formula~(\ref{p7formula}) for
 %$P_7$.
 
@@ -2970,7 +2970,7 @@ f=\lambda_1 x^3 +\lambda_2 y^3 + \lambda_3 z^3,
 $$
 and they admit the three pairwise orthogonal eigenvectors
 $$
-Q_1=(\frac{1}{\lambda_1},0,0), \quad 
+Q_1=(\frac{1}{\lambda_1},0,0), \quad
 Q_2=(0,\frac{1}{\lambda_2},0), \quad
 Q_3=(0,0,\frac{1}{\lambda_3}).
 $$
@@ -3089,7 +3089,7 @@ By the results of Section 6, the locus with $\rk \Phi(P_1, \dots,P_5)\le 8$ is c
 %%%%%%%%%%%%%%
 %VECCHIA PROPOSIZIONE 9.5
 \begin{prop}
-\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)} 
+\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
 Let $P_1, \dotsc, P_7$ be seven points of $\mathbb{P}^2$ in configuration
 $(C_5)$. Then they are eigenpoints if and only if
 \begin{equation}
