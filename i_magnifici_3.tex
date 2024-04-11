@@ -64,7 +64,6 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\p}{\mathbb{P}}
-\newcommand{\sP}{\mathcal{P}}
 \newcommand{\sL}{\mathcal{L}}
 \newcommand{\sU}{\mathcal{U}}
 \newcommand{\sV}{\mathcal{V}}
@@ -1036,8 +1035,8 @@ Then the matrix $\Phi(P_1, \dots, P_5)$ has rank~$8$.
 \begin{proof}
 By \Cref{proposition:sigma_tangency},
 the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$ are tangent to~$\iso$ in~$P_2$ and~$P_4$, respectively. The point~$P_1$ cannot be on~$\iso$, hence, using the
-action of $\mathrm{SO}_3(\mathbb{C})$, we can assume $P_1 = (1: 0: 0)$.
-Since every element of $\mathrm{SO}_3(\mathbb{C})$ fixes the whole~$\iso$ (and sends a tangent line to it into another tangent line to it), when we transform the point~$P_1$
+action of $\SO_3(\C)$, we can assume $P_1 = (1: 0: 0)$.
+Since every element of $\SO_3(\C)$ fixes the whole~$\iso$ (and sends a tangent line to it into another tangent line to it), when we transform the point~$P_1$
 into $(1: 0: 0)$, we transform the points~$P_2$ and~$P_4$ into, respectively,
 the points $(0: \iii: 1)$ and $(0: -\iii: 1)$ (which are the common points to
 $\iso$ and the tangent lines through~$P_1$).
@@ -1725,7 +1724,7 @@ Hence the line $r = w_ar_a+w_br_b$
 (where $w_a, w_b$ are parameters) is the line passing through the eigenpoints
 $P_6$ and $P_7$
 of the generic cubic of the one dimensional family given by the line
-of $\mathbb{P}^9$ determined by the cubic obtained from $M_a$ and
+of $\p^9$ determined by the cubic obtained from $M_a$ and
 the cubic obtained from $M_b$. The condition $P_1 \in r$
 determines the values of $w_a$ and $w_b$, hence we get the cubic
 with the three collinearities $(P_1, P_2, P_3)$,
@@ -1910,7 +1909,7 @@ $$
   \sU:= \{[f]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{f} \ \textrm{contains \ an \ aligned \ triple}\},
 $$
 %
-and define $\mathcal{L} \subseteq \p^9$ as the closure of $\sU$:
+and define $\sL \subseteq \p^9$ as the closure of $\sU$:
 %
 $$
   \sL := \overline \sU \subset \p^9.
@@ -1920,12 +1919,12 @@ $$
 
 \begin{theorem}
 \label{theorem:irreducible}
-The variety~$\mathcal{L}$ is an irreducible hypersurface.
+The variety~$\sL$ is an irreducible hypersurface.
 \end{theorem}
 
 \begin{proof}
-We first prove that $\dim \mathcal{L}=8$. As there exist
-polynomials $f$ such that $\Eig{f}$ has no aligned triple, we have $\dim \mathcal{L} \le 8$.
+We first prove that $\dim \sL = 8$. As there exist
+polynomials $f$ such that $\Eig{f}$ has no aligned triple, we have $\dim \sL \le 8$.
 
 Consider the symmetric product $(\p^2)^{(3)}$ and set $\mathcal{AL} \subset (\p^2)^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal{AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order~$3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$.
 
@@ -2105,7 +2104,7 @@ $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has no aligned triples of eige
 \end{corollary}
 
 %\begin{definition}
-% We define $\Delta \subset \mathcal{L}$ to be the closure of the locus of cubics with at least two aligned triples of eigenpoints.
+% We define $\Delta \subset \sL$ to be the closure of the locus of cubics with at least two aligned triples of eigenpoints.
 %\end{definition}
 %
 %\begin{prop}
@@ -2152,10 +2151,10 @@ Being a variety of minimal degree, its degree is $5+1-3 = 3$.
 \end{proof}
 
 \begin{theorem}
-The degree of $\mathcal{L}$ is equal to
+The degree of $\sL$ is equal to
 %
 \[
-  \deg \ \mathcal{L} = 15 \,.
+  \deg \ \sL = 15 \,.
 \]
 %
 \end{theorem}
@@ -2164,7 +2163,7 @@ The degree of $\mathcal{L}$ is equal to
 We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics
 $\Lambda_f = \left\langle g_1, g_2, g_3 \right\rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net~$\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
-To determine the degree of $\mathcal{L}$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
+To determine the degree of $\sL$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
 
 To this aim, denote by ${\mathcal T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is~$6$ and its degree is~$15$,
 see for instance \cite[Section~2.2.2]{3264}. We now consider the variety~$\mathcal{N}$ from \Cref{lemma:scroll}.
@@ -2174,7 +2173,7 @@ Note that, since each net containing a triangle, actually contains exactly $3$ o
   \frac{\mathcal{T} \cdot \mathcal{N}}{3} = \frac{{15} \cdot {3}}{3} = 15 \,.
 \]
 %
-This implies that $\deg \mathcal{L} = 15$.
+This implies that $\deg \sL = 15$.
 \end{proof}
 
 \begin{es}
@@ -3243,7 +3242,7 @@ By the results of Section 6, the locus with $\rk \Phi(P_1, \dots,P_5)\le 8$ is c
 %VECCHIA PROPOSIZIONE 9.5
 \begin{prop}
 \textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
-Let $P_1, \dotsc, P_7$ be seven points of $\mathbb{P}^2$ in configuration
+Let $P_1, \dotsc, P_7$ be seven points of $\p^2$ in configuration
 $(C_5)$. Then they are eigenpoints if and only if
 \begin{equation}
 s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}) = 0.
