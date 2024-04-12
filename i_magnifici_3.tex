@@ -46,6 +46,7 @@
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{prop}[lemma]{Proposition}
 \newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{theoremintro}{Theorem}
 \newtheorem{corollary}[lemma]{Corollary}
 \newtheorem{conjecture}[lemma]{Conjecture}
 \newtheorem{fact}[lemma]{Fact}
@@ -130,6 +131,7 @@ Via Valerio 12/1, 34127 Trieste, Italy}
 
 \maketitle
 
+
 \section{Introduction}
 \label{introduction}
 
@@ -140,11 +142,12 @@ This has applications in low-rank approximation of tensors (see \cite{OttSod}) a
 When dealing with eigenvectors, it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$.
  If we choose a basis for $\C^{n+1}$, then we can identify $T\in \Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$ with a tuple of homogeneous polynomials $(g_0,\dots,g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v\in\C^{n+1}$ such that
 %
-\begin{equation}\label{eq:eigenvector_definition}
-(g_0(v), \ldots, g_n(v))=\lambda v
+\begin{equation}
+\label{eq:eigenvector_definition}
+  (g_0(v), \ldots, g_n(v))=\lambda v
 \end{equation}
-for some constant $\lambda$.
 %
+for some constant $\lambda$.
 Since %the property of being an eigenvector
 property \eqref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P)=\bigl(g_0(P): \ldots: g_n(P)\bigr)$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
 
@@ -161,13 +164,13 @@ so that the set of eigenpoints can be given a natural structure of determinantal
 
 The dimension and degree of a general eigenscheme are settled by the following result (see \cite[Theorem 2.1]{CartSturm}, \cite{ASS}, \cite{OO}, and \cite[Equation~5.2]{Abo}):
 
-\begin{lemma}
-\label{lem:nonempty}
+\begin{theoremintro}
+\label{thm:nonempty}
 Let $d \ge 3$ and let $T \in (\C^{n+1})^{\otimes d}$.
 If $T$ is general, then $\dim \Eig{T}=0$ and $\deg \Eig{T}=\frac{(d-1)^{n+1}-1}{d-2}$.
 
 Moreover, among $0$-dimensional eigenschemes, the general one is reduced.
-\end{lemma}
+\end{theoremintro}
 
 The geometry of eigenpoints is intimately related with the Waring decomposition of a polynomial,
 corresponding to the symmetric Tucker decomposition of the associated symmetric tensor,
@@ -179,33 +182,31 @@ $T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0 \ dots , v_n$ an orthogonal famil
 for further details. The $v_i$'s turn out to be eigenvectors of~$T$; so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
 \textbf{(CITARE \cite{Ottaviani24})}
 
- In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By \Cref{lem:nonempty}, the general such tensor
+ In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By \Cref{thm:nonempty}, the general such tensor
  satisfies $\deg \Eig{T}=7$. A geometric characterization of eigenschemes of ternary forms is given by the following results.
 
-\begin{theorem} (\cite[Theorem 5.1]{ASS})
+\begin{theoremintro}(\cite[Theorem 5.1]{ASS})
 A configuration of seven points in~$\p^2$ is the eigenconfiguration
 of a $3 \times 3 \times 3$-tensor if and only if no six of the seven points lie on a conic.
-\end{theorem}
+\end{theoremintro}
 
-Moreover, we have also the following result (see \cite[Theorem 5.7]{BGV}):
-\begin{theorem}
+\begin{theoremintro}(\cite[Theorem 5.7]{BGV})
 \label{thm:general_no_d_collinear}
-Let $d \ge 3$. The eigenscheme~$\Eig{f}$ of a general homogeneous polynomial $f \in \C[x_0,x_1,x_2]_d$ contains no $d$ collinear points.
-\end{theorem}
+Let $d \ge 3$. The eigenscheme~$\Eig{f}$ of a general homogeneous polynomial $f \in \C[x, y, z]_d$ contains no $d$ collinear points.
+\end{theoremintro}
 
 However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
 
 The goal of this paper is to classify all the situations when we have one or more triples of aligned points inside a zero-dimensional reduced eigenscheme of a cubic plane curve.
 \Cref{aligned} clarifies the reasons of interest in the situation of triples of aligned eigenpoints.
-
-
-
-
+\Cref{invariance} describes the action of special orthogonal matrices on ternary forms, which we repeatedly use in our analyses since it allows us to "pin down" one of the eigenpoints to two specific cases, thus greatly speeding up the symbolic computations we rely on.
+\Cref{conditions} begin our analysis by examining what conditions on the space of ternary cubics are imposed by the existence of aligned eigenpoints. In particular, three kinds of conditions, named~$\delta_1$, $\bar{\delta}_1$, and~$\delta_2$, emerge and play a prominent role in describing configurations of two triples of aligned eigenpoints that share a point, called $V$-configurations.
+\Cref{rank_9} and \Cref{rank_8} set the spotlight on $V$-configurations, exhausting all the possible special cases that may appear.
 
 \section{Aligned eigenpoints of ternary cubic form}
 \label{aligned}
 
-We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the eigenscheme~$\Eig{f}$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
+We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the \emph{eigenscheme}~$\Eig{f}$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
 %
 \begin{equation}
 \label{eq:def_matrix}
@@ -216,7 +217,7 @@ We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the 
 \end{equation}
 %
 Since the eigenschemes of two proportional homogeneous forms are the same,
-if $C$ is the curve defined by these forms,
+if $C$ is the curve defined by any of these forms,
 we can write $\Eig{C}$ for such eigenscheme and hence talk about the eigenscheme of a plane curve.
 
 The eigenscheme of a general ternary cubic form has no aligned triples of points. This is a consequence of the geometric properties of the classical Geiser map associated with seven points in the plane, and has been proved in \cite[Proposition~4.5]{BGV}.
@@ -241,6 +242,10 @@ The proof works also in the non-reduced case.
 As a consequence of \Cref{lemma:no_six_conic}, a zero-dimensional eigenscheme~$\Eig{f}$ for $f \in \C[x,y,z]_d$ never contains $4$ or more aligned points.
 Moreover, if $\Eig{f}$ contains two triples of aligned points, those must share a point.
 \end{corollary}
+
+Hence, in terms of alignments, the situations that can be studied are those in which we have one or several triples of aligned eigenpoints.
+We are going to see that understanding these situations will require a careful analysis of the conditions on ternary cubic forms imposed by the existence of aligned eigenpoints.
+To simplify these analyses, we first of all clarify how we can benefit from the action of special orthogonal matrices.
 
 \section{Invariance under the action of orthogonal matrices}
 \label{invariance}
@@ -339,7 +344,7 @@ The orbit $\mathcal{O}_1$ is the set of points of the so-called \emph{isotropic 
 The following result is well known; we recall it for the sake of completeness.
 
 \begin{prop}
- Let $M \in \mathrm{GL}_3(\C)$ and let $f$ be a ternary cubic.
+ Let $M \in \SO_3(\C)$ and let $f$ be a ternary cubic.
  Let $P = (A: B: C)$ be a point in~$\p^2$.
  Then we have
  %
@@ -349,8 +354,8 @@ The following result is well known; we recall it for the sake of completeness.
  %
 \end{prop}
 \begin{proof}
-In the present proof,
-for convenience, we shall consider the transpose of the defining matrix of an eigenscheme.
+In this proof,
+for convenience, we consider the transpose of the defining matrix of an eigenscheme.
 
 A point $P = (A: B: C)$ is an eigenpoint for~$f$ if and only if
 %
@@ -360,7 +365,8 @@ A point $P = (A: B: C)$ is an eigenpoint for~$f$ if and only if
     A & \de_x f(P) \\
     B & \de_y f(P)  \\
     C & \de_z f(P)
-  \end{pmatrix}=1,
+  \end{pmatrix}
+  = 1 \,,
 \end{equation*}
 %
 which is equivalent to
@@ -373,10 +379,10 @@ which is equivalent to
     B & \de_y f(P)  \\
     C & \de_z f(P)
   \end{pmatrix}
-  = 1.
+  = 1 \,.
 \end{equation}
 %
-By setting $\prescript{t} {}(A' \ B' \ C' )= M \cdot \prescript{t} {}(A \ B \ C) $ and $Q=(A':B':C')$, we have that \Cref{eq:def_matrix_M}
+By setting $\prescript{t} {}(A' \ B' \ C' ) := M \cdot \prescript{t} {}(A \ B \ C) $ and $Q := (A':B':C')$, we have that \Cref{eq:def_matrix_M}
 is equivalent to
 %
 \begin{equation}
@@ -386,7 +392,8 @@ is equivalent to
     A' & \\
     B' & M \cdot \nabla f (P) \\
     C' & \\
-  \end{pmatrix}=1.
+  \end{pmatrix}
+  = 1 \,.
 \end{equation}
 %
 Now we consider the polynomial $M \cdot f$ and we observe that the chain rule gives
@@ -400,20 +407,21 @@ Now we consider the polynomial $M \cdot f$ and we observe that the chain rule gi
 where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Hence
 %
 \[
-  \nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\  \prescript{t} {} (x \ y \ z)),
+  \nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) \bigl(M^{-1}\  \prescript{t} {} (x \ y \ z)\bigr) \,,
 \]
 %
 so we have
 %
 \[
   \nabla (M \cdot f)(Q)=\nabla (M \cdot f)(M \cdot P)=
-  \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\  M \cdot P)=\prescript{t} {} M^{-1} \cdot (\nabla f)(P).
+  \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\  M \cdot P)=\prescript{t} {} M^{-1} \cdot (\nabla f)(P) \,.
 \]
 %
 Finally, if we choose $M \in \SO_3(\C)$, we have
 $\prescript{t} {} M^{-1}=M$. We deduce that
 \Cref{eq:transformed} holds if and only if $Q \in \Eig{M\cdot f}$, so the statement is proved.
 \end{proof}
+
 
 \section{Conditions imposed by aligned eigenpoints}
 \label{conditions}
@@ -432,7 +440,7 @@ Through this paper, we will consider the standard monomial basis for $\C[x,y,z]_
 %
 \begin{equation}
 \label{eq:vector_basis}
-  \mathcal{B} = (x^3, x^2 y, x y^2, y^3, x^2 z, x y z, y^2 z, x z^2, y z^2, z^3)
+  \mathcal{B} := (x^3, x^2 y, x y^2, y^3, x^2 z, x y z, y^2 z, x z^2, y z^2, z^3)
   \in \bigl( \C[x,y,z]_3 \bigr)^{\oplus 10} \,.
 \end{equation}
  For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$F$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
@@ -485,7 +493,7 @@ More generally, if $P_1, \dotsc, P_n$ are points in the plane, we denote by $\Ph
     \vdots \\
     \Phi(P_n)
   \end{array}
-  \right)
+  \right) \,,
 \]
 %
 namely, the $3n \times 10$ matrix obtained by vertically stacking the
@@ -496,7 +504,7 @@ Moreover, given a matrix $M$ of type $m \times 10$, we denote by~$\Lambda(M)$ th
 satisfy the equations associated to the matrix~$M$.
 \end{definition}
 
-We introduce a new piece of notation that makes the description of $\Phi(P)$ more compact: $\de_x \mathcal{B}$ denotes the vector whose entries are the derivatives of those of~$\mathcal{B}$, and similarly for~$\de_y \mathcal{B}$ and~$\de_z \mathcal{B}$.
+We introduce a new piece of notation that makes the description of $\Phi(P)$ more compact: let $\de_x \mathcal{B}$ denote the vector whose entries are the derivatives of those of~$\mathcal{B}$, and similarly for~$\de_y \mathcal{B}$ and~$\de_z \mathcal{B}$.
 In this way, if $P=(A: B: C)$, we get:
 %
 \begin{equation}
@@ -509,16 +517,15 @@ In this way, if $P=(A: B: C)$, we get:
 \end{equation}
 %
 \begin{rmk}
-By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of $\Phi(P)$ is never $\leq 1$. \Cref{equation:vector_conditions} gives
+By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of $\Phi(P)$ is never $\leq 1$. \Cref{equation:vector_conditions} gives the relation
 %
 \begin{equation}
 \label{eq:base}
-  C \, \phi_1(P) - B \, \phi_2(P) + A \, \phi_3(P) = 0 \,,
+  C \, \phi_1(P) - B \, \phi_2(P) + A \, \phi_3(P) = 0 \,.
 \end{equation}
 %
-therefore,
-among the three vectors, at most two of them are linearly independent and the matrix~$\Phi(P)$ has rank~$2$.
-\end{rmk}
+Therefore,
+among the three vectors~$\phi_1(P)$, $\phi_2(P)$, and $\phi_3(P)$, at most two of them are linearly independent and the matrix~$\Phi(P)$ has rank~$2$.
 
 As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
 %
@@ -527,6 +534,7 @@ As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
   \rk \ \Phi(P_1, \dots, P_n) \leq \min \left\{2n, 10 \right\} \,.
 \end{equation}
 %
+\end{rmk}
 
 \subsection{Possible ranks of the matrix of conditions}
 
@@ -1120,6 +1128,7 @@ $\delta_1 (P_1,P_2,P_4)=s_{11}s_{24} \neq 0$, as $P_1 \not\in \iso$. The cases $
 Therefore, if $\rk \ \Phi(P_1, \dots, P_5) = 8$, then one of the two conditions above must hold.
 \end{proof}
 
+
 \section{\texorpdfstring{$V$}{V}-configurations of rank~\texorpdfstring{$9$}{9}}
 \label{rank_9}
 
@@ -1541,6 +1550,7 @@ The factorization of~$f$ gives that the factor~$r_3$ is:
 and is composed by almost $2000$ monomials. When we
 evaluate~$r_3$ on the coordinates of~$P_1$, we get zero.
 \end{proof}
+
 
 \section{\texorpdfstring{$V$}{V}-configurations of rank~\texorpdfstring{$8$}{8}}
 \label{rank_8}
@@ -2330,7 +2340,7 @@ By \Cref{lem:Kozsul}, the triple $(h_1,h_2,h_3)$ is the triple of order two mino
 for suitable forms $m_i \in \C[x,y,z]_r$, where $r =2 - \deg g \ge 0$.
 By the assumption that $g$ is the greatest common factor of the three minors $g_1$, $g_2$ and $g_3$,
 we have that the zero scheme of $(h_1,h_2,h_3)$ is $0$-dimensional, and
-by \Cref{lem:nonempty} its degree is~$3$ if $r=1$, and the degree is~$1$ if $r=0$.
+by \Cref{thm:nonempty} its degree is~$3$ if $r=1$, and the degree is~$1$ if $r=0$.
 \end{proof}
 }
 
@@ -2547,7 +2557,7 @@ the point $(a: b: c)$.
 \begin{proof}
 \verb+file: due_rette_autopunti.sage+\\
 Let $t_1$ be a line of eigenpoints of~$C$. If $t_1$ is not tangent
-to $\iso$, from~\Cref{4ptiSuRetta2} $C$ is given by $t_1^2l$ (for
+to $\iso$, from~\Cref{4ptiSuRetta2} the cubic~$C$ is given by~$t_1^2l$ (for
 a suitable line~$l$), but this cubic cannot have the line~$t_2$
 of eigenpoints.
 In this way, we see that $t_1$ and $t_2$ must be tangent to~$\iso$ (in~$Q_1$ and~$Q_2$, respectively). Let $Q_3 = t_1 \cap t_2$. We can assume
