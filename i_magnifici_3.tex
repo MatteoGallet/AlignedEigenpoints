@@ -151,14 +151,14 @@ for some constant $\lambda$.
 Since %the property of being an eigenvector
 property \eqref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P)=\bigl(g_0(P): \ldots: g_n(P)\bigr)$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
 
-Moreover, condition \eqref{eq:eigenvector_definition} can be rephrased as the condition
+Moreover, the condition in \Cref{eq:eigenvector_definition} can be rephrased as 
 \begin{equation}
 \label{eq:def_matrix_general}
    \rk
    \begin{pmatrix}
      x_0 & x_1 & \dots & x_n \\
      g_0 & g_1 & \dots & g_n
-   \end{pmatrix} \le 1,
+   \end{pmatrix} \le 1 \,,
 \end{equation}
 so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called \emph{eigenscheme}, denoted $\Eig{T}$.
 
@@ -168,7 +168,6 @@ The dimension and degree of a general eigenscheme are settled by the following r
 \label{thm:nonempty}
 Let $d \ge 3$ and let $T \in (\C^{n+1})^{\otimes d}$.
 If $T$ is general, then $\dim \Eig{T}=0$ and $\deg \Eig{T}=\frac{(d-1)^{n+1}-1}{d-2}$.
-
 Moreover, among $0$-dimensional eigenschemes, the general one is reduced.
 \end{theoremintro}
 
@@ -178,8 +177,8 @@ as clarified
 in \cite{DOT} and in \cite{Ott}. Indeed, any best rank~$k$ approximation of a symmetric tensor lies in the linear
 space, called \emph{critical space}, spanned by the rank~$1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ varies among all the eigenvectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
 go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO ("orthogonally decomposable") tensors, that is symmetric tensors~$T$ that admit a decomposition
-$T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0 \ dots , v_n$ an orthogonal family; see \cite{Rob, BDHE}
-for further details. The $v_i$'s turn out to be eigenvectors of~$T$; so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
+$T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0, \dotsc, v_n$ an orthogonal family; see \cite{Rob, BDHE}
+for further details. The $v_i$'s turn out to be eigenvectors of~$T$, so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
 \textbf{(CITARE \cite{Ottaviani24})}
 
  In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By \Cref{thm:nonempty}, the general such tensor
@@ -253,105 +252,107 @@ To simplify these analyses, we first of all clarify how we can benefit from the 
 In what follows, it will be useful to fix particular coordinates for points and lines related to eigenschemes. To do that, we employ a property of invariance of eigenschemes with respect to the action of the following group.
 
 \begin{definition}
- We define $\SO_3(\C)$ to be the complexification of the group of special orthogonal real matrices, namely
- %
- \[
-   \SO_3(\C) :=
-   \bigl\{
-     M \in \mathrm{GL}_3(\C) \, \mid \,
-     M M^t = I_3 \ \text{and} \ \det(M) = 1
-   \bigr\} \,.
- \]
- %
- The group $\SO_3(\C)$ acts on $\C^3$ by matrix multiplication:
- %
- \[
+We define $\SO_3(\C)$ to be the complexification of the group of special orthogonal real matrices, namely
+%
+\[
+  \SO_3(\C) :=
+  \bigl\{
+    M \in \mathrm{GL}_3(\C) \, \mid \,
+    M M^t = I_3 \ \text{and} \ \det(M) = 1
+  \bigr\} \,.
+\]
+%
+The group $\SO_3(\C)$ acts on $\C^3$ by matrix multiplication:
+%
+\[
   \begin{array}{ccc}
-   \SO_3(\C) \times \C^3 & \rightarrow & \C^3 \\
-   (M, v) & \mapsto & Mv
+    \SO_3(\C) \times \C^3 & \rightarrow & \C^3 \\
+    (M, v) & \mapsto & Mv
   \end{array}
- \]
- %
- Since all the elements of $\SO_3(\C)$ are invertible, the latter action descends to an action on $\p^2$.
+\]
+%
+Since all the elements of $\SO_3(\C)$ are invertible, the latter action descends to an action on $\p^2$.
 
- Moreover, the group~$\SO_3(\C)$ acts also on ternary forms via
- \[
+Moreover, the group~$\SO_3(\C)$ acts also on ternary forms via
+%
+\[
   M \cdot f (x,y,z) = f(M^{-1} \cdot \prescript{t} {}( x \ y \ z ) ).
- \]
+\]
+%
 \end{definition}
 
 \begin{prop}
 \label{two_orbits}
- The action of $\SO_3(\C)$ on $\p^2$ has two orbits:
- %
- \begin{align*}
+The action of $\SO_3(\C)$ on $\p^2$ has two orbits:
+%
+\begin{align*}
   \mathcal{O}_1 &:=
   \bigl\{
-   P \in \p^2 \, \mid \,
-   P = (a:b:c) \ \text{with} \ a^2 + b^2 + c^2 = 0
+    P \in \p^2 \, \mid \,
+    P = (a:b:c) \ \text{with} \ a^2 + b^2 + c^2 = 0
   \bigr\} \\
   \mathcal{O}_2 &:= \p^2 \setminus \mathcal{O}_1
- \end{align*}
- %
- A representative for $\mathcal{O}_1$ is $(1:\iii:0)$ and a
-representative for $\mathcal{O}_2$ is $(1:0:0)$.
-The orbit $\mathcal{O}_1$ is the set of points of the so-called \emph{isotropic conic}, denoted $\iso$.
+\end{align*}
+%
+A representative for~$\mathcal{O}_1$ is~$(1:\iii:0)$ and a
+representative for~$\mathcal{O}_2$ is~ $(1:0:0)$.
+The orbit~$\mathcal{O}_1$ is the set of points of the so-called \emph{isotropic conic}, denoted~$\iso$.
 \end{prop}
 \begin{proof}
- Suppose that $P \in \p^2$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 = 0$.
- We produce a matrix $M \in \SO_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ \iii \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
- Up to relabeling the coordinates, we can suppose that $a \neq 0$.
- Hence, by rescaling the coordinates of $P$, we have $P = (1: b: c)$ with $b^2 + c^2 = -1$.
- One can check that the matrix
- %
- \[
+Suppose that $P \in \p^2$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 = 0$.
+We produce a matrix $M \in \SO_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ \iii \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
+Up to relabeling the coordinates, we can suppose that $a \neq 0$.
+Hence, by rescaling the coordinates of $P$, we have $P = (1: b: c)$ with $b^2 + c^2 = -1$.
+One can check that the matrix
+%
+\[
   M :=
   \begin{pmatrix}
-   -1 & 0 & 0 \\
-   0 & \iii b & -\iii c \\
-   0 & \iii c & \iii b
+    -1 & 0 & 0 \\
+    0 & \iii b & -\iii c \\
+    0 & \iii c & \iii b
   \end{pmatrix}
- \]
- %
- satisfies the requirements.
+\]
+%
+satisfies the requirements.
 
- Now suppose that $P \in \p^2$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 \neq 0$.
- Up to rescaling, we can suppose that $a^2 + b^2 + c^2 = 1$.
- Again, we produce a matrix $M \in \SO_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
- First of all, suppose that $b^2 + c^2 \neq 0$ and let $\omega$ be a root of the polynomial $t^2 - (b^2 + c^2)$ in $\C[t]$.
- Then, the matrix
- %
- \[
-   M :=
-   \begin{pmatrix}
-     a & \omega & 0 \\
-     b & -\frac{ab}{\omega} & \frac{c}{\omega} \\
-     c & -\frac{ac}{\omega} & -\frac{b}{\omega}
-   \end{pmatrix}
- \]
- %
- satisfies the requirements.
- With the same technique, if $a^2 + c^2 \neq 0$, we can produce a matrix $M \in \SO_3(\C)$ that maps $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$; similarly, when $a^2 + b^2 \neq 0$, we can map $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$.
- Since $\left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$, $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$, and $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ are all $\mathrm{SO}_3(\C)$-equivalent, the only case to consider is when
- %
- \[
+Now, suppose that $P \in \p^2$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 \neq 0$.
+Up to rescaling, we can suppose that $a^2 + b^2 + c^2 = 1$.
+Again, we produce a matrix $M \in \SO_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
+First of all, suppose that $b^2 + c^2 \neq 0$ and let $\omega$ be a root of the polynomial $t^2 - (b^2 + c^2)$ in $\C[t]$.
+Then, the matrix
+%
+\[
+  M :=
+  \begin{pmatrix}
+    a & \omega & 0 \\
+    b & -\frac{ab}{\omega} & \frac{c}{\omega} \\
+    c & -\frac{ac}{\omega} & -\frac{b}{\omega}
+  \end{pmatrix}
+\]
+%
+satisfies the requirements.
+With the same technique, if $a^2 + c^2 \neq 0$, we can produce a matrix $M \in \SO_3(\C)$ that maps $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$; similarly, when $a^2 + b^2 \neq 0$, we can map $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ to $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$.
+Since $\left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$, $\left(\begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix}\right)$, and $\left(\begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix}\right)$ are all $\mathrm{SO}_3(\C)$-equivalent, the only case to consider is when
+%
+\[
   b^2 + c^2 = a^2 + c^2 = a^2 + b^2 = 0 \,,
- \]
- %
- which, however, can never occur.
+\]
+%
+which, however, can never occur.
 \end{proof}
 
 The following result is well known; we recall it for the sake of completeness.
 
 \begin{prop}
- Let $M \in \SO_3(\C)$ and let $f$ be a ternary cubic.
- Let $P = (A: B: C)$ be a point in~$\p^2$.
- Then we have
- %
- \[
+Let $M \in \SO_3(\C)$ and let $f$ be a ternary cubic.
+Let $P = (A: B: C)$ be a point in~$\p^2$.
+Then we have
+%
+\[
   P \in \Eig{f} \iff M \cdot \prescript{t} {}(A \ B \ C) \in \Eig{M \cdot f} \,.
- \]
- %
+\]
+%
 \end{prop}
 \begin{proof}
 In this proof,
