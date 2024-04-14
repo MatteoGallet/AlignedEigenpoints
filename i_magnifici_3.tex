@@ -2837,6 +2837,7 @@ which implies
 \underline{Configuration $(C_5)$}
 \verb+file config5.sage+
 \begin{prop}
+\label{proposition:condition_5}
 %\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
 Suppose we have $7$ points which are eigenpoints of a cubic and are
 aligned according to configuration $(C_5)$.
@@ -2855,14 +2856,13 @@ and among the points $P_1, \dots, P_6$, where $P_6$ is collinear with $P_2$ and 
 %
 Moreover, the points $P_6$ and $P_7$ are determined as follows:
 %
-\begin{eqnarray}
-  P_6 & = & (s_{15}s_{24}s_{34}+s_{15}s_{23}s_{44} -s_{13}s_{25}s_{44} -s_{13}s_{24}s_{45})P_2 + (s_{13}s_{24}s_{25}-2s_{15}s_{22}s_{34}+s_{13}s_{22}s_{45})P_4 ,\label{p6formula}\\
-  P_7 & = & (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{66})P_1-
-  (s_{11}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{14}-s_{24}s_{15}s_{16})P_6 ,
+\begin{align}
+  P_6 &= (s_{15}s_{24}s_{34}+s_{15}s_{23}s_{44} -s_{13}s_{25}s_{44} -s_{13}s_{24}s_{45})P_2 + (s_{13}s_{24}s_{25}-2s_{15}s_{22}s_{34}+s_{13}s_{22}s_{45})P_4 \,, \label{p6formula} \\
+  P_7 &= (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{66})P_1-
+  (s_{11}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{14}-s_{24}s_{15}s_{16})P_6 \,.
   \label{p7formula}
-\end{eqnarray}
+\end{align}
 %
-
 Conversely, if $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration such that
 %
 \[
@@ -2906,10 +2906,10 @@ $((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}))/s_{11}$
 hence the points $P_1, \dots, P_6$ are eigenpoints iff~(\ref{cndC5}) is
 satisfied.
 
-If in~(\ref{cndC5}) in place of $P_6$ we substitute $w_1P_2+w_2P_4$,
-we find $w_1$ and $w_2$ which give the formula~(\ref{p6formula}) for $P_6$.
+If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1P_2+w_2P_4$,
+we find $w_1$ and $w_2$ which give \Cref{p6formula}.
 
-Finally, to prove \eqref{p7formula}, we observe that if we change $P_3$ with $P_7$ in formula \eqref{cndC5}, and taking into account that $P_7$ is collinear with $P_1$ and $P_6$, we get the claim.
+Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with $P_1$ and $P_6$.
 
 %If we exchange $P_2$ with $P_6$ and $P_3$ with $P_7$ in the configuration
 %$(C_5)$, we see that $P_7$ is given from~(\ref{p7formula}), exchanging
