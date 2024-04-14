@@ -149,7 +149,7 @@ When dealing with eigenvectors, it is not restrictive to focus on partially symm
 %
 for some constant $\lambda$.
 Since %the property of being an eigenvector
-property \eqref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P)=\bigl(g_0(P): \ldots: g_n(P)\bigr)$ and regard eigenvectors as points in $\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
+property in \Cref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P) = \bigl(g_0(P): \ldots: g_n(P)\bigr)$ and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
 
 Moreover, the condition in \Cref{eq:eigenvector_definition} can be rephrased as 
 \begin{equation}
@@ -2282,14 +2282,14 @@ if and only if there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that
 
 \begin{proof}
 If $h_1,h_2,h_3$ satisfy \Cref{eq: minors lemma}, then it is immediate to check that they satisfy \Cref{relazione lineare} as well. 
-Conversely, assume that \eqref{relazione lineare} holds and let $R = \C[x,y,z]$.
+Conversely, assume that \Cref{relazione lineare} holds and let $R = \C[x,y,z]$.
 The Koszul complex in the ring~$R$ is an exact sequence of $R$-modules
 %
 $$
-  0 \to R\xrightarrow{\alpha} R^{\oplus 3} \xrightarrow{\beta} R^{\oplus 3} \xrightarrow{\gamma} R \to R/(x,y,z) \to 0,
+  0 \to R\xrightarrow{\alpha} R^{\oplus 3} \xrightarrow{\beta} R^{\oplus 3} \xrightarrow{\gamma} R \to R/(x,y,z) \to 0 \,,
 $$
 %
-where the maps are $\alpha(p)=(p x,p y,p z)$, $\gamma (w_1,w_2,w_3)=w_1 x + w_2 y + w_3 z$ and $\beta$ is defined by the matrix
+where the maps are $\alpha(p) = (p x, p y, p z)$, $\gamma (w_1,w_2,w_3) = w_1 x + w_2 y + w_3 z$ and $\beta$ is defined by the matrix
 %
 $$
   \left(
@@ -2298,10 +2298,10 @@ $$
     z & 0 & -x\\
     -y & x & 0 \\
   \end{array}
-  \right).
+  \right) \,.
 $$
 %
-The syzygy $xh_1-yh_2+zh_3=0$ implies that $(h_1, -h_2, h_3)$ is in the kernel of $\gamma$, and since the Koszul complex is exact, the triple $(h_1,-h_2, h_3)$ lies in the image of $\beta$. It follows that there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that \eqref{eq: minors lemma} holds.
+The syzygy $xh_1-yh_2+zh_3=0$ implies that $(h_1, -h_2, h_3)$ is in the kernel of $\gamma$, and since the Koszul complex is exact, the triple $(h_1,-h_2, h_3)$ lies in the image of $\beta$. It follows that there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that \Cref{eq: minors lemma} holds.
 \end{proof}
 
 Now we are in the position to prove \Cref{p2}.
@@ -2730,12 +2730,12 @@ we want to see which of those nine configurations can be realized by
 the seven eigenpoints of a cubic and, in case the configuration is
 realizable, which are the cubics with that configuration of eigenpoints.
 
-First of all, it is well-known that configuration (9) cannot be realized
+First of all, it is well-known that configuration $(C_9)$ cannot be realized
 by seven points of the plane over a field of zero
-characteristic (see \cite{Whitney1935}), therefore we will not consider
+characteristic (see \cite{Whitney1935}), therefore we not consider
 it in our analysis.
 
-\underline{Configuration $(C_1)$} can be realized,
+\underline{Configuration $(C_1)$} can be realized.
 \Cref{proposition:three_aligned_ranks} and \Cref{locus_one_alignment}
 give a description of the cubics with such a configuration of points:
 we fix two points~$P_1$ and~$P_2$ in $\p^2$, we take a generic~$P_3$
@@ -2746,22 +2746,21 @@ line~$P_1 \vee P_2$ is tangent in~$P_1$, $P_2$, or~$P_3$ to~$\iso$).
 
 \underline{Configuration $(C_2)$} means that the points
 $P_1, \dots, P_5$ are in a
-$V$-configuration, hence the rank of the matrix $\Phi(P_1, \dots, P_5)$
+$V$-configuration, hence the rank of the matrix $\Phi(P_1, \dotsc, P_5)$
 must be $9$ or $8$. If the rank is $9$, then $\delta_1(P_1, P_2, P_4) = 0$
-or $\delta_2(P_1, \dots, P_5) = 0$, see \Cref{theorem:rank_V}.
+or $\delta_2(P_1, \dotsc, P_5) = 0$, see \Cref{theorem:rank_V}.
 From \Cref{proposition:third_alignment} we have that the only possibility
 is $\delta_1(P_1, P_2, P_4) = 0$. Hence if we fix two points $P_1$ and $P_2$
 in the plane in an arbitrary way, we choose $P_4$ such that
-$\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$
-(see~Equation~\eqref{rmk_delta_case1}) and then we chose any $P_3$
+$\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, see \Cref{rmk_delta_case1}; then we chose any~$P_3$
 on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$, we have a cubic
 with a configuration of type~$(C_2)$. In case of rank~$8$, as seen
 (see~\Cref{rmk:particular_cases}),
 configuration~$(C_2)$ can only be
-obtained from the conditions~(\ref{rk8_1}) (and hence are sub-cases
+obtained from \Cref{rk8_1} (and hence are sub-cases
 of the case $\delta_1(P_1, P_2, P_4)=0$).
 
-\underline{Configuration $(C_3)$} Suppose we have $7$ eigenpoints such that
+\underline{Configuration $(C_3)$}. Suppose we have $7$ eigenpoints such that
 $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$ are
 aligned. Hence
 $V_1 = (P_1, P_2, P_3, P_4, P_5)$, $V_2 = (P_1, P_2, P_3, P_6, P_7)$ and
@@ -2787,7 +2786,7 @@ of~$P_2$. Assuming the matrix of the system of linear equations have
 maximal rank, the solution gives a point $P_2$ that coincide, as
 a projective point, to $P_1$, which is impossible. Hence we are forced to
 consider the
-case in which the matrix of the linear system do not have maximal rank.
+case in which the matrix of the linear system does not have maximal rank.
 This condition implies that $\scl{P_1}{P_1} = 0$, hence $P_1$ is on the
 isotropic conic. W.l.o.g.\ we can assume $P_1 = (1: \iii: 0)$ and again
 we can determine~$P_2$ such $\delta_1(P_1, P_2, P_4)$ and
@@ -2802,7 +2801,7 @@ $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 \end{proof}
 
 As a consequence of \Cref{no_delta1_delta1}, we have that configuration $(C_3)$ can
-be obtained only if we have 5 points such that
+be obtained only if we have $5$ points such that
 $\delta_2(P_1, \dotsc, P_5) = 0$. \Cref{prop:definitionP3} describes how to
 obtain five points which give a configuration $(C_3)$ of eigenpoints.
 
@@ -2877,7 +2876,7 @@ above by the condition that $P_1$, $P_2$, and $P_4$ are not aligned equals the i
 $s_{12}, s_{14}$, which also contains~$s_{16}$. This shows that
 $s_{12} = s_{14}=s_{16}=0$. In particular, we see that $P_1 = P_2 \times P_4$.
 
-To prove \eqref{cndC5}, we take $P_2$ and $P_4$ generic,
+To prove \Cref{cndC5}, we take $P_2$ and $P_4$ generic,
 $P_1 = P_2 \times P_4$ and $P_3, P_5, P_6$ generic points on the lines
 $P_1 \vee P_2, P_1 \vee P_4$ and $P_2 \vee P_4$, respectively. The matrix
 $M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller) but the computations
@@ -2943,8 +2942,7 @@ completes the results.
 \begin{rmk}
 The family of all the cubics with the eigenpoints in configuration $(C_5)$
 are therefore obtained taking $P_2, P_4$ generic, $P_1 = P_2 \times P_4$,
-$P_5$ generic on the line~$P_1 \vee P_4$ and $P_3$ given by the
-formula~(\ref{p3formula}).
+$P_5$ generic on the line~$P_1 \vee P_4$ and $P_3$ given by the \Cref{p3formula}.
 It is easy to see that the cubics with eigenpoints in configuration $(C_5)$
 described in~\Cref{prop:rk8_2B} are a sub-family of the cubics here described,
 obtained by the conditions $s_{22} = s_{44} = 0$.
@@ -3007,9 +3005,9 @@ if and only if
 \end{gather}
 %
 If $s_{12} = s_{13} = s_{23} = 0$ then, for any $P_4$, we have
-$s_{24} s_{34} \not = 0$ and~(\ref{C8:cnd2}) is equivalent to
+$s_{24} s_{34} \not = 0$ and \Cref{C8:cnd2} is equivalent to
 $P_1 = \Omega(P_2, P_3, P_4)$ (or $P_2 = \Omega(P_1, P_3, P_4)$
-or $P_3 = \Omega(P_1, P_2, P_4)$)
+or $P_3 = \Omega(P_1, P_2, P_4)$).
 \end{lemma}
 \begin{proof}
 %% file proofLemma8alignments.sage
@@ -3053,7 +3051,7 @@ $s_{12}s_{23} \not = 0$, let
 \end{align*}
 %
 Then the points $P_1, \dots, P_7$ satisfy the alignments given
-in~(\ref{C8_alignments}) and there exists a cubic~$\mathcal{C}$
+in \Cref{C8_alignments} and there exists a cubic~$\mathcal{C}$
 of the plane whose eigenpoints are $P_1, \dotsc, P_7$. Moreover, if
 we have that among $s_{12}, s_{13}, s_{23}$ two of them are zero,
 then we can choose for~$P_4$ a generic point of the plane and if we construct
@@ -3089,7 +3087,7 @@ These three equations are equivalent to
 \]
 %
 This is a linear system in the coordinates of $P_4$. The solution is
-not unique iff $(s_{12} = s_{13} = 0)$ or $(s_{23} = s_{13} = 0)$
+not unique if and only if $(s_{12} = s_{13} = 0)$ or $(s_{23} = s_{13} = 0)$
 or $(s_{23} = s_{12} = 0)$. This case will be considered afterwards.
 When the solution is unique, we get new coordinates for $P_4$ so we
 re-define $P_4$ and the points constructed from it (i.e.\ $P_5, P_6, P_7$).
@@ -3109,7 +3107,7 @@ It remains to consider the case in which $s_{12} = s_{13} = 0$ (or one of
 the other two, which are similar). As above, we again compute
 $\delta_1(P_5, P_1, P_4)$, $\delta_1(P_6, P_1, P_2) = 0$ and
 $\delta_1(P_7, P_3, P_4)$ and we see that these polynomials are zero
-iff $s_{12} = 0$.
+if and only if $s_{12} = 0$.
 \end{proof}
 
 \subsection{Comparison with ODECO tensors}
