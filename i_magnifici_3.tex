@@ -94,7 +94,7 @@
 \newcommand{\iii}{\textbf{i}}
 
 \definecolor{MyDarkGreen}{cmyk}{0.7,0,1,0}
-\newcommand{\blue}[1]{{\color{blue}  [#1]}}
+\newcommand{\blue}[1]{{\color{blue}[#1]}}
 \newcommand{\cbc}{\ensuremath{\mathcal{C}}}
 \newcommand{\rk}{\ensuremath{\mathrm{rk}}}
 
@@ -364,7 +364,7 @@ A point $P = (A: B: C)$ is an eigenpoint for~$f$ if and only if
   \mathrm{rk}
   \begin{pmatrix}
     A & \de_x f(P) \\
-    B & \de_y f(P)  \\
+    B & \de_y f(P) \\
     C & \de_z f(P)
   \end{pmatrix}
   = 1 \,,
@@ -377,7 +377,7 @@ which is equivalent to
   \mathrm{rk} \quad M \cdot 
   \begin{pmatrix}
     A & \de_x f(P) \\
-    B & \de_y f(P)  \\
+    B & \de_y f(P) \\
     C & \de_z f(P)
   \end{pmatrix}
   = 1 \,.
@@ -400,22 +400,22 @@ is equivalent to
 Now we consider the polynomial $M \cdot f$ and we observe that the chain rule gives
 %
 \begin{gather*}
-  \partial_x (M\cdot f) = \partial_x \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(1)}(\nabla f) \bigl( M^{-1}\  \prescript{t} {} (x \ y \ z) \bigr) \,, \\
-  \partial_y (M\cdot f) = \partial_y \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(2)}(\nabla f) \bigl( M^{-1}\  \prescript{t} {} (x \ y \ z) \bigr) \,, \\
-  \partial_z (M\cdot f) = \partial_z \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(3)}(\nabla f) \bigl( M^{-1}\  \prescript{t} {} (x \ y \ z) \bigr) \,,
+  \partial_x (M\cdot f) = \partial_x \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(1)}(\nabla f) \bigl( M^{-1}\ \prescript{t} {} (x \ y \ z) \bigr) \,, \\
+  \partial_y (M\cdot f) = \partial_y \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(2)}(\nabla f) \bigl( M^{-1}\ \prescript{t} {} (x \ y \ z) \bigr) \,, \\
+  \partial_z (M\cdot f) = \partial_z \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(3)}(\nabla f) \bigl( M^{-1}\ \prescript{t} {} (x \ y \ z) \bigr) \,,
 \end{gather*}
 %
 where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Hence
 %
 \[
-  \nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) \bigl(M^{-1}\  \prescript{t} {} (x \ y \ z)\bigr) \,,
+  \nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) \bigl(M^{-1}\ \prescript{t} {} (x \ y \ z)\bigr) \,,
 \]
 %
 so we have
 %
 \[
   \nabla (M \cdot f)(Q)=\nabla (M \cdot f)(M \cdot P)=
-  \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\  M \cdot P)=\prescript{t} {} M^{-1} \cdot (\nabla f)(P) \,.
+  \prescript{t} {} M^{-1} \cdot (\nabla f) (M^{-1}\ M \cdot P)=\prescript{t} {} M^{-1} \cdot (\nabla f)(P) \,.
 \]
 %
 Finally, if we choose $M \in \SO_3(\C)$, we have
@@ -444,15 +444,15 @@ Through this paper, we will consider the standard monomial basis for $\C[x,y,z]_
   \mathcal{B} := (x^3, x^2 y, x y^2, y^3, x^2 z, x y z, y^2 z, x z^2, y z^2, z^3)
   \in \bigl( \C[x,y,z]_3 \bigr)^{\oplus 10} \,.
 \end{equation}
- For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$F$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
- For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements~$[f]$ of~$\p^9$ that $P$ is an eigenpoint of the ternary cubic form~$F$ can be expressed in the form
- %
- \[
-   \Phi(P) \cdot w_f = 0 \,,
- \]
- %
- where $\Phi(P)$ is a $3 \times 10$ matrix with entries depending on $A, B, C$.
- The matrix $\Phi(P)$ is called the \emph{matrix of conditions} imposed by~$P$.
+For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$F$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
+For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements~$[f]$ of~$\p^9$ that $P$ is an eigenpoint of the ternary cubic form~$F$ can be expressed in the form
+%
+\[
+  \Phi(P) \cdot w_f = 0 \,,
+\]
+%
+where $\Phi(P)$ is a $3 \times 10$ matrix with entries depending on $A, B, C$.
+The matrix $\Phi(P)$ is called the \emph{matrix of conditions} imposed by~$P$.
 We denote by $\phi_1(P)$, $\phi_2(P)$, and~$\phi_3(P)$ the rows of~$\Phi(P)$.
 Written as vectors, they are
 %
