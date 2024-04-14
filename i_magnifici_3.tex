@@ -2677,17 +2677,19 @@ such that the equation of~$C$ is given by \Cref{cub_conica_eig}.
 If the equation of $C$ is of the form described above, a direct computation
 shows that the eigenpoints of $C$ are the pole of $r$ with respect to $\iso$
 and the conic $\lambda \iso+3\mu r^2$. Suppose, conversely, that $C$ has
-a conic among its eigenpoints. First, we assume that the conic $\Gamma$
-is irreducible. If $\Gamma$ is the isotropic conic,
-then~\Cref{lemma:fourOnIso} gives that $C$ splits into~$\iso$ and a line.
-If $\Gamma$ does not coincide with the
-isotropic conic, as a consequence
-of~\Cref{lemma:fourOnIso} and~\Cref{lemma3ptiSuCiso} must be bitangent,
-in two points $P_1$ and $P_2$, to $\iso$. Then we get the thesis
-from~\Cref{lemma:bitangentToCiso}. If $\Gamma$ is reducible,
+a conic~$\Gamma$ among its eigenpoints. 
+First, we assume that $\Gamma$ is irreducible.
+If $\Gamma$ is the isotropic conic,
+then \Cref{lemma:fourOnIso} gives that $C$ splits into~$\iso$ and a line.
+If $\Gamma$ is not the isotropic conic, as a consequence
+of~\Cref{lemma:fourOnIso} and~\Cref{lemma3ptiSuCiso} it must be bitangent,
+in two points $P_1$ and $P_2$, to~$\iso$. 
+Then the statement is proven from~\Cref{lemma:bitangentToCiso}. 
+If $\Gamma$ is reducible,
 from~\Cref{cubiche_con_2_rette} we have that $\Gamma$ splits
 into two tangent lines to~$\iso$.
 \end{proof}
+
 \begin{rmk}
 if $r$ is tangent to $\iso$ in a point $P$, @@tutto pare funzionare,
 ma sistemare
@@ -2735,8 +2737,7 @@ by seven points of the plane over a field of zero
 characteristic (see \cite{Whitney1935}), therefore we not consider
 it in our analysis.
 
-\underline{Configuration $(C_1)$} can be realized.
-\Cref{proposition:three_aligned_ranks} and \Cref{locus_one_alignment}
+\underline{Configuration $(C_1)$} can be realized. \Cref{proposition:three_aligned_ranks} and \Cref{locus_one_alignment}
 give a description of the cubics with such a configuration of points:
 we fix two points~$P_1$ and~$P_2$ in $\p^2$, we take a generic~$P_3$
 on the line~$P_1 \vee P_2$, all the cubics with
@@ -2877,8 +2878,8 @@ $s_{12}, s_{14}$, which also contains~$s_{16}$. This shows that
 $s_{12} = s_{14}=s_{16}=0$. In particular, we see that $P_1 = P_2 \times P_4$.
 
 To prove \Cref{cndC5}, we take $P_2$ and $P_4$ generic,
-$P_1 = P_2 \times P_4$ and $P_3, P_5, P_6$ generic points on the lines
-$P_1 \vee P_2, P_1 \vee P_4$ and $P_2 \vee P_4$, respectively. The matrix
+$P_1 = P_2 \times P_4$ and $P_3$, $P_5$, $P_6$ generic points on the lines
+$P_1 \vee P_2$, $P_1 \vee P_4$, $P_2 \vee P_4$, respectively. The matrix
 $M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller) but the computations
 of all the order $10$-minors of $M$ takes too much time, so we need another
 strategy to find when $\rk (M) < 10$: we select
@@ -2895,8 +2896,8 @@ verify that they are zero if and only if the polynomial $f$, specialized
 on the point $(1:0:0)$ is zero. To complete the proof of the claim, we should
 also take for $P_1$ the point $(1:i:0)$, but this is not necessary, since
 the configuration of the points implies that $\scl{P_1}{P_1}=0$ is not
-possible. A manipulation of the polynomial $f$ gives that it given by
-$((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}))/s_{11}$
+possible. A manipulation of the polynomial $f$ gives that it is equal to 
+$\bigl((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15})\bigr)/s_{11}$,
 hence the points $P_1, \dots, P_6$ are eigenpoints if and only if \Cref{cndC5} is satisfied.
 
 If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1 \, P_1 + w_2 \, P_4$,
