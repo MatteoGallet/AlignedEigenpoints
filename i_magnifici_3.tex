@@ -1274,7 +1274,7 @@ and the points $p_6 = (21: 34: -8)$ and $p_7 = (19: 35: -9)$.
 \begin{rmk}
 When the matrix $\Phi(P_1, \dots, P_5)$ has rank~$8$, as in \Cref{rank_8}, the family of
 cubics with $P_1, \dots, P_5$ as eigenpoints is one dimensional, so the
-above construction can be modified, by substituting one of the rows of~$\mathcal{H}$ with a random row of elements of the field~$K$.
+above construction can be modified, by substituting one of the rows of~$\mathcal{H}$ with a random row of elements of~$\C$.
 \end{rmk}
 
 \begin{rmk}
@@ -2414,7 +2414,7 @@ defined by the polynomials
   t^2l+\lambda C(r),
 \end{equation}
 %
-where $\lambda \in K$ and $r$ is a line
+where $\lambda \in \C$ and $r$ is a line
 passing through the tangent point~$\iso \cap t$ and~$C(r)$ is defined
 in \Cref{2_lines_of_eigenpoints}. Conversely, if $r$ is a line and
 $t$ is another line, tangent $\iso$ in one of the two points of intersections
@@ -2544,7 +2544,7 @@ of equation $ax+by+cz=0$, the polynomial defining~$C$ is:
 The cubic~$C$ has, in addition to $t_1$ and $t_2$, also the eigenpoint $(a: b: c)$
 (the pole of~$r$ w.r.t.\ $\iso$). \\
 Conversely, if $C$ is defined by~(\ref{2_lines_of_eigenpoints}), where
-$r$ is any line $ax+by+cz$ (with $a, b, c \in K$), then
+$r$ is any line $ax+by+cz$ (with $a, b, c \in \C$), then
 the eigenpoints of $C$ are the lines~$t_1$ and~$t_2$ (tangent to~$C$
 in the points $Q_1$ and $Q_2$ of intersection of~$r$ with~$\iso$) and
 the point $(a: b: c)$.
@@ -2587,7 +2587,7 @@ As usual, we can assume that $P_1 = (1: \iii: 0)$. Hence all the other points
 of $\iso$ are given by
 %
 \[
-  P(w) = \bigl(\iii(w^2 + 1): 1 - w^2: -2w\bigr) \text{ with } w \in K \,,
+  P(w) = \bigl(\iii(w^2 + 1): 1 - w^2: -2w\bigr) \text{ with } w \in \C \,,
 \]
 %
 so we can assume
@@ -2640,7 +2640,7 @@ If a cubic~$C$ has, among its eigenpoints, an irreducible conic $\Gamma$
 which is tangent to $\iso$ in two distinct points $P_1$ and $P_2$, then
 the equation of~$C$ is of the form $(\lambda \iso + \mu r^2)r$ where
 $r$ is the equation of the line~$P_1\vee P_2$ and $\lambda, \mu$ are parameters
-in~$K$.
+in~$\C$.
 \end{lemma}
 \begin{proof}
 \verb+caso2ptiIso_partI.sage+\\
@@ -2660,7 +2660,7 @@ All the cubics $C$ defined by the polynomial
 %
 \begin{equation}
 \label{cub_conica_eig}
-  (\lambda \iso + \mu r^2) \, r \quad \mbox{$\lambda, \mu \in K$}
+  (\lambda \iso + \mu r^2) \, r \quad \mbox{$\lambda, \mu \in \C$}
 \end{equation}
 %
 where $r=ax+by+cz$ is a line of the plane,
@@ -2669,7 +2669,7 @@ $\lambda \iso+3\mu r^2$ (bitangent to~$\iso$ in the points~$\iso \cap r$)
 and the point~$(a:b:c)$ (the pole of~$r$
 w.r.t.~$\iso$). Conversely, if
 $C$ is a cubic of the plane which has a conic among its eigenpoints,
-then there exists a line~$r$ in the plane and $\lambda, \mu \in K$
+then there exists a line~$r$ in the plane and $\lambda, \mu \in \C$
 such that the equation of~$C$ is given by \Cref{cub_conica_eig}.
 \end{prop}
 \begin{proof}
