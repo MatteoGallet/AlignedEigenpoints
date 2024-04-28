@@ -135,21 +135,21 @@ Via Valerio 12/1, 34127 Trieste, Italy}
 \section{Introduction}
 \label{introduction}
 
-Tensors are natural generalizations of matrices in higher dimension and can be studied via their eigenvectors. There are several notions of eigenvalues and eigenvectors of tensors, as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}. All of them are of interest in several applications, like in the study of hypergraphs and the dynamical systems governed by those, see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developments. Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
+Tensors are natural generalizations of matrices in higher dimension and can be studied via their eigenvectors. There are several notions that extend to tensors the well-known ones of eigenvalues and eigenvectors for matrices, as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}. All of them are of interest in several applications, like in the study of hypergraphs and the dynamical systems governed by those, see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developments. Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
 As an example, consider the problem of maximizing a polynomial function~$f$ over the unit sphere in~$\R^{n+1}$: eigenvectors of the symmetric tensor~$f$ are critical points of this optimization problem. Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: by Lim's Variational Principle \cite{Lim}, given a symmetric tensor~$f$, the critical rank-one symmetric tensors for~$f$ are exactly of the form~$v^d$, where $v$ is an eigenvector of~$f$.
-This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors to produce an algorithm to compute Waring decompositions of homogeneous polynomials.
+This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials. \textbf{(CITARE \cite{Ottaviani24})}
 
-When dealing with eigenvectors, it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$.
- If we choose a basis for $\C^{n+1}$, then we can identify $T\in \Sym^{d-1}\C^{n+1}\otimes\C^{n+1}$ with a tuple of homogeneous polynomials $(g_0,\dots,g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v\in\C^{n+1}$ such that
+When dealing with eigenvectors, it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$.
+ If we choose a basis for~$\C^{n+1}$, then we can identify $T \in \Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$ with a tuple of homogeneous polynomials $(g_0, \dotsc, g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v \in \C^{n+1}$ such that
 %
 \begin{equation}
 \label{eq:eigenvector_definition}
-  (g_0(v), \ldots, g_n(v))=\lambda v
+  (g_0(v), \dotsc, g_n(v)) = \lambda v
 \end{equation}
 %
-for some constant $\lambda$.
+for some constant~$\lambda \in \C$.
 Since %the property of being an eigenvector
-property in \Cref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P) = \bigl(g_0(P): \ldots: g_n(P)\bigr)$ and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
+the property in \Cref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P) = \bigl(g_0(P): \ldots: g_n(P)\bigr)$ and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
 
 Moreover, the condition in \Cref{eq:eigenvector_definition} can be rephrased as 
 \begin{equation}
@@ -179,7 +179,6 @@ space, called \emph{critical space}, spanned by the rank~$1$ tensors of the type
 go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO ("orthogonally decomposable") tensors, that is symmetric tensors~$T$ that admit a decomposition
 $T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0, \dotsc, v_n$ an orthogonal family; see \cite{Rob, BDHE}
 for further details. The $v_i$'s turn out to be eigenvectors of~$T$, so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
-\textbf{(CITARE \cite{Ottaviani24})}
 
  In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By \Cref{thm:nonempty}, the general such tensor
  satisfies $\deg \Eig{T}=7$. A geometric characterization of eigenschemes of ternary forms is given by the following results.
@@ -197,15 +196,28 @@ Let $d \ge 3$. The eigenscheme~$\Eig{f}$ of a general homogeneous polynomial $f 
 However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
 
 The goal of this paper is to classify all the situations when we have one or more triples of aligned points inside a zero-dimensional reduced eigenscheme of a cubic plane curve.
+More precisely, we
+%
+\begin{itemize}
+    \item determine conditions imposed on the eigenpoints and on ternary cubic forms by the presence of aligned eigenpoints;
+    \item compute the degree of the closure of the locus in~$\p^9$ of ternary cubic forms that admit an aligned triple of eigenpoints;
+    \item classify all possible combinatorial configurations of aligned eigenpoints.
+\end{itemize}
+%
+Here is a description of the content of each section.
 \Cref{aligned} clarifies the reasons of interest in the situation of triples of aligned eigenpoints.
 \Cref{invariance} describes the action of special orthogonal matrices on ternary forms, which we repeatedly use in our analyses since it allows us to "pin down" one of the eigenpoints to two specific cases, thus greatly speeding up the symbolic computations we rely on.
 \Cref{conditions} begin our analysis by examining what conditions on the space of ternary cubics are imposed by the existence of aligned eigenpoints. In particular, three kinds of conditions, named~$\delta_1$, $\bar{\delta}_1$, and~$\delta_2$, emerge and play a prominent role in describing configurations of two triples of aligned eigenpoints that share a point, called $V$-configurations.
 \Cref{rank_9} and \Cref{rank_8} set the spotlight on $V$-configurations, exhausting all the possible special cases that may appear.
+\Cref{locus_one_alignment} introduces the locus of ternary cubics with a single alignment in the eigenscheme, proves its irreducibility and computes its degree.
+\Cref{positive_dim} classifies positive-dimensional eigenschemes.
+\Cref{further_alignments} examines all the possible configurations of alignments in a $0$-dimensional reduced eigenscheme and establishes which may arise and which not.
+
 
 \section{Aligned eigenpoints of ternary cubic form}
 \label{aligned}
 
-We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the \emph{eigenscheme}~$\Eig{f}$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
+We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the \emph{eigenscheme}~$\Eig{f} \subset \p^2$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
 %
 \begin{equation}
 \label{eq:def_matrix}
@@ -216,14 +228,10 @@ We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the 
 \end{equation}
 %
 Since the eigenschemes of two proportional homogeneous forms are the same,
-if $C$ is the curve defined by any of these forms,
-we can write $\Eig{C}$ for such eigenscheme and hence talk about the eigenscheme of a plane curve.
+if $C \subset \p^2$ is a curve, then we can define with no ambiguity the eigenscheme of~$C$, denoted~$\Eig{C}$, as the eigenscheme of any homogeneous form defining~$C$.
 
-The eigenscheme of a general ternary cubic form has no aligned triples of points. This is a consequence of the geometric properties of the classical Geiser map associated with seven points in the plane, and has been proved in \cite[Proposition~4.5]{BGV}.
-
-Moreover, whenever the eigenscheme of a ternary form is zero-dimensional, it never contains $4$ or more aligned points.
-To see this, we recall a property of eigenschemes of ternary forms, namely,
-that when zero-dimensional they are somehow ``general'' with respect to conics.
+Whenever the eigenscheme of a ternary form is zero-dimensional, it never contains $4$ or more aligned points.
+To see this, we recall that when an eigenscheme of a ternary form is zero-dimensional, it is somehow ``general'' with respect to conics.
 
 \begin{lemma}
 \label{lemma:no_six_conic}
@@ -242,9 +250,11 @@ As a consequence of \Cref{lemma:no_six_conic}, a zero-dimensional eigenscheme~$\
 Moreover, if $\Eig{f}$ contains two triples of aligned points, those must share a point.
 \end{corollary}
 
-Hence, in terms of alignments, the situations that can be studied are those in which we have one or several triples of aligned eigenpoints.
-We are going to see that understanding these situations will require a careful analysis of the conditions on ternary cubic forms imposed by the existence of aligned eigenpoints.
-To simplify these analyses, we first of all clarify how we can benefit from the action of special orthogonal matrices.
+The eigenscheme of a general ternary cubic form has no aligned triples of points. This is a consequence of the geometric properties of the classical Geiser map associated with seven points in the plane, and has been proved in \cite[Proposition~4.5]{BGV}.
+Therefore, it can be expected that ternary cubic forms with one or more aligned triples of eigenpoints should satisfy particular geometric constraints.
+
+Understanding these situations requires a careful analysis of the conditions on ternary cubic forms imposed by the existence of aligned eigenpoints.
+To simplify these analyses, we clarify how we can benefit from the action of special orthogonal matrices.
 
 \section{Invariance under the action of orthogonal matrices}
 \label{invariance}
@@ -426,6 +436,9 @@ $\prescript{t} {} M^{-1}=M$. We deduce that
 
 \section{Conditions imposed by aligned eigenpoints}
 \label{conditions}
+
+Having a given point as eigenpoint determines linear conditions on the space of ternary cubic forms, which can hence be encoded into a matrix, which we call the matrix of conditions (\Cref{definition:matrix_conditions}). 
+After analyzing the possible ranks of matrices of conditions relative to three or four points (possibly aligned), we characterize in terms of three polynomial conditions (denoted $\delta_1$, $\bar{\delta}_1$ and~$\delta_2$) the situations when we have two triples of aligned eigenpoints.
 
 \subsection{The matrix of conditions}
 
@@ -882,7 +895,7 @@ Then the expressions~$\delta_1$ and~$\delta_2$ become
 \begin{rmk}
 \label{rmk:characteristics_d1_d2}
 \textbf{Verifiche contenute nel file} \verb+formulae.sage+ \\
-It is possible to see that
+It holds
 %
 \begin{align}
 \label{rmk_delta_case1}
@@ -892,23 +905,23 @@ It is possible to see that
 %
 \begin{align}
 \label{rmk_delta_case2}
-  \overline{\delta}_1(P_1, P_2, P_3) = s_{11} s_{23}+s_{12}s_{13} =0 \mbox{ iff } &
-  P_1 \mbox{ is on~$\iso$ and } P_1 + P_2 + P_3 \mbox{ is tangent to~$\iso$ in $P_1$, or} \\
+  \overline{\delta}_1(P_1, P_2, P_3) = 0 \mbox{ iff } &
+  P_1 \mbox{ is on~$\iso$ and } P_1 \vee P_2 \vee P_3 \mbox{ is tangent to~$\iso$ in $P_1$, or} \\
   & P_3 = (s_{12}^2+s_{11}s_{22}) \, P_1 - 2s_{11}s_{12} \, P_2 \mbox{ or} \nonumber \\
   & P_2 = (s_{13}^2+s_{11}s_{33}) \, P_1 - 2s_{11}s_{13} \, P_3 \nonumber
 \end{align}
 %
 \end{rmk}
+
 Suppose the point $P_1$ is fixed. In general, in order to have
-$\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$, we can fix three of the other points
-and determine the fourth one, by observing
-that $\delta_2=0$ gives a linear equation in its coordinates. There are
-however
-some exceptions. From the definition of $\delta_2$ we see for instance that
-if $P_2$ and $P_4$ satisfy $\{s_{12}=0, s_{14}=0\}$ or $P_2$ and
-$P_5$ satisfy $\{s_{12}=0, s_{15}=0\}$ or $P_2$ and $P_3$ satisfy
+$\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$, we can fix three of the other points and determine the fourth one, 
+by observing that $\delta_2=0$ gives a linear equation in its coordinates.
+There are, however, some exceptions. 
+From the definition of~$\delta_2$, we see for instance that
+if $P_2$ and~$P_4$ satisfy $\{s_{12}=0, s_{14}=0\}$ or $P_2$ and~$P_5$ satisfy $\{s_{12}=0, s_{15}=0\}$ or $P_2$ and~$P_3$ satisfy
 $\{s_{12}=0, s_{23}=0\}$, etc., then $\delta_2$ is zero,
-despite of the value of the other points. To be more precise, we have:
+despite of the value of the other points.
+To be more precise, we have:
 %
 \begin{prop}
 \label{prop:definitionP3}
@@ -954,21 +967,19 @@ aligned).
 \end{proof}
 %
 \begin{rmk}
-In the first case of the above proposition, the corresponding cubic
-is studied in @@@configuration (5)@@, in the
-second case, $\sigma(P_1, P_2) = 0$ and $P_2\in \iso$, so
-we have that the line~$P_1 \vee P_2 \vee P_3$ is tangent to~$\iso$ in $P_2$
+In the first case of \Cref{prop:definitionP3}, the corresponding cubic
+is studied in \Cref{further_alignments}, configuration $(C_5)$.
+In the second case, $\sigma(P_1, P_2) = 0$ and $P_2\in \iso$, so
+we have that the line~$P_1 \vee P_2 \vee P_3$ is tangent to~$\iso$ in~$P_2$
 and this case was considered in~\Cref{proposition:three_aligned_ranks}
-(the matrix $\Phi(P_1, P_2, P_3)$ has rank $5$, so
+(the matrix $\Phi(P_1, P_2, P_3)$ has rank~$5$, so
 $\Phi(P_1, \dots, P_5)$ has rank $9$ (or smaller) regardless of
-$P_4$ and $P_5$)
-the third case gives either that all the
+$P_4$ and $P_5$).
+The third case gives either that all the
 points of the two lines of the $V$-configurations are eigenpoints (in case
 $P_2 \not\in \iso$ or $P_4 \not\in \iso$) or the matrix $\Phi(P_1, \dots, P_5)$
-has rank $8$ (if $P_2, P_4 \in \iso$), (see, respectively,~\Cref{rank_8}
-and~\Cref{positive_dim}),
-the last case is the generic one and expresses $P_3$ in terms of the remaining
-four points.
+has rank $8$ (if $P_2, P_4 \in \iso$); see \Cref{rank_8} and \Cref{positive_dim}, respectively.
+The last case is the generic one and expresses $P_3$ in terms of the remaining four points.
 \end{rmk}
 %
 \begin{prop}
@@ -1014,7 +1025,7 @@ As a consequence of \Cref{lemma:minors}, we have that when we compute all the or
 %
 where $X_i$ varies among all components of~$P_i$ for $i \in \{1, \dotsc, 5\}$.
 Since each of $P_1, \dotsc, P_5$ has at least one non-zero coordinate, we have that
-$\rk \,\Phi(P_1, \dots, P_5) \leq 9$ if and only if
+$\rk \, \Phi(P_1, \dots, P_5) \leq 9$ if and only if
 %
 \[
   \delta_1(P_1, P_2, P_4) \cdot \delta_2(P_1, \dots, P_5) = 0 \,. \qedhere
@@ -1022,8 +1033,6 @@ $\rk \,\Phi(P_1, \dots, P_5) \leq 9$ if and only if
 %
 \end{proof}
 
-%% dimostrazione lemma seguente: per esempio si trova nella prima parte
-%% del file contiCasoDegenere2.sage
 %% for the proof of the avobe lemma, see the first part of the file
 %% rank_8_twoTangIso.sage"
 %%
@@ -1041,31 +1050,33 @@ Let $P_1, \dots, P_5$ be a $V$-configuration of points and assume that
 Then the matrix $\Phi(P_1, \dots, P_5)$ has rank~$8$.
 \end{lemma}
 \begin{proof}
+%% first part of the file rank_8_twoTangIso.sage
 By \Cref{proposition:sigma_tangency},
-the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$ are tangent to~$\iso$ in~$P_2$ and~$P_4$, respectively. The point~$P_1$ cannot be on~$\iso$, hence, using the
-action of $\SO_3(\C)$, we can assume $P_1 = (1: 0: 0)$.
-Since every element of $\SO_3(\C)$ fixes the whole~$\iso$ (and sends a tangent line to it into another tangent line to it), when we transform the point~$P_1$
-into $(1: 0: 0)$, we transform the points~$P_2$ and~$P_4$ into, respectively,
-the points $(0: \iii: 1)$ and $(0: -\iii: 1)$ (which are the common points to
-$\iso$ and the tangent lines through~$P_1$).
+the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$ are tangent to~$\iso$ in~$P_2$ and~$P_4$, respectively. 
+The point~$P_1$ cannot be on~$\iso$, hence, using the
+action of~$\SO_3(\C)$, we can assume $P_1 = (1: 0: 0)$.
+Since every element of~$\SO_3(\C)$ fixes the whole~$\iso$ (and sends a tangent line to it into another tangent line to it), 
+when we transform the point~$P_1$ into $(1: 0: 0)$, 
+we transform the points~$P_2$ and~$P_4$ into, respectively,
+the points $(0: \iii: 1)$ and $(0: -\iii: 1)$ (which are the common points to~$\iso$ and the tangent lines through~$P_1$).
 Therefore, it is enough to study the
 specific configuration of the points:
 %
 \begin{gather*}
-  P_1 = (1: 0: 0), \quad P_2=(0: \iii: 1), \quad P_3=(u_1, \iii u_2, u_2) \,, \\
-  P_4 = (0: -\iii: 1), \quad P_5 = (v_1, -\iii v_2, v_2) \,,
+  P_1 = (1: 0: 0) \,, \quad P_2=(0: \iii: 1) \,, \quad P_3=(u_1, \iii u_2, u_2) \,, \\
+  P_4 = (0: -\iii: 1) \,, \quad P_5 = (v_1, -\iii v_2, v_2) \,,
 \end{gather*}
 %
 where $(u_1: u_2), (v_1: v_2) \in \p^1$.
 In the $15\times 10$ matrix $\Phi(P_1, \dots, P_5)$ we can erase the
-rows: $\phi_2(P_1)$ (which is a zero row), the row $\phi_1(P_2)$
+rows: $\phi_2(P_1)$ (which is a zero row), the row~$\phi_1(P_2)$
 (since $\phi_1(P_2)=\iii\phi_2(P_2)$) and, for similar reasons, the
-rows: $\phi_1(P_3)$, $\phi_1(P_4)$ and $\phi_1(P_5)$.
+rows: $\phi_1(P_3)$, $\phi_1(P_4)$ and~$\phi_1(P_5)$.
 Moreover, since the rank of the matrix $\Phi(P_1, P_2, P_3)$ is $5$,
-we can also erase the row $\phi_3(P_3)$ and, for the same reason, the
-row $\phi_3(P_5)$. The remaining matrix $M$ is a $8\times 10$ matrix.
-It is not possible that all the order $8$ minors
-of $M$ are zero: the ideal they generate, after saturations with respect to the distinct point condition, is the whole ring.
+we can also erase the row~$\phi_3(P_3)$ and, for the same reason, the
+row~$\phi_3(P_5)$. The remaining matrix~$M$ is a $8 \times 10$ matrix.
+It is not possible that all the order~$8$ minors
+of~$M$ are zero: the ideal they generate, after saturations with respect to the distinct point condition, is the whole ring.
 \end{proof}
 
 \begin{theorem}
@@ -1112,9 +1123,11 @@ $P_1 = (1:\iii :0)$ and
 $P_1 = (1: 0: 0)$.
 Let $P_2 = (A_2: B_2: C_2)$, $P_4 = (A_4: B_4: C_4)$ and
 $P_3 = u_1 \, P_1 + u_2 \, P_2$, $P_5 = v_1 \, P_1 + v_2 \, P_4$ be the other points.
-If $P_1 = (1: \iii: 0)$, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\rk M \leq 9$ if and only if $\rk M' \leq 7$.
+If $P_1 = (1: \iii: 0)$, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\rk \, M \leq 9$ if and only if $\rk \, M' \leq 7$.
 The computations require several other strategies, but at the end we are
-able to see that in this case (i.e.\ the case in which $P_1$ is on~$\iso$), the matrix $M'$ cannot have rank less then $7$.
+able to see that in this case (i.e.\ the case in which $P_1$ is on~$\iso$), the matrix $M'$ cannot have rank less then $7$, therefore if $P_1$ is on 
+$\iso$, $\rk\, M$ cannot be less then $9$.
+
 If $P_1 = (1: 0: 0)$, then the ideal of the order $9$ minors of
 $\Phi(P_1, \dots, P_5)$ (after several manipulations and saturations)
 gives that there a few possibilities which can be summarized by the
@@ -1612,7 +1625,7 @@ $\dim \bigl( \Lambda(M) \bigr) \geq 0$.
 Let us start to analyze the two conditions from \Cref{rk8_1} and \Cref{rk8_2}.
 The three equalities of~\Cref{rk8_1} give that,
 using \Cref{rmk_delta_case2}, either $P_1$ is on~$\iso$ and
-$P_1+ \vee _2$ is the tangent line to~$\iso$ in~$P_1$ (but this is not compatible
+$P_1\vee P_2$ is the tangent line to~$\iso$ in~$P_1$ (but this is not compatible
 with the equation $\overline{\delta}_1(P_1, P_4, P_5)=0$), or,
 from \Cref{rmk_delta_case1}, we can choose the points as follows:
 %
@@ -1640,8 +1653,8 @@ $V$-configuration.
 \begin{rmk}
 \label{rmk:particular_cases}
 If $P_1, \dots, P_5$ satisfy the conditions~(\ref{rk8_1}), as seen,
-in general we have only $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ aligned, but
-we do not have $(P_1, P_6, P_7)$ aligned. Since conditions~(\ref{rk8_1})
+in general a cubic with these eigenpoints has only $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ aligned, but
+does not have the collinearity $(P_1, P_6, P_7)$. Since conditions~(\ref{rk8_1})
 implies that $\delta_2(P_1, \dots, P_5) = 0$, we see
 that the hypothesis ``rank $9$''
 in~\Cref{proposition:third_alignment} is necessary.
@@ -1670,53 +1683,21 @@ $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$. \\
 No choices of $P_1, \dots, P_5$ allow one to obtain further alignments of the
 $7$ eigenpoints.
 \end{prop}
-
-Moreover, we have:
-
-\begin{prop}
-\label{prop:d2_6allin}
-If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_1})
-and if we impose the condition that there is an eigenpoint, say $P_6$,
-which is aligned with $P_2$ and $P_4$ then the eigenpoints satisfy all these
-alignments:
 %
-\[
-  (P_1, P_2, P_3), (P_1, P_4, P_5),
-  (P_2, P_4, P_6), (P_2, P_5, P_7),
-  (P_3, P_4, P_7), (P_3, P_5, P_6)
-\]
-%
-Hence the points $P_6$ and $P_7$ are determined by $P_1, \dots, P_5$
-since
-$P_6 = (P_2 \vee P_4) \cap (P_3 \vee P_5)$
-and $P_7 = (P_3 \vee P_4) \cap (P_2 \vee P_5)$.
-(Of course, a similar result holds if we take $P_3$ in place of $P_2$ or $P_5$
-in place of $P_4$).
-\end{prop}
-
-\Cref{three_d_three_alignments} and \Cref{prop:d2_6allin} exhaust all the possible configurations
-of collinearities of the eigenpoints in case of condition~(\ref{rk8_1}).
-
-The proof we give to the two propositions above is computational.
+\begin{proof}
+%% file: three_deltas_I.sage and three_deltas_II.sage
 Using the action of $\SO_3(\C)$ (see~\Cref{two_orbits}),
 we can assume $P_1= (1: \iii: 0)$ or $P_1= (1: 0: 0)$. As observed
-in the proof of~\Cref{theorem:rank_V}, if $P_1 = (1: \iii: 0)$,\\
-(@@ \verb+Vedi file rank_8_2_1_ii_0.sage+), \\
+in the proof of~\Cref{theorem:rank_V}, if $P_1 = (1: \iii: 0)$,
+%% Vedi file rank_8_2_1_ii_0.sage+)
 the matrix
 $\Phi(P_1, \dots, P_5)$ cannot have rank smaller then $9$, so the only
 case to consider is given by $P_1 = (1: 0: 0)$. Hence
-$P_2 = (A_2: B_2: C_2)$, $P_4 = (A_4: B_4: C_4)$ and
-$P_3 = u_1 \, P_1 + u_2 \, P_2$, $P_5=v_1 \, P_1 + v_2 \, P_4$.
-The condition $\delta_1(P_1, P_2, P_4)=0$ reduces to $B_2B_4+C_2C_4$
-and the explicit coordinates of the involved points are easily constructed.
-
-The problem of considering all the possible further
-collinearities of the points can be converted into the study of suitable
-ideals in the coordinates of the points and can be attacked with
-computational tools. More precisely,
-consider the matrix $\Phi(P_1, \dots, P_5)$ and select $8$ linearly independent
+$P_2 = (A_2: B_2: C_2)$ and $P_3$, $P_4$ and $P_5$ can be chosen according 
+to the above formulas.\\
+Consider the matrix $\Phi(P_1, \dots, P_5)$ and select $8$ linearly independent
 rows (since $P_1$ is numeric, it can be seen that for instance the rows
-of position $0, 1, 3, 5, 6, 8, 10, 12$ are a good choice and avoid to consider
+of position $0, 1, 4, 5, 7, 8, 12, 14$ are a good choice and avoid to consider
 many exceptions) and let $M_1$ be a matrix obtained in this way.
 We fix two numeric $10$-dimensional vectors $V_a$ and $V_b$ and we construct
 $M_a$ (resp.\ $M_b$) obtained by horizontally stacking vector
@@ -1737,17 +1718,60 @@ of $\p^9$ determined by the cubic obtained from $M_a$ and
 the cubic obtained from $M_b$. The condition $P_1 \in r$
 determines the values of $w_a$ and $w_b$, hence we get the cubic
 with the three collinearities $(P_1, P_2, P_3)$,
-$(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$.
+$(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$. If we require that the eigenpoints 
+have other alignments, w.l.o.g.\ we can assume that $P_6$ is on the line 
+$P_2 \vee P_4$, hence it can be determined as the intersection of $r$
+and $P_2 \vee P_4$. If we impose that this point is an eigenpoint, we get
+a contradiction, thus there are no other sub-cases to consider.   
+\end{proof}
 %
+Moreover, we have:
+%
+\begin{prop}
+\label{prop:d2_6allin}
+If the five points $P_1, \dots, P_5$ satisfy~(\ref{rk8_1})
+and if we impose the condition that there is an eigenpoint, say $P_6$,
+which is aligned with $P_2$ and $P_4$ then the eigenpoints satisfy all these
+alignments:
+%
+\[
+  (P_1, P_2, P_3), (P_1, P_4, P_5),
+  (P_2, P_4, P_6), (P_2, P_5, P_7),
+  (P_3, P_4, P_7), (P_3, P_5, P_6)
+\]
+%
+Hence the points $P_6$ and $P_7$ are determined by $P_1, \dots, P_5$
+since
+$P_6 = (P_2 \vee P_4) \cap (P_3 \vee P_5)$
+and $P_7 = (P_3 \vee P_4) \cap (P_2 \vee P_5)$.
+(Of course, a similar result holds if we take $P_3$ in place of $P_2$ or $P_5$
+in place of $P_4$).
+\end{prop}
+%
+\begin{proof}
+%% file three_deltas_III.sage, three_deltas_IV.sage
+We define the points $P_1, \dots, P_5$ as in the previous proposition, then 
+we consider a point of the line $P_2 \vee P_4$ and we impose that it is 
+an eigenpoint (i.e.\ we impose that $\rk \, \Phi(P_1, \dotsc, P_6) < 10$
+This request defines a point~$P_6$ and it turns out that $P_6$ is also aligned 
+with~$P_3$ and~$P_5$. We then define $P_7$ as the point 
+$(P_2 \vee P_5) \cap (P_3 \vee P_4)$. It turns out that 
+$\rk \, \Phi(P_1, \dots, P_7) < 10$, so $P_7$ is an eigenpoint. The seven 
+points $P_1, \dotsc, P_7$ satisfy the above collinearities.
+\end{proof}
+\Cref{three_d_three_alignments} and \Cref{prop:d2_6allin} exhaust all the possible configurations
+of collinearities of the eigenpoints in case of condition~(\ref{rk8_1}).
+
+%
+
+Now we consider the \Cref{rk8_2}.
 %% La dimostrazione della proposizione prop:rk8_2B si trova nel file
 %% rank_8_twoTangIso.sage
 %% Il file confV_tg_iso.sage fa il caso generale (cioe' quando P1
 %% e' il punto (A1, B1, C1) e non (1, 0, 0)) e serve per provare
 %% le formule realtive a P6 e P7 nella configurazione (5).
-%% Il vile confV2_tg_iso.sage contiene i conti per la configurazione (8)
+%% Il file confV2_tg_iso.sage contiene i conti per la configurazione (8)
 %% e prova la formula P6 = s15*P3+s13*P5
-
-Now we consider the condition~(\ref{rk8_2}).
 
 %
 A generic cubic which satisfies the condition~(\ref{rk8_2}) is
@@ -1783,9 +1807,7 @@ Among these points we have the relation
 $\scl{P_1 \times P_6}{P_3\times P_5}=0$
 (i.e.\ the lines~$P_1 \vee P_6$ and~$P_3 \vee P_5$ are orthogonal).
 %% ortogonalita': provata nel file rank_8
-In the family there is a sub-family of cubics
-whose eigenpoints have the following
-alignments:
+In the family there is a sub-family of cubics whose eigenpoints have the following alignments:
 %
 \[
   (P_1, P_2, P_3),\ (P_1, P_4, P_5),\ (P_1, P_6, P_7),\ (P_2, P_4, P_6).
@@ -1793,10 +1815,11 @@ alignments:
 %
 In this case the points $P_6$ and $P_7$ are given by the formulas:
 %
-\[
-  P_6 = s_{11}s_{15} \, P_3 - 2s_{13}s_{15} \, P_1 + s_{11}s_{13} \, P_5, \ \mbox{and} \
-  P_7 = s_{11}s_{15} \, P_3 + s_{13}s_{15} \, P_1 + s_{11}s_{13} \, P_5;
-\]
+\begin{equation}
+\label{formuleP6_P7}
+P_6 =  s_{15}s_{34}\, P_2 + s_{13}s_{25}\, P_4, \quad 
+P_7 = s_{15}(s_{26}s_{46}+s_{24}s_{66})\, P_1+ s_{11}s_{24}s_{56}\, P_6
+\end{equation}
 %
 and a sub-family whose eigenpoints have the following
 alignments:
@@ -1807,15 +1830,16 @@ alignments:
   (P_3, P_4, P_6),\ (P_3, P_5, P_7)
 \]
 %
-In this case the point~$P_6$ (given by the formula
-$P_6 = s_{15} ,\ P_3 + s_{13} \, P_5$) is obtained as
+In this case the point~$P_6$ (given, for instance, by the formula
+$P_6 = s_{15} \, P_3 + s_{13} \, P_5$) is obtained as
 $(P_2 \vee P_5) \cap (P_3 \vee P_4)$ and consequently
 $P_7 = (P_1 \vee P_6) \cap (P_3 \vee P_5)$.\\
 No other collinearities among the eigenpoints are possible.
 \end{prop}
-
-In order to get the proof of~\Cref{prop:rk8_2B}
-we consider again the action of $\SO_3(\C)$ and here we can assume:
+%
+\begin{proof}
+%% file rank_8_twoTangIso.sage
+By consider again the action of $\SO_3(\C)$, we can assume:
 %
 \[
   P_1 = (1: 0: 0), \quad
@@ -1832,7 +1856,7 @@ is the following family of cubic curves:
   \mathcal{C}(l_1, l_2) = l_1 \, \mathcal{C}_1 + l_2 \, \mathcal{C}_2
 \]
 %
-where
+where $l_1, l_2$ are parameters and
 %
 \begin{align*}
   \mathcal{C}_1 & = x \cdot \left(2x^{2} + 3 y^{2} + 3 z^{2}\right)\\
@@ -1845,8 +1869,8 @@ where
 %%
 The explicit equation of the cubics $\mathcal{C}(l_1, l_2)$ allows us to
 construct the ideal of the seven eigenpoints and (after
-saturations w.r.t.\ the ideals of the points $P_1, \dotsc, P_5$),
-an ideal generated by a line~$r$ and a conic~$c$, whose zeros are
+saturations w.r.t.\ the five ideals of the points $P_1, \dotsc, P_5$),
+we get an ideal generated by a line~$r$ and a conic~$c$, whose zeros are
 the points~$P_6$ and~$P_7$. Since the line~$r$ contains the point~$P_1$,
 we have that $P_1, P_6, P_7$ are collinear and $r$ is orthogonal to~$P_3 \vee P_5$.
 In order to see if there are further collinearities among the
@@ -1854,16 +1878,49 @@ eigenpoints, we have to distinguish three cases (up to permutation
 of the indices): $P_2, P_4, P_6$ are collinear or $P_2, P_5, P_6$ are
 collinear, or $P_3, P_5, P_6$ are collinear. In the first case, $P_6$
 is the point $r \cap (P_2\vee P_4)$. If it is an eigenpoint, it must be
-on $c$, hence $l_1$ and $l_2$ have a specific value which give a sub-family
+on $c$, hence $l_1$ and $l_2$ have a specific value which gives a sub-family
 of $\mathcal{C}(l_1, l_2)$ and we can compute the explicit coordinates of
 all the seven eigenpoints of the cubics of this family. The other two
 cases can be studied in a similar way.
 %% file rank_8_twoTangIso.sage, file confV_tg_iso.sage, file
 %% confV2_tg_iso.sage.
-
-Then, from these equations, all the computations which allow to prove
-the two above propositions are easy.
+\end{proof}
+\begin{rmk}
+\label{rmk:three_orthog} For further references, it is perhaps worth noting that the explicit 
+construction of the 
+points in~\Cref{prop:d2_6allin} and~\Cref{prop:rk8_2B} allows one to verify
+several relations among them. In particular, the seven eigenpoints
+of~\Cref{prop:d2_6allin} are such that
+\[
+\scl{P_1\times P_2}{P_1 \times P_4}=0, \quad 
+\scl{P_2\times P_4}{P_3 \times P_5}=0, \quad 
+\scl{P_3\times P_4}{P_2 \times P_5}=0;
+\]
+and it holds:
+\[
+P_4 = (P_2\times P_3)s_{25}s_{35}-s_{23}(P_2\times P_5)s_{35}+ s_{23}s_{25}(P_3\times P_5).
+\]
+In the first sub-family described in~\Cref{prop:rk8_2B} we have 
+$P_1 = P_2 \times P_4$, hence 
+\[
+\scl{P_1\times P_2}{P_2 \times P_4}=0, \quad 
+\scl{P_1\times P_4}{P_2 \times P_4}=0, \quad 
+\scl{P_1\times P_6}{P_2 \times P_4}=0
+\]
+and in the second family:
+\[
+\scl{P_1\times P_4}{P_3 \times P_4}=0, \quad 
+\scl{P_1\times P_2}{P_2 \times P_5}=0, \quad 
+\scl{P_3\times P_5}{P_1 \times P_6}=0.
+\]
+hence it holds:
+\[
+P_3 = (P_1 \times P_5)s_{16}s_{56}-s_{15}(P_1\times P_6)s_{56}+s_{15}s_{16}(P_5 \times P_6)
+\]
+\end{rmk}
 %
+@@@ \textbf{la seguente osservazione non la capisco e comunque non viene usata.
+io la toglierei}
 \begin{rmk}
 \label{rmk:delta1_and_delta2}
 It is easy to verify that in
@@ -1872,6 +1929,7 @@ $\delta_1(P_1, P_2, P_4)\neq 0$ and
 $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$,
 while in \Cref{C8:cnd1} both $\delta_1(P_1, P_2, P_4)$ and
 $\delta_2(P_1, P_2, P_3, P_4, P_5)$ are zero.
+@@ controllare formule richiamate 
 \end{rmk}
 
 
@@ -2012,17 +2070,17 @@ As a consequence, local parametrizations of $\sL$ can be given by considering th
 for any multiindex
 %
 $$
-  I = \{i_1, \dots, i_6\} \subset \{0, 1, \dots, 6\},
+  I = \{i_1, \dots, i_6\} \subset \{0, 1, \dots, 6\} \,,
 $$
 %
 we set
 %
 $$
   \sV_I := \{ [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal{AL} \ | \ \text{the\ columns\ of\ } \Phi
-  (P_1, P_2, u_1 P_1 +u_2P_2) \text{\ relative \ to} \ I\ \text{are\ independent}\}.
+  (P_1, P_2, u_1 \, P_1 + u_2 \, P_2) \text{\ relative \ to} \ I\ \text{are\ independent}\} \,.
 $$
 %
-Then for $[(P_1, P_2, u_1 P_1 +u_2P_2)]\in \sV_I$, the coefficients of any element
+Then for any $[(P_1, P_2, u_1 \, P_1 + u_2 \, P_2)] \in \sV_I$, the coefficients of any element
 $[f] =[\mathcal{B} \cdot w_f]$ of the linear system
 $\Lambda \bigl( \Phi (P_1, P_2, u_1 P_1 +u_2P_2) \bigr)$ can be expressed in the form
 %
@@ -2033,7 +2091,7 @@ $\Lambda \bigl( \Phi (P_1, P_2, u_1 P_1 +u_2P_2) \bigr)$ can be expressed in the
   b_2,
   b_3,
   b_4,
-  b_5, b_6,b_7,b_8,b_9)=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9),
+  b_5, b_6,b_7,b_8,b_9)=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9) \,,
 \end{equation}
 %
 where $b_i = b_i(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$ for $i\in I$ and $j \not \in I$, $1\le j \le 7$, are suitable rational functions.
@@ -2042,7 +2100,7 @@ On such an open subset, we have then the rational map
 $$
   \alpha_I \colon \sV_I \times \p^3 \to \sL, \quad
   \alpha_I (P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)=
-  [\mathcal{B} \cdot w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)].
+  [\mathcal{B} \cdot w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)] \,.
 $$
 %
 Next we observe that for any $I \subset \{1,\dots, 7\}$, the image
@@ -2054,32 +2112,32 @@ $$
 is irreducible, being image of an irreducible variety, and it
 contains an open subset. Indeed, assume for simplicity that
 $I=\{1,2,3,4,5,6\}$; an element $[f]\in W_I$ is represented by the determinant of the
-matrix given by the rows $0,1,3,4,6,7$ of $\Phi (P_1, P_2, u_1 P_1 +u_2P_2)$ and the additional $4$ rows
+matrix given by the rows $0,1,3,4,6,7$ of $\Phi (P_1, P_2, u_1 \, P_1 + u_2 \, P_2)$ and the additional $4$ rows
 %
 \[
   \left(
   \begin{array}{cccccc}
-    0 & \dots & 1&0&0&-b_6 \\
-    0 & \dots & 0&1&0&-b_7 \\
-    0 & \dots & 0&0&1&-b_8 \\
+    0 & \cdots & 1&0&0&-b_6 \\
+    0 & \cdots & 0&1&0&-b_7 \\
+    0 & \cdots & 0&0&1&-b_8 \\
     & & & \mathcal{B} & & \\
   \end{array}
-  \right).
+  \right) \,.
 \]
 %
-In particular, the coefficient $b_9$ of $z^3$ is equal to the determinant of the order six minor of $\Phi (P_1, P_2, u_1 P_1 +u_2P_2)$ relative to the first $6$ columns. It follows that $W_I \supset \sL \cap \{ a_9 \neq 0\}$.
+In particular, the coefficient $b_9$ of $z^3$ is equal to the determinant of the order six minor of $\Phi (P_1, P_2, u_1 \, P_1 + u_2 \, P_2)$ relative to the first $6$ columns. It follows that $W_I \supset \sL \cap \{ a_9 \neq 0\}$.
 
 \blue{assicurarsi che funziona anche negli altri casi}
 
-Finally, we claim that the irreducible subvarieties $W_I$, $I\subset \{1,\dots, 7\}$ have a common non-empty intersection
-including internal points. Indeed, an example of a polynomial
+Finally, we claim that the irreducible subvarieties $W_I$ for $I\subset \{1,\dots, 7\}$ have a common non-empty intersection
+including internal points. Indeed, as one can verify with an explicit symbolic computation, an example of a polynomial
 class~$[g]$ with an aligned triple of eigenpoints and satisfying
 %
 $$
   [g] \in \bigcap_I W_I \cap \Delta_{3,3}
 $$
 %
-is given by a random choice of~$P_1$, $P_2$ and $(u_1:u_2)$, and of $b_7,b_8,b_9$.
+is given by a random choice of~$P_1$, $P_2$ and $(u_1:u_2)$ and $b_7,b_8,b_9$.
 
 Hence $\sL$ is covered by irreducible open subsets, each intersecting every other, so it is irreducible.
 \end{proof}
@@ -2702,64 +2760,56 @@ ma sistemare
 \begin{table}
 \caption{All possible configurations of $7$ points with alignments that can appear as eigenschemes of a ternary cubic form, provided that the eigenscheme is zero-dimensional and reduced.}
 \centering
-\begin{tabular}{|llll|}\hline
-  num. lines & collinear vertices & name & conf.\\ \hline
- 1& [(1, 2, 3)] & "line" & $(C_1)$\\
- 2& [(1, 2, 3), (1, 4, 5)] & "X shape"& $(C_2)$\\
- 3& [(1, 2, 3), (1, 4, 5), (1, 6, 7)] & "star" & $(C_3)$\\
-  & [(1, 2, 3), (1, 4, 5), (2, 4, 6)] & "triangle" & $(C_4)$\\
- 4& [(1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6)] & "triangle + altitude"
-& $(C_5)$\\
-  & [(1, 2, 3), (1, 4, 5), (2, 4, 6), (3, 5, 6)] & "two X shapes" & $(C_6)$\\
- 5& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "two stars" & $(C_7)$\\
-  & \phantom{[}(2, 4, 6), (2, 5, 7)] & &\\
- 6& [(1, 2, 3), (1, 4, 5), (1, 6, 7), & "triangle + three altitudes" & $(C_8)$\\
-  & \phantom{[} (2, 4, 6), (2, 5, 7), (3, 4, 7)] & & \\
- 7& [(1, 2, 3),
-   (1, 4, 5),
-   (1, 6, 7),
-   (2, 4, 6), & "Fano matroid" & $(C_9)$\\
-  & \phantom{[} (2, 5, 7),
-   (3, 4, 7),
-   (3, 5, 6)] & & \\ \hline
+\begin{tabular}{|clc|}\hline
+  n. lines & collinear vertices & config.\\ \hline
+ 1& (1, 2, 3) &  $(C_1)$\\
+ 2& (1, 2, 3), (1, 4, 5) &  $(C_2)$\\
+ 3& (1, 2, 3), (1, 4, 5), (1, 6, 7) & $(C_3)$\\
+ 3& (1, 2, 3), (1, 4, 5), (2, 4, 6) & $(C_4)$\\
+ 4& (1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6) & $(C_5)$\\
+ 4& (1, 2, 3), (1, 4, 5), (2, 4, 6), (3, 5, 6) & $(C_6)$\\
+ 5& (1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6), (2, 5, 7)& $(C_7)$\\
+ 6& (1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6), (2, 5, 7), (3, 4, 7)& $(C_8)$\\
+ 7& (1, 2, 3), (1, 4, 5), (1, 6, 7), (2, 4, 6), (2, 5, 7), (3, 4, 7), (3, 5, 6) &  $(C_9)$\\ \hline
 \end{tabular}
 \label{table:all_alignments}
 \end{table}
-
+%
 \Cref{table:all_alignments} lists all the possible configuration
 of 7 distinct points of the plane, according to their collinearities. Here
 we want to see which of those nine configurations can be realized by
 the seven eigenpoints of a cubic and, in case the configuration is
 realizable, which are the cubics with that configuration of eigenpoints.
+We shall say that the eigenpoints of a cubic curve are in a $(C_i)$ 
+configuration if they are aligned according to $(C_i)$, we shall say 
+that the eigenpoints are in a \emph{strict} $(C_i)$ configuration if, 
+in addition, there are no other alignments among the points.
 
 First of all, it is well-known that configuration $(C_9)$ cannot be realized
 by seven points of the plane over a field of zero
-characteristic (see \cite{Whitney1935}), therefore we not consider
+characteristic (see \cite{Whitney1935}), therefore we do not consider
 it in our analysis.
 
 \underline{Configuration $(C_1)$} can be realized. \Cref{proposition:three_aligned_ranks} and \Cref{locus_one_alignment}
 give a description of the cubics with such a configuration of points:
 we fix two points~$P_1$ and~$P_2$ in $\p^2$, we take a generic~$P_3$
 on the line~$P_1 \vee P_2$, all the cubics with
-$P_1, P_2, P_3$ eigenpoints is $\Lambda \bigl( \Phi(P_1, P_2, P_3) \bigr)$, the three
+$P_1, P_2, P_3$ eigenpoints is given by $\Lambda \bigl( \Phi(P_1, P_2, P_3) \bigr)$, the three
 dimensional linear subspace of $\p^9$ (four dimensional, if the
-line~$P_1 \vee P_2$ is tangent in~$P_1$, $P_2$, or~$P_3$ to~$\iso$).
+line~$P_1 \vee P_2$ is tangent in~$P_1$, $P_2$, or~$P_3$ to~$\iso$). For generic choices of the points, the cubics have the eigenpoints in a strict 
+$(C_1)$ configuration.
 
 \underline{Configuration $(C_2)$} means that the points
 $P_1, \dots, P_5$ are in a
 $V$-configuration, hence the rank of the matrix $\Phi(P_1, \dotsc, P_5)$
 must be $9$ or $8$. If the rank is $9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dotsc, P_5) = 0$, see \Cref{theorem:rank_V}.
-From \Cref{proposition:third_alignment} we have that the only possibility
-is $\delta_1(P_1, P_2, P_4) = 0$. Hence if we fix two points $P_1$ and $P_2$
+From \Cref{proposition:third_alignment}, the only case
+to have a strict $(C_2)$ configuration 
+is $\delta_1(P_1, P_2, P_4) = 0$. Hence, if we fix two points $P_1$ and $P_2$
 in the plane in an arbitrary way, we choose $P_4$ such that
 $\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, see \Cref{rmk_delta_case1}; then we chose any~$P_3$
-on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$, we have a cubic
-with a configuration of type~$(C_2)$. In case of rank~$8$, as seen
-(see~\Cref{rmk:particular_cases}),
-configuration~$(C_2)$ can only be
-obtained from \Cref{rk8_1} (and hence are sub-cases
-of the case $\delta_1(P_1, P_2, P_4)=0$).
+on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$, we have a cubic with a configuration of type~$(C_2)$ (strict, in the general case). If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1} (and hence are sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$), (see~\Cref{rmk:particular_cases}).
 
 \underline{Configuration $(C_3)$}. Suppose we have $7$ eigenpoints such that
 $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$ are
@@ -2804,14 +2854,12 @@ $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 As a consequence of \Cref{no_delta1_delta1}, we have that configuration $(C_3)$ can
 be obtained only if we have $5$ points such that
 $\delta_2(P_1, \dotsc, P_5) = 0$. \Cref{prop:definitionP3} describes how to
-obtain five points which give a configuration $(C_3)$ of eigenpoints.
+obtain five points which give a configuration $(C_3)$ of eigenpoints (which, 
+in general, is strict).
 
 \underline{Configuration $(C_4)$}. It holds:
 \begin{prop}
-\label{conf4no} If we have five points that are in
-configuration $(C_4)$ and such that are eigenpoints of a cubic, then the
-cubic has $7$ eigenpoints which are in configuration $(C_8)$. In particular,
-configuration $(C_4)$ is not realizable.
+\label{conf4no} If the eigenpoints of a cubic are in a $(C_4)$ configuration, then they actually are in a $(C_8)$ configuration.
 \end{prop}
 \begin{proof}
 %% il file config4.sage contiene la dimostrazione
@@ -2834,8 +2882,7 @@ which implies
 \begin{prop}
 \label{proposition:condition_5}
 %\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
-Suppose we have $7$ points which are eigenpoints of a cubic and are
-aligned according to configuration $(C_5)$.
+Suppose we have $7$ points which are eigenpoints of a cubic and are in a strict $(C_5)$ configuration.
 Then it holds
 %
 \[
@@ -2858,20 +2905,13 @@ Moreover, the points~$P_6$ and~$P_7$ are determined as follows:
   \label{p7formula}
 \end{align}
 %
-Conversely, if $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration such that
-%
-\[
-  P_1 = P_2 \times P_4 \,,
-\]
-%
-and the condition matrix satisfies
-$\rk \, \Phi (P_1, \dots, P_5) = 9$, then if the corresponding unique cubic has exactly $7$ distinct eigenpoints, they are in a $(C_5)$ configuration; in particular, the relations from \Cref{cndC5}, \Cref{p6formula}, and \Cref{p7formula} are satisfied.
 \end{prop}
 \begin{proof}
 We can define the points as follows: $P_1$, $P_2$ and $P_4$ with generic
 coordinates, meanwhile $P_3 = u_1 \, P_1 + u_2 \, P_2$, $P_5 = v_1 \, P_1 + v_2 \, P_4$ and
-$P_6 = w_1 \, P_1 + w_2 \, P_4$. The points $(P_2, P_1, P_3, P_4, P_6)$ are in a
-$V$-configuration and we may assume that $\rk \, \Phi(P_2, P_1, P_3, P_4, P_6) = 9$ (since the case of rank~$8$ has already been discussed), hence necessarily $\delta_1(P_2, P_1, P_4)=0$ because we suppose that $P_2$, $P_5$, and~$P_7$ are not aligned.
+$P_6 = w_1 \, P_2 + w_2 \, P_4$. The points $(P_2, P_1, P_3, P_4, P_6)$ are in a
+$V$-configuration and we may assume that $\rk \, \Phi(P_2, P_1, P_3, P_4, P_6) = 9$ (the case in which the rank is~$8$ has been discussed in~\Cref{rank_8} and none of the 
+configurations obtained there is compatible with this configuration), hence necessarily $\delta_1(P_2, P_1, P_4)=0$ because we suppose that $P_2$, $P_5$, and~$P_7$ are not aligned.
 Analogously, $\delta_1(P_4, P_1, P_2) = 0$ and $\delta_1(P_6, P_1, P_2) = 0$. Moreover, by \Cref{no_delta1_delta1} and by possibly relabelling the points, we may assume that $\delta_2(P_1, P_2, P_3, P_4, P_5)=0$. The saturation of the ideal generated by the four polynomials
 above by the condition that $P_1$, $P_2$, and $P_4$ are not aligned equals the ideal generated by
 $s_{12}, s_{14}$, which also contains~$s_{16}$. This shows that
@@ -2880,50 +2920,57 @@ $s_{12} = s_{14}=s_{16}=0$. In particular, we see that $P_1 = P_2 \times P_4$.
 To prove \Cref{cndC5}, we take $P_2$ and $P_4$ generic,
 $P_1 = P_2 \times P_4$ and $P_3$, $P_5$, $P_6$ generic points on the lines
 $P_1 \vee P_2$, $P_1 \vee P_4$, $P_2 \vee P_4$, respectively. The matrix
-$M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller) but the computations
-of all the order $10$-minors of $M$ takes too much time, so we need another
-strategy to find when $\rk (M) < 10$: we select
-only one order~$10$ minor of~$M$; it is a polynomial which
+$M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller), hence, in order to see when $P_6$ is an eigenpoints, we have to see when all the order $10$-minors are zero, but their computation takes too much time, so we need another
+strategy: we select
+only one non zero order~$10$ minor of~$M$; it is a polynomial which
 factorizes into
-several factors (many of them consequence of the specific minor chosen).
-We select the factor which involves all the variables used in the definition
-of the points (call it $f$) and we claim it is zero if and only if the
+several factors (many of them consequence of the specific minor chosen) and a factor which involves the variables used in the definition
+of the points (call it $f$). We claim it is zero if and only if the
 rank of $M$
 is smaller than $10$. In order to see this, we specialize the point $P_1$
 into the point $(1:0:0)$. In this situation the order $10$ minors of $M$
-specialized on this point $P_1$ are easy to compute and it is easy to
-verify that they are zero if and only if the polynomial $f$, specialized
-on the point $(1:0:0)$ is zero. To complete the proof of the claim, we should
-also take for $P_1$ the point $(1:i:0)$, but this is not necessary, since
-the configuration of the points implies that $\scl{P_1}{P_1}=0$ is not
+(specialized on this point $P_1$) are easy to compute and we can
+verify they are zero if and only if the polynomial $f$, specialized
+on the point $(1:0:0)$, is zero. To complete the proof of the claim, we should
+also take for $P_1$ the point $(1:\iii:0)$, but this is not necessary, since
+the configuration of the points implies that $\scl{P_1}{P_1}=0$ and
+this is not
 possible. A manipulation of the polynomial $f$ gives that it is equal to 
 $\bigl((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15})\bigr)/s_{11}$,
 hence the points $P_1, \dots, P_6$ are eigenpoints if and only if \Cref{cndC5} is satisfied.
 
-If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1 \, P_1 + w_2 \, P_4$,
-we find $w_1$ and $w_2$ which give \Cref{p6formula}.
+If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1 \, P_2 + w_2 \, P_4$,
+we find $w_1$ and $w_2$, which give \Cref{p6formula}.
 
 Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with $P_1$ and $P_6$.
-
-%If we exchange $P_2$ with $P_6$ and $P_3$ with $P_7$ in the configuration
-%$(C_5)$, we see that $P_7$ is given from~(\ref{p7formula}), exchanging
-%$P_2$ and $P_6$.
-%In this way we get the formula~(\ref{p7formula}) for
-%$P_7$.
-
-To prove the converse, we observe that $P_1= P_2 \times P_4$ implies
-$s_{12}=s_{14}=0$, so $\delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. It follows that the corresponding unique cubic having such $5$ points as eigenpoints has $P_6$ and $P_7$ aligned with $P_1$.
 \end{proof}
-
-\begin{rmk}
-As shown in the previous proof,
-in a $(C_5)$ configuration we
-have the also following relations among the points:
+%
+The converse of the above proposition is also true, more precisely:
+\begin{prop}
+   Suppose $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration such that
 %
 \[
-  s_{12} = 0, \quad s_{14} = 0, \quad s_{16} = 0.
+  P_1 = P_2 \times P_4 \,,
 \]
 %
+%%%%and the condition matrix satisfies \rk \, \Phi (P_1, \dots, P_5) = 9$, 
+and suppose there is a cubic that has $7$ eigenpoints, five of which are $P_1, \dotsc, P_5$. Then the points~$P_6$ and~$P_7$, given by \Cref{p6formula} and \Cref{p7formula}, are the remaining eigenpoints of the cubic, hence $(P_2, P_4, P_6)$ are aligned, so the points are in a $(C_5)$ configuration. Furthermore, in the general case, the configuration is 
+strict but, in the case of $\rk \, \Phi(P_1, \dotsc, P_5) = 9$, there are sub-cases in which $(P_2, P_5, P_7)$ or $(P_3, P_4, P_7)$ or $(P_3, P_5, P_7)$ are aligned. In all these cases the points are in a $(C_8)$ configuration.
+\end{prop}
+%
+\begin{proof}
+    First we suppose that $\rk \, \Phi(P_1, \dotsc, P_5) = 9$. We fix generic coordinates for the points. Since $P_1 = P_2 \times P_4$ implies $s_{12}=s_{14}=0$, we have that $\delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. It follows from \Cref{proposition:third_alignment} that the corresponding unique cubic having such $5$ points as eigenpoints has $P_6$ and $P_7$ aligned with~$P_1$. Suppose now that $P_6$ is given by \Cref{p6formula}. In order to see if it is an eigenpoint, it is enough to select nine linearly independent rows from $\Phi(P_1, \dotsc, P_5)$
+and to compute the determinant of the three order $10$ matrices whose rows are the nine rows above plus $\phi_1(P_6)$, $\phi_2(P_6)$ and 
+$\phi_3(P_6)$ respectively. Since we obtain that these three determinants are zero, we get that $\rk \, \Phi(P_1, \dotsc, P_6) = 9$. A similar argument shows that $P_7$ is given by \Cref{p7formula}. A random example shows that, in general, there are no further collinearities among the points. If we impose that $(P_2, P_5, P_7)$ are aligned, we get that this condition splits into two cases: one imposes the collinearity of $(P_3, P_4, P_7)$, the other imposes that the collinearity of $(P_3, P_5, P_6)$, hence we get two $(C_8)$ configurations. Similarly for the other two cases. 
+
+If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$ and $P_1 = P_2 \times P_4$, we have that $s_{12} = s_{14} = 0$, so the $V$-configuration cannot satisfies \Cref{rk8_1}, since we would have \Cref{rmk_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
+from the results of \Cref{rank_8} we have that $P_1 \vee P_2$ and $P_1 \vee P_4$ are tangent to the isotropic conic in~$P_2$ and~$P_4$. Hence $s_{22}, s_{44}, s_{23}, s_{45}$ are all zero and \Cref{p6formula} and \Cref{p7formula} specialize to \Cref{formuleP6_P7}; finally, \Cref{prop:rk8_2B} shows that the points are in a $(C_5)$ configuration.
+\end{proof}
+%
+
+\begin{rmk}
+Since in a $(C_5)$ configuration we have 
+$P_1 = P_2 \times P_4$ and $(P_2, P_4, P_6)$ aligned, it follows that $s_{12} = 0$,  $s_{14} = 0$ and $s_{16} = 0$.
 Moreover, it is
 immediate to verify that the line~$P_2 \vee P_4$ is orthogonal to the
 lines~$P_1 \vee P_2$, $P_1 \vee P_4$, and~$P_1 \vee P_6$, that is
@@ -2931,217 +2978,189 @@ lines~$P_1 \vee P_2$, $P_1 \vee P_4$, and~$P_1 \vee P_6$, that is
 \[
   \scl{P_1 \times P_2}{P_2 \times P_4} = 0, \quad
   \scl{P_1 \times P_4}{P_2 \times P_4} = 0, \quad
-  \scl{P_1 \times P_6}{P_2 \times P_4} = 0.
+  \scl{P_1 \times P_6}{P_2 \times P_4} = 0,
 \]
+hence \Cref{rmk:three_orthog} gives that the $(C_5)$ configuration obtained in \Cref{prop:rk8_2B} is a sub-case of the $(C_5)$ configuration described here.
 %
 \end{rmk}
-
-The above proposition gives a necessary condition in order to have
-$P_1, \dots, P_7$ eigenpoints of a cubic curve. The next proposition
-completes the results.
-
-\begin{rmk}
-The family of all the cubics with the eigenpoints in configuration $(C_5)$
-are therefore obtained taking $P_2, P_4$ generic, $P_1 = P_2 \times P_4$,
-$P_5$ generic on the line~$P_1 \vee P_4$ and $P_3$ given by the \Cref{p3formula}.
-It is easy to see that the cubics with eigenpoints in configuration $(C_5)$
-described in~\Cref{prop:rk8_2B} are a sub-family of the cubics here described,
-obtained by the conditions $s_{22} = s_{44} = 0$.
-\end{rmk}
+%
+%\begin{rmk}
+%The family of all the cubics with the eigenpoints in configuration $(C_5)$
+%are therefore obtained taking $P_2, P_4$ generic, $P_1 = P_2 \times P_4$,
+%$P_5$ generic on the line~$P_1 \vee P_4$ and $P_3$ given by the \Cref{p3formula}.
+%It is easy to see that the cubics with eigenpoints in configuration $(C_5)$
+%described in~\Cref{prop:rk8_2B} are a sub-family of the cubics here described,
+%obtained by the conditions $s_{22} = s_{44} = 0$.
+%\end{rmk}
 
 %% conti nel file config5.sage.
 
-\underline{Configuration (6)} Is not realizable.
-\verb+file config6.sage+
+The strict configurations $(C_6)$ and $(C_7)$ cannot be realized by eigenpoints. Indeed, if we consider suitable ideals given by the conditions
+$\delta_1$ and $\delta_2$ that must be satisfied by the points of the two configurations, we get that there are no compatible solutions.
 
-%% conti nel file config6.sage.
-
-
-\underline{Configuration (7)} Is not realizable.
-\verb+file config7.sage+
-
-%% conti nel file config7.sage.
-
-
-\underline{Configuration (8)} Is realizable.
-\verb+file config8N.sage+
-
-We will use the following notation:
-if $P_1, P_2, P_3$ are three not aligned, distinct points in the plane,
-we set
-%
-\[
-  \Omega(P_1, P_2, P_3) = (P_1 \times P_2)s_{13}s_{23} -
-  s_{12}(P_1 \times P_3)s_{23} + s_{12}s_{13}(P_2 \times P_3).
-\]
-%
-
-\begin{lemma}
-Suppose $P_1, \dots, P_7$ are seven distinct points of the plane with the
-following alignments:
-%
+\underline{Configuration (8)} Is realizable.  
+%% file config8N2.sage+
+The configuration of type $(C_8)$ we are going to consider is the 
+following: 
 \begin{equation}
-\label{C8_alignments}
-  (P_1, P_2, P_5), (P_1, P_3, P_7),
-  (P_1, P_4, P_6), (P_2, P_4, P_7),
-  (P_2, P_3, P_6),(P_3, P_4, P_5)
+\label{config:c8}
+(P_1, P_2, P_3), \ (P_1, P_4, P_5), \ (P_1, P_6, P_7), \ (P_2, P_4, P_6), \ 
+(P_2, P_5, P_7), \ (P_3, P_4, P_7)    
 \end{equation}
-%
-and suppose $s_{13}s_{23} \not = 0$ or $s_{12}s_{23} \not = 0$ or
-$s_{12}s_{23} \not = 0$.
-Then
-%
-\begin{gather}
-\label{C8:cnd1}
-  P_4 = \Omega(P_1, P_2, P_3)
-\end{gather}
-%
-if and only if
-%
-\begin{gather}
-\label{C8:cnd2}
-  \scl{P_1\times P_4}{P_2 \times P_3} = 0,\
-  \scl{P_1\times P_3}{P_2 \times P_4} = 0,\
-  \scl{P_1\times P_2}{P_3 \times P_4} = 0.
-\end{gather}
-%
-If $s_{12} = s_{13} = s_{23} = 0$ then, for any $P_4$, we have
-$s_{24} s_{34} \not = 0$ and \Cref{C8:cnd2} is equivalent to
-$P_1 = \Omega(P_2, P_3, P_4)$ (or $P_2 = \Omega(P_1, P_3, P_4)$
-or $P_3 = \Omega(P_1, P_2, P_4)$).
+Hence the points $P_1, P_2, P_4, P_7$ lie on three lines, the points
+$P_3, P_5, P_6$ lie on two lines.
+The following lemma is easy to verify:
+\begin{lemma}
+%% v. file configN82.sage
+\label{lemma:6ortog} If we have four distinct points of the projective
+plane, such that no triplets of them are collinear, then the scalar 
+product of at least two of them is not zero.
+\end{lemma}
+Suppose now that the points $P_1, \dotsc, P_7$ are in the $(C_8)$ 
+configuration above and are eigenpoints. Here we also assume that the 
+associated matrix of any 
+$V$-configuration contained in $(C_8)$ is of rank $9$. Then:
+\begin{lemma}
+\label{lemma:three_s_zero}
+    Let $A, B, C$ be three points in the set $\{P_1, P_2, P_4, P_7\}$
+    such that $\scl{A}{B} = 0$ and $\scl{A}{C} = 0$. Then $\scl{B}{C} = 0$.
 \end{lemma}
 \begin{proof}
-%% file proofLemma8alignments.sage
-Assume that at least one of the coefficients $s_{13}s_{23}, s_{12}s_{23}$
-or $s_{12}s_{13}$ is not zero. Hence $\Omega(P_1, P_2, P_3)$ defines a
-projective point and assume it is the point $P_4$. The points $P_5, P_6, P_7$
-are determined by the alignments and it is easy to verify
-that those listed in \Cref{C8_alignments} hold.
-Conversely, fix three generic points $P_1, P_2, P_3$, take
-$P_6 = u_1P_1+u_2P_3$, $P_4 = v_1P_1+v_2P_6$ and therefore take
-$P_5 = (P_1 \vee P_2) \cap (P_3 \vee P_4)$ and $P_7 = (P_1 \vee P_3) \cap (P_2 \vee P_4)$.
-In our hypotheses, $\Omega(P_1, P_2, P_3)$ is not~$0$,
-so defines a projective point~$Q_4$. Consider the ideal~$J$ generated
-by $\scl{P_1\times P_4}{P_2\times P_3}$,
-$\scl{P_1\times P_3}{P_2\times P_4}$,
-$\scl{P_1\times P_2}{P_3\times P_4}$. A direct computation shows that
-the order two minors of the matrix whose rows are~$P_4$ and~$Q_4$ are all
-zero modulo $J$, therefore $P_4 = Q_4$ as projective points.
-If $s_{12} = s_{13} = s_{23} = 0$, then $\Omega(P_1, P_2, P_3) = 0$,
-but, since $P_2 \times P_3$, $P_2 \times P_4$, $P_3 \times P_4$ are linearly
-independent, if $\Omega(P_2, P_3, P_4) = 0$, then $s_{24}s_{34}$ would be
-zero, but this is not possible, since $P_4$ is not on the line~$P_1 \vee P_3$
-neither on $P_1\vee P_2$. Hence, from the first part of the lemma, we have the
-thesis. A similar argument holds for the other cases.
-\end{proof}
-%
-The above lemma allows us to understand when a cubic has the eigenpoints
-aligned according to \Cref{C8_alignments}.
-%
-\begin{prop}
-Let $\mathcal{C}$ be a cubic of the plane with the $7$ eigenpoints
-aligned according to \Cref{C8_alignments}.
-Then the relations from \Cref{C8:cnd2} are satisfied.
-Conversely, if $P_1, P_2, P_3$ are three points of the plane
-and if $s_{12}s_{13} \not = 0$ or $s_{12}s_{23} \not = 0$ or
-$s_{12}s_{23} \not = 0$, let
-%
-\begin{align*}
-  P_4 &:= \Omega(P_1, P_2, P_3) \,, & P_5 &:= (P_1 \vee P_2) \cap (P_3 \vee P_4) \,, \\
-  P_6 &:= (P_1 \vee P_4) \cap (P_2 \vee P_3) \,,  & P_7 &:= (P_1 \vee P_3) \cap (P_2 \vee P_4) \,.
-\end{align*}
-%
-Then the points $P_1, \dots, P_7$ satisfy the alignments given
-in \Cref{C8_alignments} and there exists a cubic~$\mathcal{C}$
-of the plane whose eigenpoints are $P_1, \dotsc, P_7$. Moreover, if
-we have that among $s_{12}, s_{13}, s_{23}$ two of them are zero,
-then we can choose for~$P_4$ a generic point of the plane and if we construct
-$P_5, P_6, P_7$ as above, there exists a cubic~$\mathcal{C}$ of the
-plane with the eigenpoints $P_1, \dotsc, P_7$ if and only if
-all the three scalar product $s_{12}, s_{13}, s_{23}$ are zero.
-\end{prop}
-%
-\begin{proof}
-%% conti nel file config8N.sage.
-We take four generic points
-$P_1, \dots, P_4$ and $P_5, P_6, P_7$ such that~(\ref{C8_alignments})
-is satisfied. Consider the following three $V$-configurations:
-$V_1 = (P_5, P_1, P_2, P_3, P_4)$, $V_2 = (P_6, P_1, P_4, P_2, P_3)$
-and $(P_7, P_1, P_3, P_2, P_4)$. If the seven points are eigenpoints,
-then necessarily $\Phi(V_1)$, $\Phi(V_2)$, $\Phi(V_3)$ have rank
-smaller than $10$, so, from~\Cref{delta1_and_delta2} and
-from~\Cref{proposition:third_alignment}
-we have that
-%
+%% vedi file config8N2.sage
+{}From the symmetry of the points, we can assume that $A=P_1$, $B=P_2$, 
+$C=P_7$.
+We give to the points $P_1, P_2, P_4, P_7$ arbitrary coordinates 
+in such a way that $s_{12}= s_{17}=0$ and 
+we compute $P_3$ as the intersection of the lines $P_1 \vee P_2$ and 
+$P_4 \vee P_7$. The associated matrix to the $V$-configuration 
+$(P_3, P_1, P_2, P_4, P_7)$ 
+is of rank $9$, hence $\delta_1(P_3, P_1, P_4) = 0$ 
+(see~\Cref{theorem:rank_V} and~\Cref{proposition:third_alignment}). 
+Similarly, we determine $P_5$ and $P_6$ and it must hold:
+$\delta_1(P_5, P_1, P_2) = 0$ and $\delta_1(P_6, P_1, P_2) = 0$. To 
+check  that $s_{27} = 0$ we could 
+therefore consider the ideal generated by these three polynomials, but 
+in order to speed up the computations, it is better to first construct
+the ideal 
 \[
-  \delta_1(P_5, P_1, P_4) = 0, \quad
-  \delta_1(P_6, P_1, P_2) = 0, \quad
-  \delta_1(P_7, P_3, P_4) = 0.
+J_1 = \bigl(\delta_1(P_3, P_1, P_4), \delta_1(P_3, P_1, P_7), \
+             \delta_1(P_3, P_2, P_4), \delta_1(P_3, P_2, P_7)\bigr)
 \]
-%
-These three equations are equivalent to
-%
-\[
-  s_{14}s_{23}-s_{13}s_{24} = 0, \quad
-  s_{12}s_{34}-s_{13}s_{24} = 0, \quad
-  s_{12}s_{34}-s_{14}s_{23} = 0
-\]
-%
-This is a linear system in the coordinates of $P_4$. The solution is
-not unique if and only if $(s_{12} = s_{13} = 0)$ or $(s_{23} = s_{13} = 0)$
-or $(s_{23} = s_{12} = 0)$. This case will be considered afterwards.
-When the solution is unique, we get new coordinates for $P_4$ so we
-re-define $P_4$ and the points constructed from it (i.e.\ $P_5, P_6, P_7$).
-A direct computation shows that the two lines~$P_1 \vee P_4$ and~$P_2 \vee P_3$,
-the two lines~$P_1 \vee P_3$ and~$P_3 \vee P_4$ and the two lines~$P_1 \vee P_2$ and~$P_3 \vee P_4$
-are orthogonal, hence condition~(\ref{C8:cnd2}) is satisfied,
-therefore, from the
-previous lemma, $P_4 = \Omega(P_1, P_2, P_3)$. The rank
-of $\Phi(P_1, \dotsc, P_7)$ is less than $10$ (the computation is
-not so immediate, but can be simplified considering only the
-cases in which $P_1$ is one of the points $(1: 0: 0)$ or
-$(1: \iii: 0)$), we get that the seven points
-are the eigenpoints of a cubic. Conversely, if the seven points are
-eigenpoints, the same computations as above, show that
-$P_4 = \Omega(P_1, P_2, P_3)$.\\
-It remains to consider the case in which $s_{12} = s_{13} = 0$ (or one of
-the other two, which are similar). As above, we again compute
-$\delta_1(P_5, P_1, P_4)$, $\delta_1(P_6, P_1, P_2) = 0$ and
-$\delta_1(P_7, P_3, P_4)$ and we see that these polynomials are zero
-if and only if $s_{12} = 0$.
+and to saturate it w.r.t.\ the condition that $P_2, P_4, P_7$ are not 
+aligned; similarly, construct the ideals $J_2$ and $J_3$ obtained 
+from the $V$-configurations $(P_5, P_1, P_4, P_2, P_7)$ and 
+$(P_6, P_1, P_7, P_2, P_4)$. Then the radical of the ideal $J_1+J_2+J_3$
+turns out to be $s_{27}$. This shows the lemma.
 \end{proof}
 
-\subsection{Comparison with ODECO tensors}
+\begin{prop}
+\label{prop:conf8_partA}
+If $P_1, \dotsc, P_7$ are eigenpoints, then, up to a permutation of 
+the labels of the points, $s_{12}$ is not zero, it holds:
+\begin{equation}
+\label{formula:ortocentro}
+P_7 = (P_1 \times P_2)s_{14}s_{24} -
+  s_{12}(P_1 \times P_4)s_{24} + s_{12}s_{14}(P_2 \times P_4)
+\end{equation}
+and the lines $P_1 \vee P_2$, $P_1 \vee P_4$ and $P_1 \vee P_6$
+are orthogonal to, respectively, $P_3 \vee P_4$, $P_2 \vee P_5$ and 
+$P_2 \vee P_4$, hence: 
+\[
+\scl{P_1 \times P_2}{P_3 \times P_4} = 0, \quad 
+\scl{P_1 \times P_4}{P_2 \times P_5} = 0, \quad 
+\scl{P_1 \times P_6}{P_2 \times P_4} = 0
+\]
+\end{prop}
+\begin{proof}
+%% file config8N2.sage
+If some of the $V$-configurations contained in $(C_8)$ are such that the associated matrix has rank 8, 
+the result follows from \Cref{rank_8} (see \Cref{rmk:three_orthog}).
+We fix generic coordinates for the points $P_1, P_2, P_4, P_7$.
+As a consequence of the previous two lemmas, we have that it is not possible
+to have $s_{12}=0, s_{14}=0, s_{17}=0$, hence we can assume $s_{12} \not=0$.
+Hence, again from \Cref{lemma:three_s_zero}, it is not possible to 
+have $s_{14}=0$ and $s_{24}=0$, hence at least one of the three coefficients
+$s_{14}s_{24}, s_{12}s_{24}$ or $s_{12}s_{14}$ is not zero. Since the 
+three vectors $P_1\times P_2$, $P_1\times P_4$, $P_2\times P_4$ are linearly independent, we see that $P_7$ is a non zero vector. Also in this general situation, if the points are eigenpoints, it must hold: 
+$\delta_1(P_3, P_1, P_4) = 0$, $\delta_1(P_5, P_1, P_2) = 0$ and 
+$\delta_1(P_6, P_1, P_2)=0$. These three quantities, up to non zero factors, 
+are $e_1 = s_{12}s_{47}-s_{17}s_{24}$,  $e_2 = s_{12}s_{47}-s_{14}s_{27}$ and 
+$e_3 = s_{17}s_{24}-s_{14}s_{27}$, hence $e_1-e_2+e_3 = 0$ and the system
+$e_1=0, e_2 = 0$ is a linear system in the coordinates of the points. 
+Its solution (w.r.t.\ the coordinates of $P_7$) gives new coordinates for the point $P_7$ and it is easy to see that \Cref{formula:ortocentro} holds.
+\end{proof}
+
+We have also the converse, i.e.\
+\begin{prop}
+Suppose $P_1, P_2, P_4$ are three points of the plane. Define the point
+$P_7$ according to \Cref{formula:ortocentro} and let 
+\[
+P_3 = (P_1 \vee P_2) \cap(P_4 \vee P_7), \quad 
+P_5 = (P_1 \vee P_4) \cap (P_2 \vee P_7), \quad
+P_6 = (P_1 \vee P_7) \cap (P_2 \vee P_4).
+\]
+Then the points $P_1, \dotsc, P_7$ are in a $(C_8)$ configuration
+and are eigenpoints of a unique cubic 
+of the plane. In particular, we have:
+\[
+\scl{P_1 \times P_2}{P_3 \times P_4} = 0, \quad 
+\scl{P_1 \times P_4}{P_2 \times P_5} = 0, \quad 
+\scl{P_1 \times P_6}{P_2 \times P_4} = 0
+\]
+\end{prop}
+\begin{proof}
+%% file connfig8N2.sage
+It is enough to show that the rank of the matrix $\Phi(P_1, \dots, P_7)$
+is $9$ and this computation can be done, for instance, assuming that 
+$P_1$ is the point $(1: 0: 0)$ or the point $(1: \iii: 0)$.
+\end{proof}
+
+
+\subsection*{Comparison with ODECO tensors}
+%% file odeco.sage
 As mentioned in the introduction, a class of
 symmetric tensors fitting in the framework of collinearities in the eigenscheme is represented by ODECO tensors, which were introduced by~\cite{Rob} and studied by \cite{BDHE, Koiran2021, Biaggi2022}.
 
 Possibly after an $\SO_3(\C)$ transformation, such forms are of the type
 %
-$$
-  f = \lambda_1 x^3 +\lambda_2 y^3 + \lambda_3 z^3,
-$$
+\[
+  f = \lambda_1 x^3 +\lambda_2 y^3 + \lambda_3 z^3
+  \quad \text{for some } \lambda_1, \lambda_2, \lambda_3 \in \C \,,
+\]
 %
 and they admit the three pairwise orthogonal eigenvectors
 %
-$$
-  Q_1 = (\frac{1}{\lambda_1},0,0), \quad
-  Q_2 = (0,\frac{1}{\lambda_2},0), \quad
-  Q_3 = (0,0,\frac{1}{\lambda_3}).
-$$
+\[
+  Q_1 = (\frac{1}{\lambda_1},0,0) \,, \quad
+  Q_2 = (0,\frac{1}{\lambda_2},0) \,, \quad
+  Q_3 = (0,0,\frac{1}{\lambda_3}) \,.
+\]
 %
-Moreover, the remaining $4$ eigenvectors are uniquely determined, precisely:
+The remaining $4$ eigenvectors are uniquely determined, precisely:
 %
-$$
-  Q_1+Q_2, \ Q_1+Q_3, \ Q_2+Q_3, \ Q_1+Q_2+Q_3.
-$$
+\[
+  Q_4 = Q_1+Q_2+Q_3\,, \ Q_5 = Q_1+Q_2,\, \ Q_6 = Q_1+Q_3 \,, \ Q_7 = Q_2+Q_3\,.
+\]
 %
-In particular, we see, that such eigenschemes are in a $(C_8)$ configuration, with the additional condition
+In particular, we see that such eigenschemes are in a $(C_8)$ configuration, with the additional condition
 %
-$$
-  \left\langle Q_i,Q_j \right\rangle = 0, \quad i \neq j.
-$$
+\[
+  \left\langle Q_i,Q_j \right\rangle = 0
+  \quad \text{ for } (i, j) \in \{(1, 2), (1, 3), (2, 3), (1, 7), (2, 6), (3, 5)\} \,.
+\]
 %
-
+The seven vectors fit into the description of \Cref{prop:conf8_partA}, since $Q_3 $ is proportional to $Q_1 \times Q_2$ and this is coherent with \Cref{formula:ortocentro}
+(because $\scl{Q_1}{Q_2} = 0$)
+and
+%
+\[
+  (Q_1 \vee Q_2) \times (Q_3 \vee Q_5) = 0 \,, \quad
+  (Q_1 \vee Q_3) \times (Q_2 \vee Q_6) = 0 \,, \quad
+  (Q_2 \vee Q_3) \times (Q_1 \vee Q_7) = 0 \,.
+\]
+%
+@@ \textbf{c'e' un'incoerenza con i nomi: eigenvectors, eigenschemes,  eigenpoints. I Qi sono vettori o punti proiettivi?}
+%
 \bibliographystyle{amsalpha}
 \bibliography{biblio}
 
