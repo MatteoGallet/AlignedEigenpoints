@@ -135,12 +135,21 @@ Via Valerio 12/1, 34127 Trieste, Italy}
 \section{Introduction}
 \label{introduction}
 
-Tensors are natural generalizations of matrices in higher dimension and can be studied via their eigenvectors. There are several notions that extend to tensors the well-known ones of eigenvalues and eigenvectors for matrices, as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}. All of them are of interest in several applications, like in the study of hypergraphs and the dynamical systems governed by those, see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developments. Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
-As an example, consider the problem of maximizing a polynomial function~$f$ over the unit sphere in~$\R^{n+1}$: eigenvectors of the symmetric tensor~$f$ are critical points of this optimization problem. Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: by Lim's Variational Principle \cite{Lim}, given a symmetric tensor~$f$, the critical rank-one symmetric tensors for~$f$ are exactly of the form~$v^d$, where $v$ is an eigenvector of~$f$.
-This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials. \textbf{(CITARE \cite{Ottaviani24})}
+Tensors are natural generalizations of matrices in higher dimension and can be studied via their eigenvectors.
+There are several notions that extend to tensors the well-known ones of eigenvalues and eigenvectors for matrices, 
+as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}.
+All of them are of interest in several applications, as in the study of hypergraphs and the dynamical systems governed by the latter;
+see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developments.
+Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing.
+As an example, consider the problem of maximizing a polynomial function~$f$ over the unit sphere in~$\R^{n+1}$: 
+eigenvectors of the symmetric tensor~$f$ are critical points of this optimization problem. 
+Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context: 
+by Lim's Variational Principle \cite{Lim}, given a symmetric tensor~$f$, the critical rank-one symmetric tensors for~$f$ are exactly of the form~$v^d$, where $v$ is an eigenvector of~$f$.
+This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. 
+Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials. \textbf{(CITARE \cite{Ottaviani24})}
 
 When dealing with eigenvectors, it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$.
- If we choose a basis for~$\C^{n+1}$, then we can identify $T \in \Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$ with a tuple of homogeneous polynomials $(g_0, \dotsc, g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v \in \C^{n+1}$ such that
+If we choose a basis for~$\C^{n+1}$, then we can identify $T \in \Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$ with a tuple of homogeneous polynomials $(g_0, \dotsc, g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v \in \C^{n+1}$ such that
 %
 \begin{equation}
 \label{eq:eigenvector_definition}
@@ -148,8 +157,11 @@ When dealing with eigenvectors, it is not restrictive to focus on partially symm
 \end{equation}
 %
 for some constant~$\lambda \in \C$.
-Since %the property of being an eigenvector
-the property in \Cref{eq:eigenvector_definition} is preserved under scalar multiplication, it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P) = \bigl(g_0(P): \ldots: g_n(P)\bigr)$ and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
+Since the property in \Cref{eq:eigenvector_definition} is preserved under scalar multiplication, 
+it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P) = \bigl(g_0(P): \ldots: g_n(P)\bigr)$ 
+and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. 
+In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, 
+or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
 
 Moreover, the condition in \Cref{eq:eigenvector_definition} can be rephrased as 
 \begin{equation}
@@ -173,15 +185,19 @@ Moreover, among $0$-dimensional eigenschemes, the general one is reduced.
 
 The geometry of eigenpoints is intimately related with the Waring decomposition of a polynomial,
 corresponding to the symmetric Tucker decomposition of the associated symmetric tensor,
-as clarified
-in \cite{DOT} and in \cite{Ott}. Indeed, any best rank~$k$ approximation of a symmetric tensor lies in the linear
-space, called \emph{critical space}, spanned by the rank~$1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ varies among all the eigenvectors. Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
-go towards an improvement on the insight of low rank approximation problems. A first evidence in this direction is given by the so called ODECO ("orthogonally decomposable") tensors, that is symmetric tensors~$T$ that admit a decomposition
-$T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0, \dotsc, v_n$ an orthogonal family; see \cite{Rob, BDHE}
-for further details. The $v_i$'s turn out to be eigenvectors of~$T$, so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
+as clarified in~\cite{DOT} and in~\cite{Ott}. 
+Indeed, any best rank~$k$ approximation of a symmetric tensor lies in the linear space, 
+called \emph{critical space}, spanned by the rank~$1$ tensors of the type $v_i ^{\otimes d}$, where $v_i$ varies among all the eigenvectors. 
+Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
+go towards an improvement on the insight of low rank approximation problems. 
+A first evidence in this direction is given by the so called ODECO ("orthogonally decomposable") tensors, 
+that is, symmetric tensors~$T$ that admit a decomposition
+$T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0, \dotsc, v_n$ an orthogonal family; see \cite{Rob, BDHE} for further details.
+The $v_i$'s turn out to be eigenvectors of~$T$, so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
 
- In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. By \Cref{thm:nonempty}, the general such tensor
- satisfies $\deg \Eig{T}=7$. A geometric characterization of eigenschemes of ternary forms is given by the following results.
+ In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and $d=3$. 
+ By \Cref{thm:nonempty}, the general such tensor satisfies $\deg \Eig{T}=7$.
+ A geometric characterization of eigenschemes of ternary forms is given by the following results.
 
 \begin{theoremintro}(\cite[Theorem 5.1]{ASS})
 A configuration of seven points in~$\p^2$ is the eigenconfiguration
@@ -944,7 +960,7 @@ is satisfied:
 \end{prop}
 
 \begin{proof}
-\verb+whenP3isNotDefined.sage+\\
+%% file: whenP3isNotDefined.sage
 Condition~(\ref{defP3_4}), when defined (i.e., when the coefficients of $P_1$ and~$P_2$ are not zero), easily comes from the definition of $\delta_2$.
 From it we see that $P_3$ is not defined by that formula if and only if
 $s_{14}s_{15}s_{22}-s_{12}^2s_{45}=0$ and $s_{11}s_{12}s_{45}-s_{12}s_{14}s_{15}=0$.
@@ -1566,11 +1582,9 @@ evaluate~$r_3$ on the coordinates of~$P_1$, we get zero.
 
 \section{\texorpdfstring{$V$}{V}-configurations of rank~\texorpdfstring{$8$}{8}}
 \label{rank_8}
-file \verb+contiCasoDegenere2.sage+ and file
-\verb+conf_sigma12_sigma14.sage+\\
-\verb+molti altri file via +\\
-\verb+via indicati nei commenti di latex+
-
+%% file contiCasoDegenere2.sage and file conf_sigma12_sigma14.sage
+%% molti altri file via via indicati nei commenti di latex
+%
 In this section, we study the possible configurations of
 eigenpoints for cubics with a $V$-configuration
 satisfying the condition $\rk \, \Phi(P_1, \dots, P_5) = 8$. According
@@ -1609,7 +1623,7 @@ is satisfied:
 %
 \end{prop}
 \begin{proof}
-\verb+file: singularCubic_1ii0.sage+ e \verb+singularCubic_100.sage+\\
+%% file: singularCubic_1ii0.sage e singularCubic_100.sage
 As usual, we can split the problem into two cases: $P_1 = (1: \iii: 0)$
 and $P_1 = (1: 0: 0)$. In both cases, we construct the matrix
 $\Phi(P_1, \dots, P_5)$ (for $P_2$, $P_4$ generic, $P_3$ aligned with
@@ -1966,6 +1980,7 @@ the eigendiscriminant hypersurface has degree
 %
 
 \begin{definition}
+\label{def:locus_L}
 Let $\sU \subset \p^9$ be the following locus:
 %
 $$
@@ -2064,7 +2079,7 @@ Similarly, the columns $c_1, c_2, c_3, c_5, c_6, c_8$ are linearly dependent
 and~(\ref{combLin}) holds if $L_1$ in this case is $[c_1, c_3, c_8]$ and
 $L_2$ is $[c_2, c_5, c_6]$. Finally, the columns
 $c_4, c_5, c_6, c_7, c_8, c_9$ are linearly dependent and~(\ref{combLin})
-holds if we take $L_1 = [c_4, c_6 c_9]$ and $L_2 = [c_5, c_7, c_8]$.
+holds if we take $L_1 = [c_4, c_6, c_9]$ and $L_2 = [c_5, c_7, c_8]$.
 
 As a consequence, local parametrizations of $\sL$ can be given by considering the following open subsets:
 for any multiindex
@@ -2426,7 +2441,7 @@ Observe that one point is on the singular line $x=0$.
 
 In this section, we consider polynomials having a whole line in the eigenscheme. We shall prove that residually we then have, in general, other three eigenpoints, and that the condition of having a line of eigenpoints is equivalent to having four collinear eigenpoints.
 
-Finally, we shall prove that such polynomials belong all to the locus $\sL \subset \p^9$.
+Finally, we shall prove that such polynomials belong all to the locus $\sL \subset \p^9$ (see \Cref{def:locus_L}).
 
 \begin{lemma}
 \label{4ptiSuRetta2}
@@ -2445,7 +2460,7 @@ the above matrix is~$7$, then all the cubics which have the line~$t$
 of eigenpoints are given by~$t^2 \ell$ where $\ell$ is any line of the plane.
 \end{lemma}
 \begin{proof}
-\verb+file: fourCollinearPoints.sage+\\
+%%% +file: fourCollinearPoints.sage
 It is not restrictive to assume that one of the points (say~$P_1$) is
 the point~$(1: 0: 0)$.
 With this simplification, the computation of the order~$6$ and order~$7$
@@ -2458,30 +2473,45 @@ a two-dimensional linear space of~$\p^9$ contained in~$W$. Hence the two linear
 spaces coincide.
 \end{proof}
 
+\begin{lemma}
+\label{lemma: twoTangentsCiso} Let $r$ be a line of the plane of
+equation $ax+by+cz=0$ and suppose $r$ intersects $\iso$ in two distinct points $P_1$ and $P_2$. Consider the cubic:
+\begin{equation}
+\label{2_lines_of_eigenpoints}
+  C(r) = \bigl( r^2-3\left(a^2+b^2+c^2\right)\iso \bigr) \, r \,
+\end{equation}
+then, the two tangents to $\iso$ in $P_1$ and $P_2$ are eigenpoints of 
+$C(r)$.
+\end{lemma}
+\begin{proof}
+%% file: lemma_twoTangentsCiso.sage 
+A generic point on $\iso$ is $(\lambda^2 + \mu^2, 
+\iii\lambda^2 -\iii\mu^2, 2\iii\lambda \mu)$, hence we can use this
+formula to define two points $P_1$ and $P_2$ on $\iso$, compute the 
+line $r$ which join the two points and define $C(r)$. It is easy to 
+see that the two tangents to $\iso$ in $P_1$ and $P_2$ are eigenpoints
+for $C(r)$.
+\end{proof}
+
 \begin{prop}
 \label{prop:eigenline_non_tangent}
-Given a line~$t$ of the plane, if $t$ is not tangent to the isotropic
-conic, then all the cubics which have, among their
-eigenpoints, the points of $t$ are defined by the polynomial $t^2l$,
-where $l$ is any line of the plane. If $t$ is tangent to $\iso$, then
-all the cubics which have among their eigenpoints the points of $t$ are
-defined by the polynomials
-%
+Given a line~$t$ of the plane, if $t$ is not tangent to the 
+isotropic conic, a cubic has $t$ among its eigenpoints if and 
+only if it is of the form $t^2\ell$, where $\ell$ is any line of the 
+plane. \\ 
+If $t$ is tangent to the isotropic conic (in a point $P$), a cubic has $t$ 
+among its eigenpints if and only if it is of the form
 \begin{equation}
 \label{cubiche_con_retta_autop_tg}
-  t^2l+\lambda C(r),
+  t^2 \ell+\lambda C(r_0),
 \end{equation}
 %
-where $\lambda \in \C$ and $r$ is a line
-passing through the tangent point~$\iso \cap t$ and~$C(r)$ is defined
-in \Cref{2_lines_of_eigenpoints}. Conversely, if $r$ is a line and
-$t$ is another line, tangent $\iso$ in one of the two points of intersections
-of $r$ with $\iso$, then all the cubics given
-by \Cref{cubiche_con_retta_autop_tg} have, among their eigenpoints,
-the line~$t$.
+where $\ell$ is any line of the plane, $\lambda \in \C$, 
+$r_0$ is any fixed line passing through $P$ and $C(r_0)$ is
+defined by \Cref{2_lines_of_eigenpoints}. 
 \end{prop}
 \begin{proof}
-\verb+una_retta_tg_autop.sage+\\
+%% file: una_retta_tg_autop.sage
 The first part of the proposition is contained in~\Cref{4ptiSuRetta2}.
 Suppose $t$ is tangent to $\iso$. We assume that $t$ is the line
 $x+\iii y$, hence tangent to $\iso$ in $P = (1: \iii: 0)$.
@@ -2498,14 +2528,14 @@ four cubics:
   H_4 = C(r),
 \]
 %
-where $r$ is a line passing through~$P$ (if, for instance, $r$
-is~$z$, then $H_4 = z(x^2 + y^2 + 2/3z^2)$. Hence the cubics are of the
+where $r$ is a fixed line passing through~$P$ (if, for instance, 
+we choose the line $z=0$ for $r$, 
+then $H_4$ is $z(x^2 + y^2 + 2/3z^2)$. Hence the cubics are of the
 form of \Cref{cubiche_con_retta_autop_tg}. Conversely, it is easy to verify
-that all the cubics $C(r)$ of~(\ref{cubiche_con_retta_autop_tg}) are
+that all the cubics of~(\ref{cubiche_con_retta_autop_tg}) are
 linear combinations of $H_1, \dots, H_4$, hence it is enough
 to see that every linear combination of $H_1, \dots, H_4$ gives a
-cubic which has the line~$t$ among its eigenpoints, and the this result
-follows from an explicit computation.
+cubic which has the line~$t$ among its eigenpoints, and the this result follows from an explicit computation.
 \end{proof}
 
 \begin{prop}
@@ -2513,6 +2543,7 @@ Let $t$ be a line tangent to the isotropic conic in a point~$P$.
 Then all the cubics of the family from \Cref{cubiche_con_retta_autop_tg} are singular in~$P$ and $t$ is one of the two tangents to the cubic in~$P$.
 \end{prop}
 \begin{proof}
+%% file: una_retta_tg_autop.sage
 As seen in \Cref{prop:eigenline_non_tangent}, up to the action of~$\SO_3(\C)$, all the
 cubics are a linear combination of $H_1, \dots, H_4$ and a direct
 computation gives the thesis.
@@ -2525,108 +2556,78 @@ di~(\ref{cubiche_con_retta_autop_tg}) sono di dimensione
 in~(\ref{cubiche_con_retta_autop_tg})?
 
 \medskip
-Now we show that any line of the plane can be realized as a line of eigenpoints for some limit polynomial in a family, where the general member has a $0$-dimensional eigenscheme with an aligned triple. The idea is to fix three points on a line and a fourth point varying on another line. We consider a family having such four points as eigenpoints; it turns out that when the fourth point is collinear with the first three points, the line containing them is entirely contained in the eigenscheme.
+@@ \textbf{parte nuova: confidando sul fatto che con overleaf si puo' tornare indietro, cancello una parte scritta da Valentina e la riscrivo, se a Valentina non piace, puo' tornare indietro}
 
+%
 \begin{prop}
-\label{prop:line_as_limit}
-Any line $t \subset \p^2$ can be realized as the positive dimensional part of a limit eigenscheme in a family of zero dimensional eigenschemes having an aligned triple.
+\label{prop:limitCubics}
+Any cubic which in the eigenscheme has a line $t$ is the limit of a family of cubics where the general member has a $0$-dimensional eigenscheme with an aligned triple.
 \end{prop}
-
 \begin{proof}
-Without loss of generality we can assume that $t$ is the line $x=0$ if it is not tangent to $\iso$, respectively $x+\iii y=0$ if it is tangent to $\iso$.
-
-In the first case, consider the points
+%% file cubic_limit.sage
+In case the line $t$ is not tangent to $\iso$, we can assume it is the line $z=0$. We fix on it the three points 
 \[
-  P_1=(0:1:0), \ P_2=(0:0:1), \ P_3=(0:1:1), \ P_4=(u+1:1:-1).
+P_1= (1: 0: 0), \ P_2 = (0: 1: 0), \ P_3 = (1: 1: 0)
 \]
-The cubic polynomials having these points as eigenpoints form the $2$-dimensional family depending on the parameters $m$, $l$, and $u$:
-%
-\begin{multline*}
-  (3mu^2 + 6mu - 9m) x^3 + (3 l u^2+(6l + 18m)u - 9l + 18m) x^2 y + (3lu^2 + 6lu - 9l) z x^2 + \\
-  +(-l u^4+(-4 l-3 m) u^3+(-2 l-9 m) u^2+(4 l-9 m) u + 3 l-3 m) y^3+ \\
-  +(-l u^4 + (-4 l-3 m)u^3 + (-2l - 9m) u^2 + (4l - 9m)u + 3l - 3m) z^3 \,.
-\end{multline*}
-%
-By setting, for instance $m=l=1$, we get the $1$-dimensional family depending on the affine parameter $u$:
-%
-\begin{multline*}
-  (3 u^2+6 u-9) x^3+(3 u^2+24 u+9) x^2 y+(3 u^2+6 u-9) z x^2+\\
-  (-u^4-7 u^3-11 u^2-5 u) y^3+(-u^4-7 u^3-11 u^2-5 u) z^3 \,.
-\end{multline*}
-%
-A direct computation shows that if $u \neq -1$, the associated eigenscheme is $0$-dimensional, while for $u=-1$ we get the polynomial
-%
+and we consider the three dimensional linear system of 
+cubics $\Lambda\bigl (\Phi(P_1, P_2, P_3) \bigr)$, which is given by
 \[
-  -12 x^2 (x+ y+ z).
+C = (ax + by + cz)z^2+d(x^3+y^3), \quad a, b, c, d \in \C
 \]
-%
-Similarly, if we consider the line $x+\iii y=0$, we set
-%
+if $d=0$, the cubic $C$ is of the form $t^2\ell$, hence is the 
+generic cubic which has the line $t$ in the eigenscheme. If $d \not= 0$
+we have that the eigenpoints of $C$ different from $P_1, P_2, P_3$ are
+the common zeros of the following three polynomials:
+\begin{eqnarray*}
+    g_1 & = & 3y^2d - 2xya - 2y^2b + z^2b - 3yzc\\
+    g_2 & = & 3x^2d - 2x^2a + z^2a - 2xyb - 3xzc\\
+    g_3 & = & 2x^3ya - 2x^2y^2a + y^2z^2a + 2x^2y^2b -
+     2xy^3b - x^2z^2b + 3x^2yzc - 3xy^2zc
+\end{eqnarray*}
+In general, the ideal $(g_1, g_2, g_3)$ has $4$ points in 
+general position (@@ \textbf{basta cosi' o bisogna dire di piu'?})\\
+In case the line $t$ is tangent to the isotropic conic, we can 
+assume it is the line $x+\iii y =0$. Here we fix the three
+points
 \[
-  P_1=(\iii:-1:1), \ P_2=(0:0:1), \ P_3=(-\iii:1:1), \ P_4=(u+1: \iii:0).
+P_1 = (1: \iii: 0), \ P_2 = (0: 0: 1), \ P_3 = (1: \iii: 1)
 \]
-%
-The cubic polynomials having these points as eigenpoints form the $2$-dimensional family depending on the parameters $m$, $l$, and $u$:
-%
-$$
-  3m(u-1)x^3+3l(u-1)zx^2-9\iii mx^2y+9m(u+1) xy^2+3 \iii l(u+2)(u-1)zyx+3\iii (2u+1)my^3+(-3u^2+3)ly^2 z-l u z^3 (u-1).
-$$
-%
-By setting, for instance $m=l=1$, we get the $1$-dimensional family depending on the affine parameter $u$:
-%
-$$
-  3(u-1)x^3+3(u-1)zx^2-9\iii x^2y+9(u+1) xy^2+3 \iii (u+2)(u-1)zyx+3\iii (2u+1)y^3+(-3u^2+3)y^2 z- u z^3 (u-1).
-$$
-%
-A direct computation shows that if $u \neq 0$, the associated eigenscheme is $0$-dimensional, while for $u=0$ we get the polynomial
-%
+In this case the linear system of cubics 
+$\Lambda \bigl(\Phi(P_1, P_2, P_3)\bigr)$ is four dimensional and 
+is given by:
 \[
-  -3(x+\iii y+z)(x+\iii y)^2. \qedhere
+C = (x+\iii y)^2(ax + by+cz)+
+ d(x^2 + y^2 + 2/3z^2)z+e (x^3 -\iii y^3 + z^3), 
+ \quad a, b, c, d, e \in \C
 \]
-%
+If $e=0$ the cubic $C$ is of the form described by \Cref{cubiche_con_retta_autop_tg}, hence is the generic cubic which contains the line $t$ in the eigenscheme. If $e \not= 0$, as above, 
+the remaining eigenpoints of $C$ are given by an ideal generated 
+by the polynomials:
+\begin{eqnarray*}
+h_1 & = & xza + \iii yza + \iii xzb - yzb - x^2c -2\iii xyc + y^2c - x^2d - y^2d + 3xze -3\iii yze - 3z^2e\\
+h_2 & = &2x^2a + 3\iii xya - y^2a -\iii x^2b + 3xyb + 2\iii y^2b + 2xzc + 2\iii yzc +3\iii xye\\
+h_3 & = & 3x^2zb + 6\iii xyzb - 3y^2zb + 2\iii x^3c - 5x^2yc -4\iii xy^2c + y^3c + 2\iii xz^2c - 2yz^2c + 2\iii x^3d - x^2yd + 2\iii xy^2d - y^3d -6\iii x^2ze - 6xyze -3\iii y^2ze + 6\iii xz^2e - 3yz^2e\\
+h_4 & = & 3y^2za -\iii yz^2a + 6xyzb + 9\iii y^2zb -3\iii xz^2b + 4yz^2b + 4\iii x^2yc - 9xy^2c -5\iii y^3c + 2x^2zc + 4\iii xyzc - 2y^2zc + 4\iii yz^2c + 2z^3c + 4\iii x^2yd - xy^2d + 5\iii y^3d + 2x^2zd + 2y^2zd -12\iii xyze - 15y^2ze - 6xz^2e + 21\iii yz^2e + 6z^3e
+\end{eqnarray*}
+ecc. ecc. le equazioni di sopra sono per folklore, ma ovviamente
+direi di non 
+metterle.
 \end{proof}
+
+
 
 \subsection{Eigenschemes containing two lines}
+\Cref{lemma: twoTangentsCiso} can be extended, indeed we have:
+%
 \begin{prop}
-\label{cubiche_con_2_rette}
-Let $C$ be a cubic which has, among its eigenpoints, two lines~$t_1$
-and~$t_2$. Then $t_1$ and $t_2$ are tangent to the isotropic conic
-in two points~$Q_1$ and~$Q_2$ and, if $r$ is the line~$Q_1 \vee Q_2$
-of equation $ax+by+cz=0$, the polynomial defining~$C$ is:
-%
-\begin{equation}
-\label{2_lines_of_eigenpoints}
-  C(r) = \bigl( r^2-3\left(a^2+b^2+c^2\right)\iso \bigr) \, r \,.
-\end{equation}
-%
-The cubic~$C$ has, in addition to $t_1$ and $t_2$, also the eigenpoint $(a: b: c)$
-(the pole of~$r$ w.r.t.\ $\iso$). \\
-Conversely, if $C$ is defined by~(\ref{2_lines_of_eigenpoints}), where
-$r$ is any line $ax+by+cz$ (with $a, b, c \in \C$), then
-the eigenpoints of $C$ are the lines~$t_1$ and~$t_2$ (tangent to~$C$
-in the points $Q_1$ and $Q_2$ of intersection of~$r$ with~$\iso$) and
-the point $(a: b: c)$.
+    \label{prop:twoLines}
+    A cubic $C$ of the plane has two distinct lines $t_1$ and $t_2$ in its eigenscheme if and only if $t_1$ and $t_2$ are tangent to the isotropic conic (in two points $P_1$ and $P_2$) and $C= C(r)$ as in \Cref{2_lines_of_eigenpoints}, where $r = P_1 \vee P_2$.
 \end{prop}
+%
 \begin{proof}
-\verb+file: due_rette_autopunti.sage+\\
-Let $t_1$ be a line of eigenpoints of~$C$. If $t_1$ is not tangent
-to $\iso$, from~\Cref{4ptiSuRetta2} the cubic~$C$ is given by~$t_1^2l$ (for
-a suitable line~$l$), but this cubic cannot have the line~$t_2$
-of eigenpoints.
-In this way, we see that $t_1$ and $t_2$ must be tangent to~$\iso$ (in~$Q_1$ and~$Q_2$, respectively). Let $Q_3 = t_1 \cap t_2$. We can assume
-that $Q_3 = (1: 0: 0)$, hence $t_1$, $t_2$ and $r$ have equations,
-respectively, $x+\iii y=0$, $x-\iii y = 0$ and $x=0$.
-If we impose to the generic cubic of the plane to have
-$t_1$ and $t_2$ of eigenpoints, we get only one cubic defined by
-$x(2x^2 + 3y^2 + 3z^2)$, which is of the
-form of \Cref{2_lines_of_eigenpoints}. If, conversely, we fix a line
-of the plane of equation $ax+by+cz=0$ and we consider the cubic~$C$ from \Cref{2_lines_of_eigenpoints}, the ideal of
-the eigenpoints of~$C$ decomposes into an ideal whose radical is
-the ideal of the point $(a:, b: c)$ and another ideal generated by
-a degree two polynomial which give a singular conic of the pencil
-of conics bitangent to~$\iso$ in the two points~$\iso \cap r$, hence
-this conic splits into the two tangent lines to~$\iso$ in~$\iso \cap r$.
+Suppose $t_1$ and $t_2$ are two lines which are contained in the eigenschemes of $C$. From \Cref{prop:eigenline_non_tangent} we have that $t_1$ and $t_2$ are tangent to $\iso$ and \Cref{lemma: twoTangentsCiso} gives that $C$ is given by \Cref{2_lines_of_eigenpoints}. If, conversely, $C$ is given by \Cref{2_lines_of_eigenpoints}, where $r$ is a line, the result again follows from \Cref{lemma: twoTangentsCiso}.
 \end{proof}
+
 
 
 \subsection{Eigenschemes containing an irreducible conic}
@@ -2640,31 +2641,22 @@ distinct points of~$\iso$ are eigenpoints of a cubic, then all the
 points of~$\iso$ are eigenpoints of the cubic.
 \end{lemma}
 \begin{proof}
-\verb+file eigenpointsConic.sage+\\
-As usual, we can assume that $P_1 = (1: \iii: 0)$. Hence all the other points
+%% file eigenpointsConic.sage
+We can assume that $P_1 = (1: \iii: 0)$. Hence all the other points
 of $\iso$ are given by
 %
 \[
   P(w) = \bigl(\iii(w^2 + 1): 1 - w^2: -2w\bigr) \text{ with } w \in \C \,,
 \]
 %
-so we can assume
-$P_2 = P(w_1)$, $P_3 = P(w_2)$, and $P_4 = P(w_3)$, where the $w_i$'s are
+so $P_2 = P(w_1)$, $P_3 = P(w_2)$, and $P_4 = P(w_3)$, where the $w_i$'s are
 all distinct. The cubics which have $P_1, \dots, P_4$ among the eigenpoints
-are obtained from the linear system whose associated matrix is
-$M = \Phi(P_1, P_2, P_3, P_4)$. The rank of~$M$ is $7$. In order to see this,
-we can, first of all, select a submatrix of~$M$ obtained erasing a
-row for each of the points~$P_i$ (since we know that the three vectors~$\phi(P)$ are linearly dependent for every~$P$). In the obtained matrix
-all the order $8$ minors are easy to compute and are zero.
-If all the order~$7$
-minors are set to zero, we get an ideal that, after suitable saturations,
-is the whole ring. Since the rank of~$M$ is~$7$, all the cubics for which the
-four points are eigenpoints are a linear variety~$\mathcal{K}$
-in~$\p^9$
-of dimension~$2$, but all the cubics which split into~$\iso$ and a line
+are the linear system given by $\Lambda (M)$, where $M = \Phi(P_1, P_2, P_3, P_4)$.
+It can be verified that the rank of~$M$ is $7$, hence $\Lambda(M)$ is a linear variety of $\p^9$ of dimension~$2$, but all the cubics which split into~$\iso$ and a line
 of the plane do have all the points of~$\iso$ among the eigenpoints and
 these cubics give a linear variety of dimension~$2$ in $\p^9$
-which therefore coincides with~$\mathcal{K}$.
+which therefore coincides 
+with~$\Lambda(M)$.
 \end{proof}
 
 \begin{lemma}
@@ -2674,7 +2666,7 @@ an irreducible conic $\Gamma$ tangent in a point $P_1$ to the isotropic
 conic and intersecting $\iso$ in two other distinct points.
 \end{lemma}
 \begin{proof}
-\verb+caso3ptiIso_2.sage+\\
+%% file caso3ptiIso_2.sage+\\
 As in the proof~\Cref{lemma:fourOnIso}, we can assume that
 $P_1 = (1: \iii: 0)$
 and $P_2$ and $P_3$ are $P(w_1)$ and $P(w_2)$. Then we construct
@@ -2684,12 +2676,10 @@ tangent to~$\iso$ in~$P_1$ and passing through~$P_2$ and~$P_3$,
 then, for suitable values of the parameters defining the points
 $P_1, P_2, P_3$ and $Q_1$ and $Q_2$, the matrix
 $M = \Phi(P_1, P_2, P_3, Q_1, Q_2)$
-must have rank~$9$ or smaller. Again, erasing some rows of~$M$
-which are linear dependent from the others and observing that,
-with row elementary operations we can erase some columns of~$M$,
-we can see that $M$ cannot have rank~$8$ or smaller and if $M$
-has rank~$9$, then the corresponding cubic does not have a conic
-among its eigenpoints.
+must have rank~$9$ or smaller. Again, 
+some computations give that $M$ cannot 
+have rank~$8$ or smaller and if $M$ has rank $9$, the corresponding cubic 
+does not have a conic among its eigenpoints.
 \end{proof}
 
 \begin{lemma}
@@ -2701,8 +2691,8 @@ $r$ is the equation of the line~$P_1\vee P_2$ and $\lambda, \mu$ are parameters
 in~$\C$.
 \end{lemma}
 \begin{proof}
-\verb+caso2ptiIso_partI.sage+\\
-\verb+caso2ptiIso_partII.sage+\\
+%% file: caso2ptiIso_partI.sage, 
+%% caso2ptiIso_partII.sage.
 The proof is quite similar to the one of~\Cref{lemma3ptiSuCiso}. Also
 here we can assume that $P_1 = (1: \iii: 0)$ and we construct the pencil of
 bitangent conics in $P_1$ and $P_2$ to $\iso$. Then we construct three
@@ -2731,7 +2721,7 @@ then there exists a line~$r$ in the plane and $\lambda, \mu \in \C$
 such that the equation of~$C$ is given by \Cref{cub_conica_eig}.
 \end{prop}
 \begin{proof}
-\verb+caso2ptiIso_partI.sage+ (parte finale del file).\\
+%% file: caso2ptiIso_partI.sage+ (parte finale del file)
 If the equation of $C$ is of the form described above, a direct computation
 shows that the eigenpoints of $C$ are the pole of $r$ with respect to $\iso$
 and the conic $\lambda \iso+3\mu r^2$. Suppose, conversely, that $C$ has
@@ -2744,13 +2734,13 @@ of~\Cref{lemma:fourOnIso} and~\Cref{lemma3ptiSuCiso} it must be bitangent,
 in two points $P_1$ and $P_2$, to~$\iso$. 
 Then the statement is proven from~\Cref{lemma:bitangentToCiso}. 
 If $\Gamma$ is reducible,
-from~\Cref{cubiche_con_2_rette} we have that $\Gamma$ splits
+from~\Cref{prop:twoLines} we have that $\Gamma$ splits
 into two tangent lines to~$\iso$.
 \end{proof}
 
 \begin{rmk}
-if $r$ is tangent to $\iso$ in a point $P$, @@tutto pare funzionare,
-ma sistemare
+if $r=ax+by+cz$ is tangent to $\iso$ in a point $P$ (which is $(a:b:c)$), 
+the conic $\lambda \iso +3 \mu r^2$ is tangent to $\iso$ in $P$.
 \end{rmk}
 
 
@@ -2801,8 +2791,8 @@ $(C_1)$ configuration.
 
 \underline{Configuration $(C_2)$} means that the points
 $P_1, \dots, P_5$ are in a
-$V$-configuration, hence the rank of the matrix $\Phi(P_1, \dotsc, P_5)$
-must be $9$ or $8$. If the rank is $9$, then $\delta_1(P_1, P_2, P_4) = 0$
+$V$-configuration, hence $\rk \, \Phi(P_1, \dotsc, P_5)$
+must be~$9$ or~$8$. If the rank is~$9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dotsc, P_5) = 0$, see \Cref{theorem:rank_V}.
 From \Cref{proposition:third_alignment}, the only case
 to have a strict $(C_2)$ configuration 
@@ -2878,7 +2868,7 @@ which implies
 \end{proof}
 
 \underline{Configuration $(C_5)$}
-\verb+file config5.sage+
+%% file: config5.sage
 \begin{prop}
 \label{proposition:condition_5}
 %\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
