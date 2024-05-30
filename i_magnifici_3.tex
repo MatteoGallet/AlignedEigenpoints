@@ -17,7 +17,7 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \setlength{\parindent}{.4 in}
-\setlength{\textwidth}{7 in}
+\setlength{\textwidth}{6.5 in}
 \setlength{\topmargin} {-.1 in}
 \setlength{\evensidemargin}{0 in}
 \setlength{\oddsidemargin}{0 in}
@@ -126,7 +126,7 @@ Via Valerio 12/1, 34127 Trieste, Italy}
 \begin{document}
 
 \begin{abstract}
- Given a homogenous polynomial in $n+1$ variables, the fixed points of the map from $\p^n$ to itself given by its gradient are called the \emph{eigenpoints} of the polynomial. We focus on cubic polynomials in three variables, which have already been object of study regarding their eigenpoints, and study configurations of eigenpoints that admit one or more alignments. We give a classification of all possible configurations with alignments: this is accomplished using both geometric characterizations of these situations and an extensive use of computer algebra.
+ Given a homogeneous polynomial in $n+1$ variables, the fixed points of the map from $\p^n$ to itself defined by its gradient are called the \emph{eigenpoints} of the polynomial. We focus on cubic polynomials in three variables, whose eigenpoints have already been object of study, and analyze configurations of eigenpoints that admit one or more alignments. We give a classification of all possible configurations with alignments: this is accomplished using both geometric characterizations of these situations and an extensive use of computer algebra.
 \end{abstract}
 
 \maketitle
@@ -148,12 +148,12 @@ by Lim's Variational Principle \cite{Lim}, given a symmetric tensor~$f$, the cri
 This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. 
 Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials. \textbf{(CITARE \cite{Ottaviani24})}
 
-When dealing with eigenvectors, it is not restrictive to focus on partially symmetric tensors, that is elements of $\Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$.
+When dealing with eigenvectors, it is not restrictive to focus on partially symmetric tensors, that is elements of~$\Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$.
 If we choose a basis for~$\C^{n+1}$, then we can identify $T \in \Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$ with a tuple of homogeneous polynomials $(g_0, \dotsc, g_n)$. An \emph{eigenvector} of $T$ is a nonzero vector $v \in \C^{n+1}$ such that
 %
 \begin{equation}
 \label{eq:eigenvector_definition}
-  (g_0(v), \dotsc, g_n(v)) = \lambda v
+  \bigl( g_0(v), \dotsc, g_n(v) \bigr) = \lambda v
 \end{equation}
 %
 for some constant~$\lambda \in \C$.
@@ -262,11 +262,14 @@ The proof works also in the non-reduced case.
 
 \begin{corollary}
 \label{corollary:general_no_triple}
-As a consequence of \Cref{lemma:no_six_conic}, a zero-dimensional eigenscheme~$\Eig{f}$ for $f \in \C[x,y,z]_d$ never contains $4$ or more aligned points.
+As a consequence of \Cref{lemma:no_six_conic},
+no zero-dimensional eigenscheme~$\Eig{f}$ for $f \in \C[x,y,z]_d$ contains $4$ or more aligned points.
 Moreover, if $\Eig{f}$ contains two triples of aligned points, those must share a point.
 \end{corollary}
 
-The eigenscheme of a general ternary cubic form has no aligned triples of points. This is a consequence of the geometric properties of the classical Geiser map associated with seven points in the plane, and has been proved in \cite[Proposition~4.5]{BGV}.
+The eigenscheme of a general ternary cubic form has no aligned triples of points. 
+This is a consequence of the geometric properties of the classical Geiser map
+associated with seven points in the plane, and has been proved in \cite[Proposition~4.5]{BGV}.
 Therefore, it can be expected that ternary cubic forms with one or more aligned triples of eigenpoints should satisfy particular geometric constraints.
 
 Understanding these situations requires a careful analysis of the conditions on ternary cubic forms imposed by the existence of aligned eigenpoints.
@@ -275,7 +278,8 @@ To simplify these analyses, we clarify how we can benefit from the action of spe
 \section{Invariance under the action of orthogonal matrices}
 \label{invariance}
 
-In what follows, it will be useful to fix particular coordinates for points and lines related to eigenschemes. To do that, we employ a property of invariance of eigenschemes with respect to the action of the following group.
+In what follows, it will be useful to fix particular coordinates for points and lines related to eigenschemes.
+To do that, we employ a property of invariance of eigenschemes with respect to the action of the following group.
 
 \begin{definition}
 We define $\SO_3(\C)$ to be the complexification of the group of special orthogonal real matrices, namely
@@ -453,8 +457,9 @@ $\prescript{t} {} M^{-1}=M$. We deduce that
 \section{Conditions imposed by aligned eigenpoints}
 \label{conditions}
 
-Having a given point as eigenpoint determines linear conditions on the space of ternary cubic forms, which can hence be encoded into a matrix, which we call the matrix of conditions (\Cref{definition:matrix_conditions}). 
-After analyzing the possible ranks of matrices of conditions relative to three or four points (possibly aligned), we characterize in terms of three polynomial conditions (denoted $\delta_1$, $\bar{\delta}_1$ and~$\delta_2$) the situations when we have two triples of aligned eigenpoints.
+Having a given point as eigenpoint determines linear conditions on the space of ternary cubic forms, 
+which can hence be encoded into a matrix, called the \emph{matrix of conditions} (\Cref{definition:matrix_conditions}). 
+After analyzing the possible ranks of matrices of conditions relative to three or four points (possibly aligned), we characterize in terms of three polynomial conditions (denoted $\delta_1$, $\bar{\delta}_1$ and~$\delta_2$) the situations with two triples of aligned eigenpoints.
 
 \subsection{The matrix of conditions}
 
@@ -466,15 +471,15 @@ a $3 \times 10$ matrix encoding the condition that $P$ is an eigenpoint of a ter
 \begin{definition}
 \label{definition:matrix_conditions}
 Consider $\p^9 = \p(\C[x,y,z]_3)$, the space of all ternary cubics.
-Through this paper, we will consider the standard monomial basis for $\C[x,y,z]_3$ and we set~$\mathcal{B}$ to be the following vector
+Throughout this paper, we consider the standard monomial basis for $\C[x,y,z]_3$ and we set~$\mathcal{B}$ to be the following vector
 %
 \begin{equation}
 \label{eq:vector_basis}
   \mathcal{B} := (x^3, x^2 y, x y^2, y^3, x^2 z, x y z, y^2 z, x z^2, y z^2, z^3)
   \in \bigl( \C[x,y,z]_3 \bigr)^{\oplus 10} \,.
 \end{equation}
-For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$F$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
-For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements~$[f]$ of~$\p^9$ that $P$ is an eigenpoint of the ternary cubic form~$F$ can be expressed in the form
+For $f \in \C[x,y,z]_3$, denote by $[f]$ the corresponding point in~$\p^9$; we denote by $w_f$ the (column) vector of coordinates of~$f$ with respect to the basis above; then $w_f$ is also a vector of projective coordinates of~$[f]$.
+For a point $P \in \p^2$ with coordinates $(A: B: C)$, the condition on elements~$[f]$ of~$\p^9$ that $P$ is an eigenpoint of the ternary cubic form~$f$ can be expressed in the form
 %
 \[
   \Phi(P) \cdot w_f = 0 \,,
@@ -487,11 +492,15 @@ Written as vectors, they are
 %
 \begin{equation}
 \label{equation:matrix_conditions_rows}
-  \begin{gathered}
-    \scalemath{0.9}{(-3A^2B, A(A^2 - 2B^2), B(2A^2 - B^2), 3AB^2,
+  \begin{aligned}
+    \phi_1(P) &=
+    \scalemath{0.9}{
+    (-3A^2B, A(A^2 - 2B^2), B(2A^2 - B^2), 3AB^2,
      -2ABC, C(A^2 - B^2), 2 ABC,
      -B C^2, A C^2, 0)} \,, \\
-    \scalemath{0.9}{(-3A^2 C,
+    \phi_2(P) &= 
+    \scalemath{0.9}{
+    (-3A^2 C,
      -2ABC,
      -CB^2,
      0,
@@ -501,7 +510,9 @@ Written as vectors, they are
      C(2A^2-C^2),
      2ABC,
      3AC^2)} \,,\\
-    \scalemath{0.9}{(0,
+    \phi_3(P) &=
+    \scalemath{0.9}{
+    (0,
      -A^2C,
      -2ABC,
      -3CB^2,
@@ -511,7 +522,7 @@ Written as vectors, they are
      2ABC,
      C(2B^2-C^2),
      3BC^2)} \,.
-  \end{gathered}
+  \end{aligned}
 \end{equation}
 %
 More generally, if $P_1, \dotsc, P_n$ are points in the plane, we denote by $\Phi(P_1, \dotsc, P_n)$ the matrix
@@ -538,30 +549,27 @@ In this way, if $P=(A: B: C)$, we get:
 %
 \begin{equation}
 \label{equation:vector_conditions}
-  \begin{gathered}
-    \phi_1(P) = A\cdot \de_x \mathcal{B}(P) - B\cdot \de_y \mathcal{B}(P) \,, \\
-    \phi_2(P) = A\cdot \de_z \mathcal{B}(P) - C\cdot \de_y \mathcal{B}(P) \,, \\
-    \phi_3(P) = B\cdot \de_z \mathcal{B}(P) - C\cdot \de_y \mathcal{B}(P) \,.
-  \end{gathered}
+  \begin{aligned}
+    \phi_1(P) &= A\cdot \de_x \mathcal{B}(P) - B\cdot \de_y \mathcal{B}(P) \,, \\
+    \phi_2(P) &= A\cdot \de_z \mathcal{B}(P) - C\cdot \de_y \mathcal{B}(P) \,, \\
+    \phi_3(P) &= B\cdot \de_z \mathcal{B}(P) - C\cdot \de_y \mathcal{B}(P) \,.
+  \end{aligned}
 \end{equation}
 %
 \begin{rmk}
 By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of~$\Phi(P)$ is never $\leq 1$. \Cref{equation:vector_conditions} gives the relation
 %
 \begin{equation}
-\label{eq:base}
+\label{eq:syzygy}
   C \, \phi_1(P) - B \, \phi_2(P) + A \, \phi_3(P) = 0 \,.
 \end{equation}
 %
-Therefore,
-among the three vectors~$\phi_1(P)$, $\phi_2(P)$, and~$\phi_3(P)$, at most two of them are linearly independent and the matrix~$\Phi(P)$ has rank~$2$.
-
+Therefore, at most two of the vectors~$\phi_1(P)$, $\phi_2(P)$, and~$\phi_3(P)$ are linearly independent and the matrix~$\Phi(P)$ has rank~$2$.
 As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
 %
-\begin{equation}
-\label{eq:bound_rank}
+\[
   \rk \,\Phi(P_1, \dots, P_n) \leq \min \left\{2n, 10 \right\} \,.
-\end{equation}
+\]
 %
 \end{rmk}
 
@@ -570,19 +578,20 @@ As a consequence, if $P_1, \dots, P_n$ are $n$ points of the plane, we have:
 In what follows, we want to study the possible values of the rank of the matrix
 $\Phi(P_1, \dots, P_n)$ for several configurations of points $P_1, \dots, P_n$
 (and several values of $n$).
-In particular, we will study the ideal~$J_k$ of order $k$ minors of the
-involved matrix and we will deduce some bounds about the rank from the possible primary
-decompositions of the ideal~$J_k$. Most of these computations are done
-with the aid of a computer algebra system. Nevertheless, in many cases,
-the result cannot be reached just by brute force, but it is necessary to
-make some preprocessing on the ideal~$J_k$. In particular, it turns out that
-it is often convenient to first saturate the ideal~$J_k$ with respect to
-the distinct point condition or that three of them are not aligned (when this is the
-case). Another important simplification that we adopt sometimes, makes use
+In particular, we study the ideal~$J_k$ of order $k$ minors of the
+involved matrices of conditions and we deduce some bounds about the rank from the primary
+decomposition of~$J_k$. 
+Most of these computations are done with the aid of a computer algebra system.
+Nevertheless, in many cases, the result cannot be reached just by brute force, 
+but it is necessary to preprocess the ideal~$J_k$. 
+In particular, it is often convenient to first saturate the ideal~$J_k$ with respect to
+the condition that some points are distinct or that three of them are not aligned 
+(when this is the case). 
+Another important simplification that we adopt sometimes, makes use
 of the action of~$\SO_3(\C)$: thanks to it we can assume that one of
 the point is either $(1: 0: 0)$ or $(1: \iii: 0)$; see \Cref{two_orbits}.
 
-We start with the following lemma, which will be extremely useful
+We start with the following lemma, which is extremely useful
 to speed up the computations.
 
 \begin{lemma}
@@ -607,7 +616,7 @@ Then
 hence $(A: B: C) = \bigl( \det(L_1): \det(L_2): \det(L_3) \bigr)$.
 \end{lemma}
 \begin{proof}
-The thesis easily follows from the equality $C w_1 - B w_2 + A w_3 = 0$, which is a direct consequence of \Cref{eq:base}.
+The statement easily follows from the equality $C w_1 - B w_2 + A w_3 = 0$, which is a direct consequence of \Cref{eq:syzygy}.
 \end{proof}
 
 \Cref{lemma:minors} justifies the following choice.
@@ -617,24 +626,30 @@ The thesis easily follows from the equality $C w_1 - B w_2 + A w_3 = 0$, which i
 For $n$ points $P_1, \dotsc, P_n$ in the plane, the \emph{cut matrix of conditions} of $P_1, \dotsc, P_n$ is the submatrix of~$\Phi(P_1, \dotsc, P_n)$ whose rows are $\phi_1(P_1), \phi_2(P_1), \dotsc, \phi_1(P_n), \phi_2(P_n)$.
 \end{definition}
 
-Next, we point out a property of the lines, which are tangent to the absolute conic~$\iso$.
-First of all we fix a notation that will be used throughout the paper.
-If $P_i = (A_i: B_i: C_i)$ and $P_j = (A_j: B_j: C_j)$, we set
+Next, we point out a property of the lines that are tangent to the absolute conic~$\iso$.
+First of all, we fix some notation that is used throughout the paper.
+
+\begin{definition}
+We define a bihomogeneous polynomial of bidegree~$(1,1)$ on $\p^2 \times \p^2$: for $P_i = (A_i: B_i: C_i)$ and $P_j = (A_j: B_j: C_j)$, we set
 %
 \[
   s_{ij} = \scl{P_i}{P_j} = A_i A_j + B_i B_j + C_i C_j
 \]
 %
+\end{definition}
 
 \begin{definition}
 \label{definition:sigma}
 We define a bihomogeneous polynomial of bidegree~$(2,2)$ on $\p^2 \times \p^2$: for $P_1 = (A_1: B_1: C_1)$ and $P_2 = (A_2: B_2: C_2)$, we set
 %
-\begin{eqnarray}
+\begin{equation}
 \label{formula:sigma}
-  \sigma(P_1, P_2) &=& \scl{P_1}{P_1} \scl{P_2}{P_2} - \scl{P_1}{P_2}^2 \\
-   & = & s_{11}s_{22}-s_{12}^2
-\end{eqnarray}
+\begin{aligned}
+  \sigma(P_1, P_2) &= \scl{P_1}{P_1} \scl{P_2}{P_2} - \scl{P_1}{P_2}^2 \\
+   &= s_{11}s_{22}-s_{12}^2
+\end{aligned}
+\end{equation}
+%
 \end{definition}
 
 \begin{rmk}
@@ -713,8 +728,7 @@ Indeed, consider the matrix~$M$ constructed with the following six rows:
   \phi_{k_1}(P_3), \ \phi_{k_2}(P_3)
 \]
 %
-where $i_1 \not= i_2 \in \{1, 2, 3\}$; $j_1 \not= j_2 \in \{1, 2, 3\}$;
-$k_1 \not= k_2 \in \{1, 2, 3\}$.
+where $i_1, i_2, j_1, j_2, k_1, k_2 \in \{1, 2, 3\}$ with $i_1 \neq i_2$, $j_1 \neq j_2$, and $k_1 \neq k_2$.
 First, assume that $i_1=j_1=k_1=1$ and $i_2=j_2=k_2=2$.
 Fix six columns $1\leq l_1 < \cdots < l_6 \leq 10$ of~$M$ and let $N$ be the order~$6$ matrix obtained from~$M$ with these columns.
 Since two rows of $N$ are obtained from
@@ -726,16 +740,15 @@ Again by \Cref{lemma:minors}, we also see that if we take different values of $i
 the corresponding~$\det(N)$ is of the form $X_1X_2X_3\cdot D$ where
 $X_1$ is a coordinate of~$P_1$, $X_2$ is a coordinate of~$P_2$, and $X_3$ is
 a coordinate of~$P_3$ (and $D$ is the same as above).
-Since each of the three
-points have at least one non-zero coordinate, if the order six minor
-constructed with the columns $l_1, \dots, l_6$ is zero, then necessarily $D$
-must be zero. In this way, to force all order~$6$ minors of~$\Phi(P_1, P_2, P_3)$ to be zero, it is enough to compute the
-ideal of the order six minors of the matrix $M$ above and divide each
-minor by $A_1A_2(u_1A_1+u_2A_2)$. By this procedure, after
-a saturation w.r.t.\ the condition that $P_1$, $P_2$, and $P_1, P_3$ and
-$P_2$, $P_3$ are distinct, we get an ideal that has
-a very simple primary decomposition, which is given by the following three
-ideals:
+Since each of the three points has at least one non-zero coordinate,
+if the order six minor constructed with the columns $l_1, \dots, l_6$ is zero, 
+then necessarily $D$ must be zero. 
+In this way, to force all order~$6$ minors of~$\Phi(P_1, P_2, P_3)$ to be zero,
+it is enough to compute the ideal of the order six minors of the matrix~$M$ above
+and divide each minor by $A_1A_2(u_1A_1+u_2A_2)$. 
+By this procedure, after a saturation w.r.t.\ the condition that $P_1, P_2, P_3$ are pairwise distinct,
+we get an ideal that has a very simple primary decomposition, 
+given by the following three ideals:
 %
 \[
   \bigl( \scl{P_i}{P_1}, \scl{P_i}{P_2}, \scl{P_i}{P_3} \bigr) \quad
@@ -744,7 +757,8 @@ ideals:
 %
 As a consequence, the line~$r$ is tangent to~$\iso$
 (in $P_1$ or $P_2$ or $P_3$).
-It is not difficult to see via a symbolic computation that it is not possible that all the order~$4$ minors of~$\Phi(P_1, P_2, P_3)$ are zero.
+It is not difficult to see, via a symbolic computation,
+that at least one order~$4$ minor of~$\Phi(P_1, P_2, P_3)$ is non-zero.
 \end{proof}
 
 \begin{prop}
@@ -755,7 +769,7 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 \begin{itemize}
   \item $5 \leq \rk \,\Phi(P_1, P_2, P_4) \leq 6$;
   \item if
-  $\rk \,\Phi(P_1, P_2, P_4) = 5$, then $P_1, P_2, P_4$
+  $\rk \, \Phi(P_1, P_2, P_4) = 5$, then $P_1, P_2, P_4$
   are aligned and the line joining them is tangent to~$\iso$
   in one of the three points.
 \end{itemize}
@@ -764,9 +778,9 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 \begin{proof}
 By \Cref{two_orbits}, we can split the proof into two parts, considering the case in
 which $P_4 = (1: 0: 0)$ and the case in which $P_4 = (1: \iii: 0)$.
-In both cases, the computation of the ideal of order~$5$ minors of the matrix~$\Phi(P_1, P_2, P_4)$ and its saturation w.r.t.\ the distinct point condition gives the whole ring, so the matrix cannot have rank smaller than~$5$.
-Moreover the computation
-of the ideal of the order~$6$ minors of~$\Phi(P_1, P_2, P_4)$ and its
+In both cases, the computation of the ideal of order~$5$ minors of the matrix~$\Phi(P_1, P_2, P_4)$ and its saturation w.r.t.\ the distinct point condition gives the whole ring,
+so $\Phi(P_1, P_2, P_4)$ cannot have rank smaller than~$5$.
+Moreover, the computation of the ideal of the order~$6$ minors of~$\Phi(P_1, P_2, P_4)$ and its
 saturation w.r.t.\ the distinct point condition gives that
 $P_1, P_2, P_4$ must be aligned and, according to \Cref{proposition:three_aligned_ranks},
 that line is tangent to~$\iso$ in one of the three given points.
@@ -817,13 +831,15 @@ We proceed to prove the second item.
 We take the cut matrix of conditions of~$Q_1, Q_2, Q_3$, to which we add the row~$\phi_1(Q_4)$.
 We call this matrix~$M_1$.
 Similarly, we construct the matrices $M_2$ and~$M_3$.
-We consider the coordinates of the points as variables and we compute
-the ideal $J_1$, the radical of the ideal of the maximal minors of $M_1$; similarly, we obtain $J_2$ and~$J_3$.
+We consider the coordinates of the points as variables and we compute the ideal~$J_1$,
+the radical of the ideal of the maximal minors of $M_1$, namely, the order~$7$ minors;
+similarly, we obtain $J_2$ and~$J_3$.
 The saturation of the ideal sum $J_1 + J_2 + J_3$ by the distinct point condition is a principal ideal generated by~$\sigma(r)$.
 Since the four points $Q_1, \dotsc, Q_4$ play symmetric roles, the statement is proven.
 \end{proof}
 
-In a similar way, it is possible to generalize the above proposition:
+\Cref{proposition:four_aligned} can be generalized:
+
 \begin{prop}
 \label{proposition:n_aligned}
 Let $Q_1, \dotsc, Q_r$ be $r\geq 4$ distinct aligned points of the plane and
@@ -844,8 +860,8 @@ In the following, we denote by~$P \vee Q$ the line through two distinct points~$
 
 \begin{definition}
 \label{definition:delta1}
-Let $P_1$, $P_2$ and~$P_4$ be distinct points in the plane.
 We define the homogeneous polynomial of degree~$(2,1,1)$ on $\p^2 \times \p^2 \times \p^2$:
+if $P_i = (A_i: B_i: C_i)$ for $i \in \{1, 2, 4\}$, we set
 %
 \[
   \delta_1(P_1, P_2, P_4) :=
@@ -860,7 +876,6 @@ where $\times$ denotes the cross product, i.e.,
   (B_1 C_2 - C_1 B_2, \, C_1 A_2 - A_1 C_2, \, A_1 B_2 - B_1 A_2) \,.
 \]
 %
-and $P_1 = (A_1: B_1: C_1)$ and similarly for $P_2$ and $P_4$.
 \end{definition}
 
 \begin{rmk}
@@ -2189,7 +2204,7 @@ $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has no aligned triples of eige
 %  The variety~$\Delta$ has dimension~$7$ and it is the union of two irreducible components~$\Delta_1$ and~$\Delta_2$.
 %\end{prop}
 
-In what follows, we will use the following notation: if $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
+In what follows, we use the following notation: if $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
 to a cubic form~$f$, we denote by
 %
 $$
@@ -2241,7 +2256,7 @@ The degree of $\sL$ is equal to
 We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics
 $\Lambda_f = \left\langle g_1, g_2, g_3 \right\rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net~$\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
-To determine the degree of $\sL$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we will compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
+To determine the degree of $\sL$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
 
 To this aim, denote by $\mathcal{T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is~$6$ and its degree is~$15$,
 see for instance \cite[Section~2.2.2]{3264}. We now consider the variety~$\mathcal{N}$ from \Cref{lemma:scroll}.
@@ -2272,73 +2287,22 @@ Let $C = V(f) \subset \p^2$ be a cubic curve.
 Assume that $\dim \Eig{f} = 1$.
 %
 \begin{enumerate}
-  \item If the $1$-dimensional component of $\Eig{f}$ is a line~$L$,
+  \item If the $1$-dimensional component of $\Eig{f}$ is a line~$l$,
   then the residual subscheme $Z := \mathrm{Res}_l \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$l$ has degree~$3$.
   \item If the $1$-dimensional component of $\Eig{f}$ is a conic~$q$,
   then the residual subscheme $Z := \mathrm{Res}_q \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
 \end{enumerate}
 %
 \end{prop}
-\begin{proof}
-(1)
-Let $g_1$, $g_2$, and $g_3$ be the order~$2$ minors determining the eigenscheme of~$f$.
-Since $g_1$, $g_2$, and $g_3$ have a common linear component~$l$, by writing
-\[
- g_i = l \, h_i, \quad i=1,2,3
-\]
-we have that $\mathcal{I}_{Z, \p^2} = \mathcal{I}_{\Eig{F}), \p^2} (-1)$
-fits in the exact sequence
-\[
- 0 \to \mathcal{G} \to \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \to \mathcal{I}_{Z,\p^2} \to 0 \,,
-\]
-where $\mathcal{G}$ is a rank two reflexive sheaf by \cite[Proposition 1]{Hartshorne1980}.
-But on a smooth surface reflexive implies locally free (see \cite[Example~1.1.6]{Huybrechts2010}),
-so $\mathcal{G}$ is a rank two vector bundle.
 
-Next we observe that the two independent
-syzygies between the generators $g_i$ give rise to the syzygies:
-\[
-z\, h_1 - y\, h_2 + x\, h_3 = 0, \qquad \partial_z f\, h_1 - \partial_y f \, h_2 + \partial_x f \ h_3=0 \,,
-\]
-which occur in degrees $3$ and $4$. We claim that the two relations are independent, again,
-otherwise the $g_i$'s would be identically zero. So we apply \cite[Proposition~12]{Ellia2020}, and we have that $\mathcal{G}$ splits. Observe that as $c_1(\mathcal{I}_{Z,\p^2})=0$, we have $c_1(\mathcal{G})=-6$. Moreover, there is no syzygy in degree~$2$, since
-otherwise the $h_i$ would be linearly dependent, so the $h_i$ would belong to a pencil, which is a contradiction \textbf{(giustificare)}.
-
-It follows that the splitting of $\mathcal{G}$ is of the form
-%
-\[
-  \mathcal{G} \cong \oo_{\p^2} (-3) \oplus \oo_{\p^2} (-3) \,.
-\]
-%
-We get the free resolution of the ideal sheaf:
-%
-\[
-  0\to \oo_{\p^2} (-3)\oplus \oo_{\p^2} (-3) \to 3\oo_{\p^2} (-2)\to \mathcal{I}_{Z,\p^2} \to 0 \,.
-\]
-%
-Moreover
-%
-\[
-  c_2 (\mathcal{I}_{Z,\p^2} ) = c_2 \bigl( 3\oo_{\p^2}(-2) \bigr) - c_2 (\mathcal{G}) = 12 - 9 = 3 \,,
-\]
-%
-and $h^0 \bigl( \mathcal{I}_{Z,\p^2}(1) \bigr) = 0$, which proves the first statement.
-
-\medskip
-(2) is similar, to be completed.
-\end{proof}
-
-\blue{
-The proof relies on the exactness of the Kozsul complex associated with the regular sequence $x,y,z$, specifically we will use the following result (see \cite[Theorem 7.3.13]{Dolgachev} or \cite[Lemma 3.9]{BGV}).
-
-
+The proof relies on the exactness of the Koszul complex associated with the regular sequence $x,y,z$, specifically we use the following result (see \cite[Theorem 7.3.13]{Dolgachev} or \cite[Lemma 3.9]{BGV}).
 
 \begin{lemma}
-\label{lem:Kozsul}
+\label{lem:Koszul}
 Let $h_1,h_2,h_3\in\C[x,y,z]_d$ with $d \ge 1$. Then
 %
 \begin{equation}
-\label{relazione lineare}
+\label{eq:linear_relazion}
   xh_1-yh_2+zh_3 = 0
 \end{equation}
 %
@@ -2354,8 +2318,8 @@ if and only if there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that
 \end{lemma}
 
 \begin{proof}
-If $h_1,h_2,h_3$ satisfy \Cref{eq: minors lemma}, then it is immediate to check that they satisfy \Cref{relazione lineare} as well. 
-Conversely, assume that \Cref{relazione lineare} holds and let $R = \C[x,y,z]$.
+If $h_1,h_2,h_3$ satisfy \Cref{eq: minors lemma}, then it is immediate to check that they satisfy \Cref{eq:linear_relazion} as well. 
+Conversely, assume that \Cref{eq:linear_relazion} holds and let $R = \C[x,y,z]$.
 The Koszul complex in the ring~$R$ is an exact sequence of $R$-modules
 %
 $$
@@ -2364,7 +2328,7 @@ $$
 %
 where the maps are $\alpha(p) = (p x, p y, p z)$, $\gamma (w_1,w_2,w_3) = w_1 x + w_2 y + w_3 z$ and $\beta$ is defined by the matrix
 %
-$$
+\[
   \left(
   \begin{array}{ccc}
     0 & -z & y\\
@@ -2372,7 +2336,7 @@ $$
     -y & x & 0 \\
   \end{array}
   \right) \,.
-$$
+\]
 %
 The syzygy $xh_1-yh_2+zh_3=0$ implies that $(h_1, -h_2, h_3)$ is in the kernel of $\gamma$, and since the Koszul complex is exact, the triple $(h_1,-h_2, h_3)$ lies in the image of $\beta$. It follows that there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that \Cref{eq: minors lemma} holds.
 \end{proof}
@@ -2396,7 +2360,7 @@ syzygy between the generators~$g_i$ gives rise to the syzygy:
   z\, h_1 - y\, h_2 + x\, h_3 = 0 \,.
 \]
 %
-By \Cref{lem:Kozsul}, the triple $(h_1,h_2,h_3)$ is the triple of order two minors of a matrix
+By \Cref{lem:Koszul}, the triple $(h_1,h_2,h_3)$ is the triple of order two minors of a matrix
 %
 \[
   \begin{pmatrix}
@@ -2410,7 +2374,7 @@ By the assumption that $g$ is the greatest common factor of the three minors $g_
 we have that the zero scheme of $(h_1,h_2,h_3)$ is $0$-dimensional, and
 by \Cref{thm:nonempty} its degree is~$3$ if $r=1$, and the degree is~$1$ if $r=0$.
 \end{proof}
-}
+
 
 \begin{es}
 Consider
@@ -2485,30 +2449,36 @@ $C(r)$.
 \end{lemma}
 \begin{proof}
 %% file: lemma_twoTangentsCiso.sage 
-A generic point on $\iso$ is $(\lambda^2 + \mu^2, 
-\iii\lambda^2 -\iii\mu^2, 2\iii\lambda \mu)$, hence we can use this
-formula to define two points $P_1$ and $P_2$ on $\iso$, compute the 
-line $r$ which join the two points and define $C(r)$. It is easy to 
-see that the two tangents to $\iso$ in $P_1$ and $P_2$ are eigenpoints
-for $C(r)$.
+A generic point on $\iso$ is of the form $(\lambda^2 + \mu^2, 
+\iii\lambda^2 -\iii\mu^2, 2\iii\lambda \mu)$ for $(\lambda: \mu) \in \p^1$.
+By using this description, we can write two points~$P_1$ and~$P_2$ on~$\iso$,
+compute the line $r$ joining them and define $C(r)$.
+It is then easy to see that the two tangents to~$\iso$ in~$P_1$ and~$P_2$ are eigenpoints
+for~$C(r)$.
 \end{proof}
 
 \begin{prop}
 \label{prop:eigenline_non_tangent}
-Given a line~$t$ of the plane, if $t$ is not tangent to the 
-isotropic conic, a cubic has $t$ among its eigenpoints if and 
-only if it is of the form $t^2\ell$, where $\ell$ is any line of the 
-plane. \\ 
-If $t$ is tangent to the isotropic conic (in a point $P$), a cubic has $t$ 
-among its eigenpints if and only if it is of the form
-\begin{equation}
-\label{cubiche_con_retta_autop_tg}
-  t^2 \ell+\lambda C(r_0),
-\end{equation}
+Let $t$ be a line in the plane.
 %
-where $\ell$ is any line of the plane, $\lambda \in \C$, 
-$r_0$ is any fixed line passing through $P$ and $C(r_0)$ is
-defined by \Cref{2_lines_of_eigenpoints}. 
+\begin{itemize}
+   \item 
+   If $t$ is not tangent to the isotropic conic, a cubic~$C$ has $t$ among its eigenpoints if and 
+only if it is of the form $C = t^2\ell$, where $\ell$ is any line of the plane.
+  \item 
+  If $t$ is tangent to the isotropic conic~$\iso$ (in a point~$P$), a cubic~$C$ has $t$ 
+among its eigenpoints if and only if it is of the form
+  %
+  \begin{equation}
+  \label{cubiche_con_retta_autop_tg}
+    C = t^2 \ell+\lambda C(r_0),
+  \end{equation}
+  %
+  where $\ell$ is any line of the plane, $\lambda \in \C$, 
+  $r_0$ is any fixed line passing through $P$ and $C(r_0)$ is
+  defined by \Cref{2_lines_of_eigenpoints}.
+\end{itemize}
+%
 \end{prop}
 \begin{proof}
 %% file: una_retta_tg_autop.sage
@@ -2561,29 +2531,35 @@ in~(\ref{cubiche_con_retta_autop_tg})?
 %
 \begin{prop}
 \label{prop:limitCubics}
-Any cubic which in the eigenscheme has a line $t$ is the limit of a family of cubics where the general member has a $0$-dimensional eigenscheme with an aligned triple.
+Any cubic that has a line~$t$ in the eigenscheme the limit of a family of cubics whose general member has a $0$-dimensional eigenscheme with an aligned triple.
 \end{prop}
 \begin{proof}
 %% file cubic_limit.sage
-In case the line $t$ is not tangent to $\iso$, we can assume it is the line $z=0$. We fix on it the three points 
+If the line~$t$ is not tangent to $\iso$, we can assume it is the line $z=0$. We fix on it the three points
+%
 \[
-P_1= (1: 0: 0), \ P_2 = (0: 1: 0), \ P_3 = (1: 1: 0)
+  P_1= (1: 0: 0), \ P_2 = (0: 1: 0), \ P_3 = (1: 1: 0)
 \]
+%
 and we consider the three dimensional linear system of 
-cubics $\Lambda\bigl (\Phi(P_1, P_2, P_3) \bigr)$, which is given by
+cubics $\Lambda \bigl( \Phi(P_1, P_2, P_3) \bigr)$, whose elements are of the form
+%
 \[
-C = (ax + by + cz)z^2+d(x^3+y^3), \quad a, b, c, d \in \C
+  C = (ax + by + cz)z^2 + d(x^3+y^3), \quad a, b, c, d \in \C \,.
 \]
-if $d=0$, the cubic $C$ is of the form $t^2\ell$, hence is the 
-generic cubic which has the line $t$ in the eigenscheme. If $d \not= 0$
-we have that the eigenpoints of $C$ different from $P_1, P_2, P_3$ are
+%
+If $d=0$, the cubic $C$ is of the form $t^2 \ell$, hence is the 
+generic cubic that has the line $t$ in the eigenscheme.
+If $d \neq 0$, the eigenpoints of~$C$ different from $P_1, P_2, P_3$ are
 the common zeros of the following three polynomials:
-\begin{eqnarray*}
-    g_1 & = & 3y^2d - 2xya - 2y^2b + z^2b - 3yzc\\
-    g_2 & = & 3x^2d - 2x^2a + z^2a - 2xyb - 3xzc\\
-    g_3 & = & 2x^3ya - 2x^2y^2a + y^2z^2a + 2x^2y^2b -
-     2xy^3b - x^2z^2b + 3x^2yzc - 3xy^2zc
-\end{eqnarray*}
+%
+\begin{align*}
+  g_1 & = 3y^2d - 2xya - 2y^2b + z^2b - 3yzc \,,\\
+  g_2 & = 3x^2d - 2x^2a + z^2a - 2xyb - 3xzc \,,\\
+  g_3 & = 2x^3ya - 2x^2y^2a + y^2z^2a + 2x^2y^2b -
+          2xy^3b - x^2z^2b + 3x^2yzc - 3xy^2zc \,.
+\end{align*}
+%
 In general, the ideal $(g_1, g_2, g_3)$ has $4$ points in 
 general position (@@ \textbf{basta cosi' o bisogna dire di piu'?})\\
 In case the line $t$ is tangent to the isotropic conic, we can 
@@ -2620,8 +2596,8 @@ metterle.
 \Cref{lemma: twoTangentsCiso} can be extended, indeed we have:
 %
 \begin{prop}
-    \label{prop:twoLines}
-    A cubic $C$ of the plane has two distinct lines $t_1$ and $t_2$ in its eigenscheme if and only if $t_1$ and $t_2$ are tangent to the isotropic conic (in two points $P_1$ and $P_2$) and $C= C(r)$ as in \Cref{2_lines_of_eigenpoints}, where $r = P_1 \vee P_2$.
+\label{prop:twoLines}
+A cubic $C$ of the plane has two distinct lines $t_1$ and $t_2$ in its eigenscheme if and only if $t_1$ and $t_2$ are tangent to the isotropic conic (in two points $P_1$ and $P_2$) and $C= C(r)$ as in \Cref{2_lines_of_eigenpoints}, where $r = P_1 \vee P_2$.
 \end{prop}
 %
 \begin{proof}
@@ -2629,16 +2605,16 @@ Suppose $t_1$ and $t_2$ are two lines which are contained in the eigenschemes of
 \end{proof}
 
 
-
 \subsection{Eigenschemes containing an irreducible conic}
+
 \begin{lemma}
 \label{lemma:fourOnIso}
 Suppose $P_1, P_2, P_3, P_4$ are four distinct points on $\iso$ and let
-$C$ be a cubic such that has $P_1, \dots, P_4$ among its eigenpoints.
-Then all the points of $\iso$ are eigenpoints and $C$ splits into $\iso$
-and a line~$r$. In particular, if four
-distinct points of~$\iso$ are eigenpoints of a cubic, then all the
-points of~$\iso$ are eigenpoints of the cubic.
+$C$ be a cubic that has $P_1, \dots, P_4$ among its eigenpoints.
+Then all the points of~$\iso$ are eigenpoints of~$C$ 
+and $C$ splits into the union of~$\iso$ and a line~$r$.
+In particular, if four distinct points of~$\iso$ are eigenpoints of a cubic,
+then all the points of~$\iso$ are eigenpoints of the cubic.
 \end{lemma}
 \begin{proof}
 %% file eigenpointsConic.sage
@@ -2655,8 +2631,7 @@ are the linear system given by $\Lambda (M)$, where $M = \Phi(P_1, P_2, P_3, P_4
 It can be verified that the rank of~$M$ is $7$, hence $\Lambda(M)$ is a linear variety of $\p^9$ of dimension~$2$, but all the cubics which split into~$\iso$ and a line
 of the plane do have all the points of~$\iso$ among the eigenpoints and
 these cubics give a linear variety of dimension~$2$ in $\p^9$
-which therefore coincides 
-with~$\Lambda(M)$.
+which therefore coincides with~$\Lambda(M)$.
 \end{proof}
 
 \begin{lemma}
@@ -2782,7 +2757,7 @@ it in our analysis.
 
 \underline{Configuration $(C_1)$} can be realized. \Cref{proposition:three_aligned_ranks} and \Cref{locus_one_alignment}
 give a description of the cubics with such a configuration of points:
-we fix two points~$P_1$ and~$P_2$ in $\p^2$, we take a generic~$P_3$
+we fix two points~$P_1$ and~$P_2$ in~$\p^2$, we take a generic~$P_3$
 on the line~$P_1 \vee P_2$, all the cubics with
 $P_1, P_2, P_3$ eigenpoints is given by $\Lambda \bigl( \Phi(P_1, P_2, P_3) \bigr)$, the three
 dimensional linear subspace of $\p^9$ (four dimensional, if the
@@ -2814,19 +2789,19 @@ $V$-configuration that satisfies a $\delta_2$ condition.
 \end{lemma}
 \begin{proof}
 %% la dim si trova in config3.sage
-The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration. If
-$\rk \, \Phi(P_1, \dots, P_5) = 8$, the result comes from~\Cref{rank_8}.
-Therefore, assume that the matrix $\Phi(P_1, \dots, P_5)$ has
-rank~$9$. If
-$\delta_2(P_1, \dots, P_5) = 0$, we have the thesis, otherwise,
-$\delta_1(P_1, P_2, P_4) = 0$. Then consider the $V$-configuration
-$P_1, P_2, P_3, P_6, P_7$. As above, we suppose $\delta_1(P_1, P_2, P_6) = 0$.
+The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration.
+If $\rk \, \Phi(P_1, \dots, P_5) = 8$, the result follows from~\Cref{rank_8}.
+Therefore, assume that the matrix $\Phi(P_1, \dots, P_5)$ has rank~$9$.
+If $\delta_2(P_1, \dots, P_5) = 0$, we have the thesis;
+otherwise, $\delta_1(P_1, P_2, P_4) = 0$.
+Then consider the $V$-configuration $P_1, P_2, P_3, P_6, P_7$.
+As above, we suppose $\delta_1(P_1, P_2, P_6) = 0$.
 The two equations obtained from the two $\delta_1$ give two
-linear equations in the coordinates
-of~$P_2$. Assuming the matrix of the system of linear equations have
+linear equations in the coordinates of~$P_2$.
+Assuming the matrix of the system of linear equations have
 maximal rank, the solution gives a point $P_2$ that coincide, as
-a projective point, to $P_1$, which is impossible. Hence we are forced to
-consider the
+a projective point, to $P_1$, which is impossible.
+Hence we are forced to consider the
 case in which the matrix of the linear system does not have maximal rank.
 This condition implies that $\scl{P_1}{P_1} = 0$, hence $P_1$ is on the
 isotropic conic. W.l.o.g.\ we can assume $P_1 = (1: \iii: 0)$ and again
@@ -2872,7 +2847,7 @@ which implies
 \begin{prop}
 \label{proposition:condition_5}
 %\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
-Suppose we have $7$ points which are eigenpoints of a cubic and are in a strict $(C_5)$ configuration.
+Suppose we have $7$ points which are eigenpoints of a cubic and are in a strict~$(C_5)$ configuration.
 Then it holds
 %
 \[
@@ -2909,28 +2884,32 @@ $s_{12} = s_{14}=s_{16}=0$. In particular, we see that $P_1 = P_2 \times P_4$.
 
 To prove \Cref{cndC5}, we take $P_2$ and $P_4$ generic,
 $P_1 = P_2 \times P_4$ and $P_3$, $P_5$, $P_6$ generic points on the lines
-$P_1 \vee P_2$, $P_1 \vee P_4$, $P_2 \vee P_4$, respectively. The matrix
-$M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller), hence, in order to see when $P_6$ is an eigenpoints, we have to see when all the order $10$-minors are zero, but their computation takes too much time, so we need another
-strategy: we select
-only one non zero order~$10$ minor of~$M$; it is a polynomial which
-factorizes into
-several factors (many of them consequence of the specific minor chosen) and a factor which involves the variables used in the definition
-of the points (call it $f$). We claim it is zero if and only if the
-rank of $M$
-is smaller than $10$. In order to see this, we specialize the point $P_1$
+$P_1 \vee P_2$, $P_1 \vee P_4$, $P_2 \vee P_4$, respectively. 
+The matrix $M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller), 
+hence, in order to see when $P_6$ is an eigenpoints,
+we have to see when all the order $10$-minors are zero
+Their computation takes too much time, so we need another strategy:
+we select only one non zero order~$10$ minor of~$M$; 
+it is a polynomial which factorizes into several factors 
+(many of them consequence of the specific minor chosen) 
+and a factor which involves the variables used in the definition
+of the points (call it $f$). 
+We claim that the factor~$f$ is zero if and only if the rank of $M$ is smaller than $10$.
+In order to see this, we specialize the point $P_1$
 into the point $(1:0:0)$. In this situation the order $10$ minors of $M$
 (specialized on this point $P_1$) are easy to compute and we can
 verify they are zero if and only if the polynomial $f$, specialized
-on the point $(1:0:0)$, is zero. To complete the proof of the claim, we should
-also take for $P_1$ the point $(1:\iii:0)$, but this is not necessary, since
-the configuration of the points implies that $\scl{P_1}{P_1}=0$ and
-this is not
-possible. A manipulation of the polynomial $f$ gives that it is equal to 
+on the point $(1:0:0)$, is zero. 
+To complete the proof of the claim, 
+we should also take for $P_1$ the point $(1:\iii:0)$;
+however, this is not necessary, since the configuration of the points implies that $\scl{P_1}{P_1}=0$ and
+this is not possible. 
+A manipulation of the polynomial~$f$ gives that it is equal to 
 $\bigl((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15})\bigr)/s_{11}$,
 hence the points $P_1, \dots, P_6$ are eigenpoints if and only if \Cref{cndC5} is satisfied.
 
 If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1 \, P_2 + w_2 \, P_4$,
-we find $w_1$ and $w_2$, which give \Cref{p6formula}.
+we find~$w_1$ and~$w_2$, which give \Cref{p6formula}.
 
 Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with $P_1$ and $P_6$.
 \end{proof}
@@ -2949,9 +2928,20 @@ strict but, in the case of $\rk \, \Phi(P_1, \dotsc, P_5) = 9$, there are sub-ca
 \end{prop}
 %
 \begin{proof}
-    First we suppose that $\rk \, \Phi(P_1, \dotsc, P_5) = 9$. We fix generic coordinates for the points. Since $P_1 = P_2 \times P_4$ implies $s_{12}=s_{14}=0$, we have that $\delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. It follows from \Cref{proposition:third_alignment} that the corresponding unique cubic having such $5$ points as eigenpoints has $P_6$ and $P_7$ aligned with~$P_1$. Suppose now that $P_6$ is given by \Cref{p6formula}. In order to see if it is an eigenpoint, it is enough to select nine linearly independent rows from $\Phi(P_1, \dotsc, P_5)$
-and to compute the determinant of the three order $10$ matrices whose rows are the nine rows above plus $\phi_1(P_6)$, $\phi_2(P_6)$ and 
-$\phi_3(P_6)$ respectively. Since we obtain that these three determinants are zero, we get that $\rk \, \Phi(P_1, \dotsc, P_6) = 9$. A similar argument shows that $P_7$ is given by \Cref{p7formula}. A random example shows that, in general, there are no further collinearities among the points. If we impose that $(P_2, P_5, P_7)$ are aligned, we get that this condition splits into two cases: one imposes the collinearity of $(P_3, P_4, P_7)$, the other imposes that the collinearity of $(P_3, P_5, P_6)$, hence we get two $(C_8)$ configurations. Similarly for the other two cases. 
+First we suppose that $\rk \, \Phi(P_1, \dotsc, P_5) = 9$.
+We fix generic coordinates for the points.
+Since $P_1 = P_2 \times P_4$ implies $s_{12}=s_{14}=0$,
+we have that $\delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. 
+It follows from \Cref{proposition:third_alignment} that the corresponding unique cubic having such $5$ points as eigenpoints has $P_6$ and $P_7$ aligned with~$P_1$.
+Suppose now that $P_6$ is given by \Cref{p6formula}.
+In order to see if it is an eigenpoint, it is enough to select nine linearly independent rows from $\Phi(P_1, \dotsc, P_5)$
+and to compute the determinant of the three order $10$ matrices whose rows are the nine rows above plus $\phi_1(P_6)$, $\phi_2(P_6)$ and $\phi_3(P_6)$ respectively.
+Since we obtain that these three determinants are zero, we get that $\rk \, \Phi(P_1, \dotsc, P_6) = 9$.
+A similar argument shows that $P_7$ is given by \Cref{p7formula}.
+A random example shows that, in general, there are no further collinearities among the points.
+If we impose that $(P_2, P_5, P_7)$ are aligned, we get that this condition splits into two cases:
+one imposes the collinearity of $(P_3, P_4, P_7)$, the other imposes that the collinearity of $(P_3, P_5, P_6)$,
+hence we get two $(C_8)$ configurations. Similarly for the other two cases. 
 
 If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$ and $P_1 = P_2 \times P_4$, we have that $s_{12} = s_{14} = 0$, so the $V$-configuration cannot satisfies \Cref{rk8_1}, since we would have \Cref{rmk_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
 from the results of \Cref{rank_8} we have that $P_1 \vee P_2$ and $P_1 \vee P_4$ are tangent to the isotropic conic in~$P_2$ and~$P_4$. Hence $s_{22}, s_{44}, s_{23}, s_{45}$ are all zero and \Cref{p6formula} and \Cref{p7formula} specialize to \Cref{formuleP6_P7}; finally, \Cref{prop:rk8_2B} shows that the points are in a $(C_5)$ configuration.
@@ -2985,8 +2975,10 @@ hence \Cref{rmk:three_orthog} gives that the $(C_5)$ configuration obtained in \
 
 %% conti nel file config5.sage.
 
-The strict configurations $(C_6)$ and $(C_7)$ cannot be realized by eigenpoints. Indeed, if we consider suitable ideals given by the conditions
-$\delta_1$ and $\delta_2$ that must be satisfied by the points of the two configurations, we get that there are no compatible solutions.
+The strict configurations $(C_6)$ and $(C_7)$ cannot be realized by eigenpoints.
+Indeed, if we consider suitable ideals given by the conditions
+$\delta_1$ and $\delta_2$ that must be satisfied by the points of the two configurations,
+we get that there are no compatible solutions.
 
 \underline{Configuration (8)} Is realizable.  
 %% file config8N2.sage+
@@ -3010,6 +3002,7 @@ Suppose now that the points $P_1, \dotsc, P_7$ are in the $(C_8)$
 configuration above and are eigenpoints. Here we also assume that the 
 associated matrix of any 
 $V$-configuration contained in $(C_8)$ is of rank $9$. Then:
+
 \begin{lemma}
 \label{lemma:three_s_zero}
     Let $A, B, C$ be three points in the set $\{P_1, P_2, P_4, P_7\}$
@@ -3017,25 +3010,30 @@ $V$-configuration contained in $(C_8)$ is of rank $9$. Then:
 \end{lemma}
 \begin{proof}
 %% vedi file config8N2.sage
-{}From the symmetry of the points, we can assume that $A=P_1$, $B=P_2$, 
+From the symmetry of the points, we can assume that $A=P_1$, $B=P_2$, 
 $C=P_7$.
 We give to the points $P_1, P_2, P_4, P_7$ arbitrary coordinates 
 in such a way that $s_{12}= s_{17}=0$ and 
 we compute $P_3$ as the intersection of the lines $P_1 \vee P_2$ and 
 $P_4 \vee P_7$. The associated matrix to the $V$-configuration 
 $(P_3, P_1, P_2, P_4, P_7)$ 
-is of rank $9$, hence $\delta_1(P_3, P_1, P_4) = 0$ 
+is of rank~$9$, hence $\delta_1(P_3, P_1, P_4) = 0$ 
 (see~\Cref{theorem:rank_V} and~\Cref{proposition:third_alignment}). 
 Similarly, we determine $P_5$ and $P_6$ and it must hold:
 $\delta_1(P_5, P_1, P_2) = 0$ and $\delta_1(P_6, P_1, P_2) = 0$. To 
 check  that $s_{27} = 0$ we could 
 therefore consider the ideal generated by these three polynomials, but 
 in order to speed up the computations, it is better to first construct
-the ideal 
+the ideal
+%
 \[
-J_1 = \bigl(\delta_1(P_3, P_1, P_4), \delta_1(P_3, P_1, P_7), \
-             \delta_1(P_3, P_2, P_4), \delta_1(P_3, P_2, P_7)\bigr)
+  J_1 = 
+  \bigl(
+    \delta_1(P_3, P_1, P_4), \delta_1(P_3, P_1, P_7),
+    \delta_1(P_3, P_2, P_4), \delta_1(P_3, P_2, P_7)
+  \bigr)
 \]
+%
 and to saturate it w.r.t.\ the condition that $P_2, P_4, P_7$ are not 
 aligned; similarly, construct the ideals $J_2$ and $J_3$ obtained 
 from the $V$-configurations $(P_5, P_1, P_4, P_2, P_7)$ and 
@@ -3091,7 +3089,7 @@ P_6 = (P_1 \vee P_7) \cap (P_2 \vee P_4).
 \]
 Then the points $P_1, \dotsc, P_7$ are in a $(C_8)$ configuration
 and are eigenpoints of a unique cubic 
-of the plane. In particular, we have:
+of the plane. In particular:
 \[
 \scl{P_1 \times P_2}{P_3 \times P_4} = 0, \quad 
 \scl{P_1 \times P_4}{P_2 \times P_5} = 0, \quad 
@@ -3151,7 +3149,7 @@ and
 %
 @@ \textbf{c'e' un'incoerenza con i nomi: eigenvectors, eigenschemes,  eigenpoints. I Qi sono vettori o punti proiettivi?}
 %
-\bibliographystyle{amsalpha}
+\bibliographystyle{alphaurl}
 \bibliography{biblio}
 
 \end{document}
@@ -3280,3 +3278,67 @@ P_7 & = & (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{6
 \end{eqnarray}
 %
 \end{prop}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%VECCHI CONTI PER AUTOSCHEMI 1 DIMENSIONALI
+\begin{prop}
+\label{p2}
+Let $C = V(f) \subset \p^2$ be a cubic curve.
+Assume that $\dim \Eig{f} = 1$.
+%
+\begin{enumerate}
+  \item If the $1$-dimensional component of $\Eig{f}$ is a line~$L$,
+  then the residual subscheme $Z := \mathrm{Res}_l \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$l$ has degree~$3$.
+  \item If the $1$-dimensional component of $\Eig{f}$ is a conic~$q$,
+  then the residual subscheme $Z := \mathrm{Res}_q \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
+\end{enumerate}
+%
+\end{prop}
+\begin{proof}
+(1)
+Let $g_1$, $g_2$, and $g_3$ be the order~$2$ minors determining the eigenscheme of~$f$.
+Since $g_1$, $g_2$, and $g_3$ have a common linear component~$l$, by writing
+\[
+ g_i = l \, h_i, \quad i=1,2,3
+\]
+we have that $\mathcal{I}_{Z, \p^2} = \mathcal{I}_{\Eig{F}), \p^2} (-1)$
+fits in the exact sequence
+\[
+ 0 \to \mathcal{G} \to \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \to \mathcal{I}_{Z,\p^2} \to 0 \,,
+\]
+where $\mathcal{G}$ is a rank two reflexive sheaf by \cite[Proposition 1]{Hartshorne1980}.
+But on a smooth surface reflexive implies locally free (see \cite[Example~1.1.6]{Huybrechts2010}),
+so $\mathcal{G}$ is a rank two vector bundle.
+
+Next we observe that the two independent
+syzygies between the generators $g_i$ give rise to the syzygies:
+\[
+z\, h_1 - y\, h_2 + x\, h_3 = 0, \qquad \partial_z f\, h_1 - \partial_y f \, h_2 + \partial_x f \ h_3=0 \,,
+\]
+which occur in degrees $3$ and $4$. We claim that the two relations are independent, again,
+otherwise the $g_i$'s would be identically zero. So we apply \cite[Proposition~12]{Ellia2020}, and we have that $\mathcal{G}$ splits. Observe that as $c_1(\mathcal{I}_{Z,\p^2})=0$, we have $c_1(\mathcal{G})=-6$. Moreover, there is no syzygy in degree~$2$, since
+otherwise the $h_i$ would be linearly dependent, so the $h_i$ would belong to a pencil, which is a contradiction \textbf{(giustificare)}.
+
+It follows that the splitting of $\mathcal{G}$ is of the form
+%
+\[
+  \mathcal{G} \cong \oo_{\p^2} (-3) \oplus \oo_{\p^2} (-3) \,.
+\]
+%
+We get the free resolution of the ideal sheaf:
+%
+\[
+  0\to \oo_{\p^2} (-3)\oplus \oo_{\p^2} (-3) \to 3\oo_{\p^2} (-2)\to \mathcal{I}_{Z,\p^2} \to 0 \,.
+\]
+%
+Moreover
+%
+\[
+  c_2 (\mathcal{I}_{Z,\p^2} ) = c_2 \bigl( 3\oo_{\p^2}(-2) \bigr) - c_2 (\mathcal{G}) = 12 - 9 = 3 \,,
+\]
+%
+and $h^0 \bigl( \mathcal{I}_{Z,\p^2}(1) \bigr) = 0$, which proves the first statement.
+
+\medskip
+(2) is similar, to be completed.
+\end{proof}
