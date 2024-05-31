@@ -90,8 +90,7 @@
 
 \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
 
-%%\newcommand{\iii}{\textit{i}\,}  <--- @@ piu' bello?
-\newcommand{\iii}{\textbf{i}}
+\newcommand{\iii}{\textit{i}\,}
 
 \definecolor{MyDarkGreen}{cmyk}{0.7,0,1,0}
 \newcommand{\blue}[1]{{\color{blue}[#1]}}
@@ -229,6 +228,8 @@ Here is a description of the content of each section.
 \Cref{positive_dim} classifies positive-dimensional eigenschemes.
 \Cref{further_alignments} examines all the possible configurations of alignments in a $0$-dimensional reduced eigenscheme and establishes which may arise and which not.
 
+\subsection{Notation and conventions}
+@@ Inserire notazioni e discussione dell'omogeneità delle formule.
 
 \section{Aligned eigenpoints of ternary cubic form}
 \label{aligned}
@@ -818,8 +819,8 @@ let $r$ be the line through them. Then:
 %
 \end{prop}
 \begin{proof}
-A symbolic computation shows that all the maximal minors of~$\Phi(Q_1, \dotsc, Q_4)$ are zero, so
-\mbox{$\rk \, \Phi(Q_1, \dotsc, Q_4) \leq 7$}.
+A symbolic computation shows that all the maximal minors of~$\Phi(Q_1, \dotsc, Q_4)$ are zero, so we get 
+$\rk \, \Phi(Q_1, \dotsc, Q_4) \leq 7$.
 Indeed, in view of \Cref{lemma:minors}, we can just check the order~$8$ minors of the cut matrix of conditions of $Q_1, \dotsc, Q_4$;
 it turns out that they are all zero.
 
@@ -860,7 +861,7 @@ In the following, we denote by~$P \vee Q$ the line through two distinct points~$
 
 \begin{definition}
 \label{definition:delta1}
-We define the homogeneous polynomial of degree~$(2,1,1)$ on $\p^2 \times \p^2 \times \p^2$:
+We define a homogeneous polynomial of degree~$(2,1,1)$ on $\p^2 \times \p^2 \times \p^2$:
 if $P_i = (A_i: B_i: C_i)$ for $i \in \{1, 2, 4\}$, we set
 %
 \[
@@ -925,7 +926,7 @@ Then the expressions~$\delta_1$ and~$\delta_2$ become
 %
 \begin{rmk}
 \label{rmk:characteristics_d1_d2}
-\textbf{Verifiche contenute nel file} \verb+formulae.sage+ \\
+\textbf{@@Verifiche contenute nel file} \verb+formulae.sage+ \\
 It holds
 %
 \begin{align}
@@ -1948,18 +1949,16 @@ P_3 = (P_1 \times P_5)s_{16}s_{56}-s_{15}(P_1\times P_6)s_{56}+s_{15}s_{16}(P_5 
 \]
 \end{rmk}
 %
-@@@ \textbf{la seguente osservazione non la capisco e comunque non viene usata.
-io la toglierei}
-\begin{rmk}
-\label{rmk:delta1_and_delta2}
-It is easy to verify that in
-a $V$-configuration which satisfies \Cref{C8:cnd2}, we have
-$\delta_1(P_1, P_2, P_4)\neq 0$ and
-$\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$,
-while in \Cref{C8:cnd1} both $\delta_1(P_1, P_2, P_4)$ and
-$\delta_2(P_1, P_2, P_3, P_4, P_5)$ are zero.
-@@ controllare formule richiamate 
-\end{rmk}
+
+% \begin{rmk}
+% \label{rmk:delta1_and_delta2}
+% It is easy to verify that in
+% a $V$-configuration which satisfies \Cref{C8:cnd2}, we have
+% $\delta_1(P_1, P_2, P_4)\neq 0$ and
+% $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$,
+% while in \Cref{C8:cnd1} both $\delta_1(P_1, P_2, P_4)$ and
+% $\delta_2(P_1, P_2, P_3, P_4, P_5)$ are zero.
+% \end{rmk}
 
 
 \section{The locus of cubic ternary forms with an aligned triple of eigenpoints}
@@ -2140,7 +2139,7 @@ $$
 $$
 %
 is irreducible, being image of an irreducible variety, and it
-contains an open subset. Indeed, assume for simplicity that
+contains an open subset. Indeed, assume for simplicity (the other cases are similar) that
 $I=\{1,2,3,4,5,6\}$; an element $[f]\in W_I$ is represented by the determinant of the
 matrix given by the rows $0,1,3,4,6,7$ of $\Phi (P_1, P_2, u_1 \, P_1 + u_2 \, P_2)$ and the additional $4$ rows
 %
@@ -2155,9 +2154,7 @@ matrix given by the rows $0,1,3,4,6,7$ of $\Phi (P_1, P_2, u_1 \, P_1 + u_2 \, P
   \right) \,.
 \]
 %
-In particular, the coefficient $b_9$ of $z^3$ is equal to the determinant of the order six minor of $\Phi (P_1, P_2, u_1 \, P_1 + u_2 \, P_2)$ relative to the first $6$ columns. It follows that $W_I \supset \sL \cap \{ a_9 \neq 0\}$.
-
-\blue{assicurarsi che funziona anche negli altri casi}
+In particular, the coefficient $b_9$ of $z^3$ is equal to the determinant of the order six minor of $\Phi (P_1, P_2, u_1 \, P_1 + u_2 \, P_2)$ relative to the first $6$ columns. It follows that $W_I \supset \sL \cap \{ a_9 \neq 0\}$. 
 
 Finally, we claim that the irreducible subvarieties $W_I$ for $I\subset \{1,\dots, 7\}$ have a common non-empty intersection
 including internal points. Indeed, as one can verify with an explicit symbolic computation, an example of a polynomial
@@ -2525,9 +2522,6 @@ di~(\ref{cubiche_con_retta_autop_tg}) sono di dimensione
 4, Che altre proprieta' deve avere una cubica per rientrare
 in~(\ref{cubiche_con_retta_autop_tg})?
 
-\medskip
-@@ \textbf{parte nuova: confidando sul fatto che con overleaf si puo' tornare indietro, cancello una parte scritta da Valentina e la riscrivo, se a Valentina non piace, puo' tornare indietro}
-
 %
 \begin{prop}
 \label{prop:limitCubics}
@@ -2561,7 +2555,7 @@ the common zeros of the following three polynomials:
 \end{align*}
 %
 In general, the ideal $(g_1, g_2, g_3)$ has $4$ points in 
-general position (@@ \textbf{basta cosi' o bisogna dire di piu'?})\\
+general position. \\
 In case the line $t$ is tangent to the isotropic conic, we can 
 assume it is the line $x+\iii y =0$. Here we fix the three
 points
@@ -2579,15 +2573,17 @@ C = (x+\iii y)^2(ax + by+cz)+
 If $e=0$ the cubic $C$ is of the form described by \Cref{cubiche_con_retta_autop_tg}, hence is the generic cubic which contains the line $t$ in the eigenscheme. If $e \not= 0$, as above, 
 the remaining eigenpoints of $C$ are given by an ideal generated 
 by the polynomials:
-\begin{eqnarray*}
-h_1 & = & xza + \iii yza + \iii xzb - yzb - x^2c -2\iii xyc + y^2c - x^2d - y^2d + 3xze -3\iii yze - 3z^2e\\
-h_2 & = &2x^2a + 3\iii xya - y^2a -\iii x^2b + 3xyb + 2\iii y^2b + 2xzc + 2\iii yzc +3\iii xye\\
-h_3 & = & 3x^2zb + 6\iii xyzb - 3y^2zb + 2\iii x^3c - 5x^2yc -4\iii xy^2c + y^3c + 2\iii xz^2c - 2yz^2c + 2\iii x^3d - x^2yd + 2\iii xy^2d - y^3d -6\iii x^2ze - 6xyze -3\iii y^2ze + 6\iii xz^2e - 3yz^2e\\
-h_4 & = & 3y^2za -\iii yz^2a + 6xyzb + 9\iii y^2zb -3\iii xz^2b + 4yz^2b + 4\iii x^2yc - 9xy^2c -5\iii y^3c + 2x^2zc + 4\iii xyzc - 2y^2zc + 4\iii yz^2c + 2z^3c + 4\iii x^2yd - xy^2d + 5\iii y^3d + 2x^2zd + 2y^2zd -12\iii xyze - 15y^2ze - 6xz^2e + 21\iii yz^2e + 6z^3e
-\end{eqnarray*}
-ecc. ecc. le equazioni di sopra sono per folklore, ma ovviamente
-direi di non 
-metterle.
+%
+\begin{align*}
+h_1 & = xza + \iii yza + \iii xzb - yzb - x^2c -2\iii xyc + y^2c - x^2d - y^2d + 3xze -3\iii yze - 3z^2e \,, \\
+h_2 & = 2x^2a + 3\iii xya - y^2a -\iii x^2b + 3xyb + 2\iii y^2b + 2xzc + 2\iii yzc +3\iii xye \,, \\
+h_3 & = 3x^2zb + 6\iii xyzb - 3y^2zb + 2\iii x^3c - 5x^2yc -4\iii xy^2c + y^3c + 2\iii xz^2c - 2yz^2c \\
+&\phantom{=} + 2\iii x^3d - x^2yd + 2\iii xy^2d - y^3d -6\iii x^2ze - 6xyze -3\iii y^2ze + 6\iii xz^2e - 3yz^2e \,, \\
+h_4 & = 3y^2za -\iii yz^2a + 6xyzb + 9\iii y^2zb -3\iii xz^2b + 4yz^2b + 4\iii x^2yc - 9xy^2c -5\iii y^3c \\
+&\phantom{=} + 2x^2zc + 4\iii xyzc - 2y^2zc + 4\iii yz^2c + 2z^3c + 4\iii x^2yd - xy^2d + 5\iii y^3d + 2x^2zd \\
+&\phantom{=} + 2y^2zd -12\iii xyze - 15y^2ze - 6xz^2e + 21\iii yz^2e + 6z^3e \,. \qedhere
+\end{align*}
+%
 \end{proof}
 
 
@@ -2989,7 +2985,7 @@ following:
 (P_1, P_2, P_3), \ (P_1, P_4, P_5), \ (P_1, P_6, P_7), \ (P_2, P_4, P_6), \ 
 (P_2, P_5, P_7), \ (P_3, P_4, P_7)    
 \end{equation}
-Hence the points $P_1, P_2, P_4, P_7$ lie on three lines, the points
+Hence the points $P_1, P_2, P_4, P_7$ lie on three lines, while the points
 $P_3, P_5, P_6$ lie on two lines.
 The following lemma is easy to verify:
 \begin{lemma}
@@ -2998,20 +2994,23 @@ The following lemma is easy to verify:
 plane, such that no triplets of them are collinear, then the scalar 
 product of at least two of them is not zero.
 \end{lemma}
-Suppose now that the points $P_1, \dotsc, P_7$ are in the $(C_8)$ 
-configuration above and are eigenpoints. Here we also assume that the 
-associated matrix of any 
-$V$-configuration contained in $(C_8)$ is of rank $9$. Then:
+
+Furthermore:
 
 \begin{lemma}
 \label{lemma:three_s_zero}
-    Let $A, B, C$ be three points in the set $\{P_1, P_2, P_4, P_7\}$
-    such that $\scl{A}{B} = 0$ and $\scl{A}{C} = 0$. Then $\scl{B}{C} = 0$.
+    Let $P_1, \dotsc, P_7$ be a $(C_8)$ configuration the $(C_8)$ 
+configuration above and are eigenpoints.
+We also assume that the 
+associated matrix of any 
+$V$-configuration contained in $(C_8)$ is of rank $9$. 
+    Let $U, V, W$ be three points in the set $\{P_1, P_2, P_4, P_7\}$
+    such that $\scl{U}{V} = 0$ and $\scl{U}{W} = 0$. Then $\scl{V}{W} = 0$.
 \end{lemma}
 \begin{proof}
 %% vedi file config8N2.sage
-From the symmetry of the points, we can assume that $A=P_1$, $B=P_2$, 
-$C=P_7$.
+From the symmetry of the points, we can assume that $U=P_1$, $V=P_2$, 
+$W=P_7$.
 We give to the points $P_1, P_2, P_4, P_7$ arbitrary coordinates 
 in such a way that $s_{12}= s_{17}=0$ and 
 we compute $P_3$ as the intersection of the lines $P_1 \vee P_2$ and 
@@ -3043,8 +3042,8 @@ turns out to be $s_{27}$. This shows the lemma.
 
 \begin{prop}
 \label{prop:conf8_partA}
-If $P_1, \dotsc, P_7$ are eigenpoints, then, up to a permutation of 
-the labels of the points, $s_{12}$ is not zero, it holds:
+If $P_1, \dotsc, P_7$ are eigenpoints in a $(C_8)$ configuration, then, up to a permutation of 
+the labels of the points, $s_{12}$ is not zero and it holds:
 \begin{equation}
 \label{formula:ortocentro}
 P_7 = (P_1 \times P_2)s_{14}s_{24} -
@@ -3056,7 +3055,7 @@ $P_2 \vee P_4$, hence:
 \[
 \scl{P_1 \times P_2}{P_3 \times P_4} = 0, \quad 
 \scl{P_1 \times P_4}{P_2 \times P_5} = 0, \quad 
-\scl{P_1 \times P_6}{P_2 \times P_4} = 0
+\scl{P_1 \times P_6}{P_2 \times P_4} = 0 \,.
 \]
 \end{prop}
 \begin{proof}
@@ -3067,26 +3066,35 @@ We fix generic coordinates for the points $P_1, P_2, P_4, P_7$.
 As a consequence of the previous two lemmas, we have that it is not possible
 to have $s_{12}=0, s_{14}=0, s_{17}=0$, hence we can assume $s_{12} \not=0$.
 Hence, again from \Cref{lemma:three_s_zero}, it is not possible to 
-have $s_{14}=0$ and $s_{24}=0$, hence at least one of the three coefficients
+have $s_{14}=s_{24}=0$, hence at least one of the three coefficients
 $s_{14}s_{24}, s_{12}s_{24}$ or $s_{12}s_{14}$ is not zero. Since the 
 three vectors $P_1\times P_2$, $P_1\times P_4$, $P_2\times P_4$ are linearly independent, we see that $P_7$ is a non zero vector. Also in this general situation, if the points are eigenpoints, it must hold: 
 $\delta_1(P_3, P_1, P_4) = 0$, $\delta_1(P_5, P_1, P_2) = 0$ and 
 $\delta_1(P_6, P_1, P_2)=0$. These three quantities, up to non zero factors, 
-are $e_1 = s_{12}s_{47}-s_{17}s_{24}$,  $e_2 = s_{12}s_{47}-s_{14}s_{27}$ and 
-$e_3 = s_{17}s_{24}-s_{14}s_{27}$, hence $e_1-e_2+e_3 = 0$ and the system
+are 
+%
+\begin{align*}
+ e_1 &= s_{12}s_{47}-s_{17}s_{24} \,,\\
+ e_2 &= s_{12}s_{47}-s_{14}s_{27} \,,\\  
+ e_3 &= s_{17}s_{24}-s_{14}s_{27} \,,
+\end{align*}
+%
+hence $e_1-e_2+e_3 = 0$ and the system
 $e_1=0, e_2 = 0$ is a linear system in the coordinates of the points. 
 Its solution (w.r.t.\ the coordinates of $P_7$) gives new coordinates for the point $P_7$ and it is easy to see that \Cref{formula:ortocentro} holds.
 \end{proof}
 
 We have also the converse, i.e.\
 \begin{prop}
-Suppose $P_1, P_2, P_4$ are three points of the plane. Define the point
-$P_7$ according to \Cref{formula:ortocentro} and let 
+Suppose $P_1, P_2, P_4$ are three points of the plane. Suppose that \Cref{formula:ortocentro} defines a point in~$\p^2$ and that
+%
 \[
 P_3 = (P_1 \vee P_2) \cap(P_4 \vee P_7), \quad 
 P_5 = (P_1 \vee P_4) \cap (P_2 \vee P_7), \quad
 P_6 = (P_1 \vee P_7) \cap (P_2 \vee P_4).
 \]
+%
+also define points in~$\p^2$.
 Then the points $P_1, \dotsc, P_7$ are in a $(C_8)$ configuration
 and are eigenpoints of a unique cubic 
 of the plane. In particular:
@@ -3103,6 +3111,10 @@ is $9$ and this computation can be done, for instance, assuming that
 $P_1$ is the point $(1: 0: 0)$ or the point $(1: \iii: 0)$.
 \end{proof}
 
+\begin{corollary}
+ The locus of homogenous forms~$F$ with a $(C_8)$ configuration has dimension~$6$.
+\end{corollary}
+
 
 \subsection*{Comparison with ODECO tensors}
 %% file odeco.sage
@@ -3116,12 +3128,12 @@ Possibly after an $\SO_3(\C)$ transformation, such forms are of the type
   \quad \text{for some } \lambda_1, \lambda_2, \lambda_3 \in \C \,,
 \]
 %
-and they admit the three pairwise orthogonal eigenvectors
+and, usig the language of \cite{Rob}, they admit the three pairwise orthogonal eigenvectors $Q_1, Q_2, Q_3 \in \C^3$
 %
 \[
-  Q_1 = (\frac{1}{\lambda_1},0,0) \,, \quad
-  Q_2 = (0,\frac{1}{\lambda_2},0) \,, \quad
-  Q_3 = (0,0,\frac{1}{\lambda_3}) \,.
+  Q_1 = \left( \frac{1}{\lambda_1},0,0 \right) \,, \quad
+  Q_2 = \left( 0,\frac{1}{\lambda_2},0 \right) \,, \quad
+  Q_3 = \left( 0,0,\frac{1}{\lambda_3} \right) \,.
 \]
 %
 The remaining $4$ eigenvectors are uniquely determined, precisely:
@@ -3147,198 +3159,10 @@ and
   (Q_2 \vee Q_3) \times (Q_1 \vee Q_7) = 0 \,.
 \]
 %
-@@ \textbf{c'e' un'incoerenza con i nomi: eigenvectors, eigenschemes,  eigenpoints. I Qi sono vettori o punti proiettivi?}
+In particular, the locus of ODECO forms is a $5$-dimensional sublocus of the $(C_8)$ locus.
+It is a challenging question to investigate the irreducible components and the degrees of such loci.
 %
 \bibliographystyle{alphaurl}
 \bibliography{biblio}
 
 \end{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-Then we have a surjective morphism
-$$
-\alpha : \mathcal{U} \to \mathcal{AL},
-$$
-assigning to each $[F] \in \mathcal{U}$ the unique triple of eigenpoints. Over the irreducible open subset
-$$
-\mathcal W := \mathcal {AL}
-\setminus \{(P_1,P_2,P_3)\in\mathcal {AL}
-\ | \ \sigma(P_1,P_2)=0, s_{11} s_{22} s_{33}=0\}
-$$
-of aligned triples not lying
-on a tangent line to the isotropic conic~$\iso$, with tangency point one of the~$P_i$'s, the fibers of $\alpha$ are projective linear systems of dimension~$3$ by
-Proposition \ref{manca il riferimento su ancillary  non e': condition_rank_aligned}. By the Fiber Dimension Theorem this implies that the open subset $\alpha ^{-1} (\mathcal W)$ is irreducible of dimension
-$$
-\dim \alpha ^{-1} (\mathcal W)
-\subset \sU=8 ,
-$$
-so $\sL$ is a hypersurface. Next we set
-$$
-\Sigma:=\{(P_1,P_2,P_3)\in\mathcal {AL}
-\ | \ \sigma(P_1,P_2)=0, s_{11} s_{22} s_{33}=0\}
-$$
-and we observe that $\Sigma \subset \overline {\mathcal {AL}}$. Being $\alpha$ a morphism we get
-that
-$$
-\sU \subseteq \overline {\alpha^{-1} (\mathcal W)}.
-$$
-
-%that is, any $[F] \in \sU$ such that $\alpha (F)$
-%satisfies $\sigma(P_1,P_2)=0$
-%is a limit of $[F_t]\in \alpha^{-1} (\mathcal W)$.
-%
-%Without loss of generality we can assume that the tangent line $l$ to $\iso$ is given by $\iii x-y=0$ and $P_1=(1:\iii:0)$. We consider the pencil of lines $\lambda x + \mu y$ with base point $(0:0:1)$, and
-%for any pair $P_2= (A_2: \iii A_2: C_2), P_3
-%=(A_3: \iii A_3 :C_3)\in l$, $P_i \neq P_1$, we set
-%$$
-%P_1^{\lambda, \mu}=(-\mu : \lambda :0), \quad
-%P_2^{\lambda, \mu}=(-\mu A_2: \lambda A_2:C_2), \quad
-%P_1^{\lambda, \mu}=(-\mu A_3: \lambda A_3:C_3).
-%$$
-%By adding other three linear conditions, we can construct a one-dimensional family of cubics with general
-%member in $\sV$ and the special one satisfying $\sigma (P_1,P_2)=0$
-
-
-
-It follows that $\sU$ is irreducible, and therefore $\sL$ is irreducible too.
-\end{proof}
-
-\begin{prop}
-The class of any ternary form $[F]$ with two or more aligned triples of eigenpoints satisfies
-$
-[F] \in \sL.
-$
-
-\end{prop}
-
-\begin{proof}
-Let $\sV \subset \p^9$ denote the locus of classes $[F]$ of cubic forms adimitting a $V$-configuration among its eigenpoints.
-
- For simplicity we shall only consider the general cubic form
- $[F] \in \sV \setminus \Delta_{3,3}$, that is the ones corresponding to a rank $9$ matrix $\Phi(P_1, \dots, P_5)$; the cases with more alignments can be treated similarly.
-
- Observe that all the irreducible components of $\sV \setminus \Delta_{3,3}$ are open and nonempty in $\sV$ by
- Remark \ref{rmk_delta_case3}.
-
-If $F$ is general enough, we have
-$\rk \,\Phi(P_1, \dots, P_5)=9$ and $\rk \,\Phi(P_1, \dots, P_4)=8$.
-We can also assume that $\Eig{F}$ has no other collinearities.
-The pencil of cubics with the assigned eigenpoints $P_1, \dots, P_4$
-has a general member in $\sU$ since $[F] \not\in \Delta_{3,3}$ and $P_1,P_2,P_3$ are aligned. This proves the statement.
-\end{proof}
-
-\begin{prop}
-    The locus $\sV$ of cubics that have at least two aligned triples of eigenpoints has codimension~$2$ in~$\p^9$.
-\end{prop}
-\begin{proof}
-In the product $(\p^2)^{5}$, the locus $\sF$ of
-unordered $5$-tuples of distinct points containing $4$ collinear points is closed; indeed, a $5$-uple $(P_1,\dots,P_5)$ is in $\sF$ if and only if the points do not impose independent conditions to conics, that is if and only if the $5 \times 6$ matrix
-associated with the
-conditions of passing through $(P_1,\dots,P_5)$ has rank less or equal to $4$.
-
-We then consider the open subset $\mathcal {Y}:=(\p^2)^{5} \setminus \sF$.
-The locus $\mathfrak{V}$ of $V$-configurations in $\sY$ has dimension $8$ and can be characterized as follows:
-$$
-\mathfrak{V}= \{(P_1,\dots,P_5) \in \sY \ | \ \langle P_1 \times P_2, P_3\rangle=0, \ \langle P_1 \times P_4, P_5\rangle=0\}.
-$$
-Finally, a $V$-configuration is contained in an eigenscheme of some polynomial if and only if $\delta_1 (P_i,P_j,P_k) \cdot \delta_2 (P_1,\dots, P_5)=0$.
-
-By setting $\Delta_{ijk} :=\{\delta_1 (P_i, P_j,P_k)=0\}$
-and $\Delta_2:=\{\delta_2=0\}$, and by considering in $\sV$ the locus
-$\mathcal{V}'$ of classes $[F]$ with $\Eig{F}$ containing exactly one $V$-configuration,
-we get a morphism
-$$
-\beta : \mathcal{V}' \to (\bigcup_{i,j,k}\Delta_{i,j,k} \cup \Delta_2) \cap \mathfrak{V} \cap \sY.
-$$
-By the results of \Cref{rank_8}, the locus with $\rk \, \Phi(P_1, \dots,P_5)\le 8$ is closed, so $\beta$ is generically injective and $\dim \mathcal{V}'=\dim \overline {\mathcal{V}'}=7$.
-\end{proof}
-%
-%%%%%%%%%%%%%%
-%VECCHIA PROPOSIZIONE 9.5
-\begin{prop}
-\textbf{(AGGIUNGERE IPOTESI SU RANGO NON 8)}
-Let $P_1, \dotsc, P_7$ be seven points of $\p^2$ in configuration
-$(C_5)$. Then they are eigenpoints if and only if
-\begin{equation}
-s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}) = 0.
-\label{cndC5}
-\end{equation}
-In this case, the points~$P_3$ and~$P_7$ are then given by the following formulas:
-%
-\begin{eqnarray}
-P_3 & = & (s_{12}(s_{26}s_{45}+s_{46}s_{25})-s_{26}s_{15}s_{24}-s_{46}s_{15}s_{22})P_1-
-(s_{11}(s_{26}s_{45}+s_{46}s_{25})-s_{26}s_{15}s_{14}-s_{46}s_{15}s_{12})P_2
-\label{p3formula}\\
-P_5 & = & (s_{12}s_{13}s_{44}-s_{14}^2 s_{23})P_1
-+s_{14}(s_{11} s_{23}-s_{12}s_{13}) P_4 \\
-P_6 & = & (-s_{15}s_{24}s_{34}-s_{15}s_{23}s_{44} + s_{13}s_{25}s_{44} +s_{13}s_{24}s_{45})P_2 + (-s_{13}s_{24}s_{25}+2s_{15}s_{22}s_{34}-s_{13}s_{22}s_{45})P_4 ,\\
-P_7 & = & (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{66})P_1-
-(s_{11}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{14}-s_{24}s_{15}s_{16})P_6 ,
-\label{p7formula}
-\end{eqnarray}
-%
-\end{prop}
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%VECCHI CONTI PER AUTOSCHEMI 1 DIMENSIONALI
-\begin{prop}
-\label{p2}
-Let $C = V(f) \subset \p^2$ be a cubic curve.
-Assume that $\dim \Eig{f} = 1$.
-%
-\begin{enumerate}
-  \item If the $1$-dimensional component of $\Eig{f}$ is a line~$L$,
-  then the residual subscheme $Z := \mathrm{Res}_l \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$l$ has degree~$3$.
-  \item If the $1$-dimensional component of $\Eig{f}$ is a conic~$q$,
-  then the residual subscheme $Z := \mathrm{Res}_q \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
-\end{enumerate}
-%
-\end{prop}
-\begin{proof}
-(1)
-Let $g_1$, $g_2$, and $g_3$ be the order~$2$ minors determining the eigenscheme of~$f$.
-Since $g_1$, $g_2$, and $g_3$ have a common linear component~$l$, by writing
-\[
- g_i = l \, h_i, \quad i=1,2,3
-\]
-we have that $\mathcal{I}_{Z, \p^2} = \mathcal{I}_{\Eig{F}), \p^2} (-1)$
-fits in the exact sequence
-\[
- 0 \to \mathcal{G} \to \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \oplus \oo_{\p^2} (-2) \to \mathcal{I}_{Z,\p^2} \to 0 \,,
-\]
-where $\mathcal{G}$ is a rank two reflexive sheaf by \cite[Proposition 1]{Hartshorne1980}.
-But on a smooth surface reflexive implies locally free (see \cite[Example~1.1.6]{Huybrechts2010}),
-so $\mathcal{G}$ is a rank two vector bundle.
-
-Next we observe that the two independent
-syzygies between the generators $g_i$ give rise to the syzygies:
-\[
-z\, h_1 - y\, h_2 + x\, h_3 = 0, \qquad \partial_z f\, h_1 - \partial_y f \, h_2 + \partial_x f \ h_3=0 \,,
-\]
-which occur in degrees $3$ and $4$. We claim that the two relations are independent, again,
-otherwise the $g_i$'s would be identically zero. So we apply \cite[Proposition~12]{Ellia2020}, and we have that $\mathcal{G}$ splits. Observe that as $c_1(\mathcal{I}_{Z,\p^2})=0$, we have $c_1(\mathcal{G})=-6$. Moreover, there is no syzygy in degree~$2$, since
-otherwise the $h_i$ would be linearly dependent, so the $h_i$ would belong to a pencil, which is a contradiction \textbf{(giustificare)}.
-
-It follows that the splitting of $\mathcal{G}$ is of the form
-%
-\[
-  \mathcal{G} \cong \oo_{\p^2} (-3) \oplus \oo_{\p^2} (-3) \,.
-\]
-%
-We get the free resolution of the ideal sheaf:
-%
-\[
-  0\to \oo_{\p^2} (-3)\oplus \oo_{\p^2} (-3) \to 3\oo_{\p^2} (-2)\to \mathcal{I}_{Z,\p^2} \to 0 \,.
-\]
-%
-Moreover
-%
-\[
-  c_2 (\mathcal{I}_{Z,\p^2} ) = c_2 \bigl( 3\oo_{\p^2}(-2) \bigr) - c_2 (\mathcal{G}) = 12 - 9 = 3 \,,
-\]
-%
-and $h^0 \bigl( \mathcal{I}_{Z,\p^2}(1) \bigr) = 0$, which proves the first statement.
-
-\medskip
-(2) is similar, to be completed.
-\end{proof}
