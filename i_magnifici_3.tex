@@ -1,37 +1,22 @@
-%\documentclass[11pt, a4paper, reqno, captions=tableheading,bibliography=totoc]{scrartcl}
-%
-%\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc}
-%\usepackage{mathtools}
-%\usepackage{amsthm}
-%\usepackage{amsmath}
+\documentclass[a4paper, 11pt]{amsart}
 
-%%%%%%%%%%%%%setting di Valentina
-\documentclass{amsart}
-
-\usepackage{amsthm}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{mathtools}
-\usepackage{amssymb}
 \setlength{\parindent}{.4 in}
 \setlength{\textwidth}{6.5 in}
 \setlength{\topmargin} {-.1 in}
 \setlength{\evensidemargin}{0 in}
 \setlength{\oddsidemargin}{0 in}
-%%%%%%%%%%%%%%%%%%%fine setting di Valentina
-%\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
 \usepackage{lmodern}
 \usepackage[english]{babel}
-\hyphenation{ei-gen-scheme}
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{tikz,pgf}
-%\usepackage[utopia]{mathdesign}
 \usepackage{palatino}
+\usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -40,7 +25,6 @@
     urlcolor={blue!80!black}
 }
 \usepackage[nameinlink]{cleveref}
-\usepackage{xcolor}
 
 \theoremstyle{plain}
 \newtheorem{lemma}{Lemma}[section]
@@ -71,31 +55,24 @@
 \newcommand{\sF}{\mathcal{F}}
 \newcommand{\sY}{\mathcal{Y}}
 \newcommand{\de}{\partial}
-\newcommand{\codim}{\mathrm{codim}}
-
 \newcommand{\oo}{\mathcal{O}}
-\newcommand{\Bl}{\mathrm{Bl}}
+
+\newcommand{\iii}{\textit{i}\,}
+\newcommand{\codim}{\mathrm{codim}}
+\newcommand{\rk}{\ensuremath{\mathrm{rk}}}
 
 \newcommand{\iso}{\mathcal{Q}_{\mathrm{iso}}}
-
-\newcommand{\imunit}{i}
+\newcommand{\cbc}{\ensuremath{\mathcal{C}}}
 
 \newcommand{\SO}{\operatorname{SO}}
 \newcommand{\Eig}[1]{\mathcal{E}\!\left( {#1} \right)}
 \newcommand{\Sym}{\operatorname{Sym}}
-\newcommand{\polq}{{\rm Pol}_Q}
-\newcommand{\comment}[1]{}
 
 \newcommand{\scl}[2]{\left\langle {#1}, {#2} \right\rangle}
 
 \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
 
-\newcommand{\iii}{\textit{i}\,}
-
-\definecolor{MyDarkGreen}{cmyk}{0.7,0,1,0}
 \newcommand{\blue}[1]{{\color{blue}[#1]}}
-\newcommand{\cbc}{\ensuremath{\mathcal{C}}}
-\newcommand{\rk}{\ensuremath{\mathrm{rk}}}
 
 
 \title{Eigenpoint collinearities of plane cubics}
@@ -2736,6 +2713,9 @@ the conic $\lambda \iso +3 \mu r^2$ is tangent to $\iso$ in $P$.
 \label{table:all_alignments}
 \end{table}
 %
+
+@@ Inserire disegno 
+
 \Cref{table:all_alignments} lists all the possible configuration
 of 7 distinct points of the plane, according to their collinearities. Here
 we want to see which of those nine configurations can be realized by
@@ -2790,7 +2770,7 @@ If $\rk \, \Phi(P_1, \dots, P_5) = 8$, the result follows from~\Cref{rank_8}.
 Therefore, assume that the matrix $\Phi(P_1, \dots, P_5)$ has rank~$9$.
 If $\delta_2(P_1, \dots, P_5) = 0$, we have the thesis;
 otherwise, $\delta_1(P_1, P_2, P_4) = 0$.
-Then consider the $V$-configuration $P_1, P_2, P_3, P_6, P_7$.
+Then consider the $V$-configuration $P_1$, $P_2$, $P_3$, $P_6$, $P_7$.
 As above, we suppose $\delta_1(P_1, P_2, P_6) = 0$.
 The two equations obtained from the two $\delta_1$ give two
 linear equations in the coordinates of~$P_2$.
@@ -2859,12 +2839,20 @@ and among the points $P_1, \dots, P_6$, where $P_6$ is collinear with~$P_2$ and~
 %
 Moreover, the points~$P_6$ and~$P_7$ are determined as follows:
 %
-\begin{align}
-  P_6 &= (s_{15}s_{24}s_{34}+s_{15}s_{23}s_{44} -s_{13}s_{25}s_{44} -s_{13}s_{24}s_{45}) \, P_2 + (s_{13}s_{24}s_{25}-2s_{15}s_{22}s_{34}+s_{13}s_{22}s_{45}) \, P_4 \,, \label{p6formula} \\
-  P_7 &= (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{66}) \, P_1-
-  (s_{11}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{14}-s_{24}s_{15}s_{16}) \, P_6 \,.
-  \label{p7formula}
-\end{align}
+\begin{equation}
+\label{p6formula}
+\begin{multlined}
+  P_6 = (s_{15}s_{24}s_{34}+s_{15}s_{23}s_{44} -s_{13}s_{25}s_{44} -s_{13}s_{24}s_{45}) \, P_2 \\ + (s_{13}s_{24}s_{25}-2s_{15}s_{22}s_{34}+s_{13}s_{22}s_{45}) \, P_4 \,, 
+\end{multlined}
+\end{equation}
+%
+\begin{equation}
+\label{p7formula}
+\begin{multlined}
+  P_7 = (s_{16}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{46}-s_{24}s_{15}s_{66}) \, P_1 \\
+  - (s_{11}(s_{26}s_{45}+s_{24}s_{56})-s_{26}s_{15}s_{14}-s_{24}s_{15}s_{16}) \, P_6 \,.
+\end{multlined}
+\end{equation}
 %
 \end{prop}
 \begin{proof}
