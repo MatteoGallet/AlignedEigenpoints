@@ -114,24 +114,43 @@ Via Valerio 12/1, 34127 Trieste, Italy}
 \section{Introduction}
 \label{introduction}
 
-Tensors are natural generalizations of matrices in higher dimension and can be studied via their eigenvectors.
-There are several notions that extend to tensors the well known ones of eigenvalues and eigenvectors for matrices, 
-as introduced independently in 2005 by Lim \cite{Lim} and Qi \cite{Qi}.
-All of them are of interest in several applications, as in the study of hypergraphs and the dynamical systems governed by the latter;
-see \cite[Section 4]{QZ} for an introduction or \cite{GMV} for recent developments.
-Eigenvalues of tensors also play an important role in the best rank-one approximation problem, which is relevant in data analysis and signal processing. Another example concerns optimization consider the problem of maximizing a polynomial function~$f$ over the unit sphere in~$\R^{n+1}$: 
-eigenvectors of the symmetric tensor~$f$ are critical points of this optimization problem. 
+Tensors are natural generalizations of matrices in higher dimension.
+Important notions related to matrices, as for example those of \emph{rank} and of \emph{eigenvector},
+can be generalized to tensors and may provide information about them.
+Since roughly $20$ years ago, eigenvectors of tensors have been object of study from various points of view.
+Our interest will be focused on a specific class of symmetric tensors, namely cubic ternary forms, and on a specific property of their eigenvectors, namely possible alignments.
+Before delving into the more technical aspects of our problem,
+we begin with a resume of the existing literature on eigenvectors of tensors.
 
-Another interesting framework in which eigenvectors of symmetric tensors arise is the variational context.
-Indeed, 
-by Lim's Variational Principle \cite{Lim}, given a symmetric tensor~$f$, the critical rank-one symmetric tensors for~$f$ are exactly of the form~$v^d$, where $v$ is an eigenvector of~$f$.
+\subsection*{Eigenvectors of tensors in the literature}
+In 2005, Lim \cite{Lim} and Qi \cite{Qi} independently introduced the notions of eigenvalues and eigenvectors for tensors.
+Since then, these two concepts have been of interest in several applications,
+as in the study of hypergraphs and the dynamical systems governed by the latter;
+see \cite[Section~4]{QZ} for an introduction or \cite{GMV} for recent developments.
+Eigenvalues of tensors also play an important role in the best rank-one approximation problem,
+which is relevant in data analysis and signal processing.
+For another application in optimization, consider the problem of maximizing a polynomial function~$f$ over the unit sphere in~$\R^{n+1}$: 
+the eigenvectors of the symmetric tensor~$f$ are critical points of this optimization problem. 
+Similarly, by Lim's Variational Principle \cite{Lim}, given a symmetric tensor~$f$, the critical rank-one symmetric tensors for~$f$ are exactly of the form~$v^d$, where $v$ is an eigenvector of~$f$.
 This has applications in low-rank approximation of tensors (see \cite{OttSod}) as well as maximum likelihood estimation in algebraic statistics. 
+The geometry of eigenvectors is intimately related with the Waring decomposition of a polynomial, 
+corresponding to the symmetric Tucker decomposition of the associated symmetric tensor, 
+as clarified in~\cite{DOT} and in~\cite{Ott}. 
+Indeed, any best rank~$k$ approximation of a symmetric tensor lies in the linear space, 
+called \emph{critical space}, spanned by the rank~$1$ tensors of the type $v_i^{\otimes d}$, where $v_i$ varies among all the eigenvectors. 
+Therefore, a deep comprehension of the geometry of eigenvectors will
+go towards an improvement on the insight of low rank approximation problems.
+A first evidence in this direction is given by the so called ODECO (''orthogonally decomposable``) tensors, 
+that is, symmetric tensors~$T$ that admit a decomposition
+$T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0, \dotsc, v_n$ an orthogonal family (see \cite{Rob, BDHE} for further details);
+the $v_i$'s turn out to be eigenvectors of~$T$.
+Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials.
+Ottaviani points out in \cite[Section~8]{Ottaviani24} the close connection between eigenvectors of specific symmetric tensors and the so-called L\"uroth quartics. 
 
-Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials. \textbf{(CITARE \cite{Ottaviani24})}
-
+\subsection*{Generalities on eigenschemes}
 When dealing with eigenvectors, as observed in \cite{ASS},
 it is not restrictive to focus on partially symmetric tensors, that is elements of~$\Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$.
-If we choose a basis for~$\C^{n+1}$, then we can identify $T \in \Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$ with a tuple of homogeneous polynomials $(g_0, \dotsc, g_n)$. An \emph{eigenvector} of~$T$ is a nonzero vector $v \in \C^{n+1}$ such that
+If we choose a basis for~$\C^{n+1}$, then we can identify a partially symmetric tensor $T \in \Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$ with a tuple of homogeneous polynomials $(g_0, \dotsc, g_n)$. An \emph{eigenvector} of~$T$ is a nonzero vector $v \in \C^{n+1}$ such that
 %
 \begin{equation}
 \label{eq:eigenvector_definition}
@@ -141,11 +160,12 @@ If we choose a basis for~$\C^{n+1}$, then we can identify $T \in \Sym^{d-1}\C^{n
 for some constant~$\lambda \in \C$.
 Since the property in \Cref{eq:eigenvector_definition} is preserved under scalar multiplication, 
 it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P) = \bigl(g_0(P): \ldots: g_n(P)\bigr)$ 
-and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors. 
-In the symmetric case, we define the eigenpoints of a homogeneous polynomial~$f$ as the fixed points of the polar map, 
-or equivalently the eigenpoints of the partially symmetric tensor $\nabla f = (\de_0 f, \dotsc, \de_n f)$.
+and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors.
+When a tensor is symmetric, it can be identified with a homogeneous polynomial, also called a homogeneous form.
+As a partially symmetric tensor, a homogeneous form~$f$ is identified by its gradient $\nabla f = (\de_0 f, \dotsc, \de_n f)$ and so its eigenpoints are the fixed points of the polar map $\nabla f \colon \p^n \dasharrow \p^n$.
 
-Moreover, the condition in \Cref{eq:eigenvector_definition} can be rephrased as 
+The condition in \Cref{eq:eigenvector_definition} can be rephrased as
+%
 \begin{equation}
 \label{eq:def_matrix_general}
   \rk
@@ -154,6 +174,7 @@ Moreover, the condition in \Cref{eq:eigenvector_definition} can be rephrased as
     g_0 & g_1 & \dots & g_n
   \end{pmatrix} \le 1 \,,
 \end{equation}
+%
 so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called \emph{eigenscheme}, denoted $\Eig{T}$.
 
 The dimension and degree of a general eigenscheme are settled by the following result (see \cite[Theorem 2.1]{CartSturm}, \cite{ASS}, \cite{OO}, and \cite[Equation~5.2]{Abo}):
@@ -161,55 +182,52 @@ The dimension and degree of a general eigenscheme are settled by the following r
 \begin{theoremintro}
 \label{thm:nonempty}
 Let $d \ge 2$ and let $T \in (\C^{n+1})^{\otimes d}$.
-If $\dim \Eig{T}=0$, then $\deg \Eig{T}=\frac{(d-1)^{n+1}-1}{d-2}= \sum_{i=0}^{n} (d-1)^i$. In the matrix case, that is $d = 2$, we use the formula on the right, which evaluates to $n+1$.
+If $\dim \Eig{T}=0$, then 
+%
+\[
+  \deg \Eig{T} =
+  \frac{(d-1)^{n+1}-1}{d-2} =
+  \sum_{i=0}^{n} (d-1)^i \,.
+\]
+%
+In the matrix case, that is $d = 2$, we use the formula on the right, which evaluates to $n+1$.
 
 Moreover, if $T$ is general, then its eigenscheme is $0$-dimensional and reduced.
 \end{theoremintro}
 
+\subsection*{Eigenschemes of cubic ternary forms}
+% \textbf{@@ una frase cosi' che vi sembra?}
+% %%%
+% %%%%
+% The problem we consider in this paper can be simplified in the following way.
+% Consider a degree three homogeneous polynomial 
+% $f \in \mathbb{C}[x, y, z]$ 
+% (hence a cubic curve $C$ in $\mathbb{P}^2$).
+% We can associate to $f$ an ideal $J_e$ which is given by the
+% order two minors of the matrix $((f_x, f_y, f_z), (x, y, z))$. The variety
+% $V(J_e)$ is the locus of the eigenpoints of $f$. In general, $V(J_e)$ is
+% given by $7$ points, but there are cases in which $V(J_e)$ is a
+% one-dimensional variety.
+% In the present paper we characterize the cubics for which $V(J_e)$ is one-dimensional
+% (and in these cases we give a descritpion of $V(J_e)$) and, when
+% $V(J_e)$ is given by $7$ distinct points, we classify all the possible
+% configurations that these points can assume w.r.t.\ their collinearities. 
 
-The geometry of eigenpoints is intimately related with the Waring decomposition of a polynomial,
-corresponding to the symmetric Tucker decomposition of the associated symmetric tensor,
-as clarified in~\cite{DOT} and in~\cite{Ott}. 
-Indeed, any best rank~$k$ approximation of a symmetric tensor lies in the linear space, 
-called \emph{critical space}, spanned by the rank~$1$ tensors of the type $v_i^{\otimes d}$, where $v_i$ varies among all the eigenvectors. 
-Therefore, a deep comprehension of the geometry of the subschemes of an eigenscheme will
-go towards an improvement on the insight of low rank approximation problems. 
-A first evidence in this direction is given by the so called ODECO ("orthogonally decomposable") tensors, 
-that is, symmetric tensors~$T$ that admit a decomposition
-$T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0, \dotsc, v_n$ an orthogonal family; see \cite{Rob, BDHE} for further details.
-The $v_i$'s turn out to be eigenvectors of~$T$, so in this case there is a subscheme of the eigenscheme with a very special geometric configuration.
+In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, 
+that is the case $n=2$ and~$d=3$ in \Cref{thm:nonempty}.
+In other words, as we have clarified, we consider a homogeneous polynomial $f \in \C[x, y, z]$ of degree~$3$ and associate to it the scheme~$\Eig{f}$ determined by the ideal of $2 \times 2$ minors of the matrix
+%
+\[
+\begin{pmatrix}
+    x & y & z \\
+    \partial f / \partial x & \partial f / \partial y & \partial f / \partial z
+\end{pmatrix} \,.
+\]
+%
+By \Cref{thm:nonempty}, a general $f$ satisfies $\deg \Eig{f}=7$.
+Moreover, in general $\Eig{f}$ is constituted by $7$ reduced points, but there are cases when it is one-dimensional, or non-reduced. 
 
-\textbf{@@ una frase cosi' che vi sembra?}
-%%%
-%%%%
-The problem we consider in this paper can be simplified in the following way.
-Consider a degree three homogeneous polynomial 
-$f \in \mathbb{C}[x, y, z]$ 
-(hence a cubic curve $C$ in $\mathbb{P}^2$).
-We can associate to $f$ an ideal $J_e$ which is given by the
-order two minors of the matrix $((f_x, f_y, f_z), (x, y, z))$. The variety
-$V(J_e)$ is the locus of the eigenpoints of $f$. In general, $V(J_e)$ is
-given by $7$ points, but there are cases in which $V(J_e)$ is a
-one-dimensional variety.
-In the present paper we characterize the cubics for which $V(J_e)$ is one-dimensional
-(and in these cases we give a descritpion of $V(J_e)$) and, when
-$V(J_e)$ is given by $7$ distinct points, we classify all the possible
-configurations that these points can assume w.r.t.\ their collinearities. 
-
-
-%%%%
-%%%
-
-
-
-
-
-
-
-
- In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, that is the case $n=2$ and~$d=3$. 
- By \Cref{thm:nonempty}, the general such tensor satisfies $\deg \Eig{T}=7$.
- A geometric characterization of eigenschemes of ternary forms is given by the following results.
+A geometric characterization of eigenschemes of ternary forms is given by the following results.
 
 \begin{theoremintro}(\cite[Theorem 5.1]{ASS})
 A configuration of seven points in~$\p^2$ is the eigenconfiguration
@@ -223,30 +241,29 @@ Let $d \ge 3$. The eigenscheme~$\Eig{f}$ of a general homogeneous polynomial $f 
 
 However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
 
-The goal of this paper is to classify all the situations when we have one or more triples of aligned points inside a $0$-dimensional reduced eigenscheme of a cubic plane curve.
+\subsection*{Our results}
+The goal of this paper is to classify all the situations when we have one or more triples of aligned points inside a $0$-dimensional reduced eigenscheme of a ternary cubic form.
 More precisely, we
 %
 \begin{itemize}
     \item determine conditions imposed on the eigenpoints and on ternary cubic forms by the presence of aligned eigenpoints;
     \item compute the degree of the closure of the locus in~$\p^9$ of ternary cubic forms that admit an aligned triple of eigenpoints;
-    \item classify all possible combinatorial configurations of aligned eigenpoints.
+    \item characterize the situations yielding a one-dimensional eigenscheme;
+    \item classify all possible combinatorial configurations of aligned eigenpoints when the eigenscheme is $0$-dimensional and reduced.
 \end{itemize}
 %
-All the conditions on the eigenpoints will be expressed in terms of their homogenous coordinates, and the equations that we will find have to be though as equations in
-\[
-(\p^2)^7=\p^2 \times \p^2 \times \p^2\times \p^2\times \p^2\times \p^2\times \p^2.
-\]
+All the conditions on the eigenpoints will be expressed in terms of their homogeneous coordinates, and the equations that we will find have to be though as equations in $(\p^2)^7=\p^2 \times \p^2 \times \dotsb \times \p^2$.
 
-Finally, we would like to point out that our approach gives some hints towards the problem of finding equations for the locus of $7$-uple of points, which form an eigenscheme of some symmetric tensor; this is an open question, and it has been posed in \cite{ASS} and \cite{Ottaviani24}
+Finally, we would like to point out that our approach gives some hints towards the problem of finding equations for the locus of $7$-uple of points, which form an eigenscheme of some symmetric tensor; this is an open question, and it has been posed in \cite{ASS} and \cite{Ottaviani24}.
 
-
+\subsection*{Content of the paper}
 Here is a description of the content of each section.
 \Cref{aligned} clarifies the reasons of interest in the situation of triples of aligned eigenpoints.
 \Cref{invariance} describes the action of special orthogonal matrices on ternary forms, which we repeatedly use in our analyses since it allows us to "pin down" one of the eigenpoints to two specific cases, thus greatly speeding up the symbolic computations we rely on.
 \Cref{conditions} begin our analysis by examining what conditions on the space of ternary cubics are imposed by the existence of aligned eigenpoints. In particular, three kinds of conditions, named~$\delta_1$, $\bar{\delta}_1$, and~$\delta_2$, emerge and play a prominent role in describing configurations of two triples of aligned eigenpoints that share a point, called $V$-configurations.
 \Cref{rank_9} and \Cref{rank_8} set the spotlight on $V$-configurations, exhausting all the possible special cases that may appear.
 \Cref{locus_one_alignment} introduces the locus of ternary cubics with a single alignment in the eigenscheme, proves its irreducibility and computes its degree.
-\Cref{positive_dim} classifies positive-dimensional eigenschemes.
+\Cref{positive_dim} classifies positive-dimensional eigenschemes of ternary cubics.
 \Cref{further_alignments} examines all the possible configurations of alignments in a $0$-dimensional reduced eigenscheme and establishes which may arise and which not.
 
 \subsection{Notation and conventions}
@@ -260,7 +277,7 @@ We shall sometimes use vectorial notions for a pair a projective points $P_1=(A_
   s_{12} = \scl{P_1}{P_2} = A_1 A_2 + B_1 B_2 + C_1 C_2;
 \]
 %
-such an expression has to be intended as a bihomogeneous polynomial in the coordinates of $P_1$ and $P_2$. If we think of the $A_i$, $B_j$ and $C_k$ as indeterminates, its zero set is well defined in $\p^2 \times \p^2$; see also \cref{def: scalar product}.
+such an expression has to be intended as a bihomogeneous polynomial in the coordinates of $P_1$ and $P_2$. If we think of the $A_i$, $B_j$ and $C_k$ as indeterminates, its zero set is well defined in $\p^2 \times \p^2$; see also \Cref{def: scalar product}.
 
 Similarly, by $P_1 \times P_2$ we shall denote the {\it cross product} of the representing vectors
 %
@@ -389,7 +406,7 @@ satisfies the requirements.
 
 Now, suppose that $P \in \p^2$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 \neq 0$.
 Up to rescaling, we can suppose that $a^2 + b^2 + c^2 = 1$.
-Again, we produce a matrix $M \in \SO_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
+Again, we produce a matrix $M \in \SO_3(\C)$ such that $M \left(\begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix}\right)$ and~$\left(\begin{smallmatrix} a \\ b \\ c \end{smallmatrix}\right)$ are proportional.
 First of all, suppose that $b^2 + c^2 \neq 0$ and let $\omega$ be a root of the polynomial $t^2 - (b^2 + c^2)$ in $\C[t]$.
 Then, the matrix
 %
@@ -1196,8 +1213,8 @@ Let $P_2 = (A_2: B_2: C_2)$, $P_4 = (A_4: B_4: C_4)$ and
 $P_3 = u_1 \, P_1 + u_2 \, P_2$, $P_5 = v_1 \, P_1 + v_2 \, P_4$ be the other points.
 If $P_1 = (1: \iii: 0)$, we transform the matrix $M = \Phi(P_1, \dots, P_5)$ by elementary row and column operations into $\mathbb{I}_2 \oplus M'$, where $\mathbb{I}_2$ is the order~$2$ identity matrix; thus, $\rk \, M \leq 9$ if and only if $\rk \, M' \leq 7$.
 The computations require several other strategies, but at the end we are
-able to see that in this case (i.e.\ the case in which $P_1$ is on~$\iso$), the matrix $M'$ cannot have rank less then $7$, therefore if $P_1$ is on 
-$\iso$, $\rk\, M$ cannot be less then $9$.
+able to see that in this case (i.e.\ the case in which $P_1$ is on~$\iso$), the matrix $M'$ cannot have rank less than~$7$, therefore if $P_1$ is on 
+$\iso$, $\rk\, M$ cannot be less than~$9$.
 
 If $P_1 = (1: 0: 0)$, then the ideal of the order $9$ minors of
 $\Phi(P_1, \dots, P_5)$ (after several manipulations and saturations)
@@ -1229,10 +1246,10 @@ If $\mathcal{H}_i$ is the order~$9$ minor of~$\mathcal{H}$ given by erasing the 
 then, from Cramer's rule, a polynomial defining~$C$ is given by
 %
 \[
-  f(X) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_i
+  f(X) = \sum_{i=1}^{10}(-1)^i\det(\mathcal{H}_i)\cdot \mathcal{B}_i \,,
 \]
 %
-(where $\mathcal{B}$ is as in \Cref{eq:vector_basis}). In other words,
+where $\mathcal{B}$ is as in \Cref{eq:vector_basis}. In other words,
 %
 \[
   f(X) = \det \left( 
@@ -1303,8 +1320,7 @@ Consider the following five points in a $V$-configuration:
 %
 They satisfy the condition $\delta_2(p_1, \dots, p_5) = 0$.
 We consider the $9\times 10$ matrix $\mathcal{H}$ whose rows
-(suitable rescaled) are:
-$\phi_i(p_j)$ for $i = 1, 2$ and $j = 1, 2, 3, 4$ and $\phi_1(p_5)$:
+(suitable rescaled) are $\phi_i(p_j)$ for $i = 1, 2$ and $j = 1, 2, 3, 4$, and $\phi_1(p_5)$
 %
 \[
   \mathcal{H} =
@@ -1351,7 +1367,7 @@ The polynomials~$g_1$, $g_2$, and~$g_3$ are:
 %
 and can be computed either using their definition,
 or~\Cref{proposition:geiser1}.
-The common zeros of $g_1, g_2, g_3$ are the points $p_1, \dots, p_5$
+The common zeros of~$g_1$, $g_2$, $g_3$ are the points $p_1, \dots, p_5$
 and the points $p_6 = (21: 34: -8)$ and $p_7 = (19: 35: -9)$.
 \end{es}
 
@@ -1556,13 +1572,15 @@ The equation of the line~$P_1 \vee P_2$ can be expressed in the following way
 %
 \begin{equation}
 \label{eq:lineP1P2}
-  \left\langle P_1 \times P_2, (x,y,z) \right\rangle = 0;
+  \left\langle P_1 \times P_2, (x,y,z) \right\rangle = 0 \,;
 \end{equation}
 %
-since it is contracted by~$\gamma_{\Eig{f}}$, and by the description of the fibers given in \Cref{eq:fibers}, we have that such a line is contained in the conic of equation
+since $P_1 \vee P_2$ is contracted by~$\gamma_{\Eig{f}}$,
+and by the description of the fibers given in \Cref{eq:fibers},
+we have that such a line is contained in the conic of equation
 %
 \[
-  \left\langle P_1 \times P_2, (\de_x f, \de_y f, \de_z f) \right\rangle = 0.
+  \left\langle P_1 \times P_2, (\de_x f, \de_y f, \de_z f) \right\rangle = 0 \,.
 \]
 %
 As a consequence, for any point $\overline{P} = (\bar x: \bar y: \bar z)$ of the line from \Cref{eq:lineP1P2}, the following equations are satisfied:
@@ -1787,7 +1805,7 @@ of~$\p^9$ determined by the cubic obtained from $M_a$ and
 the cubic obtained from $M_b$. The condition $P_1 \in r$
 determines the values of~$w_a$ and~$w_b$, hence we get the cubic
 with the three collinearities $(P_1, P_2, P_3)$,
-$(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$. If we require that the eigenpoints 
+$(P_1, P_4, P_5)$ and~$(P_1, P_6, P_7)$. If we require that the eigenpoints 
 have other alignments, w.l.o.g.\ we can assume that $P_6$ is on the line 
 $P_2 \vee P_4$, hence it can be determined as the intersection of~$r$
 and~$P_2 \vee P_4$. If we impose that this point is an eigenpoint, we get
@@ -1901,7 +1919,7 @@ alignments:
 %
 In this case the point~$P_6$ (given, for instance, by the formula
 $P_6 = s_{15} \, P_3 + s_{13} \, P_5$) is obtained as
-$(P_2 \vee P_5) \cap (P_3 \vee P_4)$ and consequently
+the intersection~$(P_2 \vee P_5) \cap (P_3 \vee P_4)$ and consequently
 $P_7 = (P_1 \vee P_6) \cap (P_3 \vee P_5)$.\\
 No other collinearities among the eigenpoints are possible.
 \end{prop}
@@ -2074,7 +2092,7 @@ we have a surjective morphism
 \]
 %
 assigning to each $[f] \in \mathcal{U}'$ the unique triple of eigenpoints.
-Over the irreducible open subset
+The fibers of~$\alpha$ are projective linear systems of dimension~$3$ by \Cref{manca il riferimento su ancillary  non e': condition_rank_aligned} over the irreducible open subset
 %
 \[
   \mathcal{W} := \mathcal{AL}
@@ -2083,7 +2101,7 @@ Over the irreducible open subset
 \]
 %
 of aligned triples not lying
-on a tangent line to the isotropic conic~$\iso$ and with tangency point one of the~$P_i$'s, the fibers of~$\alpha$ are projective linear systems of dimension~$3$ by \Cref{manca il riferimento su ancillary  non e': condition_rank_aligned}. 
+on a tangent line to the isotropic conic~$\iso$ and with tangency point one of the~$P_i$'s. 
 By the Fiber Dimension Theorem, this implies that the open subset $\alpha^{-1} (\mathcal{W}) \subset \sU$ is irreducible of dimension
 %
 \[
@@ -2146,14 +2164,17 @@ for any multiindex
 we set
 %
 \begin{multline*}
-  \sV_I := \{ [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal{AL} \ | \ \text{the\ columns\ of\ } \Phi
-  (P_1, P_2, u_1 \, P_1 + u_2 \, P_2) \\
-  \text{\ relative \ to} \ I\ \text{are\ independent}\} \,.
+  \sV_I :=
+  \bigl\{
+    [(P_1, P_2, u_1 P_1 +u_2P_2)] \in \mathcal{AL} \ | \ \text{the\ columns\ of\ } \Phi
+    (P_1, P_2, u_1 \, P_1 + u_2 \, P_2) \\
+    \text{\ relative \ to} \ I\ \text{are\ independent}
+  \bigr\} \,.
 \end{multline*}
 %
 Then for any $[(P_1, P_2, u_1 \, P_1 + u_2 \, P_2)] \in \sV_I$, the coefficients of any element
 $[f] =[\mathcal{B} \cdot w_f]$ of the linear system
-$\Lambda \bigl( \Phi (P_1, P_2, u_1 P_1 +u_2P_2) \bigr)$ can be expressed in the form
+$\Lambda \bigl( \Phi (P_1, P_2, u_1 P_1 + u_2P_2) \bigr)$ can be expressed in the form
 %
 \begin{equation}
 \label{eq: parametrizzazione}
@@ -2162,7 +2183,7 @@ $\Lambda \bigl( \Phi (P_1, P_2, u_1 P_1 +u_2P_2) \bigr)$ can be expressed in the
   b_2,
   b_3,
   b_4,
-  b_5, b_6,b_7,b_8,b_9)=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9) \,,
+  b_5, b_6,b_7,b_8,b_9) = w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9) \,,
 \end{equation}
 %
 where $b_i = b_i(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$ for $i\in I$ and $j \not \in I$, $1\le j \le 7$, are suitable rational functions.
@@ -2334,7 +2355,7 @@ Assume that $\dim \Eig{f} = 1$.
 %
 \end{prop}
 
-The proof relies on the exactness of the Koszul complex associated with the regular sequence $x,y,z$, specifically we use the following result (see \cite[Theorem~7.3.13]{Dolgachev} or \cite[Lemma~3.9]{BGV}).
+The proof relies on the exactness of the Koszul complex associated with the regular sequence~$x$, $y$, and~$z$, specifically we use the following result (see \cite[Theorem~7.3.13]{Dolgachev} or \cite[Lemma~3.9]{BGV}).
 
 \begin{lemma}
 \label{lem:Koszul}
@@ -2348,16 +2369,16 @@ Let $h_1,h_2,h_3\in\C[x,y,z]_d$ with $d \ge 1$. Then
 if and only if there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that
 %
 \begin{equation}
-\label{eq: minors lemma}
-  h_1 = ym_3-zm_2, \qquad
-  h_2 = zm_1-xm_3, \qquad
-  h_3 = xm_2-ym_1.
+\label{eq:minors_lemma}
+  h_1 = ym_3-zm_2 \,, \qquad
+  h_2 = zm_1-xm_3 \,, \qquad
+  h_3 = xm_2-ym_1 \,.
 \end{equation}
 %
 \end{lemma}
 
 \begin{proof}
-If $h_1,h_2,h_3$ satisfy \Cref{eq: minors lemma}, then it is immediate to check that they satisfy \Cref{eq:linear_relazion} as well. 
+If $h_1,h_2,h_3$ satisfy \Cref{eq:minors_lemma}, then it is immediate to check that they satisfy \Cref{eq:linear_relazion} as well. 
 Conversely, assume that \Cref{eq:linear_relazion} holds and let $R = \C[x,y,z]$.
 The Koszul complex in the ring~$R$ is an exact sequence of $R$-modules
 %
@@ -2379,7 +2400,7 @@ where the maps are $\alpha(p) = (p x, p y, p z)$, $\gamma (w_1,w_2,w_3) = w_1 x 
 %
 The syzygy $xh_1-yh_2+zh_3=0$ implies that $(h_1, -h_2, h_3)$ is in the kernel of~$\gamma$,
 and since the Koszul complex is exact, the triple $(h_1,-h_2, h_3)$ lies in the image of~$\beta$.
-It follows that there exist $m_1,m_2,m_3 \in \C[x,y,z]_{d-1}$ such that \Cref{eq: minors lemma} holds.
+It follows that there exist $m_1,m_2,m_3 \in \C[x,y,z]_{d-1}$ such that \Cref{eq:minors_lemma} holds.
 \end{proof}
 
 Now we are in the position to prove \Cref{p2}.
@@ -2429,8 +2450,8 @@ Consider the form
 In the language of \Cref{p2} and its proof, we have $l=x$,
 %
 \[
- h_1 = x^2-2y^2+2y z, \quad 
- h_2 = 2z^2-x^2-2y z, \quad 
+ h_1 = x^2-2y^2+2y z \,, \quad 
+ h_2 = 2z^2-x^2-2y z \,, \quad 
  h_3 = 2yz-2z^2-xy \,.
 \]
 %
@@ -2440,7 +2461,7 @@ The two syzygies in degree~$3$ are:
   z \, h_1 - y \, h_2 + x \, h_3 = 0, \quad x \, h_2 + 2(y+z) \, h_3 + x \, h_1 = 0.
 \]
 %
-Finally, $Z= \{ (0:1:1),(2:1:-1),(-2:1:-1) \}$.
+Finally, $Z = \{ (0:1:1),(2:1:-1),(-2:1:-1) \}$.
 Observe that one point is on the singular line $x=0$.
 \end{es}
 
@@ -2495,7 +2516,7 @@ $C(r)$.
 A generic point on $\iso$ is of the form $(\lambda^2 + \mu^2, 
 \iii\lambda^2 -\iii\mu^2, 2\iii\lambda \mu)$ for $(\lambda: \mu) \in \p^1$.
 By using this description, we can write two points~$P_1$ and~$P_2$ on~$\iso$,
-compute the line $r$ joining them and define $C(r)$.
+compute the line $r$ joining them and define~$C(r)$.
 It is then easy to see that the two tangents to~$\iso$ in~$P_1$ and~$P_2$ are eigenpoints
 for~$C(r)$.
 \end{proof}
@@ -2509,8 +2530,8 @@ Let $t$ be a line in the plane.
    If $t$ is not tangent to the isotropic conic, a cubic~$C$ has $t$ among its eigenpoints if and 
 only if it is of the form $C = t^2\ell$, where $\ell$ is any line of the plane.
   \item 
-  If $t$ is tangent to the isotropic conic~$\iso$ (in a point~$P$), a cubic~$C$ has $t$ 
-among its eigenpoints if and only if it is of the form
+  If $t$ is tangent to the isotropic conic~$\iso$ (in a point~$P$),
+  a cubic~$C$ has $t$ among its eigenpoints if and only if it is of the form
   %
   \begin{equation}
   \label{cubiche_con_retta_autop_tg}
@@ -2554,16 +2575,18 @@ cubic which has the line~$t$ among its eigenpoints, and the this result follows 
 \begin{prop}
 Let $t$ be a line tangent to the isotropic conic in a point~$P$.
 Then all the cubics of the family from \Cref{cubiche_con_retta_autop_tg} are singular in~$P$ and~$t$ is one of the two tangents to the cubic in~$P$.
+Notice that, in this case, when $C$ has a node at~$P$, the other tangent to~$C$ at~$P$ is orthogonal to~$t$.
 \end{prop}
 \begin{proof}
 %% file: una_retta_tg_autop.sage
 As seen in \Cref{prop:eigenline_non_tangent}, up to the action of~$\SO_3(\C)$, all the
 cubics are a linear combination of $H_1, \dots, H_4$ and a direct
 computation gives the thesis.
+The last statement follows from the fact that all lines passing through a point on~$\iso$ are orthogonal to the tangent to~$\iso$ at that point.
 \end{proof}
 
 NOTA: @@Le cubiche con P1 singolare e tangente in P1 data da tg1 sono
-un sistema lineare di dimensione 6, le cubiche
+un sistema lineare di dimensione 5, le cubiche
 di~(\ref{cubiche_con_retta_autop_tg}) sono di dimensione
 4, Che altre proprieta' deve avere una cubica per rientrare
 in~(\ref{cubiche_con_retta_autop_tg})?
@@ -2606,7 +2629,7 @@ In case the line $t$ is tangent to the isotropic conic, we can
 assume it is the line $x+\iii y =0$. Here we fix the three
 points
 \[
-P_1 = (1: \iii: 0), \ P_2 = (0: 0: 1), \ P_3 = (1: \iii: 1)
+P_1 = (1: \iii: 0), \ P_2 = (0: 0: 1), \ P_3 = (1: \iii: 1) \,.
 \]
 In this case the linear system of cubics 
 $\Lambda \bigl(\Phi(P_1, P_2, P_3)\bigr)$ is four dimensional and 
@@ -3019,7 +3042,7 @@ $V$-configuration that satisfies a $\delta_2$ condition.
 The points $P_1, P_2, P_3, P_4, P_5$ are in a $V$-configuration.
 If $\rk \, \Phi(P_1, \dots, P_5) = 8$, the result follows from~\Cref{rank_8}.
 Therefore, assume that the matrix $\Phi(P_1, \dots, P_5)$ has rank~$9$.
-If $\delta_2(P_1, \dots, P_5) = 0$, we have the thesis;
+If $\delta_2(P_1, \dots, P_5) = 0$, the statement follows;
 otherwise, $\delta_1(P_1, P_2, P_4) = 0$.
 Then consider the $V$-configuration $P_1$, $P_2$, $P_3$, $P_6$, $P_7$.
 As above, we suppose $\delta_1(P_1, P_2, P_6) = 0$.
@@ -3139,14 +3162,18 @@ To complete the proof of the claim,
 we should also take for $P_1$ the point~$(1:\iii:0)$;
 however, this is not necessary, since the configuration of the points implies that $\scl{P_1}{P_1}=0$ and
 this is not possible. 
-A manipulation of the polynomial~$f$ gives that it is equal to 
-$\bigl((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15})\bigr)/s_{11}$,
+A manipulation of the polynomial~$f$ shows that it is equal to
+%
+\[
+  \bigl((s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15})\bigr)/s_{11} \,,
+\]
+%
 hence the points $P_1, \dots, P_6$ are eigenpoints if and only if \Cref{cndC5} is satisfied.
 
 If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1 \, P_2 + w_2 \, P_4$,
 we find~$w_1$ and~$w_2$, which give \Cref{p6formula}.
 
-Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with $P_1$ and~$P_6$.
+Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with~$P_1$ and~$P_6$.
 \end{proof}
 %
 The converse of the above proposition is also true, more precisely:
@@ -3215,7 +3242,7 @@ Indeed, if we consider suitable ideals given by the conditions
 $\delta_1$ and~$\delta_2$ that must be satisfied by the points of the two configurations,
 we get that there are no compatible solutions.
 
-\underline{Configuration (8)} Is realizable.  
+\underline{Configuration (8)} is realizable.  
 %% file config8N2.sage+
 The $(C_8)$ configuration we consider in this paragraph is the following: 
 %
@@ -3351,7 +3378,7 @@ $P_1$ is the point~$(1: 0: 0)$ or the point~$(1: \iii: 0)$.
 \end{proof}
 
 \begin{corollary}
-The locus of homogenous forms~$F$ with a $(C_8)$ configuration has dimension~$6$.
+The locus of ternary cubic forms~$F$ with a $(C_8)$ configuration has dimension~$6$.
 \end{corollary}
 
 
