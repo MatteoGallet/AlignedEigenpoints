@@ -1270,66 +1270,66 @@ and similarly for $g_2 = x \cdot \de_z f(X)- z \cdot \de_x f(X)$
 and $g_3 = y \cdot \de_z f(X)- z \cdot \de_y f(X)$.
 \end{proof}
 
-\begin{es}
-Consider the following five points in a $V$-configuration:
-%
-\begin{gather*}
-  p_1 = (2: -1: 1) \,, \quad p_2 = (-1: 1: 3) \,, \quad p_4 = (3: 6: -1) \,, \\
-  p_3 = p_1+p_2 \, \quad p_5 = p_1+p_4 \,.
-\end{gather*}
-%
-They satisfy the condition $\delta_2(p_1, \dots, p_5) = 0$.
-We consider the $9\times 10$ matrix $\mathcal{H}$ whose rows
-(suitable rescaled) are $\phi_i(p_j)$ for $i = 1, 2$ and $j = 1, 2, 3, 4$, and $\phi_1(p_5)$
-%
-\[
-  \mathcal{H} =
-  \left(
-  \begin{array}{rrrrrrrrrr}
-    12 & 4 & -7 & 6 & 4 & 3 & -4 & 1 & 2 & 0 \\
-    -12 & 4 & -1 & 0 & 4 & -3 & 2 & 7 & -4 & 6 \\
-    -3 & 1 & 1 & -3 & 6 & 0 & -6 & -9 & -9 & 0 \\
-    -9 & 6 & -3 & 0 & 17 & -8 & -1 & -21 & -6 & -27 \\
-    0 & 1 & 0 & 0 & 0 & 4 & 0 & 0 & 16 & 0 \\
-    -12 & 0 & 0 & 0 & -31 & 0 & 0 & -56 & 0 & 48 \\
-    54 & 63 & 36 & -108 & -12 & -9 & 12 & 2 & -1 & 0\\
-    27 & 36 & 36 & 0 & 21 & 48 & 108 & -17 & -36 & 9 \\
-    336 & 328 & 119 & -588 & -56 & -33 & 56 & 7 & -4 & 0
-  \end{array}
-  \right)
-\]
-%
-The cubic with $p_1, \dots, p_5$ as eigenpoints is given by
-%
-\[
-  \det \left(
-  \begin{array}{c}
-    \mathcal{H}\\
-    \mathcal{B}
-  \end{array}
-  \right)
-\]
-%
-whose value is (after a suitable rescaling):
-%
-\[
-  766x^3 - 1176x^2y + 417xy^2 - 128y^3 + 1488x^2z - 1722xyz
-  + 597y^2z - 207xz^2 + 504yz^2 + 911z^3
-\]
-%
-The polynomials~$g_1$, $g_2$, and~$g_3$ are:
-%
-\begin{align*}
-  g_1 &= 392x^3 + 488x^2y - 656xy^2 + 139y^3 + 574x^2z + 594xyz - 574y^2z - 168xz^2 - 69yz^2 \\
-  g_2 &= 496x^3 - 574x^2y + 199xy^2 - 904x^2z + 1120xyz - 139y^2z - 81xz^2 + 574yz^2 + 69z^3 \\
-  g_3 &= 496x^2y - 574xy^2 + 199y^3 + 392x^2z - 416xyz + 464y^2z + 574xz^2 + 513yz^2 - 168z^3
-\end{align*}
-%
-and can be computed either using their definition,
-or~\Cref{proposition:geiser1}.
-The common zeros of~$g_1$, $g_2$, $g_3$ are the points $p_1, \dots, p_5$
-and the points $p_6 = (21: 34: -8)$ and $p_7 = (19: 35: -9)$.
-\end{es}
+% \begin{es}
+% Consider the following five points in a $V$-configuration:
+% %
+% \begin{gather*}
+%   p_1 = (2: -1: 1) \,, \quad p_2 = (-1: 1: 3) \,, \quad p_4 = (3: 6: -1) \,, \\
+%   p_3 = p_1+p_2 \, \quad p_5 = p_1+p_4 \,.
+% \end{gather*}
+% %
+% They satisfy the condition $\delta_2(p_1, \dots, p_5) = 0$.
+% We consider the $9\times 10$ matrix $\mathcal{H}$ whose rows
+% (suitable rescaled) are $\phi_i(p_j)$ for $i = 1, 2$ and $j = 1, 2, 3, 4$, and $\phi_1(p_5)$
+% %
+% \[
+%   \mathcal{H} =
+%   \left(
+%   \begin{array}{rrrrrrrrrr}
+%     12 & 4 & -7 & 6 & 4 & 3 & -4 & 1 & 2 & 0 \\
+%     -12 & 4 & -1 & 0 & 4 & -3 & 2 & 7 & -4 & 6 \\
+%     -3 & 1 & 1 & -3 & 6 & 0 & -6 & -9 & -9 & 0 \\
+%     -9 & 6 & -3 & 0 & 17 & -8 & -1 & -21 & -6 & -27 \\
+%     0 & 1 & 0 & 0 & 0 & 4 & 0 & 0 & 16 & 0 \\
+%     -12 & 0 & 0 & 0 & -31 & 0 & 0 & -56 & 0 & 48 \\
+%     54 & 63 & 36 & -108 & -12 & -9 & 12 & 2 & -1 & 0\\
+%     27 & 36 & 36 & 0 & 21 & 48 & 108 & -17 & -36 & 9 \\
+%     336 & 328 & 119 & -588 & -56 & -33 & 56 & 7 & -4 & 0
+%   \end{array}
+%   \right)
+% \]
+% %
+% The cubic with $p_1, \dots, p_5$ as eigenpoints is given by
+% %
+% \[
+%   \det \left(
+%   \begin{array}{c}
+%     \mathcal{H}\\
+%     \mathcal{B}
+%   \end{array}
+%   \right)
+% \]
+% %
+% whose value is (after a suitable rescaling):
+% %
+% \[
+%   766x^3 - 1176x^2y + 417xy^2 - 128y^3 + 1488x^2z - 1722xyz
+%   + 597y^2z - 207xz^2 + 504yz^2 + 911z^3
+% \]
+% %
+% The polynomials~$g_1$, $g_2$, and~$g_3$ are:
+% %
+% \begin{align*}
+%   g_1 &= 392x^3 + 488x^2y - 656xy^2 + 139y^3 + 574x^2z + 594xyz - 574y^2z - 168xz^2 - 69yz^2 \\
+%   g_2 &= 496x^3 - 574x^2y + 199xy^2 - 904x^2z + 1120xyz - 139y^2z - 81xz^2 + 574yz^2 + 69z^3 \\
+%   g_3 &= 496x^2y - 574xy^2 + 199y^3 + 392x^2z - 416xyz + 464y^2z + 574xz^2 + 513yz^2 - 168z^3
+% \end{align*}
+% %
+% and can be computed either using their definition,
+% or~\Cref{proposition:geiser1}.
+% The common zeros of~$g_1$, $g_2$, $g_3$ are the points $p_1, \dots, p_5$
+% and the points $p_6 = (21: 34: -8)$ and $p_7 = (19: 35: -9)$.
+% \end{es}
 
 \begin{rmk}
 When the matrix $\Phi(P_1, \dots, P_5)$ has rank~$8$, as in \Cref{rank_8}, the family of
