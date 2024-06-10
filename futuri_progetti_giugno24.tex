@@ -254,7 +254,19 @@ that is
 \[
 (-am_2+bm_3)\de_x g +(-am_1+cm_3)\de_y g +(-bm_1+cm_2)\de_zg=0.
 \]
-Since we are assuming $V(g)$ smooth, its partials are linearly independent; indeed, it is classically known
+Since we are assuming $V(g)$ smooth, its partials are linearly independent; indeed, it is classically known that the partials of a terniary form are dependent if and only if 
+the zero locus is a set of concurrent lines.
+It follows that the three coefficients are all zero, and being the order two minors of the matrix
+\[
+\begin{pmatrix}
+    a&b&c\\
+    m_3 & m_2 &m_1\\
+\end{pmatrix},
+\]
+the two rows are proportional, so we have
+\[
+(h_1,-h_2,h_3)=(-m_3\de_y g -m_2\de_z g, m_3\de_x g -m_1\de_z g, m_2\de_x g+m_1\de_y g).
+\]
 \end{proof}
 
 \bibliographystyle{alphaurl}
