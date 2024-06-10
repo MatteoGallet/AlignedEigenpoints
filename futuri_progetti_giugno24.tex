@@ -1,0 +1,217 @@
+\documentclass[a4paper, 11pt, reqno]{amsart}
+
+\setlength{\parindent}{.4 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\topmargin} {0.2 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\oddsidemargin}{0 in}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{tikz,pgf}
+\usetikzlibrary{calc}
+\usetikzlibrary{through}
+\usepackage{tkz-euclide}
+\usepackage{palatino}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\usepackage[nameinlink]{cleveref}
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prop}[lemma]{Proposition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{theoremintro}{Theorem}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{fact}[lemma]{Fact}
+\newtheorem{assumption}[lemma]{Assumption}
+\newtheorem*{reduction}{Reduction}
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{es}[lemma]{Example}
+\newtheorem*{notation}{Notation}
+\newtheorem{rmk}[lemma]{Remark}
+
+\tikzstyle{point}=[circle, draw, fill=black, inner sep=0pt, minimum size=4pt]
+\tikzstyle{line}=[line width=1.5pt, black!70!white]
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\sL}{\mathcal{L}}
+\newcommand{\sU}{\mathcal{U}}
+\newcommand{\sV}{\mathcal{V}}
+\newcommand{\sF}{\mathcal{F}}
+\newcommand{\de}{\partial}
+\newcommand{\oo}{\mathcal{O}}
+
+\newcommand{\iii}{\textit{i}\,}
+\newcommand{\codim}{\mathrm{codim}}
+\newcommand{\rk}{\ensuremath{\mathrm{rk}}}
+
+\newcommand{\iso}{\mathcal{Q}_{\mathrm{iso}}}
+
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Eig}[1]{\mathcal{E}\!\left( {#1} \right)}
+\newcommand{\Sym}{\operatorname{Sym}}
+
+\newcommand{\scl}[2]{\left\langle {#1}, {#2} \right\rangle}
+
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+\newcommand{\blue}[1]{{\color{blue}[#1]}}
+
+
+\title{Equations for eigenconfigurations of ternary cubics}
+\author[Valentina Beorchia]{Valentina Beorchia$^{\circ}$}
+\address[\textsc{Valentina Beorchia}]{University of Trieste,
+Department of Mathematics, Informatics and Geosciences,
+Via Valerio 12/1, 34127 Trieste, Italy}
+\email{beorchia@units.it}
+\thanks{$^{\circ}$The researcher is a member of ``Gruppo Nazionale per le Strutture Algebriche, Geometriche e le loro Applicazioni'', INdAM. She is partially supported by MUR funds: PRIN project GEOMETRY OF ALGEBRAIC STRUCTURES: MODULI, INVARIANTS, DEFORMATIONS, PI Ugo Bruzzo, Project code: 2022BTA242.}
+\author[Matteo Gallet]{Matteo Gallet$^{\diamond}$}
+\address[\textsc{Matteo Gallet}]{University of Trieste,
+Department of Mathematics, Informatics and Geosciences,
+Via Valerio 12/1, 34127 Trieste, Italy}
+\email{matteo.gallet@units.it}
+\thanks{$^{\diamond}$The researcher is a member of ``Gruppo Nazionale per le Strutture Algebriche, Geometriche e le loro Applicazioni'', INdAM.}
+\author[Alessandro Logar]{Alessandro Logar}
+\address[\textsc{Alessandro Logar}]{University of Trieste,
+Department of Mathematics, Informatics and Geosciences,
+Via Valerio 12/1, 34127 Trieste, Italy}
+\email{logar@units.it}
+\date{}
+
+\linespread{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25em}
+
+\begin{document}
+
+\maketitle
+
+
+\section{The locus of $7$-uples of eigenpoints of cubics}
+
+\section{Cubics with an eigenconic}
+
+We recall the following result from [I magnifici tre].
+\begin{prop}
+\label{p2}
+Let $C = V(f) \subset \p^2$ be a cubic curve.
+Assume that $\dim \Eig{f} = 1$ and that the $1$-dimensional component of~$\Eig{f}$ is a conic~$q$.
+
+  Then the residual subscheme $Z := \mathrm{Res}_q \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
+
+\end{prop}
+
+The proof relies on the exactness of the Koszul complex associated with the regular sequence~$x$, $y$, and~$z$, specifically we use the following result (see \cite[Theorem~7.3.13]{Dolgachev} or \cite[Lemma~3.9]{BGV}).
+
+\begin{lemma}
+\label{lem:Koszul}
+Let $h_1,h_2,h_3\in\C[x,y,z]_d$ with $d \ge 1$. Then
+%
+\begin{equation}
+\label{eq:linear_relazion}
+  xh_1-yh_2+zh_3 = 0
+\end{equation}
+%
+if and only if there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that
+%
+\begin{equation}
+\label{eq:minors_lemma}
+  h_1 = ym_3-zm_2 \,, \qquad
+  h_2 = zm_1-xm_3 \,, \qquad
+  h_3 = xm_2-ym_1 \,.
+\end{equation}
+%
+\end{lemma}
+
+\begin{proof}
+If $h_1,h_2,h_3$ satisfy \Cref{eq:minors_lemma}, then it is immediate to check that they satisfy \Cref{eq:linear_relazion} as well. 
+Conversely, assume that \Cref{eq:linear_relazion} holds and let $R = \C[x,y,z]$.
+The Koszul complex in the ring~$R$ is an exact sequence of $R$-modules
+%
+\[
+  0 \to R\xrightarrow{\alpha} R^{\oplus 3} \xrightarrow{\beta} R^{\oplus 3} \xrightarrow{\gamma} R \to R/(x,y,z) \to 0 \,,
+\]
+%
+where the maps are $\alpha(p) = (p x, p y, p z)$, $\gamma (w_1,w_2,w_3) = w_1 x + w_2 y + w_3 z$ and $\beta$ is defined by the matrix
+%
+\[
+  \left(
+  \begin{array}{ccc}
+    0 & -z & y\\
+    z & 0 & -x\\
+    -y & x & 0 \\
+  \end{array}
+  \right) \,.
+\]
+%
+The syzygy $xh_1-yh_2+zh_3=0$ implies that $(h_1, -h_2, h_3)$ is in the kernel of~$\gamma$,
+and since the Koszul complex is exact, the triple $(h_1,-h_2, h_3)$ lies in the image of~$\beta$.
+It follows that there exist $m_1,m_2,m_3 \in \C[x,y,z]_{d-1}$ such that \Cref{eq:minors_lemma} holds.
+\end{proof}
+
+\bigskip
+
+Let 
+\begin{equation}\label{eq: 3 minors}
+g_1=x \,\partial_y f - y \,\partial_x f, \qquad g_2=x\,\partial_z f - z\, \partial_x f, \qquad g_3= y \,\partial_z f - z \,\partial_y f
+\end{equation}
+be the order~$2$ minors determining the eigenscheme of~$f$, and let $g$ be the greatest common factor.
+By writing
+%
+\[
+  g_i = g \, h_i, \quad i=1,2,3
+\]
+%
+we have that the residual scheme is defined by the ideal
+$(h_1,h_2,h_3)$. Moreover, the
+linear
+syzygy between the generators~$g_i$ gives rise to the syzygy:
+%
+\[
+  z\, h_1 - y\, h_2 + x\, h_3 = 0 \,.
+\]
+%
+By \Cref{lem:Koszul}, the triple $(h_1,h_2,h_3)$ is the triple of order two minors of a matrix
+%
+\[
+  \begin{pmatrix}
+    x & y & z \\
+    m_1 & m_2 & m_3
+  \end{pmatrix} \,.
+\]
+%
+for suitable constants $m_i \in \C$.
+By the assumption that $g$ is the greatest common factor of the three minors $g_1$, $g_2$ and~$g_3$, the triple $(h_1,h_2,h_3)$ corresponds to three linear forms belonging to a pencil, hence the zero locus is a point.
+
+Now we observe that the minors $g_i$ satisfy also the identity
+\begin{equation}\label{eq: partials}
+    \partial_z g_1 - \partial_y g_2 +\partial_x g_3=0.
+\end{equation}
+
+
+
+\bibliographystyle{alphaurl}
+\bibliography{biblio}
+
+\end{document}
+
