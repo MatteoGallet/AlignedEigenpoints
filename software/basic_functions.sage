@@ -1,4 +1,22 @@
+###############
+# Auxiliary file for the paper
+# "Eigenpoint collinearities of plane cubics"
+# by
+# Valentina Beorchia, Matteo Gallet, Alessandro Logar
+# Last modified: 10/06/2023
+###############
+
 import itertools
+
+varAn1 = ["s"+str(i)+str(j) for i in range(1,8) for j in range(i, 8)]
+varAn2 = ["x", "y", "z", "u1", "u2", "v1", "v2", "w1", "w2", "l1", "l2"]
+varAn3 = ["a"+str(i) for i in range(10)]
+varAn4 = [str(XX)+str(i) for i in range(1, 8) for XX in ["A", "B", "C"]]
+var("xx")
+K = QQ
+K.<ii> = NumberField(xx^2+1)
+S = PolynomialRing(K, varAn1+varAn2+varAn3+varAn4)
+S.inject_variables(verbose=false)
 
 
 def scalar_product(P, Q):
@@ -41,6 +59,9 @@ def delta1(P, Q, T):
     '''
 
     return scalar_product(P, P)*scalar_product(Q, T) - scalar_product(P, Q)*scalar_product(P, T)
+
+def delta1b(P, Q, T):
+    return scalar_product(P, P)*scalar_product(Q, T) + scalar_product(P, Q)*scalar_product(P, T)
 
 def delta2(P1, P2, P3, P4, P5):
     '''
@@ -131,3 +152,16 @@ def condition_matrix(list_points, R, standard="first_two", list_rows=[]):
         return matrix(R, list(itertools.chain(*[get_rows(list_rows[i], phi(list_points[i], R)) for i in range(len(list_points))])))
     else:
         raise Error("Value of standard not defined")
+
+def get_sqrfree(poly):
+    if poly.is_zero():
+        return S(0)
+    return prod(map(lambda pair: pair[0], list(poly.factor())))
+
+def poly_saturate(pol, divisor):
+    pol1 = pol
+    qr = pol1.quo_rem(divisor)
+    while qr[1] == 0:
+        pol1 = qr[0]
+        qr = pol1.quo_rem(divisor)
+    return(pol1)
