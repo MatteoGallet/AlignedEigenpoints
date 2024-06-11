@@ -21,6 +21,10 @@ S.inject_variables(verbose=false)
 # The ten degree 3 monomials:
 mon = [x^3, x^2*y, x*y^2, y^3, x^2*z, x*y*z, y^2*z, x*z^2, y*z^2, z^3]
 
+# Definition of the isotropic conic Ciso
+Ciso = x^2 + y^2 + z^2
+
+
 def scalar_product(P, Q):
     '''
     Scalar product between two vectors with three coordinates.
