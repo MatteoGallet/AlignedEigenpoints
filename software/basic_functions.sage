@@ -9,7 +9,7 @@
 import itertools
 
 varAn1 = ["s"+str(i)+str(j) for i in range(1,8) for j in range(i, 8)]
-varAn2 = ["x", "y", "z", "u1", "u2", "v1", "v2", "w1", "w2", "l1", "l2"]
+varAn2 = ["x", "y", "z", "u1", "u2", "v1", "v2", "w1", "w2", "l1", "l2", "m1", "m2"]
 varAn3 = ["a"+str(i) for i in range(10)]
 varAn4 = [str(XX)+str(i) for i in range(1, 8) for XX in ["A", "B", "C"]]
 var("xx")
@@ -18,6 +18,8 @@ K.<ii> = NumberField(xx^2+1)
 S = PolynomialRing(K, varAn1+varAn2+varAn3+varAn4)
 S.inject_variables(verbose=false)
 
+# The ten degree 3 monomials:
+mon = [x^3, x^2*y, x*y^2, y^3, x^2*z, x*y*z, y^2*z, x*z^2, y*z^2, z^3]
 
 def scalar_product(P, Q):
     '''
@@ -165,3 +167,7 @@ def poly_saturate(pol, divisor):
         pol1 = qr[0]
         qr = pol1.quo_rem(divisor)
     return(pol1)
+
+# utile in situazioni come: subs(substitution(P))
+def substitution(P):
+    return {x: P[0], y:P[1], z:P[2]}
