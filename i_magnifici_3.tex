@@ -744,7 +744,7 @@ See notebook \texttt{proposition-three\_aligned\_ranks}.
 \end{proof}
 
 \begin{prop}
-\label{manca il riferimento su ancillary  non e': condition_rank_aligned}
+\label{proposition:three_distinct_ranks}
 %%%  conto si trova su file prop47_5ago.sage
 Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 %
@@ -758,13 +758,7 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 %
 \end{prop}
 \begin{proof}
-By \Cref{two_orbits}, we can split the proof into two parts, considering the case in
-which $P_4 = (1: 0: 0)$ and the case in which $P_4 = (1: \iii: 0)$.
-In both cases, the computation of the ideal of order~$5$ minors of the matrix~$\Phi(P_1, P_2, P_4)$ and its saturation w.r.t.\ the distinct point condition gives the whole ring,
-so $\Phi(P_1, P_2, P_4)$ cannot have rank smaller than~$5$.
-Moreover, the computation of the ideal of the order~$6$ minors of~$\Phi(P_1, P_2, P_4)$ and its
-saturation w.r.t.\ the distinct point condition gives that
-$P_1, P_2, P_4$ must be aligned and, according to \Cref{proposition:three_aligned_ranks},
+Notebook \texttt{proposition-three\_distinct\_ranks} gives that $\Phi(P_1, P_2, P_4)$ has rank~$5$ if and only if $P_1, P_2, P_4$ are aligned and, according to \Cref{proposition:three_aligned_ranks},
 that line is tangent to~$\iso$ in one of the three given points.
 \end{proof}
 
@@ -1995,7 +1989,7 @@ we have a surjective morphism
 \]
 %
 assigning to each $[f] \in \mathcal{U}'$ the unique triple of eigenpoints.
-The fibers of~$\alpha$ are projective linear systems of dimension~$3$ by \Cref{manca il riferimento su ancillary  non e': condition_rank_aligned} over the irreducible open subset
+The fibers of~$\alpha$ are projective linear systems of dimension~$3$ by \Cref{proposition:three_distinct_ranks} over the irreducible open subset
 %
 \[
   \mathcal{W} := \mathcal{AL}
