@@ -596,6 +596,7 @@ In this way, if $P=(A: B: C)$, we get:
 \end{equation}
 %
 \begin{rmk}
+\label{remark:rank_2}
 By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of~$\Phi(P)$ is never $\leq 1$. \Cref{equation:vector_conditions} gives the relation
 %
 \begin{equation}
@@ -729,21 +730,6 @@ The converse is immediate.
 \end{proof}
 
 \begin{prop}
-\label{proposition:three_aligned_ranks}
-Let $P_1, P_2, P_3$ be three distinct aligned points of the plane and let
-$r$ be the line passing through them. Then:
-%
-\begin{itemize}
-  \item $5 \leq \rk \,\Phi(P_1, P_2, P_3) \leq 6$;
-  \item $\rk \,\Phi(P_1, P_2, P_3) = 5$ if and only if $r$ is tangent to~$\iso$ in one of the three points~$P_1, P_2$, or~$P_3$.
-\end{itemize}
-%
-\end{prop}
-\begin{proof}
-See notebook \texttt{proposition-three\_aligned\_ranks}.
-\end{proof}
-
-\begin{prop}
 \label{proposition:three_distinct_ranks}
 %%%  conto si trova su file prop47_5ago.sage
 Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
@@ -751,15 +737,15 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 \begin{itemize}
   \item $5 \leq \rk \,\Phi(P_1, P_2, P_4) \leq 6$;
   \item if
-  $\rk \, \Phi(P_1, P_2, P_4) = 5$, then $P_1, P_2, P_4$
+  $\rk \, \Phi(P_1, P_2, P_4) = 5$ if and only if $P_1, P_2, P_4$
   are aligned and the line joining them is tangent to~$\iso$
   in one of the three points.
 \end{itemize}
 %
 \end{prop}
 \begin{proof}
-Notebook \texttt{proposition-three\_distinct\_ranks} gives that $\Phi(P_1, P_2, P_4)$ has rank~$5$ if and only if $P_1, P_2, P_4$ are aligned and, according to \Cref{proposition:three_aligned_ranks},
-that line is tangent to~$\iso$ in one of the three given points.
+The rank of $\Phi(P_1, P_2, P_4)$ cannot be larger than~$6$ by \Cref{remark:rank_2}.
+Notebook \texttt{proposition-three\_distinct\_ranks} gives that $\Phi(P_1, P_2, P_4)$ cannot have rank $4$ since its minors of order~$5$ never vanish all at the same time. Moreover, Notebook \texttt{proposition-three\_distinct\_ranks} shows that the condition imposed by the vanishing of all minors of order $6$ of $\Phi(P_1, P_2, P_4)$ is equivalent to the one imposing that $P_1, P_2, P_4$ are aligned and and the line joining them is tangent to~$\iso$  in one of the three points.
 \end{proof}
 
 \begin{prop}
