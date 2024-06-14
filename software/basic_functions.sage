@@ -179,3 +179,13 @@ def poly_saturate(pol, divisor):
 # utile in situazioni come: subs(substitution(P))
 def substitution(P):
     return {x: P[0], y:P[1], z:P[2]}
+
+## gradient:
+def gdn(F):
+    return(vector(S, [F.derivative(xx) for xx in [x, y, z]]))
+
+## a vector which gives the equations of the eigenpoints:
+def eig(cub):
+    gF = gdn(cub)
+    return(vector(S, matrix([gF, [x, y, z]]).minors(2)))
+
