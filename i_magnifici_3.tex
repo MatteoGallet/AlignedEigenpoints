@@ -2236,10 +2236,10 @@ Let $C = V(f) \subset \p^2$ be a cubic curve.
 Assume that $\dim \Eig{f} = 1$.
 %
 \begin{enumerate}
-  \item If the $1$-dimensional component of~$\Eig{f}$ is a line~$l$,
-  then the residual subscheme $Z := \mathrm{Res}_l \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$l$ has degree~$3$. Moreover, the scheme $Z$ is not contained in a line.
-  \item If the $1$-dimensional component of~$\Eig{f}$ is a conic~$q$,
-  then the residual subscheme $Z := \mathrm{Res}_q \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
+  \item If the $1$-dimensional component of~$\Eig{f}$ is a line~$\ell$,
+  then the residual subscheme $Z := \mathrm{Res}_{\ell} \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$\ell$ has degree~$3$. Moreover, the scheme $Z$ is not contained in a line.
+  \item If the $1$-dimensional component of~$\Eig{f}$ is a conic~$\Gamma$,
+  then the residual subscheme $Z := \mathrm{Res}_{\Gamma} \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
 \end{enumerate}
 %
 \end{prop}
@@ -2336,13 +2336,12 @@ Consider the form
   f(x, y, z) = x^2 (y - z) \,.
 \]
 %
-In the language of \Cref{p2} and its proof, we have $l=x$,
+In the language of \Cref{p2} and its proof, we have $\ell=x$,
 %
 \[
  h_1 = x^2-2y^2+2yz \,, \quad 
  h_2 = -x^2-2yz+2z^2\,, \quad 
- h_3 =-x(y+z)
- \,.
+ h_3 =-x(y+z) \,.
 \]
 %
 The two syzygies in degree~$3$ are:
@@ -2355,8 +2354,6 @@ The two syzygies in degree~$3$ are:
 Finally, $Z = \{ (0:1:1),(2:1:-1),(-2:1:-1) \}$.
 Observe that one point is on the singular line $x=0$.
 \end{es}
-
-
 
 
 %%%%%%%%%%%%%%%%
@@ -2530,8 +2527,9 @@ Also here, the zeros of $h_1, \dotsc, h_4$ are in general position.
         $\Gamma = \iso-3r^2$.
     \end{itemize}
 \end{theorem}
-\begin{proof} Suppose $P_1, \dots, P_4$ are four distinct points on $\iso$ and let $C$ be a cubic which has these points among its eigenpoints. Then 
-$\iso\subseteq \Eig{C}$
+\begin{proof} Suppose $P_1, \dots, P_4$ are four distinct points on $\iso$ and let $C$ be a cubic which has these points among its eigenpoints, then 
+$\iso\subseteq \Eig{C}$. Indeed, the linear system $\Lambda(\Phi(P_1, \dotsc, P_4))$ is two-dimensional and is contained in the linear system given by all the cubics of the form $\ell \iso$ (whose cubics have $\iso$ in the eigenscheme) and is also two dimensional, so they coincide. From this we have the first point. If $C$ is a cubic that contains in the eigenscheme a conic $\Gamma$ different from $\iso$, then $\Gamma$ and $\iso$ intersect in $4$ points. From the above result, the four points cannot be distinct, hence we have to consider four cases: $\Gamma$ is tangent to $\iso$ in one point, $\Gamma$ is bitangent to
+$\iso$, $\Gamma$ is osculating $\iso$ and $\Gamma$ is iperosculating $\iso$.
 \end{proof}
 
 
