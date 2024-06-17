@@ -870,26 +870,28 @@ Then the expressions~$\delta_1$ and~$\delta_2$ become
   \delta_2(P_1, P_2, P_3, P_4, P_5) = s_{12}s_{13}s_{45}-s_{14}s_{15} s_{23} \,.
 \]
 %
-\begin{rmk}
-\label{rmk:characteristics_d1_d2}
-\textbf{@@Verifiche contenute nel file} \verb+formulae.sage+ \\
+\begin{lemma}
+\label{lemma:characteristics_d1_d2}
 It holds
 %
 \begin{align}
-\label{rmk_delta_case1}
+\label{lemma_delta_case1}
   \delta_1(P_1, P_2, P_4) = 0 \mbox{ iff } &\scl{P_4}{s_{11}P_2-s_{12}P_1} = 0\\
   \mbox{iff } &\scl{P_2}{s_{11}P_4-s_{14}P_1} = 0 \,. \nonumber
 \end{align}
 %
 \begin{align}
-\label{rmk_delta_case2}
+\label{lemma_delta_case2}
   \overline{\delta}_1(P_1, P_2, P_3) = 0 \mbox{ iff } &
   P_1 \mbox{ is on~$\iso$ and } P_1 \vee P_2 \vee P_3 \mbox{ is tangent to~$\iso$ in $P_1$, or} \\
   & P_3 = (s_{12}^2+s_{11}s_{22}) \, P_1 - 2s_{11}s_{12} \, P_2 \mbox{ or} \nonumber \\
   & P_2 = (s_{13}^2+s_{11}s_{33}) \, P_1 - 2s_{11}s_{13} \, P_3 \nonumber
 \end{align}
 %
-\end{rmk}
+\end{lemma}
+\begin{proof}
+ The proof is a symbolic verification; one can find it in Notebook \texttt{lemma-characteristics\_d1\_d2}.
+\end{proof}
 
 Suppose the point~$P_1$ is fixed. In general, in order to have
 $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$, we can fix three of the other points and determine the fourth one, 
@@ -1269,10 +1271,10 @@ above construction can be modified, by substituting one of the rows of~$\mathcal
 
 \begin{rmk}
 \label{rmk:construction_five_d1}
-Recalling \Cref{rmk:characteristics_d1_d2}, it is quite easy to construct five points $P_1, \dots, P_5$ that are in a $V$-configuration
+Recalling \Cref{lemma:characteristics_d1_d2}, it is quite easy to construct five points $P_1, \dots, P_5$ that are in a $V$-configuration
 and such that $\delta_1(P_1, P_2, P_4)= 0$: the points~$P_1$
 and~$P_2$ can be taken in an arbitrary way, $P_4$ has to be chosen in such
-a way that it satisfies \Cref{rmk_delta_case1}
+a way that it satisfies \Cref{lemma_delta_case1}
 and~$P_3$ and~$P_5$ have to be chosen on the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$,
 respectively. In particular, the corresponding locus of cubic curves
 has dimension~$7$.
@@ -1592,10 +1594,10 @@ See notebook \texttt{proposition-P1\_sing}.
 
 Let us start to analyze the two conditions from \Cref{rk8_1} and \Cref{rk8_2}.
 The three equalities of~\Cref{rk8_1} give that,
-using \Cref{rmk_delta_case2}, either $P_1$ is on~$\iso$ and
+using \Cref{lemma_delta_case2}, either $P_1$ is on~$\iso$ and
 $P_1\vee P_2$ is the tangent line to~$\iso$ in~$P_1$ (but this is not compatible
 with the equation $\overline{\delta}_1(P_1, P_4, P_5)=0$), or,
-from \Cref{rmk_delta_case1}, we can choose the points as follows:
+from \Cref{lemma_delta_case1}, we can choose the points as follows:
 %
 \begin{itemize}
   \item $P_1$ and $P_2$ in an arbitrary way;
@@ -2354,69 +2356,68 @@ Finally, $Z = \{ (0:1:1),(2:1:-1),(-2:1:-1) \}$.
 Observe that one point is on the singular line $x=0$.
 \end{es}
 
+
+
+
+%%%%%%%%%%%%%%%%
 \subsection{Eigenschemes containing a line}
+Here we study the cases in which $\Eig{f}$ contains a line. We shall see that
+this condition is equivalent to the condition of having four collinear
+eigenpoints, we shall charaterize the cubics $C = V(f)$ which have a line
+in $\Eig{f}$ and, finally, we shall prove that the polynomials $f$
+belong all to the locus $\sL \subset \p^9$ (see \Cref{def:locus_L}).
 
-In this section, we consider polynomials having a whole line in the eigenscheme. We shall prove that residually we then have, in general, other three eigenpoints, and that the condition of having a line of eigenpoints is equivalent to having four collinear eigenpoints.
 
-Finally, we shall prove that such polynomials belong all to the locus $\sL \subset \p^9$ (see \Cref{def:locus_L}).
+\begin{lemma}
+\label{lemma: twoTangentsCiso} Let $r = ax+by+cz$ be a line of the plane 
+and suppose it intersects $\iso$ in two
+distinct points~$P_1$ and~$P_2$. Consider the cubic:
+\begin{equation}
+\label{2_lines_of_eigenpoints}
+  C(r) = \bigl( r^2-3\left(a^2+b^2+c^2\right)\iso \bigr) \, r \,
+\end{equation}
+then, the points of the two tangent lines to $\iso$ in~$P_1$ and~$P_2$
+are eigenpoints of~$C(r)$.
+\end{lemma}
+\begin{proof}
+%% file: lemma_twoTangentsCiso.sage 
+A generic point on $\iso$ is of the form $(\lambda^2 + \mu^2, 
+\iii\lambda^2 -\iii\mu^2, 2\iii\lambda \mu)$ for $(\lambda: \mu) \in \p^1$.
+We can therefore easily obtain two points~$P_1$ and~$P_2$ on~$\iso$,
+determine the line $r = P_1 \vee P_2$ and define~$C(r)$ as above.
+The two tangents to~$\iso$ in~$P_1$ and~$P_2$ turns out to be eigenpoints
+for~$C(r)$. @@Details on Notebook Lemma-twoTangentsCiso.
+\end{proof}
+
 
 \begin{lemma}
 \label{4ptiSuRetta2}
-Suppose $P_1, P_2, P_3, P_4$ are four distinct points belonging to a line~$t$
-and let $C$ be a cubic such that has $P_1, \dots, P_4$ among its eigenpoints.
-Then all the points of~$t$ are eigenpoints of~$C$.
+Suppose $P_1, P_2, P_3, P_4$ are four distinct points belonging to a line~$t$.
+A cubic $C$ has $P_1, \dotsc, P_4$ among its eigenpoints if and only if
+all the points of $t$ are eigenpoints of $C$.
 Moreover,
 %
 \begin{equation*}
   6 \leq \rk \,\Phi(P_1, P_2, P_3, P_4) \leq 7
 \end{equation*}
 %
-and the rank is~$6$ if and only if $\sigma(P_1, P_2) = 0$, i.e.\ if
-and only if $t$ is tangent to the isotropic conic. If the rank of
-the above matrix is~$7$, then all the cubics which have the line~$t$
-of eigenpoints are given by~$t^2 \ell$ where $\ell$ is any line of the plane.
+The rank is~$6$ if and only if $\sigma(P_1, P_2) = 0$, i.e.\ if
+and only if $t$ is tangent to the isotropic conic.
 \end{lemma}
 \begin{proof}
 %%% +file: fourCollinearPoints.sage
-It is not restrictive to assume that one of the points (say~$P_1$) is
-the point~$(1: 0: 0)$.
-With this simplification, the computation of the order~$6$ and order~$7$
-minors of $\phi(P_1, \dots, P_4)$ is not hard and
-the first part of the thesis follows. If the rank of $\Phi(P_1, \dots, P_4)$
-is $7$, then the cubics which have $P_1, \dots, P_4$ as eigenpoints
-give a two-dimensional linear subspace~$W$ of~$\p^9$, but also all
-the cubics defined by~$t^2 \ell$ have $P_1, \dots, P_4$ as eigenpoints and are
-a two-dimensional linear space of~$\p^9$ contained in~$W$. Hence the two linear
-spaces coincide.
+The computations is in @@\texttt{Notebook: Lemma-4ptiSuretta2} 
 \end{proof}
 
-\begin{lemma}
-\label{lemma: twoTangentsCiso} Let $r$ be a line of the plane of
-equation $ax+by+cz=0$ and suppose $r$ intersects $\iso$ in two distinct points~$P_1$ and~$P_2$. Consider the cubic:
-\begin{equation}
-\label{2_lines_of_eigenpoints}
-  C(r) = \bigl( r^2-3\left(a^2+b^2+c^2\right)\iso \bigr) \, r \,
-\end{equation}
-then, the two tangents to $\iso$ in $P_1$ and~$P_2$ are eigenpoints of 
-$C(r)$.
-\end{lemma}
-\begin{proof}
-%% file: lemma_twoTangentsCiso.sage 
-A generic point on $\iso$ is of the form $(\lambda^2 + \mu^2, 
-\iii\lambda^2 -\iii\mu^2, 2\iii\lambda \mu)$ for $(\lambda: \mu) \in \p^1$.
-By using this description, we can write two points~$P_1$ and~$P_2$ on~$\iso$,
-compute the line $r$ joining them and define~$C(r)$.
-It is then easy to see that the two tangents to~$\iso$ in~$P_1$ and~$P_2$ are eigenpoints
-for~$C(r)$.
-\end{proof}
 
 \begin{prop}
-\label{prop:eigenline_non_tangent}
-Let $t$ be a line in the plane.
+\label{prop:eigenline_tangent}
+Let $t$ be a line of $\mathbb{P}^2$.
 %
 \begin{itemize}
    \item 
-   If $t$ is not tangent to the isotropic conic, a cubic~$C$ has $t$ among its eigenpoints if and 
+   If $t$ is not tangent to the isotropic conic, a cubic~$C$ has the points of
+$t$ among its eigenpoints if and 
 only if it is of the form $C = t^2\ell$, where $\ell$ is any line of the plane.
   \item 
   If $t$ is tangent to the isotropic conic~$\iso$ (in a point~$P$),
@@ -2428,62 +2429,34 @@ only if it is of the form $C = t^2\ell$, where $\ell$ is any line of the plane.
   \end{equation}
   %
   where $\ell$ is any line of the plane, $\lambda \in \C$, 
-  $r_0$ is any fixed line passing through $P$ and~$C(r_0)$ is
-  defined by \Cref{2_lines_of_eigenpoints}.
-\end{itemize}
+  $r_0$ is any fixed line passing through $P$ different from $t$
+  and~$C(r_0)$ is defined by \Cref{2_lines_of_eigenpoints}.
+  \end{itemize}
+  Moreover, if $t$ is tangent to $\iso$, any cubic of
+  \Cref{cubiche_con_retta_autop_tg} is singular in $P$ and $t$ is tangent to it in $P$.
 %
 \end{prop}
 \begin{proof}
 %% file: una_retta_tg_autop.sage
-The first part of the proposition is contained in~\Cref{4ptiSuRetta2}.
-Suppose $t$ is tangent to $\iso$. We assume that $t$ is the line
-$x+\iii y$, hence tangent to $\iso$ in $P = (1: \iii: 0)$.
-We impose to the points
-of~$t$ to be eigenpoints of a generic cubic $a_0x^3+a_1x^2y+\cdots+a_9z^3$
-and we get a linear system in $a_0, \dots, a_9$ whose solution gives that
-the cubics can be expressed as a linear combinations of the following
-four cubics:
-%
-\[
-  h_1 = t^2x, \quad
-  h_2 = t^2y, \quad
-  h_3 = t^2z, \quad
-  h_4 = C(r),
-\]
-%
-where $r$ is a fixed line passing through~$P$ (if, for instance, 
-we choose the line $z=0$ for $r$, 
-then $h_4$ is $z(x^2 + y^2 + 2/3z^2)$. Hence the cubics are of the
-form of \Cref{cubiche_con_retta_autop_tg}. Conversely, it is easy to verify
-that all the cubics of~(\ref{cubiche_con_retta_autop_tg}) are
-linear combinations of $h_1, \dots, h_4$, hence it is enough
-to see that every linear combination of $h_1, \dots, h_4$ gives a
-cubic which has the line~$t$ among its eigenpoints, and the this result follows from an explicit computation.
+Suppose $t$ is not tangent to $\iso$ and let $P_1, \dots, P_4$ be four 
+distinct points on it. By~\Cref{4ptiSuRetta2}, the projective linear system
+$\Lambda(\Phi(P_1, \dotsc, P_4))$ is two-dimensional, but also all the cubics
+defined by $t^2\ell$ (for $\ell$ any line of $\mathbb{P}^2$) have $t$ among
+their eigenpoints and form a
+two-dimensional linear system of cubics, hence the two linear systems
+coincide.\\
+If $t$ is tangent to $\iso$ in a point $P$, w.l.o.g.\ we can assume that
+$P$ is $(1: \iii: 0)$ and $t$ is $x+\iii y$. If we impose to the generic
+cubic of $\mathbb{P}^2$ to have eigenpoints the points of $t$, we get a linear
+system of cubics of dimension $3$. It can be shown that a basis of such a linear system is given by $H_1 = t^2x$, $H_2 = t^2y$, $H_3 = t^2z$ and
+$H_4 = C(r_0)$, where $r_0$ is any line passing through $P$ and different from $t$. This proves the
+second claim. It is immediate to see that $P$ is singular for the cubics of the linear system. @@ The Notebook
+\verb+prop_eigenline_tangent.ipynb+  contains the details of the computations.
 \end{proof}
-
-\begin{prop}
-Let $t$ be a line tangent to the isotropic conic in a point~$P$.
-Then all the cubics of the family from \Cref{cubiche_con_retta_autop_tg} are singular in~$P$ and~$t$ is one of the two tangents to the cubic in~$P$.
-Notice that, in this case, when $C$ has a node at~$P$, the other tangent to~$C$ at~$P$ is orthogonal to~$t$.
-\end{prop}
-\begin{proof}
-%% file: una_retta_tg_autop.sage
-As seen in \Cref{prop:eigenline_non_tangent}, up to the action of~$\SO_3(\C)$, all the
-cubics are a linear combination of $H_1, \dots, H_4$ and a direct
-computation gives the thesis.
-The last statement follows from the fact that all lines passing through a point on~$\iso$ are orthogonal to the tangent to~$\iso$ at that point.
-\end{proof}
-
-NOTA: @@Le cubiche con P1 singolare e tangente in P1 data da tg1 sono
-un sistema lineare di dimensione 5, le cubiche
-di~(\ref{cubiche_con_retta_autop_tg}) sono di dimensione
-4, Che altre proprieta' deve avere una cubica per rientrare
-in~(\ref{cubiche_con_retta_autop_tg})?
-
 %
 \begin{prop}
 \label{prop:limitCubics}
-Any cubic that has a line~$t$ in the eigenscheme the limit of a family of cubics whose general member has a $0$-dimensional eigenscheme with an aligned triple.
+Any cubic that has a line~$t$ in the eigenscheme is the limit of a family of cubics whose general member has a $0$-dimensional eigenscheme with an aligned triple.
 \end{prop}
 \begin{proof}
 %% file cubic_limit.sage
@@ -2500,8 +2473,8 @@ cubics $\Lambda \bigl( \Phi(P_1, P_2, P_3) \bigr)$, whose elements are of the fo
   C = (ax + by + cz)z^2 + d(x^3+y^3), \quad a, b, c, d \in \C \,.
 \]
 %
-If $d=0$, the cubic $C$ is of the form $t^2 \ell$, hence is the 
-generic cubic that has the line $t$ in the eigenscheme.
+If $d=0$, the cubic $C$ is of the form $t^2 \ell$, hence, by \Cref{prop:eigenline_tangent} is the 
+generic cubic not tangent to $\iso$ that has the line $t$ in the eigenscheme.
 If $d \neq 0$, the eigenpoints of~$C$ different from $P_1, P_2, P_3$ are
 the common zeros of the following three polynomials:
 %
@@ -2512,7 +2485,7 @@ the common zeros of the following three polynomials:
           2xy^3b - x^2z^2b + 3x^2yzc - 3xy^2zc \,.
 \end{align*}
 %
-In general, the ideal $(g_1, g_2, g_3)$ has $4$ points in 
+In general, the ideal $(g_1, g_2, g_3)$ gives $4$ points in 
 general position. \\
 In case the line $t$ is tangent to the isotropic conic, we can 
 assume it is the line $x+\iii y =0$. Here we fix the three
@@ -2539,12 +2512,31 @@ h_3 & = 3x^2zb + 6\iii xyzb - 3y^2zb + 2\iii x^3c - 5x^2yc -4\iii xy^2c + y^3c +
 &\phantom{=} + 2\iii x^3d - x^2yd + 2\iii xy^2d - y^3d -6\iii x^2ze - 6xyze -3\iii y^2ze + 6\iii xz^2e - 3yz^2e \,, \\
 h_4 & = 3y^2za -\iii yz^2a + 6xyzb + 9\iii y^2zb -3\iii xz^2b + 4yz^2b + 4\iii x^2yc - 9xy^2c -5\iii y^3c \\
 &\phantom{=} + 2x^2zc + 4\iii xyzc - 2y^2zc + 4\iii yz^2c + 2z^3c + 4\iii x^2yd - xy^2d + 5\iii y^3d + 2x^2zd \\
-&\phantom{=} + 2y^2zd -12\iii xyze - 15y^2ze - 6xz^2e + 21\iii yz^2e + 6z^3e \,. \qedhere
+&\phantom{=} + 2y^2zd -12\iii xyze - 15y^2ze - 6xz^2e + 21\iii yz^2e + 6z^3e 
 \end{align*}
+Also here, the zeros of $h_1, \dotsc, h_4$ are in general position.
 %
 \end{proof}
 
 \subsection{Eigenschemes containing a conic}
+
+%%%%%%%%%%%%%
+\begin{theorem}
+    Let $C$ be a cubic containing a conic $\Gamma$ in its eigenscheme. Then we have three possible cases:
+    \begin{itemize}
+        \item $\Gamma = \iso$. This is true if and only if $C = \ell\iso$ where $\ell$ is any line of the plane;
+        \item $\Gamma$ is bitangent to $\iso$ in two distinct points $P_1$ and $P_2$. This is true iff $C = r(\lambda \iso+ \mu r^2)$, where $\lambda, \mu \in \mathbb{C}$, $r = P_1 \vee P_2$. In this case $\Gamma = \lambda \iso+3 \mu r^2$;
+        \item $\Gamma$ is iperosculating $\iso$ in a point $P$. This is true iff $C = r(\iso-r^2)$, where $r$ is the tangent to $\iso$ in $P$. In this case 
+        $\Gamma = \iso-3r^2$.
+    \end{itemize}
+\end{theorem}
+\begin{proof} Suppose $P_1, \dots, P_4$ are four distinct points on $\iso$ and let $C$ be a cubic which has these points among its eigenpoints. Then 
+$\iso\subseteq \Eig{C}$
+\end{proof}
+
+
+
+%%%%%%%%%%%%
 \Cref{lemma: twoTangentsCiso} can be extended, indeed we have:
 %
 \begin{prop}
@@ -2912,7 +2904,7 @@ From \Cref{proposition:third_alignment}, the only case
 to have a strict $(C_2)$ configuration 
 is $\delta_1(P_1, P_2, P_4) = 0$. Hence, if we fix two points~$P_1$ and~$P_2$
 in the plane in an arbitrary way, we choose $P_4$ such that
-$\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, see \Cref{rmk_delta_case1}; then we chose any~$P_3$
+$\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, see \Cref{lemma_delta_case1}; then we chose any~$P_3$
 on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$, we have a cubic with a configuration of type~$(C_2)$ (strict, in the general case). If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1} (and hence are sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$), (see~\Cref{rmk:particular_cases}).
 
 \underline{Configuration $(C_3)$}. Suppose we have $7$ eigenpoints such that
@@ -3094,7 +3086,7 @@ If we impose that $(P_2, P_5, P_7)$ are aligned, we get that this condition spli
 one imposes the collinearity of $(P_3, P_4, P_7)$, the other imposes that the collinearity of $(P_3, P_5, P_6)$,
 hence we get two $(C_8)$ configurations. Similarly for the other two cases. 
 
-If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$ and $P_1 = P_2 \times P_4$, we have that $s_{12} = s_{14} = 0$, so the $V$-configuration cannot satisfies \Cref{rk8_1}, since we would have \Cref{rmk_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
+If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$ and $P_1 = P_2 \times P_4$, we have that $s_{12} = s_{14} = 0$, so the $V$-configuration cannot satisfies \Cref{rk8_1}, since we would have \Cref{lemma_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
 from the results of \Cref{rank_8} we have that $P_1 \vee P_2$ and $P_1 \vee P_4$ are tangent to the isotropic conic in~$P_2$ and~$P_4$. Hence $s_{22}, s_{44}, s_{23}, s_{45}$ are all zero and \Cref{p6formula} and \Cref{p7formula} specialize to \Cref{formuleP6_P7}; finally, \Cref{prop:rk8_2B} shows that the points are in a $(C_5)$ configuration.
 \end{proof}
 %
