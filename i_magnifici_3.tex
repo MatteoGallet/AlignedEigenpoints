@@ -270,23 +270,28 @@ Here is a description of the content of each section.
 \Cref{positive_dim} classifies positive-dimensional eigenschemes of ternary cubics.
 \Cref{further_alignments} examines all the possible configurations of alignments in a $0$-dimensional reduced eigenscheme and establishes which may arise and which not.
 
-\subsection{Notation and preliminaries}
-@@ Inserire notazioni e discussione dell'omogeneità delle formule.
+\subsection*{Symbolic computation}
+Several proofs employ computer algebra verifications in an essential way.
+We rely on SageMath \cite{SageMath} for the operations we need 
+(mainly, manipulations of polynomials and polynomial ideals).
+To allow the user for an easier use of these computations, we have prepared Jupyter notebooks, available at \cite{Notebooks}.
+Each notebook has a name of the form \textbf{NB.AA.TITLE} where \textbf{AA} denotes the section and \textbf{TITLE} is a code-word for the result.
 
-We will work in $\p^2_\C$, endowed with the canonical projective coordinate system.
-
+\subsection*{Notation and preliminaries}
+We work in $\p^2_\C$, endowed with the canonical projective coordinate system.
 We denote by~$P \vee Q$ the line through two distinct points~$P$ and~$Q$.
 
 We shall use vectorial notions for projective points. 
-For instance, for $P_1=(A_1:B_1:C_1)$ and $P_2=(A_2:B_2:C_2)$ we shall denote by
+For instance, for $P_1=(A_1:B_1:C_1)$ and $P_2=(A_2:B_2:C_2)$ we shall denote by 
 %
 \[
   s_{12} = \scl{P_1}{P_2} = A_1 A_2 + B_1 B_2 + C_1 C_2 \,.
 \]
 %
-Such an expression has to be intended as a bihomogeneous polynomial in the coordinates of $P_1$ and $P_2$. If we think of the $A_i$, $B_j$ and $C_k$ as indeterminates, the zero set of~$s_{12}$ is well defined in $\p^2 \times \p^2$
+Such an expression has to be intended as a bihomogeneous polynomial in the coordinates of~$P_1$ and~$P_2$. If we think of the $A_i$, $B_j$, and $C_k$ as indeterminates, the zero set of~$s_{12}$ is well defined in $\p^2 \times \p^2$.
+Analogously, we define the quantities $s_{ij}$ for any $i$ and $j$.
 
-Similarly, by $P_1 \times P_2$ we shall denote the {\it cross product} of the representing vectors
+Similarly, by $P_1 \times P_2$ we shall denote the \emph{cross product} of the representing vectors
 %
 \[
   P_1 \times P_2 = 
@@ -759,7 +764,7 @@ $P_1, P_2, P_3$ are aligned and let $r$ be the line joining them.
 If $\rk \,\Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one of the three points~$P_1$,  $P_2$, and~$P_3$.
 \end{prop}
 \begin{proof}
-Notebook \texttt{proposition-three\_aligned\_plus\_one} shows that the condition imposed by the vanishing of all order $8$ minors of $\Phi(P1, P2, P3, P4)$ is equivalent to the statement.
+Notebook \texttt{proposition-three\_aligned\_plus\_one} shows that the condition imposed by the vanishing of all order $8$ minors of $\Phi(P_1, P_2, P_3, P_4)$ is equivalent to the statement.
 \end{proof}
 
 \begin{rmk}
@@ -986,7 +991,7 @@ We denote the coordinate of the points as follows:
 then $P_3 = u_1 \, P_1 + u_2 \, P_2$ and $P_5 = v_1 \, P_1 + v_2 \, P_4$ for some $u_1, u_2, v_1, v_2$.
 We proceed as in
 the proof of \Cref{proposition:three_distinct_ranks}: we find, via symbolic computation, that the determinant of
-the cut matrix of conditions of $P_1, \dotsc, P_5$ is
+the submatrix of the matrix of conditions of $P_1, \dotsc, P_5$ obtained by selecting the first two rows from each $\Phi(P_i)$ for $i \in \{1, \dotsc, 5\}$ is
 %
 \begin{gather}
 \label{delta1delta2}
@@ -1098,7 +1103,6 @@ This shows the first item.
 The second item follows from \Cref{prop:d1d2}.
 
 We are left to proving the third item. By \Cref{lemma:special_case_rank_8} and \Cref{prop:d1d2}, the two conditions imply that the rank is~$8$.
-
 For the converse, by \Cref{invariance}, we distinguish two possibilities:
 $P_1 = (1:\iii :0)$ and
 $P_1 = (1: 0: 0)$.
