@@ -189,3 +189,14 @@ def eig(cub):
     gF = gdn(cub)
     return(vector(S, matrix([gF, [x, y, z]]).minors(2)))
 
+## given a rank 9 matrix of elements of K, computes the cubic curve.
+def cubic_from_matrix(M):
+    M = matrix(K, M)
+    if rank(M) != 9:
+        raiseError("Wrong rank!")
+    basis = M.right_kernel().basis()
+    # basis should have a single vector
+    if len(basis) != 1:
+        raiseError("Wrong basis!")
+    F = sum([basis[0][i]*mon[i] for i in range(10)])
+    return(F)
