@@ -277,7 +277,7 @@ Several proofs employ computer algebra verifications in an essential way.
 We rely on SageMath \cite{SageMath} for the operations we need 
 (mainly, manipulations of polynomials and polynomial ideals).
 To allow the reader for an easier use of these computations, we have prepared Jupyter notebooks, available at \cite{Notebooks}.
-Each notebook has a name of the form \nb{AA}{TITLE} where \textbf{AA} denotes the section and \textbf{TITLE} is a code-word for the result.
+Each notebook has a name of the form \nb{XX}{CODE} where \textbf{XX} denotes the section and \textbf{CODE} is a code-word for the result.
 
 \subsection*{Notation and preliminaries}
 We work in $\p^2_\C$, endowed with the canonical projective coordinate system.
@@ -768,7 +768,7 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 \end{prop}
 \begin{proof}
 The rank of $\Phi(P_1, P_2, P_4)$ cannot be larger than~$6$ by \Cref{remark:rank_2}.
-Notebook \texttt{proposition-three\_distinct\_ranks} gives that $\Phi(P_1, P_2, P_4)$ cannot have rank $4$ since its minors of order~$5$ never vanish all at the same time. Moreover, Notebook \texttt{proposition-three\_distinct\_ranks} shows that the condition imposed by the vanishing of all minors of order $6$ of $\Phi(P_1, P_2, P_4)$ is equivalent to the one imposing that $P_1, P_2, P_4$ are aligned and and the line joining them is tangent to~$\iso$  in one of the three points.
+\nb{03}{F1} gives that $\Phi(P_1, P_2, P_4)$ cannot have rank $4$ since its minors of order~$5$ never vanish all at the same time and proves the second item.
 \end{proof}
 
 \begin{prop}
@@ -778,7 +778,7 @@ $P_1, P_2, P_3$ are aligned and let $r$ be the line joining them.
 If $\rk \,\Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one of the three points~$P_1$,  $P_2$, and~$P_3$.
 \end{prop}
 \begin{proof}
-Notebook \texttt{proposition-three\_aligned\_plus\_one} shows that the condition imposed by the vanishing of all order $8$ minors of $\Phi(P_1, P_2, P_3, P_4)$ is equivalent to the statement.
+\nb{03}{F2} shows that the condition imposed by the vanishing of all order $8$ minors of the matrix~$\Phi(P_1, P_2, P_3, P_4)$ is equivalent to the statement.
 \end{proof}
 
 \begin{rmk}
@@ -909,7 +909,7 @@ It holds
 %
 \end{lemma}
 \begin{proof}
- The proof is a symbolic verification; one can find it in Notebook \texttt{lemma-characteristics\_d1\_d2}.
+ The proof is a symbolic verification; one can find it in \nb{03}{F3}.
 \end{proof}
 
 Suppose the point~$P_1$ is fixed. In general, in order to have
@@ -963,7 +963,7 @@ points and substitute them into the ideal $J$. It is possible to see that
 $J$ and the ideal $\bigl(\sigma(P_1, P_2), \sigma(P_1, P_4)\bigr)$ are equal (up to
 saturations w.r.t.\ $v_2$ and the condition that $P_1, P_2, P_4$ are not
 aligned).
-These computations are carried in Notebook \texttt{prop-definitionP3}.
+These computations are carried in \nb{03}{F4}.
 \end{proof}
 %
 \begin{rmk}
