@@ -274,7 +274,7 @@ Here is a description of the content of each section.
 Several proofs employ computer algebra verifications in an essential way.
 We rely on SageMath \cite{SageMath} for the operations we need 
 (mainly, manipulations of polynomials and polynomial ideals).
-To allow the user for an easier use of these computations, we have prepared Jupyter notebooks, available at \cite{Notebooks}.
+To allow the reader for an easier use of these computations, we have prepared Jupyter notebooks, available at \cite{Notebooks}.
 Each notebook has a name of the form \textbf{NB.AA.TITLE} where \textbf{AA} denotes the section and \textbf{TITLE} is a code-word for the result.
 
 \subsection*{Notation and preliminaries}
@@ -300,7 +300,19 @@ Similarly, by $P_1 \times P_2$ we shall denote the \emph{cross product} of the r
 %
 The resulting projective point is well defined. Such a notation will be used, for instance, in \Cref{definition:delta1}.
 
-In a similar fashion, whenever we .... @@ Inserire frase sul fatto che i punti sono ben definiti.
+In a similar fashion, whenever we define a point in~$\p^2$ by means of the quantities we introduce in the text, as for example in \Cref{lemma_delta_case2}, where we write
+%
+\[
+  P_3 = (s_{12}^2+s_{11}s_{22}) \, P_1 - 2s_{11}s_{12} \, P_2 \,,
+\]
+%
+what we mean is that the right hand side is a (multi-)homogeneous polynomials, which therefore defines a rational function of the form
+%
+\[
+  \p^2 \times \dotsb \times \p^2 \dashrightarrow \p^2
+\]
+%
+and the point on the left hand side is the image of $P_1$ and $P_2$ under this map.
 
 We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the \emph{eigenscheme}~$\Eig{f} \subset \p^2$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix
 %
