@@ -782,7 +782,7 @@ If $\rk \,\Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one 
 \end{proof}
 
 \begin{rmk}
-As we clarified in \Cref{thm:general_no_d_collinear}, four aligned eigenpoints are never contained in a $0$-dimensional, eigenscheme.
+As we clarified in \Cref{thm:general_no_d_collinear}, four aligned eigenpoints are never contained in a $0$-dimensional eigenscheme.
 In \Cref{4ptiSuRetta2}, we will show that if an eigenscheme contains four distinct aligned eigenpoints, then it contains the whole line joining them.
 \end{rmk}
 
@@ -1067,15 +1067,7 @@ specific configuration of the points:
 \end{gather*}
 %
 where $(u_1: u_2), (v_1: v_2) \in \p^1$.
-In the $15\times 10$ matrix $\Phi(P_1, \dots, P_5)$ we can erase the
-rows: $\phi_2(P_1)$ (which is a zero row), the row~$\phi_1(P_2)$
-(since $\phi_1(P_2)=\iii\phi_2(P_2)$) and, for similar reasons, the
-rows: $\phi_1(P_3)$, $\phi_1(P_4)$ and~$\phi_1(P_5)$.
-Moreover, since the rank of the matrix $\Phi(P_1, P_2, P_3)$ is $5$,
-we can also erase the row~$\phi_3(P_3)$ and, for the same reason, the
-row~$\phi_3(P_5)$. The remaining matrix~$M$ is a $8 \times 10$ matrix.
-It is not possible that all the order~$8$ minors
-of~$M$ are zero: the ideal they generate, after saturations with respect to the distinct point condition, is the whole ring.
+\nb{03}{F5} proves that the matrix of conditions of this configuration has rank~$8$.
 \end{proof}
 
 \begin{theorem}
@@ -1980,7 +1972,7 @@ Consider the symmetric product $(\p^2)^{(3)}$ and set $\mathcal{AL} \subset (\p^
 If we set
 %
 \[
-  \sU':= \{[f]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{f} \ \textrm {contains \ exactly \ $1$ \ aligned \ triple}\} \,,
+  \sU':= \{[f]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{f} \ \text{contains exactly $1$ aligned triple}\} \,,
 \]
 %
 we have a surjective morphism
@@ -1990,7 +1982,7 @@ we have a surjective morphism
 \]
 %
 assigning to each $[f] \in \mathcal{U}'$ the unique triple of eigenpoints.
-The fibers of~$\alpha$ are projective linear systems of dimension~$3$ by \Cref{proposition:three_distinct_ranks} over the irreducible open subset
+By \Cref{proposition:three_distinct_ranks}, the fibers of~$\alpha$ are projective linear systems of dimension~$3$ over the irreducible open subset
 %
 \[
   \mathcal{W} := \mathcal{AL}
@@ -2000,13 +1992,7 @@ The fibers of~$\alpha$ are projective linear systems of dimension~$3$ by \Cref{p
 %
 of aligned triples not lying
 on a tangent line to the isotropic conic~$\iso$ and with tangency point one of the~$P_i$'s. 
-By the Fiber Dimension Theorem, this implies that the open subset $\alpha^{-1} (\mathcal{W}) \subset \sU$ is irreducible of dimension
-%
-\[
-  \dim \alpha ^{-1} (\mathcal{W}) = 8 \,,
-\]
-%
-so $\dim \sL =8$.
+By the Fiber Dimension Theorem, this implies that the open subset $\alpha^{-1} (\mathcal{W}) \subset \sU$ is irreducible of dimension~$8$, so $\dim \sL =8$.
 
 To prove the irreducibility, we observe that since the eigenpoint condition corresponds to two linear conditions on the coefficients of cubic polynomials, by linear algebra methods we can determine a local parametrization of~$\sL$.
 Specifically, given a general aligned triple $(P_1, P_2, u_1 P_1 +u_2P_2)$, the matrix of conditions $\Phi(P_1, P_2, u_1 P_1 +u_2P_2)$ has rank $6$, so the associated linear system
@@ -2233,11 +2219,6 @@ Note that, since each net containing a triangle, actually contains exactly $3$ o
 This implies that $\deg \sL = 15$.
 \end{proof}
 
-\begin{es}
-The following pencil of cubic forms admits exactly $15$ cubics with an aligned triple of eigenpoints ..
-\end{es}
-
-
 \section{Eigenschemes of positive dimension}
 \label{positive_dim}
 
@@ -2404,7 +2385,7 @@ for~$C(r)$. For details, consult \nb{07}{F1}.
 
 \begin{lemma}
 \label{4ptiSuRetta2}
-Suppose $P_1, P_2, P_3, P_4$ are four distinct points belonging to a line~$t$.
+Suppose that $P_1, P_2, P_3, P_4$ are four distinct points belonging to a line~$t$.
 A cubic $C$ has $P_1, \dotsc, P_4$ among its eigenpoints if and only if
 all the points of $t$ are eigenpoints of $C$.
 Moreover,
@@ -2525,7 +2506,7 @@ h_4 & = 3y^2za -\iii yz^2a + 6xyzb + 9\iii y^2zb -3\iii xz^2b + 4yz^2b + 4\iii x
 &\phantom{=} + 2x^2zc + 4\iii xyzc - 2y^2zc + 4\iii yz^2c + 2z^3c + 4\iii x^2yd - xy^2d + 5\iii y^3d + 2x^2zd \\
 &\phantom{=} + 2y^2zd -12\iii xyze - 15y^2ze - 6xz^2e + 21\iii yz^2e + 6z^3e 
 \end{align*}
-Also here, the zeros of $h_1, \dotsc, h_4$ are in general position.
+Also here, the zeros of general $h_1, \dotsc, h_4$ are in general position.
 %
 \end{proof}
 
@@ -2879,7 +2860,7 @@ Summing up, we obtain:
     \end{scope}
     \end{scope}
   \end{tikzpicture}
-  \caption{Graphical representations of the $9$ cases of possible alignments described in \Cref{table:all_alignments}.}
+  \caption{Graphical representations of the $9$ cases of possible alignments of $7$ points in the plane, as described in \Cref{table:all_alignments}.}
   \label{figure:all_alignments}
 \end{figure}
 
