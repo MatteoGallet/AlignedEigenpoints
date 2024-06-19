@@ -200,3 +200,11 @@ def cubic_from_matrix(M):
         raiseError("Wrong basis!")
     F = sum([basis[0][i]*mon[i] for i in range(10)])
     return(F)
+
+## this method is used to find the orthogonality of the lines:
+def orthogonal_lines(p1, p2, q1, q2):
+    rt1 = matrix([p1, p2, (x, y, z)]).det()
+    rt2 = matrix([q1, q2, (x, y, z)]).det()
+    cf1 = [rt1.coefficient(xx) for xx in (x, y, z)]
+    cf2 = [rt2.coefficient(xx) for xx in (x, y, z)]
+    return(scalar_product(cf1, cf2) == 0)
