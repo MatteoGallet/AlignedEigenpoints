@@ -169,6 +169,10 @@ def get_sqrfree(poly):
     return prod(map(lambda pair: pair[0], list(poly.factor())))
 
 def poly_saturate(pol, divisor):
+    '''
+    Given a polynomial "pol" and another polynomial "divisor", 
+    divide pol by divisor as much as possible.
+    '''
     pol1 = pol
     qr = pol1.quo_rem(divisor)
     while qr[1] == 0:
@@ -208,3 +212,6 @@ def orthogonal_lines(p1, p2, q1, q2):
     cf1 = [rt1.coefficient(xx) for xx in (x, y, z)]
     cf2 = [rt2.coefficient(xx) for xx in (x, y, z)]
     return(scalar_product(cf1, cf2) == 0)
+
+def clear_uv(poly):
+    return S.ideal(poly).saturation(u1*v1*u2*v2)[0].gens()[0]
