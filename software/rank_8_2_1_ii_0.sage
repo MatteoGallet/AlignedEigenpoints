@@ -1,6 +1,7 @@
-## file usato nel file casoRango8.tex
-## Si prova che se il punto P_1 e' sulla conica isotropa, allora
-## la matrice Phi(P1, ..., P5) non puo' avere rango <9.
+## 
+## We prove that, if P1, ..., P5 is a V-configuration and P1 is on 
+## the isotropic conic, then Phi(P1, ..., P5) cannot have rakn <9.
+## (this result is used in theorem:rank_V)
 
 varAn1 = ["s"+str(i)+str(j) for i in range(1,8) for j in range(i, 8)]
 varAn2 = ["x", "y", "z", "u1", "u2", "v1", "v2", "w1", "w2", "l1", "l2"]
