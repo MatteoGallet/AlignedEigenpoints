@@ -1108,7 +1108,7 @@ This shows the first item.
 The second item is \Cref{prop:d1d2}.
 
 We are left to proving the third item. By \Cref{lemma:special_case_rank_8} and \Cref{prop:d1d2}, the two conditions imply that the rank is~$8$.
-\nb{03}{F6} proves the converse. We see that in the second case it is necessarily $\delta_1(P_1,P_2,P_4)
+\nb{03}{F6} proves the converse; in particular, it shows that if $P_1 \in \iso$, then $\rk \,\Phi(P_1, \dots, P_5) \geq 9$. We see that in the second case it is necessarily $\delta_1(P_1,P_2,P_4)
 \neq 0$; indeed, in the case $P_2, P_4 \in \iso$, then 
 %
 \[
@@ -2858,21 +2858,24 @@ Summing up, we obtain:
 \end{figure}
 
 \Cref{table:all_alignments} lists all the possible configuration
-of 7 distinct points of the plane, according to their collinearities. Here
-we want to see which of those nine configurations can be realized by
+of 7 distinct points of the plane, according to their collinearities. 
+In this section, 
+we want to identify which of those nine configurations can be realized by
 the seven eigenpoints of a cubic and, in case the configuration is
 realizable, which are the cubics with that configuration of eigenpoints.
-We shall say that the eigenpoints of a cubic curve are in a $(C_i)$ 
-configuration if they are aligned according to~$(C_i)$; we shall say 
-that the eigenpoints are in a \emph{strict} $(C_i)$ configuration if, 
-in addition, there are no other alignments among the points.
+
+We say that the eigenpoints of a cubic curve are in a \emph{$(C_i)$ 
+configuration} if they are aligned according to~$(C_i)$; we say 
+that the eigenpoints are in a \emph{strict $(C_i)$ configuration} if, 
+in addition, there are no further alignments among them.
 
 First of all, it is well known that configuration~$(C_9)$ cannot be realized
 by seven points of the plane over a field of zero
 characteristic (see \cite{Whitney1935}), therefore we do not consider
 it in our analysis.
 
-\underline{Configuration $(C_1)$} can be realized. \Cref{proposition:three_distinct_ranks} and \Cref{locus_one_alignment}
+\subsection*{Configuration~$(C_1)$}
+This configuration can be realized. \Cref{proposition:three_distinct_ranks} and \Cref{locus_one_alignment}
 give a description of the cubics with such a configuration of points:
 we fix two points~$P_1$ and~$P_2$ in~$\p^2$, we take a generic~$P_3$
 on the line~$P_1 \vee P_2$, all the cubics with
@@ -2881,7 +2884,8 @@ dimensional linear subspace of~$\p^9$ (four dimensional, if the
 line~$P_1 \vee P_2$ is tangent in~$P_1$, $P_2$, or~$P_3$ to~$\iso$). For generic choices of the points, the cubics have the eigenpoints in a strict 
 $(C_1)$ configuration.
 
-\underline{Configuration $(C_2)$} means that the points
+\subsection*{Configuration~$(C_2)$}
+In this configuration, the points
 $P_1, \dots, P_5$ are in a
 $V$-configuration, hence $\rk \, \Phi(P_1, \dotsc, P_5)$
 must be~$9$ or~$8$. If the rank is~$9$, then $\delta_1(P_1, P_2, P_4) = 0$
@@ -2893,7 +2897,8 @@ in the plane in an arbitrary way, we choose $P_4$ such that
 $\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, see \Cref{lemma_delta_case1}; then we chose any~$P_3$
 on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$, we have a cubic with a configuration of type~$(C_2)$ (strict, in the general case). If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1} (and hence are sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$), (see~\Cref{rmk:particular_cases}).
 
-\underline{Configuration $(C_3)$}. Suppose we have $7$ eigenpoints such that
+\subsection*{Configuration~$(C_3)$}
+Suppose we have $7$ eigenpoints such that
 $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$ are
 aligned. Hence
 $V_1 = (P_1, P_2, P_3, P_4, P_5)$, $V_2 = (P_1, P_2, P_3, P_6, P_7)$ and
@@ -2939,7 +2944,8 @@ $\delta_2(P_1, \dotsc, P_5) = 0$. \Cref{prop:definitionP3} describes how to
 obtain five points which give a configuration $(C_3)$ of eigenpoints (which, 
 in general, is strict).
 
-\underline{Configuration $(C_4)$}. It holds:
+\subsection*{Configuration~$(C_4)$}
+It holds:
 \begin{prop}
 \label{conf4no} If the eigenpoints of a cubic are in a $(C_4)$ configuration, then they actually are in a $(C_8)$ configuration.
 \end{prop}
@@ -2959,7 +2965,7 @@ which implies
 %
 \end{proof}
 
-\underline{Configuration $(C_5)$}
+\subsection*{Configuration~$(C_5)$}
 %% file: config5.sage
 \begin{prop}
 \label{proposition:condition_5}
@@ -3103,14 +3109,16 @@ hence \Cref{rmk:three_orthog} gives that the $(C_5)$ configuration obtained in \
 %\end{rmk}
 
 %% conti nel file config5.sage.
+\subsection*{Configurations~$(C_6)$ and $(C_7)$}
 
 The strict configurations $(C_6)$ and~$(C_7)$ cannot be realized by eigenpoints.
 Indeed, if we consider suitable ideals given by the conditions
 $\delta_1$ and~$\delta_2$ that must be satisfied by the points of the two configurations,
 we get that there are no compatible solutions.
 
-\underline{Configuration (8)} is realizable.  
-%% file config8N2.sage+
+\subsection*{Configuration~$(C_8)$}
+This configuration is realizable.  
+%% file config8N2.sage
 The $(C_8)$ configuration we consider in this paragraph is the following: 
 %
 \begin{equation}
