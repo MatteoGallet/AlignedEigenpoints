@@ -1622,6 +1622,11 @@ See notebook \texttt{proposition-P1\_sing}.
   Notebook \texttt{tmp1} shows that $(L_1)$ is not compatible with $(R_2)$ or $(R_3)$ and $(R_1)$ is not compatible with $(L_2)$ or $(L_3)$.
   The possibilities that are left show the statement.
 \end{proof}
+
+\textbf{Incorporare nel Remark seguente}
+
+===================================================================
+
 The three equalities of~\Cref{rk8_1} give that,
 using \Cref{lemma_delta_case2}, either $P_1$ is on~$\iso$ and
 $P_1 \vee P_2$ is the tangent line to~$\iso$ in~$P_1$ (but this is not compatible
@@ -1636,7 +1641,6 @@ from \Cref{lemma_delta_case1}, we can choose the points as follows:
   \item $P_5 = (s_{14}^2+s_{11}s_{44}) \, P_1 - 2s_{11}s_{14} \, P_4$.
 \end{itemize}
 %
-
 For such a choice
 of points, the matrix $M = \Phi(P_1, \dots, P_5)$ has rank $8$
 %% verifica nel file matrix_of_order_8.sage
@@ -1649,9 +1653,11 @@ cubic has $7$ distinct eigenpoints (is as expected, singular in $P_1$) and the
 $7$ points do not satisfy other collinearities in addition to those of the
 $V$-configuration.
 
+=======================================================================
+
 \begin{rmk}
 \label{rmk:particular_cases}
-In general, a cubic having eigenpoints $P_1, \dots, P_5$ in a $V$-configuration satisfying \Cref{rk8_1} has the two alignments $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ in the eigenscheme; in particular, it does not have the collinearity $(P_1, P_6, P_7)$. Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, we see
+In general, a cubic having eigenpoints $P_1, \dots, P_5$ in a $V$-configuration satisfying \Cref{rk8_1} has only the two alignments $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ among its eigenpoints; in particular, it does not have the collinearity $(P_1, P_6, P_7)$. Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, we see
 that the hypothesis ``rank $9$'' in~\Cref{proposition:third_alignment} is necessary.
 \end{rmk}
 
@@ -1674,7 +1680,11 @@ the following results hold:
 If the five points $P_1, \dots, P_5$ satisfy \Cref{rk8_1},
 then, in $\Lambda \bigl( \Phi(P_1, \dotsc, P_5)\bigr)$ there is
 a cubic curve with $7$ eigenpoints with the following three alignments:
-$(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$. \\
+%
+\[
+ (P_1, P_2, P_3) \,, \quad (P_1, P_4, P_5) \,, \quad \text{and} \quad (P_1, P_6, P_7) \,.
+\]
+%
 No choices of $P_1, \dots, P_5$ allow one to obtain further alignments of the
 $7$ eigenpoints.
 \end{prop}
