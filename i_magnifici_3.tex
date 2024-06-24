@@ -349,15 +349,12 @@ of degree~$n(n-1)(d-1)^{n-1}$.
 
 The statement of \Cref{theorem:eigendiscriminant} is still valid when restricting to symmetric tensors, as they form a linear subspace of~$\p \bigl( (\C^n)^{\otimes d} \bigr)$ and the generic symmetric tensor has a regular eigenscheme.
 
-In the particular case $n=d=3$, we have that
-the eigendiscriminant hypersurface has degree
+In the particular case $n=d=3$, the eigendiscriminant hypersurface has degree
 %
 \[
   \deg \Delta_{3,3} = 24 \,.
 \]
 %
-
-
 Whenever the eigenscheme of a ternary form is $0$-dimensional, it never contains $4$ or more aligned points.
 To see this, we recall that when an eigenscheme of a ternary form is  $0$-dimensional, it is somehow ``general'' with respect to conics.
 
@@ -374,7 +371,7 @@ Therefore, it can be expected that ternary cubic forms with one or more aligned 
 Understanding these situations requires a careful analysis of the conditions on ternary cubic forms imposed by the existence of aligned eigenpoints.
 To simplify these analyses, in \Cref{invariance} we clarify how we can benefit from the action of special orthogonal matrices.
 
-We conclude this section by recalling the notion of \emph{Geiser map} and linking the locus it contracts with aligments of eigenpoints.
+We conclude this section by recalling the notion of \emph{Geiser map} and linking the locus it contracts with alignments of eigenpoints (this will be useful in \Cref{V-configurations}).
 
 \begin{definition}
 The Geiser map associated with a zero dimensional eigenscheme $\Eig{f}$ is the rational map defined by
@@ -399,13 +396,13 @@ The Geiser map~$\gamma_{\Eig{f}}$ is surjective and its fiber over a point $Q = 
 \label{eq:fibers}
   \left\{
   \begin{array}{l}
-    a x + by + cz = 0, \\[2pt]
-    a \, \partial_x f + b \, \partial_y f + c \, \partial_z f = 0,\\
+    a x + by + cz = 0 \,, \\[2pt]
+    a \, \partial_x f + b \, \partial_y f + c \, \partial_z f = 0 \,,\\
   \end{array}
   \right.
 \end{equation}
 %
-that is, the intersection between the polar line~$L_Q$ relative to the isotropic conic and~$\mathrm{Pol}_Q f$, the
+that is, the intersection between the polar line~$\ell_Q$ relative to the isotropic conic and~$\mathrm{Pol}_Q f$, the
 first polar curve of~$f$ with respect to~$Q$.
 
 In particular, the only possible curves contracted by the Geiser map~$\gamma_{\Eig{f}}$ are lines.
@@ -416,8 +413,8 @@ We observe that for any point $P=(A:B:C) \in \p^2 \setminus \Eig{f}$, the homoge
 of the image $\gamma_{\Eig{f}}(P) = \bigl( g_1(P): g_2(P): g_3(P) \bigr)$ are the ones of the unique point in the intersection of the two lines
 %
 \[
-  Ax + By+ Cz = 0, \qquad
-  \partial_x f(P) \, x + \partial_y f(P) \, y + \partial_z f(P) \, z = 0.
+  Ax + By+ Cz = 0 \,, \qquad
+  \partial_x f(P) \, x + \partial_y f(P) \, y + \partial_z f(P) \, z = 0 \,.
 \]
 %
 So for any $Q = (a:b:c) \in \p^2$, the fiber~$\gamma_{\Eig{f}}^{-1}(Q)$ consists of the points $P \in \p^2$ such that
@@ -425,7 +422,7 @@ So for any $Q = (a:b:c) \in \p^2$, the fiber~$\gamma_{\Eig{f}}^{-1}(Q)$ consists
 \begin{equation}
 \label{eq:polars}
   Aa + Bb+ Cc = 0, \quad
-  \partial_x f(P) \, a + \partial_y f(P) \, b + \partial_z f(P) \, c = 0,
+  \partial_x f(P) \, a + \partial_y f(P) \, b + \partial_z f(P) \, c = 0 \,,
 \end{equation}
 %
 which proves that $\gamma_{\Eig{f}}$ is surjective and that \Cref{eq:fibers} holds.
@@ -443,33 +440,33 @@ which proves that $\gamma_{\Eig{f}}$ is surjective and that \Cref{eq:fibers} hol
 \end{proof}
 
 \begin{prop}
-\label{prop:allineati_contrae}
+\label{prop:contract_aligned}
 Suppose that $\Eig{f}$ is a zero dimensional eigenscheme of a cubic ternary form.
-If $\Eig{f}$ contains a triple of points on a line~$L \subset \p^2$, then the Geiser map~$\gamma_{\Eig{f}}$ contracts~$L$.
+If $\Eig{f}$ contains a triple of points on a line~$\ell \subset \p^2$, then the Geiser map~$\gamma_{\Eig{f}}$ contracts~$\ell$.
 \end{prop}
 
 \begin{proof}
 %Consider the isomorphism  $\varphi \colon \p (I_{\Eig{F}}(3))^{\vee} \stackrel{\cong}{\longrightarrow} \p (I_{\Eig{F}}(3))$ associating with each point~$(a:b:c)$ the line $ax + by + cz = 0$.
 %For any $P \in \p^2 \setminus \Eig{F}$, the point~$\varphi(\gamma_{\Eig{F}} (P))$ corresponds to the line~$L_P$ given by
 %
-For any $P \in \p^2 \setminus \Eig{f}$, the point~$\gamma_{\Eig{f}} (P)\in \p \bigl(I_{\Eig{f}}(3)^{\vee}\bigr)$ corresponds to the line~$L_P$ given by
+For any $P \in \p^2 \setminus \Eig{f}$, the point~$\gamma_{\Eig{f}} (P)\in \p \bigl(I_{\Eig{f}}(3)^{\vee}\bigr)$ corresponds to the line~$\ell_P$ given by
 \[
-  g_1 (P) \, x + g_2(P) \, y + g_3(P) \, z = 0,
+  g_1 (P) \, x + g_2(P) \, y + g_3(P) \, z = 0 \,,
 \]
 %
 which in turn determines the following
-pencil of cubics $L_P$ in the linear system $\p \bigl(I_{\Eig{f}}(3)\bigr)$:
+pencil of cubics $\ell_P$ in the linear system $\p \bigl(I_{\Eig{f}}(3)\bigr)$:
 %
 \[
-  s \cdot \bigl( g_1(P) \, g_2 - g_2(P) \, g_1 \bigr) + t \cdot \bigl( g_1(P) \, g_3 - g_3(P) \, g_1 \bigr),
+  s \cdot \bigl( g_1(P) \, g_2 - g_2(P) \, g_1 \bigr) + t \cdot \bigl( g_1(P) \, g_3 - g_3(P) \, g_1 \bigr) \,,
 \]
 %
 where $(s: t) \in \p^1$, assuming that $g_1(P) \neq 0$ (the other cases are similar).
-It is clear that the base locus of the pencil~$L_P$ contains the eight points of~$\Eig{f} \cup \{P\}$.
+It is clear that the base locus of the pencil~$\ell_P$ contains the eight points of~$\Eig{f} \cup \{P\}$.
 So $\gamma_{\Eig{f}} \colon \p^2 \dasharrow \p \bigl( I_{\Eig{f}}(3)^\vee \bigr)$
 associates with each point $P \in \p^2 \setminus \Eig{f}$ the pencil of cubics through $\Eig{f} \cup P$.
 
-If $\Eig{f}$ contains a triple of points on a line~$L$, for any $P \in L \setminus \Eig{f}$ such a pencil of cubics has $L$ as a fixed component and the other component varies in a pencil of conics through the remaining $4$ points, so $\gamma_{\Eig{f}}$ is constant on~$L$.
+If $\Eig{f}$ contains a triple of points on a line~$\ell$, for any $P \in \ell \setminus \Eig{f}$ such a pencil of cubics has $\ell$ as a fixed component and the other component varies in a pencil of conics through the remaining $4$ points, so $\gamma_{\Eig{f}}$ is constant on~$\ell$.
 \end{proof}
 
 
@@ -1252,6 +1249,7 @@ Therefore, if $\rk \, \Phi(P_1, \dots, P_5) = 8$, then one of the two conditions
 
 
 \section{\texorpdfstring{$V$}{V}-configurations}
+\label{V-configurations}
 
 \subsection{\texorpdfstring{$V$}{V}-configurations of rank~\texorpdfstring{$9$}{9}}
 \label{rank_9}
@@ -2359,8 +2357,8 @@ Observe that one point is on the singular line $x=0$.
 \subsection{Eigenschemes containing a line}
 Here we study the cases in which $\Eig{f}$ contains a line. We shall see that
 this condition is equivalent to the condition of having four collinear
-eigenpoints, we shall charaterize the cubics $C = V(f)$ which have a line
-in $\Eig{f}$ and, finally, we shall prove that the polynomials $f$
+eigenpoints; this will allow us to charaterize the cubics $C = V(f)$ which have a line
+in $\Eig{f}$ and, finally, to prove that the polynomials $f$
 belong all to the locus $\sL \subset \p^9$ (see \Cref{def:locus_L}).
 
 
@@ -2372,8 +2370,8 @@ distinct points~$P_1$ and~$P_2$. Consider the cubic:
 \label{2_lines_of_eigenpoints}
   C(r) = \bigl( r^2-3\left(a^2+b^2+c^2\right)\iso \bigr) \, r \,
 \end{equation}
-then, the points of the two tangent lines to $\iso$ in~$P_1$ and~$P_2$
-are eigenpoints of~$C(r)$.
+then, the two tangent lines to $\iso$ in~$P_1$ and~$P_2$
+are contained in the eigenscheme of~$C(r)$.
 \end{lemma}
 \begin{proof}
 %% file: lemma_twoTangentsCiso.sage 
@@ -2405,7 +2403,7 @@ and only if $t$ is tangent to the isotropic conic.
 The computations are in \nb{07}{F2}.
 \end{proof}
 
-
+We are now in the position to give a characterization of cubics with an eigenscheme containing a line.
 \begin{prop}
 \label{prop:eigenline_tangent}
 Let $t$ be a line of $\mathbb{P}^2$.
