@@ -220,9 +220,9 @@ def clear_uv(poly):
 def alignments(Lpt):
     n = len(Lpt)
     triplet = list(Combinations(n,3))
-    allignments = []
+    alignments = []
     for tr in triplet:
         threePoints = (Lpt[tr[0]], Lpt[tr[1]], Lpt[tr[2]])
         if det(matrix(threePoints)) == 0:
-            allignments.append((tr[0]+1, tr[1]+1, tr[2]+1))
-    return(allignments)
+            alignments.append((tr[0]+1, tr[1]+1, tr[2]+1))
+    return(alignments)
