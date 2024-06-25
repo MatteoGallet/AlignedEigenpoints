@@ -215,3 +215,14 @@ def orthogonal_lines(p1, p2, q1, q2):
 
 def clear_uv(poly):
     return S.ideal(poly).saturation(u1*v1*u2*v2)[0].gens()[0]
+
+## given a list of points, returns the triplets of collinear points.
+def alignments(Lpt):
+    n = len(Lpt)
+    triplet = list(Combinations(n,3))
+    allignments = []
+    for tr in triplet:
+        threePoints = (Lpt[tr[0]], Lpt[tr[1]], Lpt[tr[2]])
+        if det(matrix(threePoints)) == 0:
+            allignments.append((tr[0]+1, tr[1]+1, tr[2]+1))
+    return(allignments)
