@@ -226,3 +226,19 @@ def alignments(Lpt):
         if det(matrix(threePoints)) == 0:
             alignments.append((tr[0]+1, tr[1]+1, tr[2]+1))
     return(alignments)
+
+
+## Given a polynomial F in the variables x, y, z, the function
+## returns its gradient (w.r.t. x, y, z).
+
+def gdn(F):
+    return(vector(S, [F.derivative(xx) for xx in [x, y, z]]))
+
+## given a polynomial, the function returns a vector whose 
+## coordinates gives the ideal of the eigenpoints.
+
+## a vector which gives the equations of the eigenpoints:
+def eig(F):
+    gF = gdn(F)
+    return(vector(S, matrix([gF, [x, y, z]]).minors(2)))
+
