@@ -64,6 +64,9 @@
 
 \newcommand{\nb}[2]{\textbf{{NB}.{#1}.{#2}}}
 
+%% alternativa: @@
+%\newcommand{\nb}[2]{\textsl{{NB}.{#1}.{#2}}}
+
 \newcommand{\iii}{\textit{i}\,}
 \newcommand{\codim}{\mathrm{codim}}
 \newcommand{\rk}{\ensuremath{\mathrm{rk}}}
@@ -2154,9 +2157,6 @@ $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has no aligned triples of eige
 %  The variety~$\Delta$ has dimension~$7$ and it is the union of two irreducible components~$\Delta_1$ and~$\Delta_2$.
 %\end{prop}
 
-\textbf{FORSE SI PU\`O ELIMINARE?}
-
-=====================================================
 
 In what follows, we use the following notation: if $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
 to a cubic form~$f$, we denote by
@@ -2167,14 +2167,13 @@ to a cubic form~$f$, we denote by
 %
 the net of cubics, whose base locus is the eigenscheme~$\Eig{f}$.
 
-=====================================================
 
 \begin{lemma}
 \label{lemma:scroll}
 If $f$ and $g$ are general cubics, then
 %
 \[
-  \mathcal{N} := \bigcup_{(\lambda : \mu) \in \p^1} \Lambda_{\lambda f + \mu g} \subset \p^9
+  \mathcal{N} := \bigcup_{(\lambda : \mu) \in \p^1} \Sigma_{\lambda f + \mu g} \subset \p^9
 \]
 %
 is an embedding of a rational projective bundle and has degree~$3$.
@@ -2183,11 +2182,11 @@ is an embedding of a rational projective bundle and has degree~$3$.
 Consider the projective bundle given by the family of planes
 %
 \[
-  \mathcal{P} := \{ \Lambda_{\lambda f + \mu g} \, : \, (\lambda: \mu) \in \p^1 \} \subset \p^1 \times \p^9
+  \mathcal{P} := \{ \Sigma_{\lambda f + \mu g} \, : \, (\lambda: \mu) \in \p^1 \} \subset \p^1 \times \p^9
 \]
 %
 Then $\mathcal{N}$ is the projection of~$\mathcal{P}$ on the second factor.
-However, the map $\mathcal{P} \to \mathcal{N}$ contracts no subvariety of any plane of~$\mathcal{P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Lambda_f$ and~$\Lambda_g$ should have non-empty intersection.
+However, the map $\mathcal{P} \to \mathcal{N}$ contracts no subvariety of any plane of~$\mathcal{P}$, so either it is an embedding or it contracts some horizontal curve. In the latter case, all the planes of the family should intersect in at least one point. In particular, the two nets $\Sigma_f$ and~$\Sigma_g$ should have non-empty intersection.
 If we denote by~$g_1$, $g_2$ and~$g_3$ the $2 \times 2$ minors relative to~$f$, and by~$h_1$, $h_2$ and~$h_3$ the ones relative to~$g$, the vectorial dimension of the linear span $\left\langle g_1, g_2, g_3, h_1, h_2, h_3 \right\rangle$ should be strictly less than $6$. This can be avoided, since such a condition corresponds to a proper closed subscheme of~$\p^9 \times \p^9$.
 
 It follows that if $f$ and~$g$ are general enough, then $\mathcal{N}$ is a $3$-dimensional rational normal scroll in
@@ -2210,9 +2209,9 @@ The degree of~$\sL$ is equal to
 
 \begin{proof}
 We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics
-$\Lambda_f = \left\langle g_1, g_2, g_3 \right\rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net~$\Lambda_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+$\Sigma_f = \left\langle g_1, g_2, g_3 \right\rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net~$\Sigma_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
-To determine the degree of~$\sL$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we compute the number of elements with associated net $\Lambda_{\lambda f + \mu g}$ containing a triangle.
+To determine the degree of~$\sL$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we compute the number of elements with associated net $\Sigma_{\lambda f + \mu g}$ containing a triangle.
 
 To this aim, denote by $\mathcal{T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is~$6$ and its degree is~$15$,
 see for instance \cite[Section~2.2.2]{3264}. We now consider the variety~$\mathcal{N}$ from \Cref{lemma:scroll}.
@@ -2821,7 +2820,7 @@ It holds:
 \begin{prop}
 \label{conf4no} If the eigenpoints of a cubic are in a $(C_4)$ configuration, then they actually are in a $(C_8)$ configuration.
 \end{prop}
-\begin{proof} (\nb{08}{F1})
+\begin{proof} (\nb{08}{F2})
 %% il file config4.sage contiene la dimostrazione
 From the results of \Cref{rank_8}, we know that $(C_4)$
 cannot be obtained from a rank 8 $V$-configuration,
@@ -2897,7 +2896,7 @@ a manipulation of $f$ shows that $f=0$ if and only if \Cref{cndC5} holds.
 If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1 \, P_2 + w_2 \, P_4$,
 we find~$w_1$ and~$w_2$, which give \Cref{p6formula}.
 
-Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with~$P_1$ and~$P_6$.
+Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with~$P_1$ and~$P_6$. All the detailed computations can be found in \nb{08}{F3}.
 \end{proof}
 %
 The converse of the above proposition is also true, more precisely:
@@ -2929,8 +2928,8 @@ If we impose that $(P_2, P_5, P_7)$ are aligned, we get that this condition spli
 one imposes the collinearity of $(P_3, P_4, P_7)$, the other imposes that the collinearity of $(P_3, P_5, P_6)$,
 hence we get two $(C_8)$ configurations. Similarly for the other two cases. 
 
-If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$ and $P_1 = P_2 \times P_4$, we have that $s_{12} = s_{14} = 0$, so the $V$-configuration cannot satisfies \Cref{rk8_1}, since we would have \Cref{lemma_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
-from the results of \Cref{rank_8} we have that $P_1 \vee P_2$ and $P_1 \vee P_4$ are tangent to the isotropic conic in~$P_2$ and~$P_4$. Hence $s_{22}, s_{44}, s_{23}, s_{45}$ are all zero and \Cref{p6formula} and \Cref{p7formula} specialize to \Cref{formuleP6_P7}; finally, \Cref{prop:rk8_2B} shows that the points are in a $(C_5)$ configuration.
+If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$ and $P_1 = P_2 \times P_4$, we have that $s_{12} = s_{14} = 0$, so the $V$-configuration cannot satisfy \Cref{rk8_1}, since we would have \Cref{lemma_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
+from the results of \Cref{rank_8} we have that $P_1 \vee P_2$ and $P_1 \vee P_4$ are tangent to the isotropic conic in~$P_2$ and~$P_4$. Hence $s_{22}, s_{44}, s_{23}, s_{45}$ are all zero and \Cref{p6formula} and \Cref{p7formula} specialize to \Cref{formuleP6_P7}; finally, \Cref{prop:rk8_2B} shows that the points are in a $(C_5)$ configuration. Notebook \nb{08}{F3} contains some details of the computations.
 \end{proof}
 %
 
@@ -2963,14 +2962,15 @@ hence \Cref{rmk:three_orthog} gives that the $(C_5)$ configuration obtained in \
 \subsection*{Configurations~\texorpdfstring{$(C_6)$}{C6} and \texorpdfstring{$(C_7)$}{C7}}
 
 The strict configurations $(C_6)$ and~$(C_7)$ cannot be realized by eigenpoints.
-Indeed, if we consider suitable ideals given by the conditions
-$\delta_1$ and~$\delta_2$ that must be satisfied by the points of the two configurations,
-we get that there are no compatible solutions.
+Indeed, if we study the ideals given by the conditions
+$\delta_1=0$ and~$\delta_2=0$ that must be satisfied by the points in order to get the configurations,
+we see that there are no compatible solutions.
+See notebooks \nb{08}{F4} and \nb{08}{F5}.
 
 \subsection*{Configuration~\texorpdfstring{$(C_8)$}{C8}}
 This configuration is realizable.  
 %% file config8N2.sage
-The $(C_8)$ configuration we consider in this paragraph is the following: 
+The $(C_8)$ configuration we consider in this section is the following: 
 %
 \begin{equation}
 \label{config:c8}
