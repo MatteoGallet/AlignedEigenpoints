@@ -62,10 +62,7 @@
 \newcommand{\de}{\partial}
 \newcommand{\oo}{\mathcal{O}}
 
-\newcommand{\nb}[2]{\textbf{{NB}.{#1}.{#2}}}
-
-%% alternativa: @@
-%\newcommand{\nb}[2]{\textsl{{NB}.{#1}.{#2}}}
+\newcommand{\nb}[2]{\textsl{{NB}.{#1}.{#2}}}
 
 \newcommand{\iii}{\textit{i}\,}
 \newcommand{\codim}{\mathrm{codim}}
@@ -2385,7 +2382,7 @@ A generic point on $\iso$ is of the form $(\lambda^2 + \mu^2,
 We can therefore easily obtain two points~$P_1$ and~$P_2$ on~$\iso$,
 determine the line $r = P_1 \vee P_2$ and define~$C(r)$ as above.
 The two tangents to~$\iso$ in~$P_1$ and~$P_2$ turns out to be eigenpoints
-for~$C(r)$. For details, consult \nb{07}{F1}.
+for~$C(r)$. For details, consult \nb{06}{F1}.
 \end{proof}
 
 
@@ -2405,7 +2402,7 @@ and only if $t$ is tangent to the isotropic conic.
 \end{lemma}
 \begin{proof}
 %%% +file: fourCollinearPoints.sage
-The computations are in \nb{07}{F2}.
+The computations are in \nb{06}{F2}.
 \end{proof}
 
 We are now in the position to give a characterization of cubics with an eigenscheme containing a line.
@@ -2448,7 +2445,7 @@ $P$ is $(1: \iii: 0)$ and $t$ is $x+\iii y$. If we impose to the generic
 cubic of $\mathbb{P}^2$ to have eigenpoints the points of $t$, we get a linear
 system of cubics of dimension $3$. It can be shown that a basis of such a linear system is given by $H_1 = t^2x$, $H_2 = t^2y$, $H_3 = t^2z$ and
 $H_4 = C(r_0)$, where $r_0$ is any line passing through $P$ and different from $t$. This proves the
-second claim. It is immediate to see that $P$ is singular for the cubics of the linear system. \nb{07}{F3} contains the details of the computations.
+second claim. It is immediate to see that $P$ is singular for the cubics of the linear system. \nb{06}{F3} contains the details of the computations.
 \end{proof}
 %
 \begin{prop}
@@ -2514,7 +2511,7 @@ by four polynomials $h_1, \dotsc, h_4$.
 % %
 Also here, the zeros of general $h_1, \dotsc, h_4$ are in general position.
 
-Notebook \nb{07}{G1} collects the computations for this proof and provides the polynomials $h_1, \dotsc, h_4$.
+Notebook \nb{06}{F4} collects the computations for this proof and provides the polynomials $h_1, \dotsc, h_4$.
 \end{proof}
 
 \subsection{Eigenschemes containing a conic}
@@ -2539,7 +2536,7 @@ $\Phi(P_1, \dotsc, P_5)$ must have rank $9$ or smaller, but the computations sho
 this is not possible. In the second case, we take a generic point $P_2$ on $\iso$, we construct 
 the pencil of conics $\Gamma_s$ which are bitangent to $\iso$ in $P_1$ and $P_2$ and we take three other points $P_3, P_4, P_5$ 
 on $\Gamma_s$ and again we check when the matrix of conditions $\Phi(P_1, \dotsc, P_5)$ has rank $9$ (or less). In this case we get that there is only one solution, which is given by the cubic 
-$r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computational details can be find in \nb{07}{F4}.
+$r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computational details can be find in \nb{06}{F5}.
 \end{proof}
 
 
@@ -2758,15 +2755,15 @@ $(C_1)$ configuration.
 \subsection*{Configuration~\texorpdfstring{$(C_2)$}{C2}}
 In this case, the points
 $P_1, \dots, P_5$ are in a
-$V$-configuration, hence $\rk \, \Phi(P_1, \dotsc, P_5)$
+$V$-configuration, so $\rk \, \Phi(P_1, \dotsc, P_5)$
 must be~$9$ or~$8$. If the rank is~$9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dotsc, P_5) = 0$, see \Cref{theorem:rank_V}.
 From \Cref{proposition:third_alignment}, the only case
 to have a strict $(C_2)$ configuration 
 is $\delta_1(P_1, P_2, P_4) = 0$. Hence, if we fix two points~$P_1$ and~$P_2$
-in the plane in an arbitrary way, we choose $P_4$ such that
-$\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$ (see \Cref{lemma_delta_case1}), we chose any~$P_3$
-on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$, then we get a cubic with a configuration of type~$(C_2)$ (strict, in the general case). If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1} (and hence are sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$), (see~\Cref{rmk:particular_cases}).
+in the plane in an arbitrary way, from \Cref{lemma_delta_case1} we can choose $P_4$ such that
+$\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, then we choose any~$P_3$
+on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$; in this way, we get a cubic with a configuration of type~$(C_2)$ (strict, in the general case). If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1} (and hence are sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$), see~\Cref{rmk:particular_cases}.
 
 \subsection*{Configuration~\texorpdfstring{$(C_3)$}{C3}}
 Suppose we have $7$ eigenpoints such that
