@@ -248,7 +248,7 @@ Finally, we would like to point out that our approach gives some hints towards t
 \subsection*{Content of the paper}
 Here is a description of the content of each section.
 \Cref{invariance} describes the action of special orthogonal matrices on ternary forms, which we repeatedly use in our analyses since it allows us to "pin down" one of the eigenpoints to two specific cases, thus greatly speeding up the symbolic computations we rely on.
-\Cref{conditions} begin our analysis by examining what conditions on the space of ternary cubics are imposed by the existence of aligned eigenpoints. In particular, three kinds of conditions, named~$\delta_1$, $\bar{\delta}_1$, and~$\delta_2$, emerge and play a prominent role in describing configurations of two triples of aligned eigenpoints that share a point, called $V$-configurations.
+\Cref{conditions} begin our analysis by examining what conditions on the space of ternary cubics are imposed by the existence of aligned eigenpoints. In particular, three kinds of conditions, named~$\delta_1$, $\bar{\delta}_1$, and~$\delta_2$, emerge and play a prominent role in describing configurations of two triples of aligned eigenpoints that share a point, here called $V$-configurations.
 \Cref{rank_9} and \Cref{rank_8} set the spotlight on $V$-configurations, exhausting all the possible special cases that may appear.
 \Cref{locus_one_alignment} introduces the locus of ternary cubics with a single alignment in the eigenscheme, proves its irreducibility and computes its degree.
 \Cref{positive_dim} classifies positive-dimensional eigenschemes of ternary cubics.
@@ -1791,7 +1791,7 @@ that satisfies condition~(\ref{rk8_2}) is therefore five-dimensional.
 The five points satisfy the condition $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 %% 2+1+1+1, l'ultimo 1 perche' rango matrice = 8
 
-rom the matrix H it is moreover possible to construct the three minors of Equation (3), indeed
+From the matrix~$H$ it is moreover possible to construct the three minors of Equation (3), indeed
 Proposition 4.1. The three minors of Equation (3) are proportional t
 The reciprocal position of the eigenpoints of the cubics of this family
 is described by the following:
@@ -3031,11 +3031,11 @@ $P_2 \vee P_4$, hence:
 %% file config8N2.sage
 If some of the $V$-configurations contained in $(C_8)$ are such that their matrices of conditions have rank $8$, 
 the result follows from \Cref{rank_8} (see \Cref{rmk:three_orthog}).
-We fix generic coordinates for the points $P_1, P_2, P_4, P_7$.
+We fix now generic coordinates for the points $P_1, P_2, P_4, P_7$.
 As a consequence of the previous two lemmas, it is not possible
 to have $s_{12}=0, s_{14}=0, s_{17}=0$, hence we can assume $s_{12} \not=0$.
 Hence, again from \Cref{lemma:three_s_zero}, it is not possible to 
-have $s_{14}=s_{24}=0$, hence at least one of the three coefficients~$s_{14}s_{24}$, $s_{12}s_{24}$, or~$s_{12}s_{14}$ is not zero. Since the 
+have $s_{14}=s_{24}=0$, hence at least one of the three coefficients~$s_{14}s_{24}$, $s_{12}s_{24}$, or~$s_{12}s_{14}$  in \Cref{formula:ortocentro} is not zero. Since the 
 three vectors $P_1\times P_2$, $P_1\times P_4$, $P_2\times P_4$ are linearly independent, we see that $P_7$ is a non zero vector. Also in this general situation, if the points are eigenpoints, it must hold: 
 $\delta_1(P_3, P_1, P_4) = 0$, $\delta_1(P_5, P_1, P_2) = 0$ and 
 $\delta_1(P_6, P_1, P_2)=0$. These three relations, up to non zero factors, can be expressed as 
@@ -3048,12 +3048,13 @@ $\delta_1(P_6, P_1, P_2)=0$. These three relations, up to non zero factors, can 
 %
 hence $e_1-e_2+e_3 = 0$ and the system
 $e_1=0, e_2 = 0$ is a linear system in the coordinates of the points. 
-Its solution (w.r.t.\ the coordinates of~$P_7$) gives new coordinates for the point~$P_7$ and it is easy to see that \Cref{formula:ortocentro} holds.
+Its solution (w.r.t.\ the coordinates of~$P_7$) gives new coordinates for the point~$P_7$ and it is easy to see that \Cref{formula:ortocentro} holds. The complete computations are in \nb{08}{F7}.
 \end{proof}
 
 We have also the converse, i.e.\
 \begin{prop}
-Suppose $P_1, P_2, P_4$ are three points of the plane. Suppose that \Cref{formula:ortocentro} defines a point in~$\p^2$ and that
+Suppose $P_1, P_2, P_4$ are three points of the plane. Suppose that \Cref{formula:ortocentro} defines a point $P_7$ 
+in~$\p^2$ and that
 %
 \[
 P_3 = (P_1 \vee P_2) \cap(P_4 \vee P_7), \quad 
@@ -3074,8 +3075,10 @@ of the plane. In particular:
 \begin{proof}
 %% file connfig8N2.sage
 It is enough to show that the rank of the matrix $\Phi(P_1, \dots, P_7)$
-is $9$ and this computation can be done, for instance, assuming that 
+is $9$ and this computation can be done in only two
+cases, assuming that 
 $P_1$ is the point~$(1: 0: 0)$ or the point~$(1: \iii: 0)$.
+(See \nb{08}{F7}).
 \end{proof}
 
 \begin{corollary}
