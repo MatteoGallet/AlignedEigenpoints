@@ -242,3 +242,22 @@ def eig(F):
     gF = gdn(F)
     return(vector(S, matrix([gF, [x, y, z]]).minors(2)))
 
+
+## INPUT: 4 points Q1, Q2, Q3, Q4 such that the line 
+## (Q1+Q2) intersects the line (Q3+Q4)
+## in a single point, 
+## OUTPUT: the coordinates of the point of intersection 
+## of the two lines
+def intersection_lines(Q1, Q2, Q3, Q4):
+    twoLines = [det(matrix([[x, y, z], Q1, Q2])), \
+                det(matrix([[x, y, z], Q3, Q4]))]
+    Msist = matrix([[twoLines[0].coefficient(vr) for vr in [x, y, z]],\
+                    [twoLines[1].coefficient(vr) for vr in [x, y, z]]])
+    LL = Msist.minors(2)
+    return(vector((LL[2], -LL[1], LL[0])))
+
+
+## define a random integer in the interval [1, 10]
+def small_random():
+    return(floor(random()*11+1))
+
