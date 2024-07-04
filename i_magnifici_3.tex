@@ -152,9 +152,6 @@ the $v_i$'s turn out to be eigenvectors of~$T$.
 Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials.
 Ottaviani points out in \cite[Section~8]{Ottaviani24} the close connection between eigenvectors of specific symmetric tensors and the so-called L\"uroth quartics. 
 
-
-
-
 \subsection*{Eigenschemes of homogeneous ternary forms}
 Given a vector space $V$, we fix an isomorphism $V \cong V^\vee$ where $V^\vee$ is the dual vector space.
 A non-zero vector $v \in V$ is an {\it eigenvector} of a tensor
@@ -177,7 +174,7 @@ by construction, the set of eigenpoints of $f$ is the zero locus of the ideal of
 \end{pmatrix} \,,
 \end{equation}
 %
-so that the set of eigenpoints can be given a natural structure of determinantal scheme called \emph{eigenscheme} and which we will denote by $\Eig{f}$. Similarly, a natural scheme structure can be given to the eigenpoints of any
+thus it can be given a natural structure of determinantal scheme called \emph{eigenscheme}, which we denote by $\Eig{f}$. Similarly, a natural scheme structure can be given to the eigenpoints of any
 tensor $T \in (\C^3)^{\otimes d}$, see \cite[Section 1]{ASS}, and such a scheme will be denoted by $\Eig{T}$.
 
 It has been proved in \cite[Corollary 5.8]{Abo} that $\Eig{f}$ is in general $0$-dimensional and reduced, and its degree has been determined in \cite[Theorem 2.1]{CartSturm}.
@@ -187,7 +184,6 @@ $\deg \Eig{f}=7$; however,
 
 A first geometric characterization of eigenschemes of ternary cubic forms has been given in
 \cite[Theorem 5.1]{ASS}, and it states that seven points in~$\p^2$ are eigenpoints of some tensor if and only if no six of them lie on a conic.
-
 Moreover, by \cite[Theorem 5.7]{BGV},
 the eigenscheme~$\Eig{f}$ of a general ternary cubic contains no triple of collinear points.
 
@@ -211,10 +207,10 @@ Finally, we would like to point out that our approach gives some hints towards t
 
 \subsection*{Content of the paper}
 Here is a description of the content of each section.
-\Cref{invariance} describes the action of special orthogonal matrices on ternary forms, which we repeatedly use in our analyses since it allows us to "pin down" one of the eigenpoints to two specific cases, thus greatly speeding up the symbolic computations we rely on.
+\Cref{invariance} describes the action of special orthogonal matrices on ternary forms, which we repeatedly use in our analyses to "pin down" one of the eigenpoints to two specific cases, thus greatly speeding up the symbolic computations we rely on.
 \Cref{conditions} begin our analysis by examining what conditions on the space of ternary cubics are imposed by the existence of aligned eigenpoints. In particular, three kinds of conditions, named~$\delta_1$, $\bar{\delta}_1$, and~$\delta_2$, emerge and play a prominent role in describing configurations of two triples of aligned eigenpoints that share a point, here called $V$-configurations.
-\Cref{rank_9} and \Cref{rank_8} set the spotlight on $V$-configurations, exhausting all the possible special cases that may appear.
-\Cref{locus_one_alignment} introduces the locus of ternary cubics with a single alignment in the eigenscheme, proves its irreducibility and computes its degree.
+\Cref{V-configurations} sets the spotlight on $V$-configurations, exhausting all the possible special cases that may appear.
+\Cref{locus_one_alignment} introduces the locus of ternary cubics with an alignment in the eigenscheme, proves its irreducibility, and computes its degree.
 \Cref{positive_dim} classifies positive-dimensional eigenschemes of ternary cubics.
 \Cref{further_alignments} examines all the possible configurations of alignments in a $0$-dimensional reduced eigenscheme and establishes which may arise and which not.
 
@@ -223,7 +219,7 @@ Several proofs employ computer algebra verifications in an essential way.
 We rely on SageMath \cite{SageMath} for the operations we need 
 (mainly, manipulations of polynomials and polynomial ideals).
 To allow the reader for an easier use of these computations, we have prepared Jupyter notebooks, available at \cite{Notebooks}.
-Each notebook has a name of the form \nb{XX}{CODE} where \textbf{XX} denotes the section and \textbf{CODE} is a code-word for the result.
+Each notebook has a name of the form \nb{XX}{CODE} where \textit{XX} denotes the section and \textit{CODE} is a code-word for the result.
 
 \subsection*{Notation and preliminaries}
 We work in $\p^2_\C$, endowed with the canonical projective coordinate system.
@@ -1378,7 +1374,7 @@ Also in this case, the locus of cubics is of dimension~$7$.
 
 \begin{prop}
 \label{proposition:G_split}
-Assume that $P_1, \dots, P_5 $ satisfy $\delta_2(P_1, \dotsc, P_5) = 0$ and $\rk \, \Phi(P_1, \dotsc, P_5) = 9$. Then the cubic curve $A_1 g_3 - B_1 g_2 + C_1 g_1=0$ contains the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$.
+Assume that $P_1, \dots, P_5 $ satisfy $\delta_2(P_1, \dotsc, P_5) = 0$ and $\rk \, \Phi(P_1, \dotsc, P_5) = 9$. Then the cubic curve $A_1 g_3 - B_1 g_2 + C_1 g_1=0$ contains the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$, where $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix}.
 % The polynomial $C_1G_1-B_1G_2+A_1G_3$ splits into three factors $r_1$, $r_2$, $r_3$, each linear in $x, y, z$.
 \end{prop}
 %We know that $G_1, G_2, G_3$ admit the syzygy $z \, G_1 - y \, G_2 + x \, G_3 = 0$.
@@ -1461,20 +1457,11 @@ are eigenpoints has also the two other eigenpoints~$P_6$ and~$P_7$
 aligned with~$P_1$.
 \end{prop}
 \begin{proof}
-Let $f$ be the unique form such that $P_1, \dotsc, P_5 \in \Eig{f}$.
 According to \Cref{proposition:G_split}, the polynomial
-$C_1g_1-B_1g_2+A_1g_3$ splits into three factors $r_1$, $r_2$, $r_3$,
+$C_1g_1-B_1g_2+A_1g_3$ splits into three factors $r_1$, $r_2$, and~$r_3$,
 linear in $x, y, z$, which
-correspond to the line~$P_1 \vee P_2$, the line~$P_1 \vee P_4$, and the line~$P_6 \vee P_7$.
-The factorization of~$f$ gives that the factor~$r_3$ is:
-%
-\[
-  r_3 = 2yv_1A_1B_1^4A_2^2B_2A_4^3-2xv_1B_1^5A_2^2B_2A_4^3+\cdots
-  -2 yv_1A_1B_1^4A_2^2B_2A_4^3
-\]
-%
-and is composed by almost $2000$ monomials. When we
-evaluate~$r_3$ on the coordinates of~$P_1$, we get zero.
+correspond to the line~$P_1 \vee P_2$, the line~$P_1 \vee P_4$, and the line~$P_6 \vee P_7$. Notebook \texttt{tmp3} shows that, when
+we evaluate~$r_3$ on the coordinates of~$P_1$, we get zero.
 \end{proof}
 
 
@@ -1630,39 +1617,8 @@ As observed in the proof of~\Cref{theorem:rank_V}, if $P_1 = (1: \iii: 0)$,
 %% Vedi file rank_8_2_1_ii_0.sage+)
 the matrix
 $\Phi(P_1, \dots, P_5)$ cannot have rank smaller then $9$, so the only
-case to consider is given by $P_1 = (1: 0: 0)$.
-\textbf{CREARE NOTEBOOK CON QUESTI CONTI E CONGIUNGERE CON PROPOSIZIONE 4.12}
-Hence
-$P_2 = (A_2: B_2: C_2)$ and~$P_3$, $P_4$ and~$P_5$ can be chosen according 
-to the above formulas.\\
-Consider the matrix $\Phi(P_1, \dots, P_5)$ and select $8$ linearly independent
-rows (since $P_1$ is numeric, it can be seen that for instance the rows
-of position $0, 1, 4, 5, 7, 8, 12, 14$ are a good choice and avoid to consider
-many exceptions) and let $M_1$ be a matrix obtained in this way.
-We fix two numeric $10$-dimensional vectors~$V_a$ and~$V_b$ and we construct
-$M_a$ (resp.\ $M_b$) obtained by horizontally stacking vector
-$V_a$ (resp.\ $V_b$)
-to $M_1$. The rank of~$M_a$ and~$M_b$ is~$9$ (unless an unlucky choice
-of the vectors, in which case they can be changed). The matrices~$M_a$ and~$M_b$ 
-play the same role of the matrix~$\mathcal{H}$
-of~\Cref{rank_9}, hence we can do the same construction explained
-there, in order to obtain the line~$r_a$ passing through the two
-eigenpoints~$P_6$ and $P_7$ of the cubic obtained from~$M_a$ and the
-line~$r_b$ passing through the analogous eigenpoints of the cubic
-obtained from~$M_b$.
-Hence the line $r = w_ar_a+w_br_b$
-(where $w_a, w_b$ are parameters) is the line passing through the eigenpoints
-$P_6$ and~$P_7$
-of the generic cubic of the one dimensional family given by the line
-of~$\p^9$ determined by the cubic obtained from $M_a$ and
-the cubic obtained from $M_b$. The condition $P_1 \in r$
-determines the values of~$w_a$ and~$w_b$, hence we get the cubic
-with the three collinearities $(P_1, P_2, P_3)$,
-$(P_1, P_4, P_5)$ and~$(P_1, P_6, P_7)$. If we require that the eigenpoints 
-have other alignments, w.l.o.g.\ we can assume that $P_6$ is on the line 
-$P_2 \vee P_4$, hence it can be determined as the intersection of~$r$
-and~$P_2 \vee P_4$. If we impose that this point is an eigenpoint, we get
-a contradiction, thus there are no other sub-cases to consider.   
+case to consider is $P_1 = (1: 0: 0)$.
+Notebook \texttt{tmp2} provides the proof of the statement.
 \end{proof}
 %
 Moreover, we have:
