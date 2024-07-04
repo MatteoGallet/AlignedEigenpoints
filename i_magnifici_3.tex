@@ -120,7 +120,7 @@ Via Valerio 12/1, 34127 Trieste, Italy}
 Tensors are natural generalizations of matrices in higher dimension.
 Important notions related to matrices, as for example those of \emph{rank} and of \emph{eigenvector},
 can be generalized to tensors and may provide information about them.
-Since roughly $20$ years ago, eigenvectors of tensors have been object of study from various points of view.
+Since roughly twenty years ago, eigenvectors of tensors have been object of study from various points of view.
 Our interest will be focused on a specific class of symmetric tensors, namely cubic ternary forms, and on a specific geometric configuration of their eigenvectors.
 Before delving into the more technical aspects of our problem,
 we begin with a short resume of the existing literature on eigenvectors of tensors.
@@ -145,90 +145,54 @@ Indeed, any best rank~$k$ approximation of a symmetric tensor, when it exists, l
 called \emph{critical space}, spanned by the rank~$1$ tensors of the type $v_i^{\otimes d}$, where $v_i$ varies among all the eigenvectors. 
 Therefore, a deep comprehension of the geometry of eigenvectors will
 go towards an improvement on the insight of low rank approximation problems.
-A first evidence in this direction is given by the so called ODECO (''orthogonally decomposable``) tensors, 
+A first evidence in this direction is given by the so called ODECO (``orthogonally decomposable'') tensors, 
 that is, symmetric tensors~$T$ that admit a decomposition
 $T = \sum _{i=0}^n v_i ^{\otimes d}$ with $v_0, \dotsc, v_n$ an orthogonal family (see \cite{Rob, BDHE} for further details);
 the $v_i$'s turn out to be eigenvectors of~$T$.
 Finally, in \cite{OO} Oeding and Ottaviani employ eigenvectors of tensors in an algorithm to compute Waring decompositions of homogeneous polynomials.
 Ottaviani points out in \cite[Section~8]{Ottaviani24} the close connection between eigenvectors of specific symmetric tensors and the so-called L\"uroth quartics. 
 
-\subsection*{Generalities on eigenschemes}
-When dealing with eigenvectors, as observed in \cite{ASS},
-it is not restrictive to focus on partially symmetric tensors, that is elements of~$\Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$.
-If we choose a basis for~$\C^{n+1}$, then we can identify a partially symmetric tensor $T \in \Sym^{d-1}\C^{n+1} \otimes \C^{n+1}$ with a tuple of homogeneous polynomials $(g_0, \dotsc, g_n)$. An \emph{eigenvector} of~$T$ is a nonzero vector $v \in \C^{n+1}$ such that
-%
-\begin{equation}
-\label{eq:eigenvector_definition}
-  \bigl( t_0(v), \dotsc, t_n(v) \bigr) = \lambda v
-\end{equation}
-%
-for some constant~$\lambda \in \C$.
-Since the property in \Cref{eq:eigenvector_definition} is preserved under scalar multiplication, 
-it is natural to consider the rational map $T \colon \p^n \dashrightarrow \p^n$ defined by $T(P) = \bigl(g_0(P): \ldots: g_n(P)\bigr)$ 
-and regard eigenvectors as points in~$\p^n$; hence the name \emph{eigenpoints} instead of eigenvectors.
-When a tensor is symmetric, it can be identified with a homogeneous polynomial, also called a homogeneous form.
-As a partially symmetric tensor, a homogeneous form~$f$ is identified by its gradient $\nabla f = (\de_0 f, \dotsc, \de_n f)$ and so its eigenpoints are the fixed points of the polar map $\nabla f \colon \p^n \dasharrow \p^n$.
 
-The condition in \Cref{eq:eigenvector_definition} can be rephrased as
-%
-\begin{equation}
-\label{eq:def_matrix_general}
-  \rk
-  \begin{pmatrix}
-    x_0 & x_1 & \dots & x_n \\
-    t_0 & t_1 & \dots & t_n
-  \end{pmatrix} \le 1 \,,
-\end{equation}
-%
-so that the set of eigenpoints can be given a natural structure of determinantal scheme, which is commonly called \emph{eigenscheme}, denoted $\Eig{T}$.
 
-\subsection*{Eigenschemes of cubic ternary forms}
-% \textbf{@@ una frase cosi' che vi sembra?}
-% %%%
-% %%%%
-% The problem we consider in this paper can be simplified in the following way.
-% Consider a degree three homogeneous polynomial 
-% $f \in \mathbb{C}[x, y, z]$ 
-% (hence a cubic curve $C$ in $\mathbb{P}^2$).
-% We can associate to $f$ an ideal $J_e$ which is given by the
-% order two minors of the matrix $((f_x, f_y, f_z), (x, y, z))$. The variety
-% $V(J_e)$ is the locus of the eigenpoints of $f$. In general, $V(J_e)$ is
-% given by $7$ points, but there are cases in which $V(J_e)$ is a
-% one-dimensional variety.
-% In the present paper we characterize the cubics for which $V(J_e)$ is one-dimensional
-% (and in these cases we give a descritpion of $V(J_e)$) and, when
-% $V(J_e)$ is given by $7$ distinct points, we classify all the possible
-% configurations that these points can assume w.r.t.\ their collinearities. 
 
-In the present paper, we focus on the geometry of eigenschemes of $3\times 3 \times 3$ symmetric tensors, 
-that is the case $n=2$ and~$d=3$ in \Cref{thm:nonempty}.
-In other words, as we have clarified, we consider a homogeneous polynomial $f \in \C[x, y, z]$ of degree~$3$ and associate to it the scheme~$\Eig{f}$ determined by the ideal of $2 \times 2$ minors of the matrix
-%
+\subsection*{Eigenschemes of homogeneous ternary forms}
+Given a vector space $V$, we fix an isomorphism $V \cong V^\vee$ where $V^\vee$ is the dual vector space.
+A non-zero vector $v \in V$ is an {\it eigenvector} of a tensor
+ $T\in V ^{\otimes d} \cong ( V^\vee)^{\otimes d-1}\otimes V$ if there exists $\lambda\in \C$ such that 
+ $T(v^{\otimes d-1})= \lambda v$. 
+In the present paper, we will focus on the geometry of configurations of eigenvectors of order $3$ ternary symmetric tensors,
+that is elements of ${\rm Sym}^3 \C^3$. 
+
+Recall that, by fixing a nondegenerate quadratic form and an orthonormal basis of $\C^3$, the space ${\rm Sym}^d \C^3$ can be identified with the space of homogeneous ternary forms
+$\C[x,y,z]_d$, and it turns out the general definition of eigenvector $v$ for $f \in \C[x,y,z]_d$ specializes 
+to $\nabla f (v)=\lambda v$, see for instance \cite[Section 1]{ASS}.
+Such a condition is preserved under scalar multiplication, 
+so it is natural to regard eigenvectors as points in~$\p^2$, and to talk about \emph{eigenpoints}. Moreover, 
+by construction, the set of eigenpoints of $f$ is the zero locus of the ideal of $2 \times 2$ minors of the matrix%
 \begin{equation}
 \label{eq:def_matrix}
 \begin{pmatrix}
     x & y & z \\
     \partial_x f  & \partial_y f & \partial_z f 
-\end{pmatrix} \,.
+\end{pmatrix} \,,
 \end{equation}
 %
-By \Cref{thm:nonempty}, a general $f$ satisfies $\deg \Eig{f}=7$.
-Moreover, in general $\Eig{f}$ is constituted by $7$ reduced points, but there are cases when it is one-dimensional, or non-reduced; see \Cref{thm:nonempty}. 
+so that the set of eigenpoints can be given a natural structure of determinantal scheme called \emph{eigenscheme} and which we will denote by $\Eig{f}$. Similarly, a natural scheme structure can be given to the eigenpoints of any
+tensor $T \in (\C^3)^{\otimes d}$, see \cite[Section 1]{ASS}, and such a scheme will be denoted by $\Eig{T}$.
 
-A geometric characterization of eigenschemes of ternary forms is given by the following results.
+It has been proved in \cite[Corollary 5.8]{Abo} that $\Eig{f}$ is in general $0$-dimensional and reduced, and its degree has been determined in \cite[Theorem 2.1]{CartSturm}.
+In the particular case of $d=3$ we generally have
+$\deg \Eig{f}=7$; however,
+ there are cases when it is one-dimensional, or non-reduced.
 
-\begin{theorem}(\cite[Theorem 5.1]{ASS})
-\label{thm:no_six_conics}
-A configuration of seven points in~$\p^2$ is the eigenconfiguration
-of a $3 \times 3 \times 3$-tensor if and only if no six of the seven points lie on a conic.
-\end{theorem}
+A first geometric characterization of eigenschemes of ternary cubic forms has been given in
+\cite[Theorem 5.1]{ASS}, and it states that seven points in~$\p^2$ are eigenpoints of some tensor if and only if no six of them lie on a conic.
 
-\begin{theorem}(\cite[Theorem 5.7]{BGV})
-\label{thm:general_no_d_collinear}
-The eigenscheme~$\Eig{f}$ of a general ternary cubic contains no triple of collinear points.
-\end{theorem}
+Moreover, by \cite[Theorem 5.7]{BGV},
+the eigenscheme~$\Eig{f}$ of a general ternary cubic contains no triple of collinear points.
 
-However, there are several examples of cubic polynomials, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial.
+However, there are several examples of cubic forms, whose eigenscheme contains one or more triples of aligned points, as for instance the Fermat cubic polynomial $f=x^3+y^3+z^3$.
+Understanding these situations requires a careful analysis of the conditions on ternary cubic forms imposed by the existence of aligned eigenpoints.
 
 \subsection*{Our results}
 The goal of this paper is to classify all the situations when we have one or more triples of aligned points inside a $0$-dimensional reduced eigenscheme of a ternary cubic form.
@@ -264,7 +228,12 @@ Each notebook has a name of the form \nb{XX}{CODE} where \textbf{XX} denotes the
 \subsection*{Notation and preliminaries}
 We work in $\p^2_\C$, endowed with the canonical projective coordinate system.
 We denote by~$P \vee Q$ the line through two distinct points~$P$ and~$Q$.
-
+We denote by~$\iso$ the so-called \emph{isotropic conic}, namely the conic of equation
+%
+\[
+ x^2 + y^2 + z^2 = 0 \,.
+\]
+%
 We shall use vectorial notions for projective points. 
 For instance, for $P_1=(A_1:B_1:C_1)$ and $P_2=(A_2:B_2:C_2)$ we shall denote by 
 %
@@ -272,7 +241,7 @@ For instance, for $P_1=(A_1:B_1:C_1)$ and $P_2=(A_2:B_2:C_2)$ we shall denote by
   s_{12} = \scl{P_1}{P_2} = A_1 A_2 + B_1 B_2 + C_1 C_2 \,.
 \]
 %
-Such an expression has to be intended as a bihomogeneous polynomial in the coordinates of~$P_1$ and~$P_2$. If we think of the $A_i$, $B_j$, and $C_k$ as indeterminates, the zero set of~$s_{12}$ is well defined in $\p^2 \times \p^2$.
+Such an expression has to be intended as a bihomogeneous polynomial in the coordinates of~$P_1$ and~$P_2$. If we think of the $A$, $B$, and $C$ as indeterminates, the zero set of~$s_{12}$ is well defined in $\p^2 \times \p^2$.
 Analogously, we define the expressions $s_{ij}$ for any $i$ and $j$.
 
 Similarly, by $P_1 \times P_2$ we shall denote the \emph{cross product} of the representing vectors
@@ -298,8 +267,8 @@ what we mean is that the right hand side is a (multi-)homogeneous polynomials, w
 %
 and the point on the left hand side is the image of $P_1$ and $P_2$ under this map.
 
-We recall that, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the \emph{eigenscheme}~$\Eig{f} \subset \p^2$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix in \Cref{eq:def_matrix}.
-When $f$ is a cubic, we have three quadratic polynomials: throughout the paper, we denote them by $g_1, g_2$ and $g_3$ and we fix the following choice:
+As said above, given a homogeneous form $f \in \C[x,y,z]_d$ of degree~$d$, the \emph{eigenscheme}~$\Eig{f} \subset \p^2$ of~$f$ is the determinantal scheme defined by the $2 \times 2$ minors of the matrix in \Cref{eq:def_matrix}.
+Throughout the paper, we denote them by $g_1, g_2$ and $g_3$ and we fix the following choice:
 %
 \begin{equation}
 \label{eq:def_minors}
@@ -310,9 +279,9 @@ When $f$ is a cubic, we have three quadratic polynomials: throughout the paper, 
 %
 
 Since the eigenschemes of two proportional homogeneous forms are the same,
-if $C \subset \p^2$ is a curve, then we can define with no ambiguity the eigenscheme of~$C$, denoted~$\Eig{C}$, as the eigenscheme of any homogeneous form defining~$C$.
+if $C \subset \p^2$ is a reduced curve, then we can define with no ambiguity the eigenscheme of~$C$, denoted~$\Eig{C}$, as the eigenscheme of any homogeneous form defining~$C$.
 
-The following result (see \cite[Theorem 2.1]{CartSturm}, \cite{ASS}, \cite{OO}, and \cite[Equation~5.2]{Abo}) describes the degree of zero-dimensional eigenschemes.
+The following result (see \cite[Theorem 2.1]{CartSturm}, \cite{ASS}, \cite{OO}, and \cite[Equation~5.2]{Abo}) determines the degree of zero-dimensional eigenschemes.
 
 \begin{theorem}
 \label{thm:nonempty}
@@ -331,47 +300,29 @@ In the matrix case, that is $d = 2$, we use the formula on the right, which eval
 We point out that \Cref{thm:nonempty} holds also in the non-reduced case. However, a result by H. Abo (\cite[Corollary 5.8]{Abo}) guarantees that general forms have $0$-dimensional and reduced eigenschemes.
 
 \begin{definition}\label{def: eigendiscriminant}
-An order~$d$ tensor $T \in (\C^n)^{\otimes d}$ is called \emph{regular} if $\Eig{T}\subset \p^{n-1}$ is reduced of dimension~$0$.
+An order~$3$ tensor $T \in (\C^3)^{\otimes 3}$ is called \emph{regular} if its eigenscheme is reduced of dimension~$0$.
 We set
 %
 \[
- \Delta_{n,d} := \{[T]\in \p \bigl( (\C^n)^{\otimes d} \bigr) \ | \ \Eig{T} \textrm{\ is \ not \ regular} \} \subset \p \bigl( (\C^n)^{\otimes d} \bigr) \,.
+ \Delta_{3,3} := \{[T]\in \p \bigl( (\C^3)^{\otimes 3} \bigr) \ | \ \Eig{T} \textrm{\ is \ not \ regular} \} \subset \p \bigl( (\C^3)^{\otimes 3} \bigr) \,.
 \]
 %
-The locus~$\Delta_{n,d}$ is called the \emph{eigendiscriminant} (see \cite[Definition 5.5]{Abo}).
+The locus~$\Delta_{3,3}$ is called the \emph{eigendiscriminant} (see \cite[Definition 5.5]{Abo}) and is an irreducible hypersurface (see \cite[Corollary 5.8]{Abo}).
 \end{definition}
 
-\begin{theorem} (\cite[Corollary 5.8]{Abo})
-\label{theorem:eigendiscriminant}
-The eigendiscriminant $\Delta_{n,d}\subseteq \p \bigl( (\C^n)^{\otimes d} \bigr)$ is an irreducible hypersurface
-of degree~$n(n-1)(d-1)^{n-1}$.
-\end{theorem}
+As already mentioned, a regular eigenscheme of a cubic form never contains six points on a conic by \cite[Theorem 5.1]{ASS}. As a consequence we have the following result.
 
-The statement of \Cref{theorem:eigendiscriminant} is still valid when restricting to symmetric tensors, as they form a linear subspace of~$\p \bigl( (\C^n)^{\otimes d} \bigr)$ and the generic symmetric tensor has a regular eigenscheme.
 
-In the particular case $n=d=3$, the eigendiscriminant hypersurface has degree
-%
-\[
-  \deg \Delta_{3,3} = 24 \,.
-\]
-%
-Whenever the eigenscheme of a ternary form is $0$-dimensional, it never contains $4$ or more aligned points.
-To see this, we recall that when an eigenscheme of a ternary form is  $0$-dimensional, it is somehow ``general'' with respect to conics.
 
-\begin{corollary}
-\label{corollary:general_no_triple}
-As a consequence of \Cref{thm:no_six_conics},
-no $0$-dimensional eigenscheme~$\Eig{f}$ for $f \in \C[x,y,z]_3$ contains $4$ or more aligned points.
-Moreover, if $\Eig{f}$ contains two triples of aligned points, those must share a point.
-\end{corollary}
+\begin{lemma}
+    \label{lemma: no 4 aligned}
+    Given $f \in \C[x,y,z]_3$,
+if $\Eig{f}$ is regular, then it contains no $4$ or more aligned points. Moreover, if $\Eig{f}$ contains two triples of aligned points, they must share a point.
+\end{lemma}
 
-By \Cref{thm:general_no_d_collinear}, the eigenscheme of a general ternary cubic form has no aligned triples of points. 
-Therefore, it can be expected that ternary cubic forms with one or more aligned triples of eigenpoints should satisfy particular geometric constraints.
+Moreover, as by \cite[Theorem 5.7]{BGV}, the eigenscheme of a general ternary cubic form has no aligned triples of points, it can be expected that the presence of one or more aligned triples of eigenpoints should impose particular geometric constraints.
 
-Understanding these situations requires a careful analysis of the conditions on ternary cubic forms imposed by the existence of aligned eigenpoints.
-To simplify these analyses, in \Cref{invariance} we clarify how we can benefit from the action of special orthogonal matrices.
-
-We conclude this section by recalling the notion of \emph{Geiser map} and linking the locus it contracts with alignments of eigenpoints (this will be useful in \Cref{V-configurations}).
+We conclude this section by recalling the notion of \emph{Geiser map} and by explaining the connection between its contracted locus with alignments of eigenpoints; such a point of view  will be useful in \Cref{V-configurations}.
 
 \begin{definition}
 The Geiser map associated with a zero dimensional eigenscheme $\Eig{f}$ is the rational map defined by
@@ -402,7 +353,7 @@ The Geiser map~$\gamma_{\Eig{f}}$ is surjective and its fiber over a point $Q = 
   \right.
 \end{equation}
 %
-that is, the intersection between the polar line~$\ell_Q$ relative to the isotropic conic and~$\mathrm{Pol}_Q f$, the
+that is, the intersection between the polar line~$\ell_Q$ relative to the isotropic conic~$\iso$ and~$\mathrm{Pol}_Q f$, the
 first polar curve of~$f$ with respect to~$Q$.
 
 In particular, the only possible curves contracted by the Geiser map~$\gamma_{\Eig{f}}$ are lines.
@@ -462,7 +413,7 @@ pencil of cubics $\ell_P$ in the linear system $\p \bigl(I_{\Eig{f}}(3)\bigr)$:
 \]
 %
 where $(s: t) \in \p^1$, assuming that $g_1(P) \neq 0$ (the other cases are similar).
-It is clear that the base locus of the pencil~$\ell_P$ contains the eight points of~$\Eig{f} \cup \{P\}$.
+It is clear that the base locus of the pencil~$\ell_P$ contains $\Eig{f} \cup \{P\}$.
 So $\gamma_{\Eig{f}} \colon \p^2 \dasharrow \p \bigl( I_{\Eig{f}}(3)^\vee \bigr)$
 associates with each point $P \in \p^2 \setminus \Eig{f}$ the pencil of cubics through $\Eig{f} \cup P$.
 
@@ -501,7 +452,7 @@ Since all the elements of~$\SO_3(\C)$ are invertible, the latter action descends
 Moreover, the group~$\SO_3(\C)$ acts also on ternary forms via
 %
 \[
-  M \cdot f (x,y,z) = f(M^{-1} \cdot \prescript{t} {}( x \ y \ z ) ).
+  M \cdot f (x,y,z) := f(M^{-1} \cdot \prescript{t} {}( x \ y \ z ) ).
 \]
 %
 \end{definition}
@@ -521,7 +472,7 @@ The action of~$\SO_3(\C)$ on $\p^2$ has two orbits:
 %
 A representative for~$\mathcal{O}_1$ is~$(1:\iii:0)$ and a
 representative for~$\mathcal{O}_2$ is~ $(1:0:0)$.
-The orbit~$\mathcal{O}_1$ is the set of points of the so-called \emph{isotropic conic}, denoted~$\iso$.
+The orbit~$\mathcal{O}_1$ is the set of points of the isotropic conic~$\iso$.
 \end{prop}
 \begin{proof}
 Suppose that $P \in \p^2$ and $P = (a:b:c)$ with $a^2 + b^2 + c^2 = 0$.
@@ -575,7 +526,9 @@ Let $P = (A: B: C)$ be a point in~$\p^2$.
 Then we have
 %
 \[
-  P \in \Eig{f} \iff M \cdot \prescript{t} {}(A \ B \ C) \in \Eig{M \cdot f} \,.
+  P \in \Eig{f}
+  \quad \text{if and only if} \quad
+  M \cdot \prescript{t} {}(A \ B \ C) \in \Eig{M \cdot f} \,.
 \]
 %
 \end{prop}
@@ -728,10 +681,10 @@ and we call it the
 \end{definition}
 
 \begin{definition}
-Given a matrix $M$ of type $m \times 10$, we denote by~$\Lambda(M)$ the projective linear system of cubics $[a_0 x^3 + \dotsb + a_9 z^3]$ such that $M \, \prescript{t}{}{\left( a_0 \,  \cdots \,  a_9 \right)} = 0$.
+Given a matrix $M$ of type $m \times 10$, we denote by $\Lambda(M) \subset \p^9$ the projective linear system of cubics $[a_0 x^3 + \dotsb + a_9 z^3]$ such that $M \, \prescript{t}{}{\left( a_0 \,  \cdots \,  a_9 \right)} = 0$.
 \end{definition}
 
-We introduce a new piece of notation that makes the description of~$\Phi(P)$ more compact: let $\de_x \mathcal{B}$ denote the vector whose entries are the derivatives of those of~$\mathcal{B}$, and similarly for~$\de_y \mathcal{B}$ and~$\de_z \mathcal{B}$.
+The description of~$\Phi(P)$ can by made more compact as follows: let $\de_x \mathcal{B}$ denote the vector whose entries are the derivatives of those of~$\mathcal{B}$, and similarly for~$\de_y \mathcal{B}$ and~$\de_z \mathcal{B}$.
 In this way, if $P=(A: B: C)$, we get:
 %
 \begin{equation}
@@ -834,25 +787,14 @@ We define a bihomogeneous polynomial of bidegree~$(2,2)$ on $\p^2 \times \p^2$: 
 \begin{rmk}
 \label{rmk:sigma_discr}
 The form~$\sigma$ is the discriminant of the intersection between the line~$P_1 \vee P_2$ and~$\iso$.
-Since the general point of the line~$P_1 \vee P_2$ can be expressed in the form
-$t P_1 + sP_2$ where $(t:s) \in \p^1$, the intersection between the line~$P_1 \vee P_2$
-and~$\iso$ is determined by the pairs $(\overline{t}: \overline{s}) \in \p^1$ which are solutions of
+If $t P_1 + sP_2$ is a generic point on the line $P_1 \vee P_2$, the relation 
 %
 \[
   \scl{t P_1 + sP_2}{t P_1 + sP_2} =0.
 \]
 %
-The bilinearity and symmetry of the form $\scl{}{}$ gives the quadratic polynomial
-%
-\begin{equation}
-\label{eq:intersection_isotropic}
-  \scl{t P_1 + sP_2}{t P_1 + sP_2} =
-  \scl{P_1}{P_1} t^2 + 2\scl{P_1}{P_2} ts + \scl{P_2}{P_2}s^2,
-\end{equation}
-%
-whose discriminant is $4 ( \scl{P_1}{P_2}^2 - \scl{P_1}{P_1} \scl{P_2}{P_2})$.
-Hence the condition $\sigma(P_1, P_2)=0$ implies that the polynomial in \Cref{eq:intersection_isotropic}
-has a double root, and this proves the statement.
+gives the intersection $(P_1 \vee P_2) \cap \iso$.
+The discriminant of the latter (as a polynomial in $s$ and $t$) is $4 ( \scl{P_1}{P_2}^2 - \scl{P_1}{P_1} \scl{P_2}{P_2})$, and this proves the statement.
 \end{rmk}
 
 \begin{prop}
@@ -864,7 +806,7 @@ Then the following are equivalent:
   \item $\sigma(P_1, P_2) = 0$;
   \item $\sigma(Q_1, Q_2) = 0$ for all pairs of distinct points $Q_1, Q_2 \in r$;
   \item the line~$r$ is tangent to~$\iso$ at some point;
-  \item there exists a point $T \in r$ such that $T \in \iso$ and $\scl{T}{Q} = 0$ for all $Q \in r$, $Q \neq T$; in this case we say that $T$ is \emph{orthogonal} to~$r$.
+  \item there exists a point $T \in r$ such that $T \in \iso$ and $\scl{T}{Q} = 0$ for all $Q \in r$, $Q \neq T$.
 \end{enumerate}
 %
 \end{prop}
@@ -873,7 +815,6 @@ By \Cref{rmk:sigma_discr}, we have that $\sigma(P_1, P_2) = 0$ if and only if $r
 
 Now, if $\sigma(P_1, P_2) = 0$, then $r$ is tangent to~$\iso$ at a point~$T$, hence $\scl{T}{T} = 0$.
 Moreover, we also have that $\sigma(T, Q) = 0$ for all $Q \in r$ with $Q \neq T$.
-Hence, $T$ is orthogonal to~$r$.
 The converse is immediate.
 \end{proof}
 
@@ -884,7 +825,7 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 %
 \begin{itemize}
   \item $5 \leq \rk \,\Phi(P_1, P_2, P_4) \leq 6$;
-  \item if
+  \item
   $\rk \, \Phi(P_1, P_2, P_4) = 5$ if and only if $P_1, P_2, P_4$
   are aligned and the line joining them is tangent to~$\iso$
   in one of the three points.
@@ -893,7 +834,7 @@ Let $P_1, P_2, P_4$ be three distinct points of the plane. Then:
 \end{prop}
 \begin{proof}
 The rank of $\Phi(P_1, P_2, P_4)$ cannot be larger than~$6$ by \Cref{remark:rank_2}.
-\nb{03}{F1} gives that $\Phi(P_1, P_2, P_4)$ cannot have rank $4$ since its minors of order~$5$ never vanish all at the same time and proves the second item.
+\nb{03}{F1} gives that $\Phi(P_1, P_2, P_4)$ cannot have rank $4$ (since its minors of order~$5$ never vanish all at the same time) and proves the second item.
 \end{proof}
 
 \begin{prop}
@@ -907,7 +848,7 @@ If $\rk \,\Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one 
 \end{proof}
 
 \begin{rmk}
-As we clarified in \Cref{thm:general_no_d_collinear}, four aligned eigenpoints are never contained in a $0$-dimensional eigenscheme.
+As we clarified in \Cref{lemma: no 4 aligned}, four aligned eigenpoints are never contained in a $0$-dimensional eigenscheme.
 In \Cref{lemma:four_points_on_line}, we will show that if an eigenscheme contains four distinct aligned eigenpoints, then it contains the whole line joining them.
 \end{rmk}
 
@@ -989,7 +930,7 @@ We define the polynomial
 
 \begin{definition}
 \label{definition:Vconf}
-Let $P_1, P_2, P_3, P_4, P_5$ be five distinct points of the plane~$\p^2$
+Let $P_1, P_2, P_3, P_4, P_5$ be five distinct points of the plane
 such that $P_1, P_2, P_3$ and $P_1, P_4, P_5$ are aligned.
 We call such a configuration a \emph{$V$-configuration}.
 \end{definition}
@@ -1256,7 +1197,7 @@ In this section, we consider five points$P_1, \dots, P_5$ in a $V$-configuration
 We prove that when $\delta_2(P_1, \dotsc, P_5) = 0$, the unique cubic~$f$ having $P_1, \dotsc, P_5$ as eigenpoints, if $\Eig{f}$ is regular, then also the points $P_1$, $P_6$, and~$P_7$ are aligned.
 
 \begin{lemma}
-Assume that $\rk \, \Phi(P_1, \dots, P_5) = 9$ and let $\mathcal{H}$ be $9 \times 10$-submatrix of rank~$9$.
+Let $\mathcal{H}$ be $9 \times 10$-submatrix of rank~$9$ of $\Phi(P_1, \dots, P_5)$.
 Let $\mathcal{H}_i$ be the minor of~$\mathcal{H}$ given by deleting the $i$-th column ($i=1, \dots, 10)$.
 Then a polynomial defining the unique cubic~$f$ with $P_1, \dotsc, P_5 \in \Eig{f}$ is 
 %
@@ -1269,6 +1210,9 @@ Then a polynomial defining the unique cubic~$f$ with $P_1, \dotsc, P_5 \in \Eig{
 %
 where $\mathcal{B}$ is the monomial basis as in \Cref{eq:vector_basis}. 
 \end{lemma}
+\begin{proof}
+ The statement follows from Cramer's rule for the resolution of linear systems of maximal rank.
+\end{proof}
 
 The matrix~$\mathcal{H}$ allows one also to compute the generators of the ideal of the eigenscheme.
 
@@ -1390,7 +1334,7 @@ has dimension~$7$.
 The construction of a random example
 of five points as above, gives a smooth cubic curve whose $7$ eigenpoints
 do not have other collinearities (in addition to those of a
-$V$-configuration). \textbf{AGGIUNGERE NOTEBOOK CON ESEMPIO}
+$V$-configuration).
 \end{rmk}
 
 \begin{rmk}
@@ -1582,14 +1526,13 @@ See notebook \texttt{proposition-P1\_sing}.
 
 \begin{prop}
   Let $P_1, \dotsc, P_5$ be a $V$-configuration such that \Cref{rk8_1} holds.
-  Then $P_4$ is orthogonal to $s_{11} \, P_2 - s_{12} \, P_1$ and one of the four conditions obtained by considering
+  Then $P_4$ is orthogonal to $s_{11} \, P_2 - s_{12} \, P_1$ and, up to swapping $2 \leftrightarrow 3$ and $4 \leftrightarrow 5$, it holds
   %
   \[
    P_3 = (s_{12}^2+s_{11}s_{22}) \, P_1 - 2s_{11}s_{12} \, P_2 \,, \quad
    P_5 = (s_{14}^2+s_{11}s_{44}) \, P_1 - 2s_{11}s_{14} \, P_4 \,.
   \]
   %
-  and swapping in the latter formulas $2 \leftrightarrow 3$ and $4 \leftrightarrow 5$.
 \end{prop}
 \begin{proof}
   The statement about~$P_4$ follows from \Cref{lemma_delta_case1}. 
@@ -1618,10 +1561,7 @@ See notebook \texttt{proposition-P1\_sing}.
   The possibilities that are left show the statement.
 \end{proof}
 
-\textbf{Incorporare nel Remark seguente}
-
-===================================================================
-
+\begin{rmk}
 The three equalities of~\Cref{rk8_1} give that,
 using \Cref{lemma_delta_case2}, either $P_1$ is on~$\iso$ and
 $P_1 \vee P_2$ is the tangent line to~$\iso$ in~$P_1$ (but this is not compatible
@@ -1647,12 +1587,14 @@ If we take a random point of this variety, the corresponding
 cubic has $7$ distinct eigenpoints (is as expected, singular in $P_1$) and the
 $7$ points do not satisfy other collinearities in addition to those of the
 $V$-configuration.
-
-=======================================================================
+\end{rmk}
+\textbf{(AGGIUNGERE NOTEBOOK)}
 
 \begin{rmk}
 \label{rmk:particular_cases}
-In general, a cubic having eigenpoints $P_1, \dots, P_5$ in a $V$-configuration satisfying \Cref{rk8_1} has only the two alignments $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ among its eigenpoints; in particular, it does not have the collinearity $(P_1, P_6, P_7)$. Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, the hypothesis ``rank $9$'' in~\Cref{proposition:third_alignment} is necessary.
+In general, a cubic having eigenpoints $P_1, \dots, P_5$ in a $V$-configuration satisfying \Cref{rk8_1} has only the two alignments $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ among its eigenpoints;
+in particular, it does not have the collinearity $(P_1, P_6, P_7)$.
+Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, the hypothesis ``rank $9$'' in~\Cref{proposition:third_alignment} is necessary.
 \end{rmk}
 
 Concerning possible sub-cases with further collinearities of the points,
@@ -1671,16 +1613,15 @@ the following results hold:
 %%
 \begin{prop}
 \label{three_d_three_alignments}
-If the five points $P_1, \dots, P_5$ satisfy \Cref{rk8_1},
-then, in $\Lambda \bigl( \Phi(P_1, \dotsc, P_5)\bigr)$ there is
+If $P_1, \dots, P_5$ satisfy \Cref{rk8_1},
+then, in the pencil $\Lambda \bigl( \Phi(P_1, \dotsc, P_5)\bigr)$ there is
 a cubic curve with $7$ eigenpoints with the following three alignments:
 %
 \[
  (P_1, P_2, P_3) \,, \quad (P_1, P_4, P_5) \,, \quad \text{and} \quad (P_1, P_6, P_7) \,.
 \]
 %
-No choices of $P_1, \dots, P_5$ allow one to obtain further alignments of the
-$7$ eigenpoints.
+No choices of $P_1, \dots, P_5$ allow one to obtain further alignments of the $7$ eigenpoints.
 \end{prop}
 %
 \begin{proof}
@@ -1690,7 +1631,7 @@ As observed in the proof of~\Cref{theorem:rank_V}, if $P_1 = (1: \iii: 0)$,
 the matrix
 $\Phi(P_1, \dots, P_5)$ cannot have rank smaller then $9$, so the only
 case to consider is given by $P_1 = (1: 0: 0)$.
-\textbf{CREARE NOTEBOOK CON QUESTI CONTI E CONGIUNGERE CON PROPOSIZIONE 4.10}
+\textbf{CREARE NOTEBOOK CON QUESTI CONTI E CONGIUNGERE CON PROPOSIZIONE 4.12}
 Hence
 $P_2 = (A_2: B_2: C_2)$ and~$P_3$, $P_4$ and~$P_5$ can be chosen according 
 to the above formulas.\\
@@ -1758,11 +1699,9 @@ $(P_2 \vee P_5) \cap (P_3 \vee P_4)$. It turns out that
 $\rk \, \Phi(P_1, \dots, P_7) < 10$, so $P_7$ is an eigenpoint. The seven 
 points $P_1, \dotsc, P_7$ satisfy the above collinearities.
 \end{proof}
+
 \Cref{three_d_three_alignments} and \Cref{prop:d2_6allin} exhaust all the possible configurations
 of collinearities of the eigenpoints in case of condition~(\ref{rk8_1}).
-
-%
-
 Now we consider the \Cref{rk8_2}.
 %% La dimostrazione della proposizione prop:rk8_2B si trova nel file
 %% rank_8_twoTangIso.sage
@@ -1789,8 +1728,6 @@ that satisfies condition~(\ref{rk8_2}) is therefore five-dimensional.
 The five points satisfy the condition $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 %% 2+1+1+1, l'ultimo 1 perche' rango matrice = 8
 
-From the matrix~$H$ it is moreover possible to construct the three minors of Equation (3), indeed
-Proposition 4.1. The three minors of Equation (3) are proportional t
 The reciprocal position of the eigenpoints of the cubics of this family
 is described by the following:
 %
@@ -1870,7 +1807,7 @@ where $l_1, l_2$ are parameters and
 The explicit equation of the cubics $\mathcal{C}(l_1, l_2)$ allows us to
 construct the ideal of the seven eigenpoints and (after
 saturations w.r.t.\ the five ideals of the points $P_1, \dotsc, P_5$),
-we get an ideal generated by a line~$r$ and a conic~$c$, whose zeros are
+we get an ideal generated by a line~$r$ and a conic~$\Gamma$, whose zeros are
 the points~$P_6$ and~$P_7$. Since the line~$r$ contains the point~$P_1$,
 the points $P_1, P_6, P_7$ are collinear and $r$ is orthogonal to~$P_3 \vee P_5$.
 In order to see if there are further collinearities among the
@@ -1878,7 +1815,7 @@ eigenpoints, we have to distinguish three cases (up to permutation
 of the indices): $P_2, P_4, P_6$ are collinear or $P_2, P_5, P_6$ are
 collinear, or $P_3, P_5, P_6$ are collinear. In the first case, $P_6$
 is the point $r \cap (P_2\vee P_4)$. If it is an eigenpoint, it must be
-on $c$, hence $l_1$ and~$l_2$ have a specific value which gives a sub-family
+on $\Gamma$, hence $l_1$ and~$l_2$ have a specific value which gives a sub-family
 of~$\mathcal{C}(l_1, l_2)$ and we can compute the explicit coordinates of
 all the seven eigenpoints of the cubics of this family. The other two
 cases can be studied in a similar way.
@@ -2106,7 +2043,7 @@ including internal points. Indeed, as one can verify with an explicit symbolic c
 class~$[g]$ with an aligned triple of eigenpoints and satisfying
 %
 \[
-  [g] \in \bigcap_I W_I \cap \Delta_{3,3}
+  [g] \in \bigcap_I W_I \setminus \Delta_{3,3}
 \]
 %
 is given by a random choice of~$P_1$, $P_2$ and $(u_1:u_2)$ and $b_7,b_8,b_9$.
@@ -2151,7 +2088,7 @@ $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has no aligned triples of eige
 %\end{prop}
 
 
-In what follows, we use the following notation: if $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
+If $g_1, g_2, g_3$ are the three minors of \Cref{eq:def_matrix} relative
 to a cubic form~$f$, we denote by
 %
 \[
@@ -2202,9 +2139,9 @@ The degree of~$\sL$ is equal to
 
 \begin{proof}
 We start by observing that a reduced $0$-dimensional eigenscheme contains an aligned triple if and only if the net of cubics
-$\Sigma_f = \left\langle g_1, g_2, g_3 \right\rangle$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net~$\Sigma_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
+$\Sigma_f$ contains a cubic which splits in three lines, a so called \emph{triangle}. Moreover, if $f$ is general enough, we have exactly one aligned triple and the other $4$ points are in general position; in this case, the net~$\Sigma_f$ contains exactly three triangles, namely the unions of the line passing through the aligned triple and the reducible conics through the $4$ points in general position.
 
-To determine the degree of~$\sL$ we consider a general pencil of cubic forms $\lambda f + \mu g$, and we compute the number of elements with associated net $\Sigma_{\lambda f + \mu g}$ containing a triangle.
+To determine the degree of~$\sL$, we consider a general pencil of cubic forms $\lambda f + \mu g$, and we compute the number of elements with associated net $\Sigma_{\lambda f + \mu g}$ containing a triangle.
 
 To this aim, denote by $\mathcal{T} \subset \p^9$ the variety of triangles; it is a classical result that its dimension is~$6$ and its degree is~$15$,
 see for instance \cite[Section~2.2.2]{3264}. We now consider the variety~$\mathcal{N}$ from \Cref{lemma:scroll}.
@@ -2234,7 +2171,7 @@ Assume that $\dim \Eig{f} = 1$.
   \item If the $1$-dimensional component of~$\Eig{f}$ is a line~$\ell$,
   then the residual subscheme $Z := \mathrm{Res}_{\ell} \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$\ell$ has degree~$3$. Moreover, the scheme $Z$ is not contained in a line.
   \item If the $1$-dimensional component of~$\Eig{f}$ is a conic~$\Gamma$,
-  then the residual subscheme $Z := \mathrm{Res}_{\Gamma} \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$q$ has degree~$1$.
+  then the residual subscheme $Z := \mathrm{Res}_{\Gamma} \bigl( \Eig{f} \bigr)$ in~$\Eig{f}$ with respect to~$\Gamma$ has degree~$1$.
 \end{enumerate}
 %
 \end{prop}
@@ -2468,13 +2405,11 @@ If $d \neq 0$, the eigenpoints of~$C$ different from $P_1, P_2, P_3$ are
 the common zeros of the following three polynomials:
 %
 \begin{align*}
-  g_1 & = 3y^2d - 2xya - 2y^2b + z^2b - 3yzc \,,\\
-  g_2 & = 3x^2d - 2x^2a + z^2a - 2xyb - 3xzc \,,\\
-  g_3 & = 2x^3ya - 2x^2y^2a + y^2z^2a + 2x^2y^2b -
-          2xy^3b - x^2z^2b + 3x^2yzc - 3xy^2zc \,.
+  h_1 & = 3y^2d - 2xya - 2y^2b + z^2b - 3yzc \,,\\
+  h_2 & = 3x^2d - 2x^2a + z^2a - 2xyb - 3xzc \,.
 \end{align*}
 %
-In general, the ideal $(g_1, g_2, g_3)$ gives $4$ points in 
+In general, the ideal $(h_1, h_2)$ gives $4$ points in 
 general position. \\
 In case the line $t$ is tangent to the isotropic conic, we can 
 assume it is the line $x+\iii y =0$. Here we fix the three
@@ -2505,8 +2440,7 @@ by four polynomials $h_1, \dotsc, h_4$.
 % \end{align*}
 % %
 Also here, the zeros of general $h_1, \dotsc, h_4$ are in general position.
-
-Notebook \nb{06}{F4} collects the computations for this proof and provides the polynomials $h_1, \dotsc, h_4$.
+Notebook \nb{06}{F4} collects the computations for this proof.
 \end{proof}
 
 \subsection{Eigenschemes containing a conic}
@@ -2523,13 +2457,13 @@ Notebook \nb{06}{F4} collects the computations for this proof and provides the p
 \begin{proof} Suppose $P_1, \dots, P_4$ are four distinct points on $\iso$ and let $C$ be a cubic which has these points among its eigenpoints, then 
 $\iso\subseteq \Eig{C}$. Indeed, the linear system $\Lambda(\Phi(P_1, \dotsc, P_4))$ is two-dimensional and is contained in the linear system given by all the cubics of the form $\ell \iso$ (whose cubics have $\iso$ in the eigenscheme) and is also two dimensional, so they coincide. From this we have the first point. If $C$ is a cubic that contains in the eigenscheme a conic $\Gamma$ different from $\iso$, then $\Gamma$ and $\iso$ intersect in $4$ points. From the above result, the four points cannot be distinct, hence we have to consider four cases: $\Gamma$ is tangent to $\iso$ in one point, $\Gamma$ is bitangent to
 $\iso$, $\Gamma$ is osculating $\iso$ and $\Gamma$ is iperosculating $\iso$. In all these cases we can assume that 
-$P_1 = (1: ii: 0) \in \Gamma \cap \iso$ and that
+$P_1 = (1: i: 0) \in \Gamma \cap \iso$ and that
 the line $x+iy$ is the common tangent to $\Gamma$ and $\iso$ in $P_1$. 
 In the first case we consider the pencil of conics $\Gamma_s$ passing through $P_1, P_2, P_3$ and tangent to $\iso$ in $P_1$ and 
 we take two distinct points $P_4, P_5$ on $\Gamma_s$. The matrix of conditions 
 $\Phi(P_1, \dotsc, P_5)$ must have rank $9$ or smaller, but the computations show that 
 this is not possible. In the second case, we take a generic point $P_2$ on $\iso$, we construct 
-the pencil of conics $\Gamma_s$ which are bitangent to $\iso$ in $P_1$ and $P_2$ and we take three other points $P_3, P_4, P_5$ 
+the pencil of conics~$\Gamma_s$ which are bitangent to~$\iso$ in $P_1$ and $P_2$ and we take three other points $P_3, P_4, P_5$ 
 on $\Gamma_s$ and again we check when the matrix of conditions $\Phi(P_1, \dotsc, P_5)$ has rank $9$ (or less). In this case we get that there is only one solution, which is given by the cubic 
 $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computational details can be find in \nb{06}{F5}.
 \end{proof}
@@ -2539,7 +2473,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
 \label{further_alignments}
 
 \begin{table}[ht]
-\caption{All possible configurations of~$7$ points with alignments that can appear as eigenschemes of a ternary cubic form, provided that the eigenscheme is $0$-dimensional and reduced.}
+\caption{All possible combinatorial configurations of seven points with at least one alignment and no six on a conic.}
 \centering
 \begin{tabular}{|clc|}\hline
   n. lines & collinear vertices & config.\\ \hline
@@ -2560,6 +2494,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
   \centering
   \begin{tikzpicture}
     \begin{scope}[scale=0.8]
+    %% C1
     \begin{scope}
       \node[point, label={[label distance = -4pt, below]$P_1$}] (P1) at (0,0) {};
       \node[point, label={[label distance = -4pt, below]$P_3$}] (P3) at (3.6,0) {};
@@ -2571,6 +2506,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P2); 
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P2) -- (P3);
     \end{scope}
+    %% C2
     \begin{scope}[xshift=6cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
       \node[point, label={[label distance = -4pt, below]$P_3$}] (P3) at (3.6,0) {};
@@ -2584,6 +2520,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P4);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P5);
     \end{scope}
+    %% C3
     \begin{scope}[xshift=12cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
       \node[point, label={[label distance = -4pt, below]$P_3$}] (P3) at (3.6,0) {};
@@ -2599,6 +2536,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P6);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P6) -- (P7);
     \end{scope}
+    %% C4
     \begin{scope}[yshift=-6cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
       \node[point, label={[label distance = -4pt, below]$P_3$}] (P3) at (3.6,0) {};
@@ -2614,6 +2552,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P3) -- (P6);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P6) -- (P5);
     \end{scope}
+    %% C5
     \begin{scope}[xshift=6cm, yshift=-6cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
       \node[point, label={[label distance = -4pt, below]$P_3$}] (P3) at (3.6,0) {};
@@ -2631,6 +2570,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P2) -- (P6);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P6) -- (P4);
     \end{scope}
+    %% C6
     \begin{scope}[xshift=12cm, yshift=-6cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
       \node[point, label={[label distance = 0pt, above]$P_3$}] (P3) at (3.6,0) {};
@@ -2649,6 +2589,7 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P2);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P2) -- (P6);
     \end{scope}
+    %% C7
     \begin{scope}[yshift=-12cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
       \node[point, label={[label distance = -4pt, below]$P_2$}] (P2) at (3,0) {};
@@ -2669,63 +2610,61 @@ $r(\lambda \iso+\mu r^2)$. The remaining two cases are similar. The computationa
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P7);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P6);
     \end{scope}
+    %% C8
     \begin{scope}[xshift=6cm, yshift=-12cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
-      \node[point, label={[label distance = -4pt, below]$P_3$}] (P3) at (3,0) {};
-      \node[point, label={[label distance = 0pt]195:$P_2$}] (P2) at ($(P1)!0.5!(P3)$) {};
-      \node[point, label={[label distance = 4pt]90:$P_5$}] (P5) at (1.5, 2.6) {};
-      \node[point, label={[label distance = 2pt]100:$P_4$}] (P4) at ($(P1)!0.5!(P5)$) {};
-      \node[point, label={[label distance = 2pt]80:$P_6$}] (P6) at ($(P3)!0.5!(P5)$) {};
-      \tkzInterLL(P3,P4)(P2,P5) \tkzGetPoint{P7}
+      \node[point, label={[label distance = -4pt, below]$P_{2}$}] (P2) at (3,0) {};
+      \node[point, label={[label distance = 0pt]195:$P_{3}$}] (P3) at ($(P1)!0.5!(P2)$) {};
+      \node[point, label={[label distance = 4pt]90:$P_{4}$}] (P4) at (1.5, 2.6) {};
+      \node[point, label={[label distance = 2pt]100:$P_{5}$}] (P5) at ($(P1)!0.5!(P4)$) {};
+      \node[point, label={[label distance = 2pt]80:$P_6$}] (P6) at ($(P2)!0.5!(P4)$) {};
+      \tkzInterLL(P2,P5)(P3,P4) \tkzGetPoint{P7}
       \node[point, label={[label distance = 0pt]0:$P_7$}] at (P7) {};
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P2);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P2) -- (P3);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P4);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P5);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P3) -- (P6);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P6) -- (P5);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P7);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P3);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P3);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P3) -- (P2);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P5);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P5) -- (P4);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P2) -- (P6);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P6) -- (P4);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P5) -- (P7);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P2);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P7);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P3);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P7);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P6);
     \end{scope}
+    %% C9
     \begin{scope}[xshift=12cm, yshift=-12cm]
       \node[point, label={[label distance = 0pt]210:$P_1$}] (P1) at (0,0) {};
-      \node[point, label={[label distance = -4pt, below]$P_3$}] (P3) at (3,0) {};
-      \node[point, label={[label distance = 0pt]195:$P_2$}] (P2) at ($(P1)!0.5!(P3)$) {};
-      \node[point, label={[label distance = 4pt]90:$P_5$}] (P5) at (1.5, 2.6) {};
-      \node[point, label={[label distance = 2pt]100:$P_4$}] (P4) at ($(P1)!0.5!(P5)$) {};
-      \node[point, label={[label distance = 2pt]80:$P_6$}] (P6) at ($(P3)!0.5!(P5)$) {};
-      \tkzInterLL(P3,P4)(P2,P5) \tkzGetPoint{P7}
+      \node[point, label={[label distance = -4pt, below]$P_{2}$}] (P2) at (3,0) {};
+      \node[point, label={[label distance = 0pt]195:$P_{3}$}] (P3) at ($(P1)!0.5!(P2)$) {};
+      \node[point, label={[label distance = 4pt]90:$P_{4}$}] (P4) at (1.5, 2.6) {};
+      \node[point, label={[label distance = 2pt]100:$P_{5}$}] (P5) at ($(P1)!0.5!(P4)$) {};
+      \node[point, label={[label distance = 2pt]80:$P_6$}] (P6) at ($(P2)!0.5!(P4)$) {};
+      \tkzInterLL(P2,P5)(P3,P4) \tkzGetPoint{P7}
       \node[point, label={[label distance = 0pt]0:$P_7$}] at (P7) {};
-      \node[draw, line] at (P7) [circle through={(P2)}] {};
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P2);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P2) -- (P3);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P4);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P5);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P3) -- (P6);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P6) -- (P5);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P7);
-      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P3);
+      \node[draw, line] at (P7) [circle through={(P3)}] {};
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P3);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P3) -- (P2);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P5);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P5) -- (P4);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P2) -- (P6);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P6) -- (P4);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P5) -- (P7);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P2);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P4) -- (P7);
+      \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P3);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P1) -- (P7);
       \draw[line, shorten <= -0.5cm, shorten >= -0.5cm] (P7) -- (P6);
     \end{scope}
     \end{scope}
   \end{tikzpicture}
-  \caption{Graphical representations of the $9$ cases of possible alignments of $7$ points in the plane, as described in \Cref{table:all_alignments}.}
+  \caption{Graphical representations of the $9$ cases of possible alignments of seven points as described in \Cref{table:all_alignments}.}
   \label{figure:all_alignments}
 \end{figure}
-
-\Cref{table:all_alignments} lists all the possible configuration
-of 7 distinct points of the plane, according to their collinearities. 
-In this section, 
-we want to identify which of those nine configurations can be realized by
-the seven eigenpoints of a cubic and, in case the configuration is
-realizable, which are the cubics with that configuration of eigenpoints.
+%    
+In this section, we want to identify which of the nine configurations in \Cref{table:all_alignments} can be realized by
+the seven eigenpoints of a regular ternary cubic polynomial and, if so, which are the cubics with that configuration of eigenpoints.
 
 We say that the eigenpoints of a cubic curve are in a \emph{$(C_i)$ 
 configuration} if they are aligned according to~$(C_i)$; we say 
@@ -2761,11 +2700,13 @@ $\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, then we choose any~$P_3$
 on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$; in this way, we get a cubic with a configuration of type~$(C_2)$ (strict, in the general case). If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1} (and hence are sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$), see~\Cref{rmk:particular_cases}.
 
 \subsection*{Configuration~\texorpdfstring{$(C_3)$}{C3}}
-Suppose we have $7$ eigenpoints such that
-$(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$ are
-aligned. Hence
-$V_1 = (P_1, P_2, P_3, P_4, P_5)$, $V_2 = (P_1, P_2, P_3, P_6, P_7)$ and
-$V_3 = (P_1, P_4, P_5, P_6, P_7)$, are three $V$-configurations. It holds:
+If we have alignments $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P_7)$, then
+%
+\[
+ (P_1, P_2, P_3, P_4, P_5) \,, \quad (P_1, P_2, P_3, P_6, P_7) \,, \quad (P_1, P_4, P_5, P_6, P_7)
+\]
+%
+are three $V$-configurations. It holds:
 
 \begin{lemma}
 \label{no_delta1_delta1} Suppose we have seven eigenpoints $P_1, \dots, P_7$
@@ -2804,8 +2745,7 @@ $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 As a consequence of \Cref{no_delta1_delta1}, configuration $(C_3)$ can
 be obtained only if we have $5$ points such that
 $\delta_2(P_1, \dotsc, P_5) = 0$. \Cref{prop:definitionP3} describes how to
-obtain five points which give a configuration $(C_3)$ of eigenpoints (which, 
-in general, is strict).
+obtain five points which give a configuration $(C_3)$ of eigenpoints (which, in the case $P_3$  is defined by (4), is strict).
 
 \subsection*{Configuration~\texorpdfstring{$(C_4)$}{C4}}
 It holds:
@@ -2828,7 +2768,7 @@ which implies
 %
 \end{proof}
 
-\subsection*{Configuration~\texorpdfstring{$(C_5)$}{C5}} @@Nel disegno della C5 gli indici dei punti non sono corretti
+\subsection*{Configuration~\texorpdfstring{$(C_5)$}{C5}} 
 %% file: config5.sage
 \begin{prop}
 \label{proposition:condition_5}
@@ -2879,7 +2819,7 @@ $s_{12} = s_{14}=s_{16}=0$. In particular, we see that $P_1 = P_2 \times P_4$.
 To prove \Cref{cndC5}, we take $P_2$ and~$P_4$ generic,
 $P_1 = P_2 \times P_4$ and~$P_3$, $P_5$, $P_6$ generic points on the lines
 $P_1 \vee P_2$, $P_1 \vee P_4$, $P_2 \vee P_4$, respectively. 
-The matrix $M = \Phi(P_1, \dots, P_6)$ must have rank $9$ (or smaller), 
+The matrix $M = \Phi(P_1, \dots, P_6)$ must have rank~$9$ (or smaller), 
 hence, in order to see when $P_6$ is an eigenpoint,
 we have to see when all the order $10$-minors are zero. This computation gives that we can obtain a polynomial $f$ (in the 
 variables $u_i, v_i, w_i$ and the coordinates of $P_2$ and $P_4$) such that $\rk M \leq 9$ if and only if $f=0$. Furthermore, 
@@ -2926,7 +2866,7 @@ from the results of \Cref{rank_8}, the lines $P_1 \vee P_2$ and $P_1 \vee P_4$ a
 
 \begin{rmk}
 Since in a $(C_5)$ configuration we have 
-$P_1 = P_2 \times P_4$ and $(P_2, P_4, P_6)$ aligned, it follows that $s_{12} = 0$,  $s_{14} = 0$ and $s_{16} = 0$.
+$P_1 = P_2 \times P_4$ and $(P_2, P_4, P_6)$ aligned, it follows that $s_{12} = 0$, $s_{14} = 0$ and $s_{16} = 0$.
 Moreover, it is
 immediate to verify that the line~$P_2 \vee P_4$ is orthogonal to the
 lines~$P_1 \vee P_2$, $P_1 \vee P_4$, and~$P_1 \vee P_6$, that is
@@ -3128,7 +3068,12 @@ and
 \]
 %
 In particular, the locus of ODECO forms is a $5$-dimensional sublocus of the $(C_8)$ locus.
-It is a challenging question to investigate the irreducible components and the degrees of such loci.
+
+\medskip
+In the notebook \nb{07}{F8} it is possible to find a construction of a 
+generic cubic which has a $(C_i)$ configuration for all possible $i$.
+
+It is a challenging question to identify the irreducible components and the degrees of the loci of $(C_i)$ configurations.
 
 
 \bibliographystyle{alphaurl}
