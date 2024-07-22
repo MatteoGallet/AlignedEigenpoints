@@ -1,7 +1,7 @@
 \documentclass[a4paper, 11pt, reqno]{amsart}
 
 \setlength{\parindent}{.4 in}
-\setlength{\textwidth}{6.5 in}
+\setlength{\textwidth}{6.2 in}
 \setlength{\topmargin} {0.2 in}
 \setlength{\evensidemargin}{0 in}
 \setlength{\oddsidemargin}{0 in}
@@ -34,14 +34,9 @@
 \newtheorem{prop}[lemma]{Proposition}
 \newtheorem{theorem}[lemma]{Theorem}
 \newtheorem{corollary}[lemma]{Corollary}
-\newtheorem{conjecture}[lemma]{Conjecture}
-\newtheorem{fact}[lemma]{Fact}
-\newtheorem{assumption}[lemma]{Assumption}
-\newtheorem*{reduction}{Reduction}
 \theoremstyle{definition}
 \newtheorem{definition}[lemma]{Definition}
 \newtheorem{es}[lemma]{Example}
-\newtheorem*{notation}{Notation}
 \newtheorem{rmk}[lemma]{Remark}
 
 \tikzstyle{point}=[circle, draw, fill=black, inner sep=0pt, minimum size=4pt]
@@ -60,12 +55,10 @@
 \newcommand{\sV}{\mathcal{V}}
 \newcommand{\sF}{\mathcal{F}}
 \newcommand{\de}{\partial}
-\newcommand{\oo}{\mathcal{O}}
 
 \newcommand{\nb}[2]{\textsl{{NB}.{#1}.{#2}}}
 
 \newcommand{\iii}{\textit{i}\,}
-\newcommand{\codim}{\mathrm{codim}}
 \newcommand{\rk}{\ensuremath{\mathrm{rk}}}
 
 \newcommand{\iso}{\mathcal{Q}_{\mathrm{iso}}}
@@ -77,8 +70,6 @@
 \newcommand{\scl}[2]{\left\langle {#1}, {#2} \right\rangle}
 
 \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
-
-\newcommand{\blue}[1]{{\color{blue}[#1]}}
 
 
 \title{Eigenpoint collinearities of plane cubics}
@@ -247,7 +238,8 @@ Such an expression has to be intended as a bihomogeneous polynomial in the coord
 
 Similarly, by $P_1 \times P_2$ we shall denote the \emph{cross product} of the representing vectors
 %
-\begin{equation}\label{equation:cross product}
+\begin{equation}
+\label{eq:cross_product}
   P_1 \times P_2 = 
   (B_1 C_2 - C_1 B_2, \, C_1 A_2 - A_1 C_2, \, A_1 B_2 - B_1 A_2) \,.
 \end{equation}
@@ -285,7 +277,7 @@ Throughout the paper, we denote them by $g_1, g_2$ and $g_3$ and we fix the foll
 The following result (see \cite[Theorem 2.1]{CartSturm}, \cite{ASS}, \cite{OO}, and \cite[Equation~5.2]{Abo}) determines the degree of zero-dimensional eigenschemes.
 
 \begin{theorem}
-\label{thm:nonempty}
+\label{theorem:nonempty}
 Let $d \ge 2$ and let $T \in (\C^{n+1})^{\otimes d}$.
 If $\dim \Eig{T}=0$, then 
 %
@@ -298,9 +290,10 @@ If $\dim \Eig{T}=0$, then
 In the matrix case, that is $d = 2$, we use the formula on the right, which evaluates to $n+1$.
 \end{theorem}
 
-We point out that \Cref{thm:nonempty} holds also in the non-reduced case. However, a result by H. Abo (\cite[Corollary 5.8]{Abo}) guarantees that general forms have $0$-dimensional and reduced eigenschemes.
+We point out that \Cref{theorem:nonempty} holds also in the non-reduced case. However, a result by H. Abo (\cite[Corollary 5.8]{Abo}) guarantees that general forms have $0$-dimensional and reduced eigenschemes.
 
-\begin{definition}\label{def: eigendiscriminant}
+\begin{definition}
+\label{definition:eigendiscriminant}
 An order~$3$ tensor $T \in (\C^3)^{\otimes 3}$ is called \emph{regular} if its eigenscheme is reduced of dimension~$0$.
 We set
 %
@@ -316,9 +309,10 @@ As already mentioned, a regular eigenscheme of a cubic form never contains six p
 
 
 \begin{lemma}
-    \label{lemma: no 4 aligned}
-    Given $f \in \C[x,y,z]_3$,
-if $\Eig{f}$ is regular, then it contains no $4$ or more aligned points. Moreover, if $\Eig{f}$ contains two aligned triples, they must share a point.
+\label{lemma:no_4_aligned}
+Given $f \in \C[x,y,z]_3$,
+if $\Eig{f}$ is regular, then it contains no $4$ or more aligned points. 
+Moreover, if $\Eig{f}$ contains two aligned triples, they must share a point.
 \end{lemma}
 
 
@@ -393,7 +387,7 @@ which proves that $\gamma_{\Eig{f}}$ is surjective and that \Cref{eq:fibers} hol
 \end{proof}
 
 \begin{prop}
-\label{prop:contract_aligned}
+\label{proposition:contract_aligned}
 Suppose that $\Eig{f}$ is a zero dimensional eigenscheme of a cubic ternary form.
 If $\Eig{f}$ contains a triple of points on a line~$\ell \subset \p^2$, then the Geiser map~$\gamma_{\Eig{f}}$ contracts~$\ell$.
 \end{prop}
@@ -461,7 +455,7 @@ Moreover, the group~$\SO_3(\C)$ acts also on ternary forms via
 \end{definition}
 
 \begin{prop}
-\label{two_orbits}
+\label{proposition:two_orbits}
 The action of~$\SO_3(\C)$ on $\p^2$ has two orbits:
 %
 \begin{align*}
@@ -581,7 +575,7 @@ Now we consider the polynomial $M \cdot f$ and we observe that the chain rule gi
   \partial_z (M\cdot f) = \partial_z \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(3)}(\nabla f) \bigl( M^{-1}\ \prescript{t} {} (x \ y \ z) \bigr) \,,
 \end{gather*}
 %
-where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Hence
+where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Thus
 %
 \[
   \nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) \bigl(M^{-1}\ \prescript{t} {} (x \ y \ z)\bigr) \,,
@@ -640,7 +634,7 @@ We denote by~$\phi_1(P)$, $\phi_2(P)$, and~$\phi_3(P)$ the rows of~$\Phi(P)$.
 Written as vectors, they are
 %
 \begin{equation}
-\label{equation:matrix_conditions_rows}
+\label{eq:matrix_conditions_rows}
   \begin{aligned}
     \phi_1(P) &=
     \scalemath{0.9}{
@@ -696,7 +690,7 @@ $\de_y \mathcal{B}$ and~$\de_z \mathcal{B}$;
 if $P=(A: B: C)$, we get:
 %
 \begin{equation}
-\label{equation:vector_conditions}
+\label{eq:vector_conditions}
   \begin{aligned}
     \phi_1(P) &= A\cdot \de_y \mathcal{B}(P) - B\cdot \de_x \mathcal{B}(P) \,, \\
     \phi_2(P) &= A\cdot \de_z \mathcal{B}(P) - C\cdot \de_x \mathcal{B}(P) \,, \\
@@ -706,7 +700,7 @@ if $P=(A: B: C)$, we get:
 %
 \begin{rmk}
 \label{remark:rank_2}
-By analyzing the entries of \Cref{equation:matrix_conditions_rows}, it is not difficult to check that the rank of~$\Phi(P)$ is never $\leq 1$. \Cref{equation:vector_conditions} gives the relation
+By analyzing the entries of \Cref{eq:matrix_conditions_rows}, it is not difficult to check that the rank of~$\Phi(P)$ is never $\leq 1$. \Cref{eq:vector_conditions} gives the relation
 %
 \begin{equation}
 \label{eq:syzygy}
@@ -738,7 +732,7 @@ the condition that some points are distinct or that three of them are not aligne
 (when this is the case). 
 Another important simplification that we adopt sometimes, makes use
 of the action of~$\SO_3(\C)$: thanks to it, we can assume that one of
-the point is either $(1: 0: 0)$ or $(1: \iii: 0)$; see \Cref{two_orbits}.
+the point is either $(1: 0: 0)$ or $(1: \iii: 0)$; see \Cref{proposition:two_orbits}.
 
 We start with the following lemma, which is extremely useful
 to speed up the computations.
@@ -759,10 +753,10 @@ Then
 \[
   B \det(L_1) = A \det(L_2), \quad
   C \det(L_1) = A \det(L_3), \quad
-  C \det(L_2) = B \det(L_3)
+  C \det(L_2) = B \det(L_3),
 \]
 %
-hence $(A: B: C) = \bigl( \det(L_1): \det(L_2): \det(L_3) \bigr)$.
+therefore $(A: B: C) = \bigl( \det(L_1): \det(L_2): \det(L_3) \bigr)$.
 \end{lemma}
 \begin{proof}
 The statement easily follows from the equality $C w_1 - B w_2 + A w_3 = 0$, which is a direct consequence of \Cref{eq:syzygy}.
@@ -794,7 +788,7 @@ This is a bihomogeneous polynomial of bidegree~$(2,2)$ on $\p^2 \times \p^2$.
 \end{definition}
 
 \begin{rmk}
-\label{rmk:sigma_discr}
+\label{remark:sigma_discr}
 The form~$\sigma$ is the discriminant of the intersection between the line~$P_1 \vee P_2$ and~$\iso$.
 Indeed, if $u_1 P_1 + u_2P_2$ is a generic point on the line $P_1 \vee P_2$, the relation 
 %
@@ -820,7 +814,7 @@ Then the following are equivalent:
 %
 \end{prop}
 \begin{proof}
-By \Cref{rmk:sigma_discr}, we have that $\sigma(P_1, P_2) = 0$ if and only if $r$ is tangent to~$\iso$ in a point~$T$; this shows that the first three items are equivalent.
+By \Cref{remark:sigma_discr}, we have that $\sigma(P_1, P_2) = 0$ if and only if $r$ is tangent to~$\iso$ in a point~$T$; this shows that the first three items are equivalent.
 
 Now, if $\sigma(P_1, P_2) = 0$, then $r$ is tangent to~$\iso$ at a point~$T$, hence $\scl{T}{T} = 0$.
 Moreover, by the second item $\sigma(T, Q) = 0$ for all $Q \in r$ with $Q \neq T$, and by the definition of $\sigma$ the claim follows.
@@ -858,7 +852,7 @@ If $\rk \,\Phi(P_1, P_2, P_3, P_4) \leq 7$ then $r$ is tangent to~$\iso$ in one 
 \end{proof}
 
 % \begin{rmk}
-% As we clarified in \Cref{lemma: no 4 aligned}, four aligned eigenpoints are never contained in a $0$-dimensional eigenscheme.
+% As we clarified in \Cref{lemma:no_4_aligned}, four aligned eigenpoints are never contained in a $0$-dimensional eigenscheme.
 % In \Cref{lemma:four_points_on_line}, we will show that if an eigenscheme contains four distinct aligned eigenpoints, then it contains the whole line joining them.
 % \end{rmk}
 
@@ -912,11 +906,11 @@ if $P_i = (A_i: B_i: C_i)$ for $i \in \{1, 2, 4\}$, we set
   &\phantom{:}= s_{11} s_{24}-s_{12}s_{14} \,,
 \end{align*}
 %
-where $\times$ denotes the cross product, see \Cref{equation:cross product}.
+where $\times$ denotes the cross product, see \Cref{eq:cross_product}.
 \end{definition}
 
 \begin{rmk}
-\label{rmk:delta1_meaning}
+\label{remark:delta1_meaning}
 Geometrically, the condition $\delta_1(P_1, P_2, P_4) = 0$ corresponds to the orthogonality of the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$, if the three points are not collinear, while
 $\delta_1(P_1, P_2, P_4) = 0$ implies that $\sigma (P_1,P_2)=0$ if they are collinear.
 \end{rmk}
@@ -993,7 +987,7 @@ $\delta_2=0$ uniquely determines $P_3$. However, there are some exceptions, whic
 % To be more precise, we have:
 %
 \begin{prop}
-\label{prop:definitionP3}
+\label{proposition:definitionP3}
 For five points $P_1, \dots, P_5$ in a $V$- configuration, it holds that
 $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$ if and only if (up to a permutation of $P_2, \dots, P_5$) at least one of the following conditions
 is satisfied:
@@ -1035,7 +1029,7 @@ These computations are carried in \nb{03}{F4}.
 \end{proof}
 %
 \begin{rmk}
-In the first case of \Cref{prop:definitionP3}, the corresponding cubic
+In the first case of \Cref{proposition:definitionP3}, the corresponding cubic
 is studied in \Cref{further_alignments}, configuration $(C_5)$.
 In the second case, the conditions $s_{12}=0$ and $s_{22}=0$ imply $\sigma(P_1, P_2) = 0$ and $P_2\in \iso$, so the line~$P_1 \vee P_2 \vee P_3$ is tangent to~$\iso$ in~$P_2$
 and this case was considered in~\Cref{proposition:three_distinct_ranks}; in particular,
@@ -1050,7 +1044,7 @@ The last case is the generic one and expresses $P_3$ in terms of the remaining f
 \end{rmk}
 %
 \begin{prop}
-\label{prop:d1d2}
+\label{proposition:d1d2}
 Let $P_1, \dots, P_5$ be a $V$- configuration. Then
 %
 \[
@@ -1073,11 +1067,10 @@ and $P_3 = u_1 \, P_1 + u_2 \, P_2$ and $P_5 = v_1 \, P_1 + v_2 \, P_4$ for some
 We find, via symbolic computation, that the determinant of
 the submatrix of the matrix of conditions of $P_1, \dotsc, P_5$ obtained by selecting the first two rows from each $\Phi(P_i)$ for $i \in \{1, \dotsc, 5\}$ is
 %
-\begin{gather}
-\label{delta1delta2}
+\begin{gather*}
   A_1A_2A_4(u_1A_1+u_2A_2)(v_1A_1+v_2A_4) \cdot u_1^2u_2^2v_1^2v_2^2 \cdot D^5 \cdot
   \delta_1(P_1,P_2,P_4) \cdot \delta_2(P_1,\dots,P_5) \,,
-\end{gather}
+\end{gather*}
 %
 where $D$ is the determinant of the matrix whose rows are $P_1, P_2, P_4$.
 As a consequence of \Cref{lemma:minors}, the order~$10$ minors of the matrix of conditions are polynomials of the form
@@ -1171,9 +1164,9 @@ the lines~$P_1 \vee P_2$ and~$P_1 \vee P_4$ are tangent to~$\iso$ (the first in 
 Then, by \Cref{proposition:sigma_tangency} and \Cref{lemma:special_case_rank_8} we get a contradiction.
 This shows the first item.
 
-The second item is \Cref{prop:d1d2}.
+The second item is \Cref{proposition:d1d2}.
 
-We are left to proving the third item. By \Cref{lemma:special_case_rank_8} and \Cref{prop:d1d2}, each of the two conditions implies that the rank is~$8$.
+We are left to proving the third item. By \Cref{lemma:special_case_rank_8} and \Cref{proposition:d1d2}, each of the two conditions implies that the rank is~$8$.
 \nb{03}{F6} proves the converse; in particular, it shows that if $P_1 \in \iso$, then $\rk \,\Phi(P_1, \dots, P_5) \geq 9$. In the second case, it is necessarily $\delta_1(P_1,P_2,P_4)
 \neq 0$; indeed, in the case $P_2, P_4 \in \iso$, then 
 %
@@ -1208,7 +1201,7 @@ do not have other collinearities (in addition to those of a
 $V$- configuration).
     \item[(b)] If we want a $V$- configuration that satisfies the condition
 $\delta_2(P_1, \dots, P_5) = 0$, we choose $P_1$, $P_2$, $P_4$ arbitrarily;
-we choose $P_3$ on the line~$P_1 \vee P_2$ and~$P_5$ on the line~$P_1 \vee P_4$ so that $P_3$ satisfies \Cref{prop:definitionP3}, \Cref{defP3_4}.
+we choose $P_3$ on the line~$P_1 \vee P_2$ and~$P_5$ on the line~$P_1 \vee P_4$ so that $P_3$ satisfies \Cref{proposition:definitionP3}, \Cref{defP3_4}.
 Also in this case, the locus of cubics is of dimension~$7$.
 We will show that in this situation there are further alignments.
 \end{itemize}
@@ -1451,7 +1444,7 @@ It follows that the linear system in the variables $X,Y,Z$
 \]
 %
 admits $P_1 \times P_2$ as a non-zero solution,
-hence the determinant of the $3 \times 3$ coefficient matrix with rows
+thus the determinant of the $3 \times 3$ coefficient matrix with rows
  $P_1$, $\overline{P}$, $\nabla f (\overline{P})$ is zero. This is equivalent to saying that $A_1 g_3 - B_1 g_2 + C_1 g_1$ vanishes at all the points~$\overline{P}$ of the line~$P_1 \vee P_2$.
 
 We argue similarly for line~$P_1 \vee P_4$.
@@ -1520,7 +1513,7 @@ See Notebook \nb{04}{F2}.
 \end{proof}
 
 \begin{prop}
-\label{prop:char_rank_8}
+\label{proposition:char_rank_8}
   Let $P_1, \dotsc, P_5$ be a $V$- configuration such that \Cref{rk8_1} holds.
   Then $P_4$ is orthogonal to $s_{11} \, P_2 - s_{12} \, P_1$ and, up to swapping $2 \leftrightarrow 3$ and $4 \leftrightarrow 5$, it holds
   %
@@ -1558,7 +1551,7 @@ See Notebook \nb{04}{F2}.
 \end{proof}
 
 \begin{rmk}
-From \Cref{prop:char_rank_8}, it follows that if we choose
+From \Cref{proposition:char_rank_8}, it follows that if we choose
 % The three equalities of~\Cref{rk8_1} give that,
 % using \Cref{lemma_delta_case2}, either $P_1$ is on~$\iso$ and
 % $P_1 \vee P_2$ is the tangent line to~$\iso$ in~$P_1$ (but this is not compatible
@@ -1589,7 +1582,7 @@ Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, the hypothesis ``ran
 \end{rmk}
 
 \begin{rmk}
-\label{rmk:particular_cases}
+\label{remark:particular_cases}
 In general, a cubic having eigenpoints $P_1, \dots, P_5$ in a $V$- configuration satisfying \Cref{rk8_1} has only the two alignments $(P_1, P_2, P_3)$ and $(P_1, P_4, P_5)$ among its eigenpoints;
 in particular, it does not have the collinearity $(P_1, P_6, P_7)$.
 Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, the hypothesis ``rank $9$'' in~\Cref{proposition:third_alignment} is necessary.
@@ -1610,7 +1603,7 @@ the following results hold:
 %% in configurazione (8) nel caso dei 3 delta = 0.
 %%
 \begin{prop}
-\label{three_d_three_alignments}
+\label{proposition:three_d_three_alignments}
 If $P_1, \dots, P_5$ satisfy \Cref{rk8_1},
 then, in the pencil $\Lambda \bigl( \Phi(P_1, \dotsc, P_5)\bigr)$ there is
 a cubic curve with $7$ eigenpoints with the following three alignments:
@@ -1635,7 +1628,7 @@ Notebook \nb{04}{F5} provides the proof of the statement.
 Moreover, we have:
 %
 \begin{prop}
-\label{prop:d2_6allin}
+\label{proposition:d2_6align}
 If the five points $P_1, \dots, P_5$ satisfy \Cref{rk8_1}
 and if we impose the condition that there is an eigenpoint, say $P_6$, aligned with $P_2$ and~$P_4$, then the eigenpoints satisfy all these
 alignments:
@@ -1667,10 +1660,10 @@ points $P_1, \dotsc, P_7$ satisfy the above collinearities.
 This is shown in Notebook \nb{04}{F6}.
 \end{proof}
 
-\Cref{three_d_three_alignments} and \Cref{prop:d2_6allin} exhaust all the possible configurations
+\Cref{proposition:three_d_three_alignments} and \Cref{proposition:d2_6align} exhaust all the possible configurations
 of collinearities in case of \Cref{rk8_1}.
 Now we consider the \Cref{rk8_2}.
-%% La dimostrazione della proposizione prop:rk8_2B si trova nel file
+%% La dimostrazione della proposizione proposition:rk8_2B si trova nel file
 %% rank_8_twoTangIso.sage
 %% Il file confV_tg_iso.sage fa il caso generale (cioe' quando P1
 %% e' il punto (A1, B1, C1) e non (1, 0, 0)) e serve per provare
@@ -1699,7 +1692,7 @@ The reciprocal position of the eigenpoints of the cubics of this family
 is described by the following:
 %
 \begin{prop}
-\label{prop:rk8_2B}
+\label{proposition:rk8_2B}
 The generic cubic of the family of cubics satisfying \Cref{rk8_2}
 has seven eigenpoints with the alignments:
 %
@@ -1720,7 +1713,7 @@ In the family there is a sub-family of cubics whose eigenpoints have the followi
 In this case the points~$P_6$ and~$P_7$ are given by the formulas:
 %
 \begin{equation}
-\label{formuleP6_P7}
+\label{eq:formulaeP6_P7}
 P_6 = s_{15}s_{34}\, P_2 + s_{13}s_{25}\, P_4, \quad 
 P_7 = s_{15}(s_{26}s_{46}+s_{24}s_{66})\, P_1+ s_{11}s_{24}s_{56}\, P_6
 \end{equation}
@@ -1790,11 +1783,11 @@ cases can be studied in a similar way. See \nb{04}{F7}.
 %% confV2_tg_iso.sage.
 \end{proof}
 \begin{rmk}
-\label{rmk:three_orthog} For further references, it is perhaps worth noting that the explicit 
+\label{remark:three_orthog} For further references, it is perhaps worth noting that the explicit 
 construction of the 
-points in~\Cref{prop:d2_6allin} and~\Cref{prop:rk8_2B} allows one to verify
+points in~\Cref{proposition:d2_6align} and~\Cref{proposition:rk8_2B} allows one to verify
 several relations among them. In particular, the seven eigenpoints
-of~\Cref{prop:d2_6allin} are such that
+of~\Cref{proposition:d2_6align} are such that
 \[
 \scl{P_1\times P_2}{P_1 \times P_4}=0, \quad 
 \scl{P_2\times P_4}{P_3 \times P_5}=0, \quad 
@@ -1804,18 +1797,18 @@ and it holds:
 \[
 P_4 = (P_2\times P_3)s_{25}s_{35}-s_{23}(P_2\times P_5)s_{35}+ s_{23}s_{25}(P_3\times P_5).
 \]
-In the first sub-family described in~\Cref{prop:rk8_2B} we have 
-$P_1 = P_2 \times P_4$, hence 
+In the first sub-family described in~\Cref{proposition:rk8_2B} we have 
+$P_1 = P_2 \times P_4$, so 
 \[
 \scl{P_1\times P_2}{P_2 \times P_4}=0, \quad 
 \scl{P_1\times P_4}{P_2 \times P_4}=0, \quad 
-\scl{P_1\times P_6}{P_2 \times P_4}=0
+\scl{P_1\times P_6}{P_2 \times P_4}=0.
 \]
-and in the second family:
+In the second family:
 \[
 \scl{P_1\times P_4}{P_3 \times P_4}=0, \quad 
 \scl{P_1\times P_2}{P_2 \times P_5}=0, \quad 
-\scl{P_3\times P_5}{P_1 \times P_6}=0.
+\scl{P_3\times P_5}{P_1 \times P_6}=0,
 \]
 hence it holds:
 \[
@@ -1825,7 +1818,7 @@ P_3 = (P_1 \times P_5)s_{16}s_{56}-s_{15}(P_1\times P_6)s_{56}+s_{15}s_{16}(P_5 
 %
 
 % \begin{rmk}
-% \label{rmk:delta1_and_delta2}
+% \label{remark:delta1_and_delta2}
 % It is easy to verify that in
 % a $V$- configuration which satisfies \Cref{C8:cnd2}, we have
 % $\delta_1(P_1, P_2, P_4)\neq 0$ and
@@ -1842,14 +1835,14 @@ The results of the previous sections allow one to determine the dimension and th
 at least one aligned triple of eigenpoints. 
 
 \begin{definition}
-\label{def:locus_L}
+\label{definition:locus_L}
 Let $\sU \subset \p^9$ be the following locus:
 %
 \[
   \sU:= \{[f]\in \p^9 \setminus \Delta_{3,3} \ | \ \Eig{f} \ \textrm{contains \ an \ aligned \ triple}\}, \,
 \]
 %
-where $\Delta_{3,3}$ denotes the eigendiscriminant of \Cref{def: eigendiscriminant}, 
+where $\Delta_{3,3}$ denotes the eigendiscriminant of \Cref{definition:eigendiscriminant}, 
 and define $\sL \subseteq \p^9$ as the closure of~$\sU$:
 %
 \[
@@ -1929,16 +1922,16 @@ then we have:
 %
 \begin{equation}
   (L_1 N_1 + 2 L_2N_2) (P_1 \times P_2) = 0 \,;
-  \label{combLin}
+  \label{eq:lin_comb}
 \end{equation}
 %
 the linear combination of $c_0, c_1, c_2, c_4, c_5, c_7$ which is zero
 is obtained by expanding this expression. This computation is contained in \nb{05}{F1}.
 
 Similarly, the columns $c_1, c_2, c_3, c_5, c_6, c_8$ are linearly dependent
-and~(\ref{combLin}) holds if $L_1$ in this case is $[c_1, c_3, c_8]$ and
+and~\eqref{eq:lin_comb} holds if $L_1$ in this case is $[c_1, c_3, c_8]$ and
 $L_2$ is $[c_2, c_5, c_6]$. Finally, the columns
-$c_4, c_5, c_6, c_7, c_8, c_9$ are linearly dependent and~(\ref{combLin})
+$c_4, c_5, c_6, c_7, c_8, c_9$ are linearly dependent and~\eqref{eq:lin_comb}
 holds if we take $L_1 = [c_4, c_6, c_9]$ and $L_2 = [c_5, c_7, c_8]$.
 
 As a consequence, local parametrizations of~$\sL$ can be given by considering the following open subsets:
@@ -1967,7 +1960,7 @@ $ w_f = (b_0,
   b_4,
   b_5, b_6,b_7,b_8,b_9)$,
 %
-if $i\in I$ the coefficients $b_i$ depend on the free parameters $b_i=b_i(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$, where $j \not \in I$, $0\le j \le 6$. Hence we can interpret $w_f=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$ as a suitable rational function.
+if $i\in I$ the coefficients $b_i$ depend on the free parameters $b_i=b_i(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$, where $j \not \in I$, $0\le j \le 6$. Therefore, we can interpret $w_f=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$ as a suitable rational function.
 This leads to the definition of the rational map
 %
 \[
@@ -2031,7 +2024,6 @@ Finally, there is an open subset of $\sE\sW$ where the rank of the condition mat
 As a consequence, we have the following result.
 
 \begin{corollary}
-\label{lemma:pencil_one_aligned}
 If $[f],[g] \in \p^9 \setminus \Delta_{3,3}$ are general cubics,
 then the general cubic in the pencil
 $\lambda f + \mu g$ for $(\lambda: \mu) \in \p^1$ has no aligned triples of eigenpoints, and there is a finite number of cubics having exactly one aligned triple.
@@ -2123,7 +2115,7 @@ In what follows, we shall determine the degree of the
 $0$-dimensional residual scheme in both cases.
 
 \begin{prop}
-\label{p2}
+\label{proposition:positive_dimension}
 Let $C = V(f) \subset \p^2$ be a cubic curve.
 Assume that $\dim \Eig{f} = 1$.
 %
@@ -2139,11 +2131,11 @@ Assume that $\dim \Eig{f} = 1$.
 The proof relies on the exactness of the Koszul complex associated with the regular sequence~$x$, $y$, and~$z$, specifically we use the following result (see \cite[Theorem~7.3.13]{Dolgachev}).
 
 \begin{lemma}
-\label{lem:Koszul}
+\label{lemma:Koszul}
 Let $h_1,h_2,h_3\in\C[x,y,z]_d$ with $d \ge 1$. Then
 %
 \begin{equation}
-\label{eq:linear_relazion}
+\label{eq:linear_relation}
   zh_1-yh_2+xh_3 = 0
 \end{equation}
 %
@@ -2159,8 +2151,8 @@ if and only if there exist $m_1,m_2,m_3\in\C[x,y,z]_{d-1}$ such that
 \end{lemma}
 
 \begin{proof}
-If $h_1,h_2,h_3$ satisfy \Cref{eq:minors_lemma}, then it is immediate to check that they satisfy \Cref{eq:linear_relazion} as well. 
-Conversely, assume that \Cref{eq:linear_relazion} holds and let $R = \C[x,y,z]$.
+If $h_1,h_2,h_3$ satisfy \Cref{eq:minors_lemma}, then it is immediate to check that they satisfy \Cref{eq:linear_relation} as well. 
+Conversely, assume that \Cref{eq:linear_relation} holds and let $R = \C[x,y,z]$.
 The Koszul complex in the ring~$R$ is an exact sequence of $R$-modules
 %
 \[
@@ -2185,9 +2177,9 @@ It follows that there exist $m_1,m_2,m_3 \in \C[x,y,z]_{d-1}$ such that $\beta (
 so \Cref{eq:minors_lemma} holds.
 \end{proof}
 
-Now we are in the position to prove \Cref{p2}.
+Now we are in the position to prove \Cref{proposition:positive_dimension}.
 
-\begin{proof}[Proof of \Cref{p2}]
+\begin{proof}[Proof of \Cref{proposition:positive_dimension}]
 Let $g_1$, $g_2$ and~$g_3$ be the order~$2$ minors determining the eigenscheme of~$f$, and let $g$ be the greatest common factor.
 By writing
 %
@@ -2203,7 +2195,7 @@ syzygy between the generators~$g_i$ gives rise to the syzygy:
   z\, h_1 - y\, h_2 + x\, h_3 = 0 \,.
 \]
 %
-By \Cref{lem:Koszul}, the triple $(h_1,h_2,h_3)$ is the triple of order two minors of a matrix
+By \Cref{lemma:Koszul}, the triple $(h_1,h_2,h_3)$ is the triple of order two minors of a matrix
 %
 \[
   \begin{pmatrix}
@@ -2214,9 +2206,9 @@ By \Cref{lem:Koszul}, the triple $(h_1,h_2,h_3)$ is the triple of order two mino
 %
 for suitable forms $m_i \in \C[x,y,z]_r$, where $r =2 - \deg g \ge 0$.
 By the assumption that $g$ is the greatest common factor of the three minors $g_1$, $g_2$ and~$g_3$, the zero scheme $Z$ of $(h_1,h_2,h_3)$ is $0$-dimensional, and
-by \Cref{thm:nonempty} its degree is~$3$ if $r=1$. Observe that $Z$, being intersection of three conics with no common component, is not contained in a line. 
+by \Cref{theorem:nonempty} its degree is~$3$ if $r=1$. Observe that $Z$, being intersection of three conics with no common component, is not contained in a line. 
 
-Finally, if $r=0$, the triple $(h_1,h_2,h_3)$ corresponds to three linear forms belonging to a pencil, hence the zero locus is a point.
+Finally, if $r=0$, the triple $(h_1,h_2,h_3)$ corresponds to three linear forms belonging to a pencil, thus the zero locus is a point.
 \end{proof}
 
 
@@ -2227,7 +2219,7 @@ Consider the form
   f(x, y, z) = x^2 (y - z) \,.
 \]
 %
-In the language of \Cref{p2} and its proof, we have $\ell=x$,
+In the language of \Cref{proposition:positive_dimension} and its proof, we have $\ell=x$,
 %
 \[
  h_1 = x^2-2y^2+2yz \,, \quad 
@@ -2253,15 +2245,15 @@ Here we study the cases in which $\Eig{f}$ contains a line. We shall see that
 this condition is equivalent to the condition of having four collinear
 eigenpoints; this will allow us to charaterize the cubics $C = V(f)$ which have a line
 in $\Eig{f}$ and, finally, to prove that the polynomials $f$
-belong all to the locus $\sL \subset \p^9$ (see \Cref{def:locus_L}).
+belong all to the locus $\sL \subset \p^9$ (see \Cref{definition:locus_L}).
 We first need the following result, which will be generalized in Section 6.2.
 
 \begin{lemma}
 \label{lemma:twoTangentsCiso} Let $r = ax+by+cz$ be a line of the plane 
 and suppose it intersects $\iso$ in two
-distinct points~$P_1$ and~$P_2$. Consider the cubic with equation:
+distinct points~$P_1$ and~$P_2$. Consider the cubic with eq:
 \begin{equation}
-\label{2_lines_of_eigenpoints}
+\label{eq:2_lines_of_eigenpoints}
   f(r) = \left( r^2-3\left(a^2+b^2+c^2\right)\iso \right) \, r \,;
 \end{equation}
 then, the two tangent lines to $\iso$ in~$P_1$ and~$P_2$
@@ -2299,7 +2291,7 @@ The computations are in \nb{06}{F2}.
 
 We are now in the position to give a characterization of cubics with an eigenscheme containing a line.
 \begin{prop}
-\label{prop:eigenline_tangent}
+\label{proposition:eigenline_tangent}
 Let $t$ be a line of $\mathbb{P}^2$.
 %
 \begin{itemize}
@@ -2317,7 +2309,7 @@ then $t \subseteq \Eig{f}$ for a cubic $C=V(f)$ if and only if
   %
   where $\ell$ is any line of the plane, $\lambda \in \C$, 
   $r_0\neq t$ is any fixed line passing through $P$
-  and~$f(r_0)$ is defined by \Cref{2_lines_of_eigenpoints}.
+  and~$f(r_0)$ is defined by \Cref{eq:2_lines_of_eigenpoints}.
   \end{itemize}
   Moreover, if $t$ is tangent to $\iso$, any cubic of
   \Cref{eq:cubics_with_tangent_eigenline} is singular in $P$ and, if $V(f)$ is irreducible, then $V(f)$ is nodal and the line $t$ belongs to the tangent cone of $V(f)$ in $P$.
@@ -2330,8 +2322,9 @@ distinct points on it. By~\Cref{lemma:four_points_on_line}, the projective linea
 $\Lambda(\Phi(P_1, \dotsc, P_4))$ is two-dimensional, but also all the cubics
 defined by $t^2\ell$ (for $\ell$ any line of $\mathbb{P}^2$) have $t$ among
 their eigenpoints and form a
-two-dimensional linear system of cubics, hence the two linear systems
-coincide.\\
+two-dimensional linear system of cubics, so the two linear systems
+coincide.
+
 If $t$ is tangent to $\iso$ in a point $P$, w.l.o.g.\ we can assume that
 $P$ is $(1: \iii: 0)$ and $t$ is $x+\iii y$. If we impose to the generic
 cubic of $\mathbb{P}^2$ to contain $t$ in the eigenscheme, we get a linear
@@ -2341,7 +2334,7 @@ second claim. It is immediate to see that $P$ is singular for the cubics of the 
 \end{proof}
 %
 \begin{prop}
-\label{prop:limitCubics}
+\label{proposition:limitCubics}
 Any cubic that has a line~$t$ in the eigenscheme is the limit of a family of cubics whose general member has a $0$-dimensional eigenscheme with an aligned triple.
 \end{prop}
 \begin{proof}
@@ -2358,7 +2351,7 @@ and we consider the three dimensional linear system of cubic forms $\Lambda \big
   f = (ax + by + cz)z^2 + d(x^3+y^3), \quad a, b, c, d \in \C \,.
 \]
 %
-If $d=0$, we have $f=t^2 \ell$, hence, by \Cref{prop:eigenline_tangent} is the 
+If $d=0$, we have $f=t^2 \ell$, hence, by \Cref{proposition:eigenline_tangent}, the form~$f$ is the 
 generic cubic not tangent to $\iso$ that has the line $t$ in the eigenscheme.
 If $d \neq 0$, the eigenpoints of~$f$ different from $P_1, P_2, P_3$ are
 the common zeros of the following polynomials:
@@ -2384,7 +2377,7 @@ f = (x+\iii y)^2(ax + by+cz)+
  d(x^2 + y^2 + 2/3z^2)z+e (x^3 -\iii y^3 + z^3), 
  \quad a, b, c, d, e \in \C
 \]
-If $e=0$, the form $f$ is described by \Cref{eq:cubics_with_tangent_eigenline}, hence is the generic cubic which contains the line $t$ in the eigenscheme. If $e \not= 0$, as above, 
+If $e=0$, the form $f$ is described by \Cref{eq:cubics_with_tangent_eigenline}, thus it is the generic cubic which contains the line $t$ in the eigenscheme. If $e \not= 0$, as above, 
 the remaining eigenpoints of~$f$ are given by an ideal generated 
 by four polynomials $h_1, \dotsc, h_4$.
 % %
@@ -2655,10 +2648,10 @@ must be~$9$ or~$8$. If the rank is~$9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dotsc, P_5) = 0$, see \Cref{theorem:rank_V}.
 From \Cref{proposition:third_alignment}, the only case
 which admits a strict $(C_2)$ configuration 
-is $\delta_1(P_1, P_2, P_4) = 0$. Hence, if we fix two points~$P_1$ and~$P_2$
+is $\delta_1(P_1, P_2, P_4) = 0$. Therefore, if we fix two points~$P_1$ and~$P_2$
 in the plane in an arbitrary way, from \Cref{lemma_delta_case1} we can choose $P_4$ so that
 $\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, then we fix any~$P_3$
-on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$; in this way, we get a cubic with a configuration of type~$(C_2)$, which is generally strict. If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1}, hence we get sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$, see~\Cref{rmk:particular_cases}.
+on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$; in this way, we get a cubic with a configuration of type~$(C_2)$, which is generally strict. If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1}, hence we get sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$, see~\Cref{remark:particular_cases}.
 
 
 \subsection*{Configuration~\texorpdfstring{$(C_3)$}{C3}}
@@ -2671,7 +2664,8 @@ If we have the alignments $(P_1, P_2, P_3)$, $(P_1, P_4, P_5)$ and $(P_1, P_6, P
 are three $V$- configurations. It holds:
 
 \begin{lemma}
-\label{no_delta1_delta1} Suppose we have seven eigenpoints $P_1, \dots, P_7$
+\label{lemma:no_delta1_delta1} 
+Suppose we have seven eigenpoints $P_1, \dots, P_7$
 of a cubic in configuration $(C_3)$. Then among the $7$ points there is a
 $V$- configuration that satisfies a $\delta_2 = 0$ condition.
 \end{lemma}
@@ -2688,7 +2682,7 @@ These two equations are
 linear in the coordinates of~$P_2$.
 If the matrix of the associated linear system has
 maximal rank, the unique solution gives a point~$P_2$ which coincides, as a projective point, to $P_1$, which is impossible.
-Hence the matrix does not have maximal rank.
+Thus the matrix does not have maximal rank.
 This condition implies that $P_1$ is on the
 isotropic conic. As usual, we can assume 
 $P_1 = (1: \iii: 0)$ and again
@@ -2703,15 +2697,15 @@ $\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$.
 See  \nb{07}{F1} for the details.
 \end{proof}
 
-As a consequence of \Cref{no_delta1_delta1}, configuration $(C_3)$ can
+As a consequence of \Cref{lemma:no_delta1_delta1}, configuration $(C_3)$ can
 be obtained only if we have $5$ points such that
-$\delta_2(P_1, \dotsc, P_5) = 0$. \Cref{prop:definitionP3} describes how to
-obtain five eigenpoints in a $(C_3)$ configuration $(C_3)$ of eigenpoints; observe that when $P_3$ is defined by \Cref{prop:definitionP3}, item (4), the configuration is strict.
+$\delta_2(P_1, \dotsc, P_5) = 0$. \Cref{proposition:definitionP3} describes how to
+obtain five eigenpoints in a $(C_3)$ configuration $(C_3)$ of eigenpoints; observe that when $P_3$ is defined by \Cref{proposition:definitionP3}, item (4), the configuration is strict.
 
 \subsection*{Configuration~\texorpdfstring{$(C_4)$}{C4}}
 It holds:
 \begin{prop}
-\label{conf4no} If the eigenpoints of a cubic are in a $(C_4)$ configuration, then they actually are in a $(C_8)$ configuration.
+If the eigenpoints of a cubic are in a $(C_4)$ configuration, then they actually are in a $(C_8)$ configuration.
 \end{prop}
 \begin{proof} 
 %% il file config4.sage contiene la dimostrazione
@@ -2745,21 +2739,21 @@ Then it holds
 and among the points $P_1, \dots, P_6$ we have the relation
 %
 \begin{equation}
-\label{cndC5}
+\label{eq:condition_C5}
   s_{26}(s_{45}s_{13}-s_{34}s_{15})+s_{46}(s_{25}s_{13}-s_{23}s_{15}) = 0 \,.
 \end{equation}
 %
 Moreover, the points~$P_6$ and~$P_7$ can be determined as follows:
 %
 \begin{equation}
-\label{p6formula}
+\label{eq:p6formula}
 \begin{multlined}
   P_6 = (s_{15}s_{24}s_{34}+s_{15}s_{23}s_{44} -s_{13}s_{25}s_{44} -s_{13}s_{24}s_{45}) \, P_2 \\ + (s_{13}s_{24}s_{25}-2s_{15}s_{22}s_{34}+s_{13}s_{22}s_{45}) \, P_4 \,, 
 \end{multlined}
 \end{equation}
 %
 \begin{equation}
-\label{p7formula}
+\label{eq:p7formula}
 P_7 = (s_{26}s_{15}s_{46}+s_{24}s_{15}s_{66})P_1 + s_{11}(s_{26}s_{45}+s_{24}s_{56})P_6\,.
 \end{equation}
 %
@@ -2770,10 +2764,10 @@ $V$- configuration. If it is of rank $8$,
 from \Cref{rank_8} we see that the seven points are in a $(C_3)$ configuration
 with a collinearity $P_2, P_3,P_5$ ; by assumption, this is not the case. So
 we can assume that $\rk \, \Phi(P_1, P_2, P_3, P_4, P_6) = 9$, hence necessarily $\delta_1(P_2, P_1, P_4)=0$.
-Arguing similarly, we get $\delta_1(P_4, P_1, P_2) = 0$ and $\delta_1(P_6, P_1, P_2) = 0$. Moreover, by \Cref{no_delta1_delta1} and by possibly relabelling the points, we may assume that $\delta_2(P_1, P_2, P_3, P_4, P_5)=0$. From this we get that
+Arguing similarly, we get $\delta_1(P_4, P_1, P_2) = 0$ and $\delta_1(P_6, P_1, P_2) = 0$. Moreover, by \Cref{lemma:no_delta1_delta1} and by possibly relabelling the points, we may assume that $\delta_2(P_1, P_2, P_3, P_4, P_5)=0$. From this we get that
 $s_{12} = s_{14}=s_{16}=0$. In particular $P_1 = P_2 \times P_4$.
 
-To prove \Cref{cndC5}, 
+To prove \Cref{eq:condition_C5}, 
 %we take $P_2$ and~$P_4$ generic,
 %$P_1 = P_2 \times P_4$ and~$P_3$, $P_5$, $P_6$ generic points on the lines
 %$P_1 \vee P_2$, $P_1 \vee P_4$, $P_2 \vee P_4$, respectively. 
@@ -2786,12 +2780,12 @@ all the order $10$-minors must be zero.
 %This computation gives that we can obtain a polynomial $f$ (in the 
 %variables $u_i, v_i, w_i$ and the coordinates of $P_2$ and $P_4$) such that $\rk M \leq 9$ if and only if $f=0$. Furthermore, 
 %a manipulation of $f$ shows that $f=0$ if and only if 
-After suitable saturations, the ideal of such minors is principal and the generator gives \Cref{cndC5}.
+After suitable saturations, the ideal of such minors is principal and the generator gives \Cref{eq:condition_C5}.
 
-If in \Cref{cndC5} in place of~$P_6$ we substitute $w_1 \, P_2 + w_2 \, P_4$,
-we find~$w_1$ and~$w_2$, which give \Cref{p6formula}.
+If in \Cref{eq:condition_C5} in place of~$P_6$ we substitute $w_1 \, P_2 + w_2 \, P_4$,
+we find~$w_1$ and~$w_2$, which give \Cref{eq:p6formula}.
 
-Finally, to prove \Cref{p7formula}, we change~$P_3$ with~$P_7$ in \Cref{cndC5} and we take into account that $P_7$ is collinear with~$P_1$ and~$P_6$. All the detailed computations can be found in \nb{07}{F3}.
+Finally, to prove \Cref{eq:p7formula}, we change~$P_3$ with~$P_7$ in \Cref{eq:condition_C5} and we take into account that $P_7$ is collinear with~$P_1$ and~$P_6$. All the detailed computations can be found in \nb{07}{F3}.
 \end{proof}
 %
 The converse of the above proposition is also true, more precisely:
@@ -2802,7 +2796,7 @@ The converse of the above proposition is also true, more precisely:
   P_1 = P_2 \times P_4 \,,
 \]
 %
-and suppose there is a cubic that has $7$ eigenpoints, five of which are $P_1, \dotsc, P_5$. Then the remaining eigenpoints~$P_6$ and~$P_7$ are given by \Cref{p6formula} and \Cref{p7formula}. Hence $(P_2, P_4, P_6)$ are aligned, so the points are in a $(C_5)$ configuration. 
+and suppose there is a cubic that has $7$ eigenpoints, five of which are $P_1, \dotsc, P_5$. Then the remaining eigenpoints~$P_6$ and~$P_7$ are given by \Cref{eq:p6formula} and \Cref{eq:p7formula}. Therefore $(P_2, P_4, P_6)$ are aligned, so the points are in a $(C_5)$ configuration. 
 
 Furthermore, in the general case, the configuration is 
 strict, but 
@@ -2815,13 +2809,13 @@ The condition $P_1 = P_2 \times P_4$ implies $s_{12}=s_{14}=0$,
 so we have that $\delta_2 (P_1,P_2,P_3,P_4,P_5)=0$. 
 First we suppose that $\rk \, \Phi(P_1, \dotsc, P_5) = 9$.
 It follows from \Cref{proposition:third_alignment} that the corresponding unique cubic having such $5$ points as eigenpoints has $P_6$ and~$P_7$ aligned with~$P_1$.
-To prove that $P_6$ and $P_7$ are given by \Cref{p6formula} and \Cref{p7formula},
+To prove that $P_6$ and $P_7$ are given by \Cref{eq:p6formula} and \Cref{eq:p7formula},
 we check that the matrix of conditions of $P_1,\cdots, P_5$ and the point of
-\eqref{p6formula}, respectively of \eqref{p7formula}, has rank $9$. 
-%Hence the points of \Cref{p6formula} is an eigenpoint, and it necessarily coincides with one of the remaining eigenpoints.
+\eqref{eq:p6formula}, respectively of \eqref{eq:p7formula}, has rank $9$. 
+%Hence the points of \Cref{eq:p6formula} is an eigenpoint, and it necessarily coincides with one of the remaining eigenpoints.
 
 %we select nine linearly independent rows from $\Phi(P_1, \dotsc, P_5)$
-%and we compute the determinant of the three order $10$ matrices whose rows are the nine rows above plus the eigenpoint conditions on the point \Cref{p6formula},
+%and we compute the determinant of the three order $10$ matrices whose rows are the nine rows above plus the eigenpoint conditions on the point \Cref{eq:p6formula},
 
 %$\phi_1(P)$, $\phi_2(P_6)$, and~$\phi_3(P_6)$ respectively.
 %Since 
@@ -2830,23 +2824,23 @@ we check that the matrix of conditions of $P_1,\cdots, P_5$ and the point of
 
 
 %we get that $\rk \, \Phi(P_1, \dotsc, P_6) = 9$.
-%A similar argument shows that $P_7$ is given by \Cref{p7formula}.
+%A similar argument shows that $P_7$ is given by \Cref{eq:p7formula}.
 A random example shows that, in general, there are no further collinearities.
 The condition that $(P_2, P_5, P_7)$ are aligned splits into two cases:
 one forces the collinearity of $(P_3, P_4, P_7)$, the other imposes the collinearity of $(P_3, P_5, P_6)$,
 hence we get two $(C_8)$ configurations. Similarly for the other two cases. 
 
-If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$, the $V$- configuration cannot satisfy \Cref{rk8_1}. Indeed, we would have \Cref{lemma_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
+If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$, the $V$- configuration cannot satisfy \Cref{rk8_1}. Indeed, we would have \Cref{lemma_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Thus,
 from the results of \Cref{rank_8}, the lines $P_1 \vee P_2$ and $P_1 \vee P_4$ are tangent to the isotropic conic in~$P_2$ and~$P_4$. Thus 
 \[
 s_{22}= s_{44}= s_{23}= s_{45}=0
 \]
-and \Cref{p6formula} and \Cref{p7formula} specialize to \Cref{formuleP6_P7}. Finally, \Cref{prop:rk8_2B} shows that the points are in a $(C_5)$ configuration. Notebook \nb{07}{F3} contains the details of the computations.
+and \Cref{eq:p6formula} and \Cref{eq:p7formula} specialize to \Cref{eq:formulaeP6_P7}. Finally, \Cref{proposition:rk8_2B} shows that the points are in a $(C_5)$ configuration. Notebook \nb{07}{F3} contains the details of the computations.
 \end{proof}
 %
 
 \begin{rmk}
-\label{rmk:C5rk8}
+\label{remark:C5rk8}
 Since in a $(C_5)$ configuration we have 
 $P_1 = P_2 \times P_4$ and $(P_2, P_4, P_6)$ aligned, it follows that $s_{12} = 0$, $s_{14} = 0$ and $s_{16} = 0$.
 Moreover, it is
@@ -2858,7 +2852,7 @@ lines~$P_1 \vee P_2$, $P_1 \vee P_4$, and~$P_1 \vee P_6$, that is
   \scl{P_1 \times P_4}{P_2 \times P_4} = 0, \quad
   \scl{P_1 \times P_6}{P_2 \times P_4} = 0.
 \]
-Hence \Cref{rmk:three_orthog} gives that the $(C_5)$ configuration obtained in \Cref{prop:rk8_2B} is a sub-case of the $(C_5)$ configuration described here, since Equations \eqref{p6formula} and \eqref{p7formula} specialize to \eqref{formuleP6_P7}.
+Hence \Cref{remark:three_orthog} gives that the $(C_5)$ configuration obtained in \Cref{proposition:rk8_2B} is a sub-case of the $(C_5)$ configuration described here, since Equations \eqref{eq:p6formula} and \eqref{eq:p7formula} specialize to \eqref{eq:formulaeP6_P7}.
 %
 \end{rmk}
 %
@@ -2867,7 +2861,7 @@ Hence \Cref{rmk:three_orthog} gives that the $(C_5)$ configuration obtained in \
 %are therefore obtained taking $P_2, P_4$ generic, $P_1 = P_2 \times P_4$,
 %$P_5$ generic on the line~$P_1 \vee P_4$ and $P_3$ given by the \Cref{p3formula}.
 %It is easy to see that the cubics with eigenpoints in configuration $(C_5)$
-%described in~\Cref{prop:rk8_2B} are a sub-family of the cubics here described,
+%described in~\Cref{proposition:rk8_2B} are a sub-family of the cubics here described,
 %obtained by the conditions $s_{22} = s_{44} = 0$.
 %\end{rmk}
 
@@ -2898,7 +2892,8 @@ The following lemma is easy to verify:
 
 \begin{lemma}
 %% v. file configN82.sage
-\label{lemma:6ortog} If we have four distinct points of the projective
+\label{lemma:6ortog} 
+If we have four distinct points of the projective
 plane, such that no triplets of them are collinear, then the scalar 
 product of at least two of them is not zero.
 \end{lemma}
@@ -2934,10 +2929,10 @@ More details on the file \nb{07}{F6}.
 \end{proof}
 
 \begin{prop}
-\label{prop:conf8_partA}
+\label{proposition:conf8_partA}
 If $P_1, \dotsc, P_7$ are eigenpoints in a $(C_8)$ configuration, then~$s_{12}$ is not zero and it holds:
 \begin{equation}
-\label{formula:ortocentro}
+\label{eq:orthocenter}
 P_7 = (P_1 \times P_2)s_{14}s_{24} -
   s_{12}(P_1 \times P_4)s_{24} + s_{12}s_{14}(P_2 \times P_4)
 \end{equation}
@@ -2956,15 +2951,15 @@ the points. In particular, we have
 \begin{proof}
 %% file config8N2.sage
 If some of the $V$- configurations contained in $(C_8)$ have matrices of conditions of rank $8$, 
-the result follows from \Cref{rank_8} (see \Cref{rmk:three_orthog}).
+the result follows from \Cref{rank_8} (see \Cref{remark:three_orthog}).
 %We fix now generic coordinates for the points $P_1, P_2, P_4, P_7$.
 
 Assume now that each $V$- configurations of $(C_8)$ gives rise to a rank $9$ matrix of conditions.
 As a consequence of the previous two lemmas, it is not possible
 to have $s_{12}=s_{14}=s_{17}=0$, we can assume $s_{12} \not=0$.
 Again from \Cref{lemma:three_s_zero}, it is not possible to 
-have $s_{14}=s_{24}=0$, so at least one of the three coefficients~$s_{14}s_{24}$, $s_{12}s_{24}$, or~$s_{12}s_{14}$ in \Cref{formula:ortocentro} is not zero. Since the 
-three vectors $P_1\times P_2$, $P_1\times P_4$, $P_2\times P_4$ are linearly independent, we see that $P_7$ of \eqref{formula:ortocentro} is well defined. 
+have $s_{14}=s_{24}=0$, so at least one of the three coefficients~$s_{14}s_{24}$, $s_{12}s_{24}$, or~$s_{12}s_{14}$ in \Cref{eq:orthocenter} is not zero. Since the 
+three vectors $P_1\times P_2$, $P_1\times P_4$, $P_2\times P_4$ are linearly independent, we see that $P_7$ of \eqref{eq:orthocenter} is well defined. 
 %Also in this general situation, if the points are eigenpoints, it must hold: 
 
 On the other hand, the eigenpoint conditions imply
@@ -2979,12 +2974,12 @@ $\delta_1(P_6, P_1, P_2)=0$. These three relations, up to non zero factors, can 
 %
 hence $e_1-e_2+e_3 = 0$ and the system
 $e_1=0, e_2 = 0$ is linear in the coordinates of the $P_7$. 
-Its solution determines~$P_7$ and it is easy to check that \Cref{formula:ortocentro} holds. The complete computations are in \nb{07}{F7}.
+Its solution determines~$P_7$ and it is easy to check that \Cref{eq:orthocenter} holds. The complete computations are in \nb{07}{F7}.
 \end{proof}
 
 We have also the converse, i.e.\
 \begin{prop}
-Suppose $P_1, P_2, P_4$ are three points, that \Cref{formula:ortocentro} defines a point $P_7$ and that
+Suppose $P_1, P_2, P_4$ are three points, that \Cref{eq:orthocenter} defines a point $P_7$ and that
 %
 \[
 P_3 = (P_1 \vee P_2) \cap(P_4 \vee P_7), \quad 
@@ -3047,7 +3042,7 @@ In particular, such eigenschemes are in a $(C_8)$ configuration, with the additi
   \quad \text{ for } (i, j) \in \{(1, 2), (1, 3), (2, 3), (1, 7), (2, 6), (3, 5)\} \,.
 \]
 %
-The seven vectors fit into the description of \Cref{prop:conf8_partA}, since $Q_3 $ is proportional to $Q_1 \times Q_2$ and this is coherent with \Cref{formula:ortocentro}
+The seven vectors fit into the description of \Cref{proposition:conf8_partA}, since $Q_3 $ is proportional to $Q_1 \times Q_2$ and this is coherent with \Cref{eq:orthocenter}
 (because $\scl{Q_1}{Q_2} = 0$)
 and
 %
