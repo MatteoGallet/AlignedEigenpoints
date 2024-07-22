@@ -584,7 +584,7 @@ Now we consider the polynomial $M \cdot f$ and we observe that the chain rule gi
   \partial_z (M\cdot f) = \partial_z \bigl( f(M^{-1} \ \prescript{t} {} (x \ y \ z)) \bigr) = \prescript{t} {}(M^{-1})^{(3)}(\nabla f) \bigl( M^{-1}\ \prescript{t} {} (x \ y \ z) \bigr) \,,
 \end{gather*}
 %
-where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Hence
+where $(M^{-1})^{(j)}$ denotes the $j$-th column of the matrix $M^{-1}$. Thus
 %
 \[
   \nabla (M \cdot f) = \prescript{t} {} M^{-1} \cdot (\nabla f) \bigl(M^{-1}\ \prescript{t} {} (x \ y \ z)\bigr) \,,
@@ -762,10 +762,10 @@ Then
 \[
   B \det(L_1) = A \det(L_2), \quad
   C \det(L_1) = A \det(L_3), \quad
-  C \det(L_2) = B \det(L_3)
+  C \det(L_2) = B \det(L_3),
 \]
 %
-hence $(A: B: C) = \bigl( \det(L_1): \det(L_2): \det(L_3) \bigr)$.
+therefore $(A: B: C) = \bigl( \det(L_1): \det(L_2): \det(L_3) \bigr)$.
 \end{lemma}
 \begin{proof}
 The statement easily follows from the equality $C w_1 - B w_2 + A w_3 = 0$, which is a direct consequence of \Cref{eq:syzygy}.
@@ -1453,7 +1453,7 @@ It follows that the linear system in the variables $X,Y,Z$
 \]
 %
 admits $P_1 \times P_2$ as a non-zero solution,
-hence the determinant of the $3 \times 3$ coefficient matrix with rows
+thus the determinant of the $3 \times 3$ coefficient matrix with rows
  $P_1$, $\overline{P}$, $\nabla f (\overline{P})$ is zero. This is equivalent to saying that $A_1 g_3 - B_1 g_2 + C_1 g_1$ vanishes at all the points~$\overline{P}$ of the line~$P_1 \vee P_2$.
 
 We argue similarly for line~$P_1 \vee P_4$.
@@ -1807,17 +1807,17 @@ and it holds:
 P_4 = (P_2\times P_3)s_{25}s_{35}-s_{23}(P_2\times P_5)s_{35}+ s_{23}s_{25}(P_3\times P_5).
 \]
 In the first sub-family described in~\Cref{proposition:rk8_2B} we have 
-$P_1 = P_2 \times P_4$, hence 
+$P_1 = P_2 \times P_4$, so 
 \[
 \scl{P_1\times P_2}{P_2 \times P_4}=0, \quad 
 \scl{P_1\times P_4}{P_2 \times P_4}=0, \quad 
-\scl{P_1\times P_6}{P_2 \times P_4}=0
+\scl{P_1\times P_6}{P_2 \times P_4}=0.
 \]
-and in the second family:
+In the second family:
 \[
 \scl{P_1\times P_4}{P_3 \times P_4}=0, \quad 
 \scl{P_1\times P_2}{P_2 \times P_5}=0, \quad 
-\scl{P_3\times P_5}{P_1 \times P_6}=0.
+\scl{P_3\times P_5}{P_1 \times P_6}=0,
 \]
 hence it holds:
 \[
@@ -1969,7 +1969,7 @@ $ w_f = (b_0,
   b_4,
   b_5, b_6,b_7,b_8,b_9)$,
 %
-if $i\in I$ the coefficients $b_i$ depend on the free parameters $b_i=b_i(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$, where $j \not \in I$, $0\le j \le 6$. Hence we can interpret $w_f=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$ as a suitable rational function.
+if $i\in I$ the coefficients $b_i$ depend on the free parameters $b_i=b_i(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$, where $j \not \in I$, $0\le j \le 6$. Therefore, we can interpret $w_f=w_f(P_1,P_2,u_1,u_2,b_j,b_7,b_8,b_9)$ as a suitable rational function.
 This leads to the definition of the rational map
 %
 \[
@@ -2218,7 +2218,7 @@ for suitable forms $m_i \in \C[x,y,z]_r$, where $r =2 - \deg g \ge 0$.
 By the assumption that $g$ is the greatest common factor of the three minors $g_1$, $g_2$ and~$g_3$, the zero scheme $Z$ of $(h_1,h_2,h_3)$ is $0$-dimensional, and
 by \Cref{theorem:nonempty} its degree is~$3$ if $r=1$. Observe that $Z$, being intersection of three conics with no common component, is not contained in a line. 
 
-Finally, if $r=0$, the triple $(h_1,h_2,h_3)$ corresponds to three linear forms belonging to a pencil, hence the zero locus is a point.
+Finally, if $r=0$, the triple $(h_1,h_2,h_3)$ corresponds to three linear forms belonging to a pencil, thus the zero locus is a point.
 \end{proof}
 
 
@@ -2332,8 +2332,9 @@ distinct points on it. By~\Cref{lemma:four_points_on_line}, the projective linea
 $\Lambda(\Phi(P_1, \dotsc, P_4))$ is two-dimensional, but also all the cubics
 defined by $t^2\ell$ (for $\ell$ any line of $\mathbb{P}^2$) have $t$ among
 their eigenpoints and form a
-two-dimensional linear system of cubics, hence the two linear systems
-coincide.\\
+two-dimensional linear system of cubics, so the two linear systems
+coincide.
+
 If $t$ is tangent to $\iso$ in a point $P$, w.l.o.g.\ we can assume that
 $P$ is $(1: \iii: 0)$ and $t$ is $x+\iii y$. If we impose to the generic
 cubic of $\mathbb{P}^2$ to contain $t$ in the eigenscheme, we get a linear
@@ -2360,7 +2361,7 @@ and we consider the three dimensional linear system of cubic forms $\Lambda \big
   f = (ax + by + cz)z^2 + d(x^3+y^3), \quad a, b, c, d \in \C \,.
 \]
 %
-If $d=0$, we have $f=t^2 \ell$, hence, by \Cref{proposition:eigenline_tangent} is the 
+If $d=0$, we have $f=t^2 \ell$, hence, by \Cref{proposition:eigenline_tangent}, the form~$f$ is the 
 generic cubic not tangent to $\iso$ that has the line $t$ in the eigenscheme.
 If $d \neq 0$, the eigenpoints of~$f$ different from $P_1, P_2, P_3$ are
 the common zeros of the following polynomials:
@@ -2386,7 +2387,7 @@ f = (x+\iii y)^2(ax + by+cz)+
  d(x^2 + y^2 + 2/3z^2)z+e (x^3 -\iii y^3 + z^3), 
  \quad a, b, c, d, e \in \C
 \]
-If $e=0$, the form $f$ is described by \Cref{eq:cubics_with_tangent_eigenline}, hence is the generic cubic which contains the line $t$ in the eigenscheme. If $e \not= 0$, as above, 
+If $e=0$, the form $f$ is described by \Cref{eq:cubics_with_tangent_eigenline}, thus it is the generic cubic which contains the line $t$ in the eigenscheme. If $e \not= 0$, as above, 
 the remaining eigenpoints of~$f$ are given by an ideal generated 
 by four polynomials $h_1, \dotsc, h_4$.
 % %
@@ -2657,7 +2658,7 @@ must be~$9$ or~$8$. If the rank is~$9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dotsc, P_5) = 0$, see \Cref{theorem:rank_V}.
 From \Cref{proposition:third_alignment}, the only case
 which admits a strict $(C_2)$ configuration 
-is $\delta_1(P_1, P_2, P_4) = 0$. Hence, if we fix two points~$P_1$ and~$P_2$
+is $\delta_1(P_1, P_2, P_4) = 0$. Therefore, if we fix two points~$P_1$ and~$P_2$
 in the plane in an arbitrary way, from \Cref{lemma_delta_case1} we can choose $P_4$ so that
 $\scl{P_4}{s_{11}\, P_2 - s_{12} \, P_1}=0$, then we fix any~$P_3$
 on the line~$P_1 \vee P_2$ and any~$P_5$ on the line~$P_1 \vee P_4$; in this way, we get a cubic with a configuration of type~$(C_2)$, which is generally strict. If the rank is~$8$, configuration~$(C_2)$ can only be obtained from \Cref{rk8_1}, hence we get sub-cases of the case $\delta_1(P_1, P_2, P_4)=0$, see~\Cref{remark:particular_cases}.
@@ -2691,7 +2692,7 @@ These two equations are
 linear in the coordinates of~$P_2$.
 If the matrix of the associated linear system has
 maximal rank, the unique solution gives a point~$P_2$ which coincides, as a projective point, to $P_1$, which is impossible.
-Hence the matrix does not have maximal rank.
+Thus the matrix does not have maximal rank.
 This condition implies that $P_1$ is on the
 isotropic conic. As usual, we can assume 
 $P_1 = (1: \iii: 0)$ and again
@@ -2805,7 +2806,7 @@ The converse of the above proposition is also true, more precisely:
   P_1 = P_2 \times P_4 \,,
 \]
 %
-and suppose there is a cubic that has $7$ eigenpoints, five of which are $P_1, \dotsc, P_5$. Then the remaining eigenpoints~$P_6$ and~$P_7$ are given by \Cref{eq:p6formula} and \Cref{eq:p7formula}. Hence $(P_2, P_4, P_6)$ are aligned, so the points are in a $(C_5)$ configuration. 
+and suppose there is a cubic that has $7$ eigenpoints, five of which are $P_1, \dotsc, P_5$. Then the remaining eigenpoints~$P_6$ and~$P_7$ are given by \Cref{eq:p6formula} and \Cref{eq:p7formula}. Therefore $(P_2, P_4, P_6)$ are aligned, so the points are in a $(C_5)$ configuration. 
 
 Furthermore, in the general case, the configuration is 
 strict, but 
@@ -2839,7 +2840,7 @@ The condition that $(P_2, P_5, P_7)$ are aligned splits into two cases:
 one forces the collinearity of $(P_3, P_4, P_7)$, the other imposes the collinearity of $(P_3, P_5, P_6)$,
 hence we get two $(C_8)$ configurations. Similarly for the other two cases. 
 
-If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$, the $V$- configuration cannot satisfy \Cref{rk8_1}. Indeed, we would have \Cref{lemma_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Hence,
+If $\rk \, \Phi(P_1, \dotsc, P_5) = 8$, the $V$- configuration cannot satisfy \Cref{rk8_1}. Indeed, we would have \Cref{lemma_delta_case2} and by $s_{12} = 0$, it would be $P_1 = P_3$. Thus,
 from the results of \Cref{rank_8}, the lines $P_1 \vee P_2$ and $P_1 \vee P_4$ are tangent to the isotropic conic in~$P_2$ and~$P_4$. Thus 
 \[
 s_{22}= s_{44}= s_{23}= s_{45}=0
