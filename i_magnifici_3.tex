@@ -207,7 +207,7 @@ Here is a description of the content of each section.
 \Cref{further_alignments} examines all the possible configurations of alignments in a $0$-dimensional reduced eigenscheme.
 
 \subsection*{Symbolic computation}
-Several proofs employ coPropositionmputer algebra verifications in an essential way.
+Several proofs employ computer algebra verifications in an essential way.
 We rely on SageMath \cite{SageMath} for the operations we need 
 (mainly, manipulations of polynomials and polynomial ideals).
 To allow the reader for an easier use of these computations, we have prepared Jupyter notebooks, available at \cite{Notebooks}.
@@ -290,7 +290,7 @@ If $\dim \Eig{T}=0$, then
 In the matrix case, that is $d = 2$, we use the formula on the right, which evaluates to $n+1$.
 \end{theorem}
 
-We point out that \Cref{theorem:nonempty} holds also in the non-reduced case. However, a result by H. Abo (\cite[Corollary 5.8]{Abo}) guarantees that general forms have $0$-dimensional and reduced eigenschemes.
+We point out that \Cref{theorem:nonempty} holds also in the non-reduced case. However, a result by H.\ Abo (\cite[Corollary 5.8]{Abo}) guarantees that general forms have $0$-dimensional and reduced eigenschemes.
 
 \begin{definition}
 \label{definition:eigendiscriminant}
@@ -306,15 +306,12 @@ The locus~$\Delta_{3,3}$ is called the \emph{eigendiscriminant} (see \cite[Defin
 
 As already mentioned, a regular eigenscheme of a cubic form never contains six points on a conic by \cite[Theorem 5.1]{ASS}. As a consequence we have the following result.
 
-
-
 \begin{lemma}
 \label{lemma:no_4_aligned}
 Given $f \in \C[x,y,z]_3$,
 if $\Eig{f}$ is regular, then it contains no $4$ or more aligned points. 
 Moreover, if $\Eig{f}$ contains two aligned triples, they must share a point.
 \end{lemma}
-
 
 It can be expected that the presence of one or more aligned triples of eigenpoints should impose particular geometric constraints, since by \cite[Theorem 5.7]{BGV} this is not the general case.
 
@@ -1528,20 +1525,24 @@ See Notebook \nb{04}{F2}.
   From \Cref{lemma_delta_case2}, we obtain
   %
   \[
-  \left\{
+  \left\{ \!\!
+  \scalemath{0.9}{
   \begin{array}{ll}
   (L_1) & \left\langle P_1, P_1 \right\rangle = \sigma(P_1, P_2) = 0 \,, \text{ or} \\
   (L_2) & P_3 = (s_{12}^2+s_{11}s_{22}) \, P_1 - 2s_{11}s_{12} \, P_2 \,, \text{ or} \\
   (L_3) & P_2 = (s_{13}^2+s_{11}s_{33}) \, P_1 - 2s_{11}s_{13} \, P_3
   \end{array}
+  }
   \right.
   \quad \text{and} \quad
-  \left\{
+  \left\{ \!\!
+  \scalemath{0.9}{
   \begin{array}{ll}
   (R_1) & \left\langle P_1, P_1 \right\rangle = \sigma(P_1, P_4) = 0 \,, \text{ or} \\
   (R_2) & P_5 = (s_{14}^2+s_{11}s_{44}) \, P_1 - 2s_{11}s_{14} \, P_4 \,, \text{ or} \\
   (R_3) & P_4 = (s_{15}^2+s_{11}s_{55}) \, P_1 - 2s_{11}s_{15} \, P_5
   \end{array}
+  }
   \right.
   \]
   %
@@ -1577,7 +1578,7 @@ cubic has $7$ distinct eigenpoints (and is as expected, singular in $P_1$) and t
 $7$ points do not satisfy other collinearities in addition to those of the
 $V$- configuration.
 In particular, there is no alignment $(P_1, P_6, P_7)$.
-Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, the hypothesis ``rank $9$'' in~\Cref{proposition:third_alignment} is necessary. An example can be found in 
+Since \Cref{rk8_1} implies $\delta_2(P_1, \dots, P_5) = 0$, the hypothesis ``rank~$9$'' in~\Cref{proposition:third_alignment} is necessary. An example can be found in 
 \nb{04}{F4}.
 \end{rmk}
 
