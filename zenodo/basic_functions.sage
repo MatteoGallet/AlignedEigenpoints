@@ -142,7 +142,7 @@ def phi(P, R):
     ideal_eigenscheme = R.ideal(matrix_eigenscheme.minors(2))
 
     # instantiate the eigenscheme ideal at P
-    instance_ideal_eigenscheme = ideal_eigenscheme.subs(point_substitution(P))
+    instance_ideal_eigenscheme = ideal_eigenscheme.subs(substitution(P))
 
     vars_a = [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9]
     return [vector([poly.coefficient(a_variable) for a_variable in vars_a]) for poly in instance_ideal_eigenscheme.gens()]
