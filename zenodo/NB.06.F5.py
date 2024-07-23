@@ -20,7 +20,7 @@ load("basic_functions.sage")
 # In[2]:
 
 
-do_long_computations = True
+do_long_computations = False
 
 
 # ## Four distinct eigenpoints $P_1, \dotsc, P_4$ on the isotropic conic
@@ -759,7 +759,7 @@ assert(
 # In[62]:
 
 
-do_long_computations = True
+do_long_computations = False
 
 
 # Construction of a generic point Pg on the isotropic conic:
