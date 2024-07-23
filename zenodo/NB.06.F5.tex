@@ -1,0 +1,2700 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{soul}      % strikethrough (\st) support for pandoc >= 3.0.0
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{NB.06.F5}
+    
+    
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{theorem}{%
+\section{Theorem}\label{theorem}}
+
+    Suppose that \(\Gamma\) is a conic and let \(C\) be a cubic such that
+\(\Gamma \subseteq \mathrm{Eig}(C)\). Then we have three possible cases:
+* \(\Gamma = \mathcal{Q}_{\mathrm{iso}}\). This is true if and only if
+\(C = \ell \mathcal{Q}_{\mathrm{iso}}\) where \(\ell\) is any line of
+the plane; * \(\Gamma\) is bitangent to \(\mathcal{Q}_{\mathrm{iso}}\)
+in two distinct points \(P_1\) and \(P_2\). This is true iff
+\(C = r(\lambda \mathcal{Q}_{\mathrm{iso}} + \mu r^2)\), where
+\(\lambda, \mu \in \mathbb{C}\), \(r = P_1 \vee P_2\). In this case
+\(\Gamma = \lambda \mathcal{Q}_{\mathrm{iso}} + 3 \mu r^2\); *
+\(\Gamma\) is iperosculating \(\mathcal{Q}_{\mathrm{iso}}\) in a point
+\(P\). This is true iff \(C = r(\mathcal{Q}_{\mathrm{iso}}-r^2)\), where
+\(r\) is the tangent to \(\mathcal{Q}_{\mathrm{iso}}\) in \(P\). In this
+case \(\Gamma = \mathcal{Q}_{\mathrm{iso}}-3r^2\).
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{load}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{basic\PYZus{}functions.sage}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    If \texttt{do\_long\_computations} is \texttt{True}, we perform all the
+computations, if it is \texttt{False}, we load the computations done in
+a previous session.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{do\PYZus{}long\PYZus{}computations} \PY{o}{=} \PY{k+kc}{False}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{four-distinct-eigenpoints-p_1-dotsc-p_4-on-the-isotropic-conic}{%
+\subsection{\texorpdfstring{Four distinct eigenpoints
+\(P_1, \dotsc, P_4\) on the isotropic
+conic}{Four distinct eigenpoints P\_1, \textbackslash dotsc, P\_4 on the isotropic conic}}\label{four-distinct-eigenpoints-p_1-dotsc-p_4-on-the-isotropic-conic}}
+
+    We assume \(P_1 = (1: i: 0)\) and we define the generic point on the
+isotropic conic, which depends on two parameteres: \(l_1\) and \(l_2\).
+We can assume \(l_2 \neq 0\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{Pg} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{l1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{l2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{l1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{l2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1}\PY{o}{*}\PY{n}{l2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l2}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we define three points on the isotropic conic and the matrix of
+conditions of the four eigenpoints
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P2} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{u1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{P3} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{v1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{P4} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{w1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{first-we-assume-that-none-of-the-four-points-is-1--i-0.}{%
+\subsubsection{\texorpdfstring{First, we assume that none of the four
+points is
+\((1: -i: 0)\).}{First, we assume that none of the four points is (1: -i: 0).}}\label{first-we-assume-that-none-of-the-four-points-is-1--i-0.}}
+
+    Since the point \((1, -i, 0)\) is NOT one of the points
+\(P_2, P_3, P_4\), we can assume that \(u_1, v_1, w_1\) are not zero.
+The consequence is that the third coordinate of \(P_2, P_3, P_4\) is not
+zero. First we see that if \((1: -i:0)\) is one of the points
+\(P_2, P_3, P_4\) then we have \(u_1\) or \(v_1\) or \(w_1\) zero.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{P2}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}\PY{o}{==}\PY{p}{[}\PY{n}{u1}\PY{p}{]}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{P3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}\PY{o}{==}\PY{p}{[}\PY{n}{v1}\PY{p}{]}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{P4}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}\PY{o}{==}\PY{p}{[}\PY{n}{w1}\PY{p}{]}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u1}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{P3}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{v1}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{P4}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{w1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Since \[
+P_{2, z} M_{(4)} - P_{2, y} M_{(5)} + P_{2, x} M_{(6)}=0
+\] \[
+P_{3, z} M_{(7)} - P_{3, y} M_{(8)} + P_{3, x} M_{(9)}]=0
+\] \[
+P_{4, z} M_{(10)} - P_{4, y} M_{(11)} + P_{4, x} M_{(12)}=0
+\] the rows \(M_{(4)}, M_{(7)}, M_{(10)}\) are unnecessary in our
+hypothesis; similarly, the row \(M_{(2)}\) is also unnecessary. We
+construct the matrix \(M_1\) eraising the rows \(2, 3, 6, 9\) from
+\(M\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M1} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{]}\PY{p}{)} 
+\end{Verbatim}
+\end{tcolorbox}
+
+    \(M_1\) has always rank \(7\): it cannot have rank \(8\), since all the
+order \(8\) minors are zero:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{Set}\PY{p}{(}\PY{n}{M1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{n}{Set}\PY{p}{(}\PY{p}{[}\PY{n}{S}\PY{o}{.}\PY{n}{zero}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    If we impose that all the 7-minors of \(M_1\) are zero, we get that (if
+the points \(P_1, P_2, P_3, P_4\) are distinct) there are no solutions:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mm7} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{M1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\PY{n}{mm7} \PY{o}{=} \PY{n}{mm7}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{mm7} \PY{o}{=} \PY{n}{mm7}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{p}{(}\PY{n}{u1}\PY{o}{\PYZhy{}}\PY{n}{v1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{\PYZhy{}}\PY{n}{w1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{v1}\PY{o}{\PYZhy{}}\PY{n}{w1}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{k}{assert}\PY{p}{(}\PY{n}{mm7} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    All the cubics of the form \(\ell*\mathcal{Q}_{\mathrm{iso}}\) have
+\(\mathcal{Q}_{\mathrm{iso}}\) in the eigenscheme:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{gcd}\PY{p}{(}\PY{n}{eig}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{n}{u2}\PY{o}{+}\PY{n}{y}\PY{o}{*}\PY{n}{v2}\PY{o}{+}\PY{n}{z}\PY{o}{*}\PY{n}{w2}\PY{p}{)}\PY{o}{*}\PY{n}{Ciso}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{quo\PYZus{}rem}\PY{p}{(}\PY{n}{Ciso}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Conclusion 1: If four distinc points of \(\mathcal{Q}_{\mathrm{iso}}\)
+are eigenpoints of a cubic (and if one of the points is not
+\((1, -i, 0)\)), then the cubic splits into
+\(\mathcal{Q}_{\mathrm{iso}}\) and a line.
+
+    \emph{Proof}: The matrix \(M_1\) has always rank \(7\), hence all the
+cubics with \(P_1\), \(P_2\), \(P_3\), \(P_4\) as eigenpoints are a
+linear variety in \(\mathbb{P}^9\) of dimension \(2\). However, this
+family contains all the cubics which split into
+\(\mathcal{Q}_{\mathrm{iso}}\) and a line of the plane, which is of
+dimension \(2\), hence the two families coincide.
+
+    \hypertarget{now-we-assume-that-p_2-is-1--i-0}{%
+\subsubsection{\texorpdfstring{Now we assume that \(P_2\) is
+\((1: -i, 0)\)}{Now we assume that P\_2 is (1: -i, 0)}}\label{now-we-assume-that-p_2-is-1--i-0}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P2} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{P3} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{v1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{P4} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{w1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    As above, we have that \(M_{(3)}\), \(M_{(6)}\), \(M_{(7)}\),
+\(M_{(10)}\) are unnecessary so we erase these rows from \(M\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M1} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{]}\PY{p}{)} 
+\end{Verbatim}
+\end{tcolorbox}
+
+    \(M_1\) has rank \(7\). It cannot have rank \(8\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{Set}\PY{p}{(}\PY{n}{M1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{n}{Set}\PY{p}{(}\PY{p}{[}\PY{n}{S}\PY{o}{.}\PY{n}{zero}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mm7} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{M1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\PY{n}{mm7} \PY{o}{=} \PY{n}{mm7}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{mm7} \PY{o}{=} \PY{n}{mm7}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{p}{(}\PY{n}{v1}\PY{o}{\PYZhy{}}\PY{n}{w1}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{k}{assert}\PY{p}{(}\PY{n}{mm7} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{one}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Conclusion 2: Also in case one of the point \((1, -i, 0)\) we obtain the
+same conclusion: if four eigenpoints of a cubic are on
+\(\mathcal{Q}_{\mathrm{iso}}\), then \(\mathcal{Q}_{\mathrm{iso}}\) is
+contained in the eigenscheme of the cubic.
+
+    \hypertarget{case-gamma-tangent-to-mathcalq_mathrmiso-in-p_1-and-passing-through-p_2-and-p_3}{%
+\subsection{\texorpdfstring{Case \(\Gamma\) tangent to
+\(\mathcal{Q}_{\mathrm{iso}}\) in \(P_1\) and passing through \(P_2\)
+and
+\(P_3\)}{Case \textbackslash Gamma tangent to \textbackslash mathcal\{Q\}\_\{\textbackslash mathrm\{iso\}\} in P\_1 and passing through P\_2 and P\_3}}\label{case-gamma-tangent-to-mathcalq_mathrmiso-in-p_1-and-passing-through-p_2-and-p_3}}
+
+    We redefine \(P_1=(1:i:0)\), here we define the generic point \(P_g\) on
+\(\mathcal{Q}_{\mathrm{iso}}\) and two points \(P_2\) and \(P_3\) on
+\(\mathcal{Q}_{\mathrm{iso}}\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{Pg} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{l1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{l2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{l1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{l2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1}\PY{o}{*}\PY{n}{l2}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l2}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{n}{P2} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{u1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{P3} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{v1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Also here we consider two cases: * \((1: -i: 0)\) is not one of the
+points \(P_2\), \(P_3\); * \(P_3=(1:-i:0)\).
+
+    \hypertarget{case-p_2-and-p_3-not-1--i-0.}{%
+\subsubsection{\texorpdfstring{Case \(P_2\) and \(P_3\) not
+\((1: -i: 0)\).}{Case P\_2 and P\_3 not (1: -i: 0).}}\label{case-p_2-and-p_3-not-1--i-0.}}
+
+    Hence, as above, we can assume that \(u_1\) and \(v_1\) are not zero.
+
+    We compute the pencil of conics \(C_g\) passing through
+\(P_1, P_2, P_3\) and tangent to \(\mathcal{Q}_{\mathrm{iso}}\) in
+\(P_1\):
+
+\(c_2\) is the conic given by the two lines \(P_1 \vee P_2\) and
+\(P_1 \vee P_3\)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{c2} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{n}{Cg} \PY{o}{=} \PY{n}{Ciso}\PY{o}{+}\PY{n}{l1}\PY{o}{*}\PY{n}{c2}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we construct a generic point (different from \(P_1\)) on \(C_g\),
+depending on the parameter \(w_1\) (\(P_{gn}\) is the generic point on
+\(C_g\))
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{foo} \PY{o}{=} \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{ii}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n}{Pgn} \PY{o}{=} \PY{n}{vector}\PY{p}{(}
+    \PY{n}{S}\PY{p}{,} 
+    \PY{p}{(}
+        \PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{,} 
+        \PY{n}{ii}\PY{o}{*}\PY{p}{(}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{w1}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+        \PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Pg is the following:}
+\PY{k}{assert}\PY{p}{(}
+    \PY{n}{Pgn} \PY{o}{==} 
+    \PY{n}{vector}\PY{p}{(}
+        \PY{n}{S}\PY{p}{,} 
+        \PY{p}{(}
+            \PY{n}{u1}\PY{o}{*}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{w1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{,}
+            \PY{n}{ii}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{w1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,}
+            \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{w1}
+        \PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+
+\PY{n}{Pg1}\PY{p}{,} \PY{n}{Pg2} \PY{o}{=} \PY{n}{Pgn}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w1}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{,} \PY{n}{Pgn}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w2}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \(Pg_1\), \(Pg_2\) are two points on \(C_g\). We can assume \(l_1\),
+\(u_1\), \(v_1\), \(w_1\), \(w_2\), \((w_1-w_2)\), \((u_1-v_1)\),
+\((v_1 w_2+1)\), \((u_1 w_2+1)\), \((v_1 w_1+1)\), \((u_1 w_1+1)\) all
+different from 0.
+
+Indeed, \(l_1 = 0\) gives \(C_g = \mathcal{Q}_{\mathrm{iso}}\)
+(condition already considered above) \(u_1 = 0\) or \(v_1 = 0\) gives
+that \(P_2\) or \(P_3\) is the point \((1, -i, 0)\), and we are in case
+\(1\), so this is not possible;
+
+\(w_1 = 0\) gives \(Pg_1 = P_1\):
+
+\(w_2 = 0\) gives \(Pg_2 = P1\):
+
+\(w_1-w_2 = 0\) gives \(Pg_1 = Pg_2\)
+
+\(u_1-v_1 = 0\) gives \(P_2 = P_3\)
+
+\(v_1 w_2+1 = 0\) gives \(P_3 = Pg_2\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{Set}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{Pg1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{P1}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{n}{Set}\PY{p}{(}\PY{p}{[}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{Set}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{Pg2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w2}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{P1}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{n}{Set}\PY{p}{(}\PY{p}{[}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}
+    \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}
+        \PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P3}\PY{p}{,} \PY{n}{Pg2}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+    \PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Similarly, \((u_1 w_2+1)\), \((v_1 w_1+1)\), \((u_1 w_1+1)\) give,
+respectively: \(P_2 = Pg_2\), \(P_3 = Pg_1\), \(P_2 = Pg_1\). Hence we
+define a polynomial \texttt{degenerate\_cases}, which contains all these
+degenerate cases and we can saturate our computations w.r.t. this
+polynomial. So we construct the polynomial of degenerate cases, in order
+to compute saturations.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{degenerate\PYZus{}cases} \PY{o}{=} \PY{n}{l1}\PY{o}{*}\PY{n}{v1}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2}\PY{o}{*}\PY{p}{(}\PY{n}{w1}\PY{o}{\PYZhy{}}\PY{n}{w2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{\PYZhy{}}\PY{n}{v1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The points \(P_1\), \(P_2\), \(P_3\), \(Pg_1\), \(Pg_2\) are \(5\)
+points on the conic \(C_g\). If they are eigenpoints, the following
+matrix must have rank 9 or less:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{Pg1}\PY{p}{,} \PY{n}{Pg2}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We have \(P_{1, z} M_{(1)} - P_{1, y} M_{(2)} + P_{1, x} M_{(3)} = 0\)
+and \(P_{1, x} = 1\) so \(M_{(3)}\) is linearly dependent on \(M_{(1)}\)
+and \(M_{(2)}\), and can be omitted.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We have \(P_{2, z} M_{(4)} - P_{2, y} M_{(4)} + P_{2, x} M_{(6)} = 0\)
+\(P_{2, z} = 2 u_1\) which, under our hypothesis, is always not zero, so
+\(M_{(4)}\) can be omitted.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{+}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    In a similar way, \(M_{(7)}\), \(M_{(10)}\), \(M_{(13)}\), \(_{(16)}\)
+can be omitted. Hence we construct the square matrix of order \(10\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM1} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The first row of MM1 is \((-3i, 3, 3i, -3, 0, 0, 0, 0, 0, 0)\). The
+second row is \((0, 0, 0, 0, 1, i, -1, 0, 0, 0)\)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{MM1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{MM1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    So with elementary row operations we can simplify MM1:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now the 0-th column of MM1 is \((1, 0, \dotsc , 0)\)
+
+and the 4-th column of MM1 is \((0, 1, 0, \dotsc, 0)\)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{p}{[}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]} \PY{o}{==} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{p}{[}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]} \PY{o}{==} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We extract from MM1 an order 8 square matrix, extracting the last 8 rows
+and the columns of position 1, 2, 3, 5, 6, 7, 8, 9.
+
+We get a new matrix MM1.
+
+This new matrix MM1 has rank \(n\) iff the original MM1 has rank \(n+2\)
+(iff M has rank \(n+2\)) In particular, we want to see if MM1 can have
+rank \(\leq 6\).
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM1} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows\PYZus{}and\PYZus{}columns}\PY{p}{(}
+    \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{if} \PY{n}{do\PYZus{}long\PYZus{}computations}\PY{p}{:}
+   \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+   \PY{n}{mm1\PYZus{}7} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Computation of the 64 order 7 minors:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}\PY{p}{)}
+   \PY{n}{save}\PY{p}{(}\PY{n}{mm1\PYZus{}7}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}mm1\PYZus{}7.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+   \PY{n}{mm1\PYZus{}7} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}mm1\PYZus{}7.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computation of the 64 order 7 minors:
+time: 295.01199800000006
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{J7} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mm1\PYZus{}7}\PY{p}{)}
+\PY{n}{J7} \PY{o}{=} \PY{n}{J7}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{degenerate\PYZus{}cases}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The above ideal is \((1)\), so it is not possible to have that the
+matrix MM1 has rank \(\leq 6\) (hence it is not possible that \(M\) has
+rank \(\leq 8\))
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{J7} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    In order to have \(P_1\), \(P_2\), \(Pg_1\), \(Pg_2\), \(Pg_3\)
+eigenpoints, M must have zero determinant. But \(\det(M) = \det(MM1)\).
+So we compute \(\det(MM1)\) and we saturate it w.r.t.
+\texttt{degenerate\_cases}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{if} \PY{n}{do\PYZus{}long\PYZus{}computations}\PY{p}{:}
+   \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+   \PY{n}{ddt} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+   \PY{n}{ddt} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{ddt}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{degenerate\PYZus{}cases}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{gens}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+   \PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+   \PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+   \PY{n}{ddt} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{*} \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2} \PY{o}{+} \PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2} \PY{o}{+} \PY{n}{w1} \PY{o}{+} \PY{n}{w2}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{ddt} \PY{o}{==} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{*} \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2} \PY{o}{+} \PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2} \PY{o}{+} \PY{n}{w1} \PY{o}{+} \PY{n}{w2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.020036000000004606
+    \end{Verbatim}
+
+    Hence we have two possibilities: * \(l_1 + 1/4 = 0\), or *
+\(u_1 w_1 w_2 + v_1 w_1 w_2 + w_1 + w_2 = 0\).
+
+    This second condition must be satisfied for every point \(Pg_2\) of the
+conic \(C_g\), i.e.~for every \(w_2\), therefore this condition is
+impossible.
+
+    Hence the only possible case is \(l_1 = -1/4\). In this case \(C_g\)
+splits into two lines: * the line \(x + i y\) * the line
+\(x u_1 v_1 + i y u_1 v_1 + i z u_1 + i z v_1 + x - i y\)
+
+The first line is the tangent line to \(\mathcal{Q}_{\mathrm{iso}}\) in
+the point \(P_1\) and the second line is the line passing through the
+points \(P_2\) and \(P_3\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{Ciso}\PY{p}{,} \PY{n}{x}\PY{o}{+}\PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{p}{[}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{x} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{p}{]}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}
+    \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)} \PY{o}{==}
+    \PY{p}{(}\PY{n}{x}\PY{o}{+}\PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{o}{*}\PY{n}{S}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{\PYZhy{}}\PY{n}{v1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The matrix
+\texttt{M.matrix\_from\_rows({[}0,\ 1,\ 4,\ 5,\ 7,\ 8,\ 10,\ 11,\ 13,\ 14{]})}
+i.e., the original matrix extracted from \(M\), with the condition
+\(l_1=-1/4\) has rank \(9\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM2} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{MM2}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{9}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    and the last row of MM2 is linearly dependent w.r.t. the other rows of
+MM2. Indeed, the rank of MM2 without the last row is still 9:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{35}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM3} \PY{o}{=} \PY{n}{MM2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{MM3}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{9}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    hence the cubic corresponding to the matrix MM2 is:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{if} \PY{n}{do\PYZus{}long\PYZus{}computations}\PY{p}{:}
+    \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+    \PY{n}{cbb} \PY{o}{=} \PY{n}{det}\PY{p}{(}\PY{n}{MM3}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{mon}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ seconds of computation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+    \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+    \PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+    \PY{n}{cbb} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{cbb}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{degenerate\PYZus{}cases}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{gens}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ seconds of computation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n}{cbb} \PY{o}{=} \PY{p}{(}\PY{n}{x} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{v1} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{v1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{v1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{u1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{v1} \PY{o}{+} \PY{n}{x} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{cbb} \PY{o}{==} \PY{p}{(}\PY{n}{x} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{v1} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{v1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{v1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{u1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{v1} \PY{o}{+} \PY{n}{x} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+40.211033999999984 seconds of computation
+10.736583999999937 seconds of computation
+    \end{Verbatim}
+
+    \texttt{cbb} is the cubic obtained from the matrix MM3, hence is the
+unique cubic that has \(P_1, P_2, P_3\), \(Pg_1\), \(Pg_2\) as
+eigenpoints and \texttt{cbb} splits into the line \((P_1 \vee P_2)^2\)
+and the tangent to \(\mathcal{Q}_{\mathrm{iso}}\) in the point \(P_1\).
+The eigenpoints are the line \(P_1 \vee P_2\) plus other points and is
+not a conic.
+
+This conclude the case \(\Gamma\) tangent to
+\(\mathcal{Q}_{\mathrm{iso}}\) in one point in case \(P_2\) and \(P_3\)
+are different from the point \((1: -i: 0)\).
+
+    \hypertarget{case-p_3-1--i-0}{%
+\subsubsection{\texorpdfstring{Case
+\(P_3 = (1: -i: 0)\)}{Case P\_3 = (1: -i: 0)}}\label{case-p_3-1--i-0}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{40}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P3} \PY{o}{=} \PY{n}{ii}\PY{o}{*}\PY{n}{P3}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{v1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{P3} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We construct the conic given by two lines \(P_1 \vee P_2\) and
+\(P_1 \vee P_3\) and the generic conic tangent to
+\(\mathcal{Q}_{\mathrm{iso}}\) in \(P_1\) and passing through \(P_2\)
+and \(P_3\) (it depends on the parameter \(l_1\)):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{41}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{c2} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{Cg} \PY{o}{=} \PY{n}{Ciso}\PY{o}{+}\PY{n}{l1}\PY{o}{*}\PY{n}{c2}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Construction of a generic point (different from \((1, i, 0)\)) on
+\(C_g\) and generic point of \(C_g\) (depends on the parameter \(w_1\))
+and construction of \(Pg_1\) and \(Pg_2\) (two points on \(C_g\))
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{42}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{foo} \PY{o}{=} \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{ii}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n}{Pg} \PY{o}{=} \PY{n}{vector}\PY{p}{(}
+    \PY{n}{S}\PY{p}{,} 
+    \PY{p}{(}
+        \PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{,}
+        \PY{n}{ii}\PY{o}{*}\PY{p}{(}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{w1}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+        \PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{43}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Pg1}\PY{p}{,} \PY{n}{Pg2} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w1}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w2}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Matrix of conditions of \(P_1\), \(P_2\), \(P_3\), \(Pg_1\), \(Pg_2\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{44}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{Pg1}\PY{p}{,} \PY{n}{Pg2}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We have P1{[}2{]}\emph{M{[}0{]}-P1{[}1{]}}M{[}1{]}+P1{[}0{]}*M{[}2{]} =
+0 and P1{[}0{]} = 1 so M{[}2{]} is lin dep of M{[}0{]} and M{[}1{]} and
+can be omitted.
+
+We have
+P2{[}2{]}\emph{M{[}3{]}-P2{[}1{]}}M{[}4{]}+P2{[}0{]}\emph{M{[}5{]} = 0
+and P2{[}2{]} = 2}u1 which, under our hypothesis, is always not zero, so
+M{[}3{]} can be omitted.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{45}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(} \PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{+}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{M}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{P2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    In a similar way, M{[}9{]}, M{[}12{]}, M{[}15{]} can be omitted.
+
+P3{[}2{]}\emph{M{[}6{]}-P3{[}1{]}}M{[}7{]}+P3{[}0{]}*M{[}8{]} = 0 and
+P3{[}0{]} = 1, hence M{[}8{]} can be omitted.
+
+Hence we construct the square matrix of order 10:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{46}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM1} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The first row of MM1 is ((-3\emph{ii), 3, (3}ii), -3, 0, 0, 0, 0, 0, 0)
+
+The second row is (0, 0, 0, 0, 1, ii, -1, 0, 0, 0)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{47}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{MM1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{MM1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    so with elementary row operations we can simplify MM1:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{48}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now the 0-th column of MM1 is (1, 0, \ldots, 0) and the 4-th column of
+MM1 is (0, 1, 0, \ldots, 0)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{49}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{p}{[}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]} \PY{o}{==} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{p}{[}\PY{n}{MM1}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]} \PY{o}{==} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We extract from MM1 an order 8 square matrix, extracting the last 8 rows
+and the columns of position 1, 2, 3, 5, 6, 7, 8, 9.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{50}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM1} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows\PYZus{}and\PYZus{}columns}\PY{p}{(}
+    \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    This new matrix MM1 has rank n iff the original MM1 has rank n+2 (iff M
+has rank n+2) In particular, we want to see if MM1 can have rank
+\textless= 6.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{51}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{if} \PY{n}{do\PYZus{}long\PYZus{}computations}\PY{p}{:}
+   \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+   \PY{n}{mm1\PYZus{}7b} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Computation of the 64 order 7 minors:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+   \PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}\PY{p}{)}
+   \PY{n}{save}\PY{p}{(}\PY{n}{mm1\PYZus{}7b}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}mm1\PYZus{}7b.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+   \PY{n}{mm1\PYZus{}7b} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}mm1\PYZus{}7b.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computation of the 64 order 7 minors:
+time: 14.641388000000006
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{52}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{dgnCs} \PY{o}{=} \PY{n}{l1}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2}\PY{o}{*}\PY{p}{(}\PY{n}{w1}\PY{o}{\PYZhy{}}\PY{n}{w2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{\PYZhy{}}\PY{n}{v1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{53}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{J7} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mm1\PYZus{}7b}\PY{p}{)}
+\PY{n}{J7} \PY{o}{=} \PY{n}{J7}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{dgnCs}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The above ideal is (1), so it is not possible to have that the matrix
+MM1 has rank \textless= 6 (hence it is not possible that M has rank
+\textless= 8)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{54}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{J7} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We want now to compute the determinant of the original MM1 (the order 10
+matrix) which is equal to the determiant of the order 8 matrix MM1:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{55}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{dt2} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{n}{dt2} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{dt2}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{dgnCs}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{gens}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    we get that dt2 is:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{15}
+\item
+  \begin{itemize}
+  \tightlist
+  \item
+    (l1 + (-1/4\emph{ii))\^{}2 } (u1\emph{w1}w2 + w1 + w2)
+  \end{itemize}
+\end{enumerate}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{56}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{dt2} \PY{o}{==} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{l1} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{*} \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2} \PY{o}{+} \PY{n}{w1} \PY{o}{+} \PY{n}{w2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We have u1\emph{w1}w2+w1+w2 = 0 and, as in the previous case, since w2
+is generic, does not give solutions.
+
+The case l1 = 1/4\emph{ii In this case Cg splits into the line x+ii}y
+(tangent line to Cg in P1) and the line P2+P3:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{57}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}
+    \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{ii}\PY{p}{)} 
+    \PY{o}{==} \PY{n}{ii}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{+}\PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{o}{*}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We consider the substitution of l1=1/4*ii in the original MM, i.e.~in
+MM1 = M.matrix\_from\_rows({[}0, 1, 4, 5, 6, 7, 10, 11, 13, 14{]})
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{58}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM2} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{ii}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Also here the last row of MM2 is unnecessary:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{59}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{MM2}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{n}{MM2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Hence we compute the cubic:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{60}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M3} \PY{o}{=} \PY{p}{(}\PY{n}{MM2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{mon}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{n}{cb2} \PY{o}{=} \PY{n}{M3}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The cubic splits into the line tangent to \(\mathcal{Q}_{\mathrm{iso}}\)
+in \(P_1\) and the reducible conic given by \((P_2 \vee P_3)^2\)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{61}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}
+    \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{cb2}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{dgnCs}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{gens}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} 
+    \PY{o}{==} \PY{p}{(}\PY{n}{x} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{z}\PY{o}{*}\PY{n}{u1} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    also in this case, we do not get a cubic which has a conic among its
+eigenpoints.
+
+This conclude the case of \(\Gamma\) tangent to
+\(\mathcal{Q}_{\mathrm{iso}}\)
+
+    \hypertarget{gamma-bitangent-to-mathcalq_mathrmiso}{%
+\subsection{\texorpdfstring{\(\Gamma\) bitangent to
+\(\mathcal{Q}_{\mathrm{iso}}\)}{\textbackslash Gamma bitangent to \textbackslash mathcal\{Q\}\_\{\textbackslash mathrm\{iso\}\}}}\label{gamma-bitangent-to-mathcalq_mathrmiso}}
+
+    Now we consider the case in which among the eigenpoints of a cubic, we
+have a concic \(\Gamma\) which is bitangent to
+\(\mathcal{Q}_{\mathrm{iso}}\) in two points \(P_1\) and \(P_2\). We
+restart the computations:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{62}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{do\PYZus{}long\PYZus{}computations} \PY{o}{=} \PY{k+kc}{False}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Construction of a generic point Pg on the isotropic conic:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{63}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{rt1} \PY{o}{=} \PY{n}{l1}\PY{o}{*}\PY{p}{(}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{o}{*}\PY{n}{x}\PY{p}{)}\PY{o}{+}\PY{n}{l2}\PY{o}{*}\PY{n}{z}
+
+\PY{n}{rt1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{n}{P1}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+
+\PY{n}{scndP} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{Ciso}\PY{p}{,} \PY{n}{rt1}\PY{p}{)}\PY{o}{.}\PY{n}{radical}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{primary\PYZus{}decomposition}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\PY{n}{aux} \PY{o}{=} \PY{n}{scndP}\PY{o}{.}\PY{n}{gens}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+\PY{n}{mm2} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}
+    \PY{p}{[}
+        \PY{p}{[}\PY{n}{aux}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{aux}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{aux}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+        \PY{p}{[}\PY{n}{aux}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{aux}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{aux}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{]}
+    \PY{p}{]}
+\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{64}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Pg} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{n}{mm2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{mm2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{mm2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{65}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{scndP}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{n}{Pg}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{n}{Pg}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{n}{Pg}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{Ciso}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{n}{Pg}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{n}{Pg}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{n}{Pg}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)} \PY{o}{==} \PY{n}{S}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We can always assume that l2 != 0, since l2 = 0 gives that Pg = P1
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{66}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l2}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We construct P2, a generic point on \(\mathcal{Q}_{\mathrm{iso}}\) (it
+depends on u1)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{67}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P2} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{n}{u1}\PY{p}{,} \PY{n}{l2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    And now we construct the tangent line to \(\mathcal{Q}_{\mathrm{iso}}\)
+in P1, the tangent line to \(\mathcal{Q}_{\mathrm{iso}}\) in P2, the
+pencil of conics tangent to \(\mathcal{Q}_{\mathrm{iso}}\) in P1 and P2
+(it depends on l1)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{68}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{rtg1} \PY{o}{=} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{P1}\PY{p}{,} \PY{n}{vector}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{P1}\PY{p}{)}
+\PY{n}{rtg2} \PY{o}{=} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{P2}\PY{p}{,} \PY{n}{vector}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{P2}\PY{p}{)}\PY{o}{*}\PY{n}{ii}
+
+\PY{n}{Cg} \PY{o}{=} \PY{n}{Ciso} \PY{o}{+} \PY{n}{l1}\PY{o}{*}\PY{n}{rtg1}\PY{o}{*}\PY{n}{rtg2}
+\end{Verbatim}
+\end{tcolorbox}
+
+    If l1 = -1, Cg is the conic given by (P1+P2)\^{}2, so we can assume l1+1
+!= 0
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{69}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{==} \PY{n}{det}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    construction of a generic point (different from (1, ii, 0)) on Cg:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{70}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{foo} \PY{o}{=} \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{ii}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Generic point of Cg (depends on the parameter w1):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{71}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Pg2} \PY{o}{=} \PY{n}{vector}\PY{p}{(}
+    \PY{n}{S}\PY{p}{,} 
+    \PY{p}{(}
+        \PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{,}
+        \PY{n}{ii}\PY{o}{*}\PY{p}{(}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{w1}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+        \PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    the last coordinate of Pg2 is ((2\emph{ii)) } (l1 + 1) * w1. If w1 = 0,
+then Pg2 = P1, hence we can assume w1 != 0.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{72}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{Pg2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we define three points on Cg:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{73}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Pa1}\PY{p}{,} \PY{n}{Pa2} \PY{o}{=} \PY{n}{Pg2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w1}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{,} \PY{n}{Pg2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w2}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{Pa3} \PY{o}{=} \PY{n}{Pg2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{m1}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    and we can assume w1, w2, m1 != 0.
+
+the following matrix must have rank \textless= 9:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{74}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{Pa1}\PY{p}{,} \PY{n}{Pa2}\PY{p}{,} \PY{n}{Pa3}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{we-assume-that-u_1-not-0-so-p_2-is-not-the-point-1--i-0.}{%
+\subsubsection{\texorpdfstring{We assume that \(u_1 \not= 0\), so
+\(P_2\) is not the point
+\((1: -i: 0)\).}{We assume that u\_1 \textbackslash not= 0, so P\_2 is not the point (1: -i: 0).}}\label{we-assume-that-u_1-not-0-so-p_2-is-not-the-point-1--i-0.}}
+
+    Under this hypothesis, we have that we can extract from M the rows: 0,
+1; 4, 5; 7, 8; 10, 11; 13, 14. (Remember that w1, w2, m1 are not zero).
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{75}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM1} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{76}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} we make a copy of MM1}
+\PY{n}{MM2} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Using the fact that the first two rows are good (MM2{[}0,0{]} is a non
+zero constant, and MM2{[}1, 4{]} is 1) we can reduce MM2 with elementary
+rows and columns operations.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{77}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We extract from MM2 an order 8 square matrix, extracting the last 8 rows
+and the columns of position 1, 2, 3, 5, 6, 7, 8, 9.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{78}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM2} \PY{o}{=} \PY{n}{MM2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows\PYZus{}and\PYZus{}columns}\PY{p}{(}
+    \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The computation of det(MM2) gives 0 (time of computation: 3' 20'\,')
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{79}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{if} \PY{n}{do\PYZus{}long\PYZus{}computations}\PY{p}{:}
+   \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+   \PY{n}{dtMM2} \PY{o}{=} \PY{n}{MM2}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Computation of the determinant of MM2:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}\PY{p}{)}
+   \PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+   \PY{n}{dtMM2} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{zero}\PY{p}{(}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{dtMM2} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{zero}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computation of the determinant of MM2:
+time: 103.08253500000006
+    \end{Verbatim}
+
+    Hence M and MM1 have rank \textless= 9. We want to see when M has rank
+\textless=8, i.e.~when MM2 has rank \textless=6 hence we compute the
+ideal of the order 7-minors of MM2. Time of computation: 35'
+
+If doLongComputations=false, it takes some seconds to load the file
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{80}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{if} \PY{n}{do\PYZus{}long\PYZus{}computations}\PY{p}{:}
+   \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+   \PY{n}{mm2\PYZus{}7} \PY{o}{=} \PY{n}{MM2}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Computation of the order 7 minors:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}\PY{p}{)}
+   \PY{n}{save}\PY{p}{(}\PY{n}{mm2\PYZus{}7}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}mm2\PYZus{}7.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+   \PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+   \PY{n}{mm2\PYZus{}7} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}mm2\PYZus{}7.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computation of the order 7 minors:
+time: 1000.0280200000001
+    \end{Verbatim}
+
+    here is a list of factors that cannot be zero:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{81}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{nonZeroFt} \PY{o}{=} \PY{p}{[}
+    \PY{n}{l1}\PY{p}{,}\PY{n}{v1}\PY{p}{,}\PY{n}{u1}\PY{p}{,}\PY{n}{w1}\PY{p}{,}\PY{n}{w2}\PY{p}{,}\PY{n}{m1}\PY{p}{,}\PY{n}{l1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} 
+    \PY{p}{(}\PY{n}{w1}\PY{o}{\PYZhy{}}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{u1}\PY{o}{\PYZhy{}}\PY{n}{v1}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{w2}\PY{o}{\PYZhy{}}\PY{n}{m1}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{w1}\PY{o}{\PYZhy{}}\PY{n}{m1}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w2}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{v1}\PY{o}{*}\PY{n}{w1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+    \PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{m1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{82}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} an auxiliary function:}
+\PY{c+c1}{\PYZsh{} input: a polynomial pol and a list of polynomials listFt:}
+\PY{c+c1}{\PYZsh{} output: a list of polynomials obtained deleting from the factors of pol}
+\PY{c+c1}{\PYZsh{} those factors which are contained in the list listFt. Each factor is taken }
+\PY{c+c1}{\PYZsh{} with exponent 1.}
+\PY{c+c1}{\PYZsh{} example:}
+\PY{c+c1}{\PYZsh{} erase\PYZus{}superfluous\PYZus{}factors(x\PYZca{}3*(x+1)\PYZca{}4*(z+y)\PYZca{}3*(x+y+z)\PYZca{}5, [x, z+y, z])}
+\PY{c+c1}{\PYZsh{} answer: [x+1, x+y+z]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{83}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{erase\PYZus{}superfluous\PYZus{}factors}\PY{p}{(}\PY{n}{pol}\PY{p}{,} \PY{n}{list\PYZus{}factors}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{pol} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{zero}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return}\PY{p}{(}\PY{n}{pol}\PY{p}{)}
+    \PY{n}{ftOK} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{k}{for} \PY{n}{ft} \PY{o+ow}{in} \PY{n+nb}{list}\PY{p}{(}\PY{n}{pol}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{o+ow}{not} \PY{n}{ft}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{in} \PY{n}{list\PYZus{}factors}\PY{p}{:}
+            \PY{n}{ftOK}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ft}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+    \PY{k}{return}\PY{p}{(}\PY{n}{ftOK}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    here from each order 7-minor of MM2 (i.e.~every element of mm2\_7) we
+clear off the superfluous factors and we construct the ideal J7 of these
+polynomials (7'\,' of computation)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{84}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{J7} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{k}{for} \PY{n}{ff} \PY{o+ow}{in} \PY{n}{mm2\PYZus{}7}\PY{p}{:}
+    \PY{n}{J7}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{prod}\PY{p}{(}\PY{n}{erase\PYZus{}superfluous\PYZus{}factors}\PY{p}{(}\PY{n}{ff}\PY{p}{,} \PY{n}{nonZeroFt}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    since the ideal J7 (after suitable saturation) is (1), we have that the
+matrix MM2 cannot have rank 6 or smaller, hence M cannot have rank 8 or
+smaller:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{85}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{J7}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{p}{(}\PY{n}{l1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{w2}\PY{o}{\PYZhy{}}\PY{n}{m1}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The above computations show that the matrix \(M\) has rank 9, there is
+thereofre only one cubic given by \(M\) and is obtained from the
+determinant of the matrix Mc below, given when we stack to MM1 the row
+ginven by the list mon.
+
+The next block constructs the cubic Cbc, which is the unique cubic given
+by the matrix M.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{86}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Mc} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}  
+\PY{n}{Mc} \PY{o}{=} \PY{n}{Mc}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{mon}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{87}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{if} \PY{n}{do\PYZus{}long\PYZus{}computations}\PY{p}{:}
+   \PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+   \PY{n}{dtMc} \PY{o}{=} \PY{n}{Mc}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Computation of the cubic:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+   \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}\PY{p}{)}
+   \PY{n}{save}\PY{p}{(}\PY{n}{dtMc}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}dtMc.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+   \PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+   \PY{n}{dtMc} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NB.06.F5\PYZhy{}dtMc.sobj}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computation of the cubic:
+time: 1077.124312
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{88}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} from dtMc we erase useless factors:}
+
+\PY{n}{dt1} \PY{o}{=} \PY{n}{erase\PYZus{}superfluous\PYZus{}factors}\PY{p}{(}\PY{n}{dtMc}\PY{p}{,} \PY{n}{nonZeroFt}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We get that dt1 is a list of 4 elements, which are:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{89}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Ls} \PY{o}{=} \PY{p}{[}
+    \PY{n}{x}\PY{o}{*}\PY{n}{u1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{u1} \PY{o}{+} \PY{n}{ii}\PY{o}{*}\PY{n}{z}\PY{p}{,}
+    \PY{n}{u1}\PY{o}{*}\PY{n}{w1}\PY{o}{*}\PY{n}{w2} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{w1} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{w2}\PY{p}{,}
+    \PY{n}{u1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1}\PY{o}{*}\PY{n}{m1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{l1}\PY{o}{*}\PY{n}{m1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{m1} \PY{o}{\PYZhy{}} \PY{n}{m1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,}
+    \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{u1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{l1} 
+    \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{u1}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{90}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{dt1} \PY{o}{==} \PY{n}{Ls}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We select the two factors which are a line and a conic and whose product
+is the desired cubic.
+
+The factor dt1{[}0{]} is the line r12 given by P1+P2:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{91}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{r12} \PY{o}{=} \PY{n}{det}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{ii}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{92}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{r12}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The factor Lt{[}3{]} is the l1\emph{r12\^{}2+3}(l1+1)*Ciso:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{93}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{==} \PY{n}{l1}\PY{o}{*}\PY{n}{r12}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{+}\PY{l+m+mi}{3}\PY{o}{*}\PY{p}{(}\PY{n}{l1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{Ciso}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The cubic is therefore:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{94}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Cbc} \PY{o}{=} \PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The cubic Cbc is of the form r12\emph{(u}r12\^{}2+v*Ciso) for suitable
+u, v
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{95}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{Cbc} \PY{o}{==} \PY{n}{r12}\PY{o}{*}\PY{p}{(}\PY{n}{l1}\PY{o}{*}\PY{n}{r12}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{+}\PY{l+m+mi}{3}\PY{o}{*}\PY{p}{(}\PY{n}{l1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{Ciso}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    now we compute the eigenpoints of Cbc:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{96}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Je} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}
+    \PY{n}{matrix}\PY{p}{(}
+        \PY{p}{[}
+            \PY{p}{[}
+                \PY{n}{Cbc}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                \PY{n}{Cbc}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{,}
+                \PY{n}{Cbc}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+            \PY{p}{]}\PY{p}{,}
+            \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}
+        \PY{p}{]}
+    \PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    we get two components, which are: the ideal generated by rtg1, rtg2
+(hence is a point) and the principal ideal generated by
+Ciso+l1\emph{rtg1}rtg2
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{97}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{PDe} \PY{o}{=} \PY{n}{Je}\PY{o}{.}\PY{n}{primary\PYZus{}decomposition}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{98}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{PDe}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{PDe}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{rtg1}\PY{p}{,} \PY{n}{rtg2}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{PDe}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{Ciso}\PY{o}{+}\PY{n}{l1}\PY{o}{*}\PY{n}{rtg1}\PY{o}{*}\PY{n}{rtg2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Conversely, we assume here that the cubic C is of the form C1 =
+(l1\emph{Ciso+l2}(u1\emph{x+v1}y+w1\emph{z)\^{}2)}(u1\emph{x+v1}y+w1\emph{z)
+where u1}x+v1\emph{y+w1}z is a generic line of the plane and l1 and l2
+are parameters.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{99}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{C1} \PY{o}{=} \PY{p}{(}\PY{n}{l1}\PY{o}{*}\PY{n}{Ciso}\PY{o}{+}\PY{n}{l2}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{v1}\PY{o}{*}\PY{n}{y}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{v1}\PY{o}{*}\PY{n}{y}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We compute the eigenpoints of C1: and the primary decomposition of the
+ideal of the eigenpoints. We get two components:
+
+The first is:
+
+Ideal (z\emph{v1 - y}w1, z\emph{u1 - x}w1, y\emph{u1 - x}v1)
+
+i.e.~the point (u1, v1, w1)
+
+and the second component is the conic
+
+l1\emph{Ciso+3}l2\emph{(u1}x+v1\emph{y+w1}z)\^{}2
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{100}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{JJ} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}
+    \PY{n}{matrix}\PY{p}{(}
+        \PY{p}{[}
+            \PY{p}{[}
+                \PY{n}{C1}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                \PY{n}{C1}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{,}
+                \PY{n}{C1}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+            \PY{p}{]}\PY{p}{,} 
+            \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}
+        \PY{p}{]}
+    \PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{101}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{pdJJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{primary\PYZus{}decomposition}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{102}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{pdJJ}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal} \PY{p}{(}\PY{n}{z}\PY{o}{*}\PY{n}{v1} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{o}{*}\PY{n}{w1}\PY{p}{,} \PY{n}{z}\PY{o}{*}\PY{n}{u1} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{o}{*}\PY{n}{w1}\PY{p}{,} \PY{n}{y}\PY{o}{*}\PY{n}{u1} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{o}{*}\PY{n}{v1}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{pdJJ}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{l1}\PY{o}{*}\PY{n}{Ciso}\PY{o}{+}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{l2}\PY{o}{*}\PY{p}{(}\PY{n}{u1}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{v1}\PY{o}{*}\PY{n}{y}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    In case \(P_2 \not= (1: -i:0)\) we have:
+
+A cubic C of the plane has in its eigenpoints a conic bitanget to
+\(\mathcal{Q}_{\mathrm{iso}}\) if and only if C is of the form
+(l1\emph{Ciso+l2}(u1\emph{x+v1}y+w1\emph{z)\^{}2)}(u1\emph{x+v1}y+w1*z)
+
+Moreover (for any \(P_2\)), if a cubic is of the above form, the conic
+l1\emph{Ciso+3}l2\emph{(u1}x+v1\emph{y+w1}z)\^{}2 is contained in its
+eigenpoints.
+
+    \hypertarget{case-p_2-1--i-0.}{%
+\subsubsection{\texorpdfstring{Case
+\(P_2 = (1: -i: 0)\).}{Case P\_2 = (1: -i: 0).}}\label{case-p_2-1--i-0.}}
+
+    We start as before, so we define the points \(P_1, P_2\), the tangent
+lines to \(\mathcal{Q}_{\mathrm{iso}}\) in \(P_1\) and \(P_2\), the
+pencil of conics Cg bitangent to \(\mathcal{Q}_{\mathrm{iso}}\) in
+\(P_1\) and \(P_2\), we construct three points, here called Pg1, Pg2 and
+Pg3 on Cg. We observe that we can assume that some used parameters are
+not 0
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{103}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{P2} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{104}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} Tangent line to Ciso in P1:}
+\PY{n}{rtg1} \PY{o}{=} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{P1}\PY{p}{,} \PY{n}{vector}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{P1}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Tangent line to Ciso in P2:}
+\PY{n}{rtg2} \PY{o}{=} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{P2}\PY{p}{,} \PY{n}{vector}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{P2}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Pencil of conics tangent to P1 and P2 to Ciso:}
+\PY{n}{Cg} \PY{o}{=} \PY{n}{Ciso} \PY{o}{+} \PY{n}{l1}\PY{o}{*}\PY{n}{rtg1}\PY{o}{*}\PY{n}{rtg2}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} If l1 = \PYZhy{}1, Cg is the conic given by (P1+P2)\PYZca{}2, so we can assume}
+\PY{c+c1}{\PYZsh{}\PYZsh{} l1+1 != 0}
+\PY{k}{assert}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{==} \PY{n}{det}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} construction of a generic point (different from (1, ii, 0)) on Cg:}
+
+\PY{n}{foo} \PY{o}{=} \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{ii}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} generic point of Cg (depends on the parameter w1):}
+\PY{n}{Pg} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{ii}\PY{o}{*}\PY{p}{(}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{+}\PYZbs{}
+                     \PY{n}{w1}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} the last coordinate of Pg is ((\PYZhy{}2*ii)) * (l1 + 1) * w1. }
+\PY{c+c1}{\PYZsh{}\PYZsh{} If w1 = 0, then Pg = P1, hence we can assume w1 != 0.}
+\PY{k}{assert}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Now we define three points on Cg:}
+
+\PY{n}{Pg1}\PY{p}{,} \PY{n}{Pg2} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w1}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{w2}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{Pg3} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{w1}\PY{p}{:}\PY{n}{m1}\PY{p}{\PYZcb{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} and we can assume w1, w2, m1 != 0.}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we construct the matrix of conditions of the points P1, P2, Pg1,
+Pg2, Pg3 and we study its rank. We see that the matrix \(M\) has rank
+\textless=9.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{105}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} the following matrix must have rank \PYZlt{}= 9:}
+
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{Pg1}\PY{p}{,} \PY{n}{Pg2}\PY{p}{,} \PY{n}{Pg3}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Under this hypothesis, we have that we can extract from M}
+\PY{c+c1}{\PYZsh{}\PYZsh{} the rows: 0, 1; 3, 4; 7, 8; 10, 11; 13, 14.}
+\PY{c+c1}{\PYZsh{}\PYZsh{} (Remember that w1, w2, m1 are not zero).}
+
+\PY{n}{MM1} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} we make a copy of MM1}
+\PY{n}{MM2} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Using the fact that the first two rows are good}
+\PY{c+c1}{\PYZsh{}\PYZsh{} (MM2[0,0] is a non zero constant, and MM2[1, 4] is 1)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} we can reduce MM2 with elementary rows and columns operations.}
+
+\PY{n}{MM2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MM2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MM2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} We extract from MM2 an order 8 square matrix, }
+\PY{c+c1}{\PYZsh{}\PYZsh{} extracting the last 8 rows and the columns of position}
+\PY{c+c1}{\PYZsh{}\PYZsh{} 1, 2, 3, 5, 6, 7, 8, 9. }
+\PY{n}{MM2} \PY{o}{=} \PY{n}{MM2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows\PYZus{}and\PYZus{}columns}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{,} \PYZbs{}
+                                       \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} The computation of det(MM2) gives 0 }
+\PY{n}{dtMM2} \PY{o}{=} \PY{n}{MM2}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{dtMM2} \PY{o}{==} \PY{n}{S}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Hence M and MM1 have rank \PYZlt{}= 9.}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we want to see if \(M\) can have rank \textless{} 9. We will see
+that \(M\) cannot have rank 8 or smaller:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{106}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} We want to see when M has rank \PYZlt{}=8, i.e. when MM2 has rank \PYZlt{}=6}
+\PY{c+c1}{\PYZsh{}\PYZsh{} hence we compute the ideal of the order 7\PYZhy{}minors of MM2.}
+\PY{c+c1}{\PYZsh{}\PYZsh{} Time of computation: 15\PYZsq{}\PYZsq{}}
+
+\PY{n}{mm2\PYZus{}7} \PY{o}{=} \PY{n}{MM2}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+    
+\PY{c+c1}{\PYZsh{}\PYZsh{} here is a list of factors that cannot be zero:}
+\PY{n}{nonZeroFt} \PY{o}{=} \PY{p}{[}\PY{n}{l1}\PY{p}{,} \PY{n}{l1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{w1}\PY{p}{,} \PY{n}{w2}\PY{p}{,} \PY{n}{m1}\PY{p}{,} \PY{n}{w1}\PY{o}{\PYZhy{}}\PY{n}{w2}\PY{p}{,} \PY{n}{w1}\PY{o}{\PYZhy{}}\PY{n}{m1}\PY{p}{,} \PY{n}{w2}\PY{o}{\PYZhy{}}\PY{n}{m1}\PY{p}{]}
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} here from each order 7\PYZhy{}minor of MM2 (i.e. every element }
+\PY{c+c1}{\PYZsh{}\PYZsh{} of mm2\PYZus{}7) we clear off the superfluous factors and }
+\PY{c+c1}{\PYZsh{}\PYZsh{} we construct the ideal J7 of these polynomials (7\PYZsq{}\PYZsq{} of computation)}
+
+\PY{n}{J7} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{k}{for} \PY{n}{ff} \PY{o+ow}{in} \PY{n}{mm2\PYZus{}7}\PY{p}{:}
+    \PY{n}{J7}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{prod}\PY{p}{(}\PY{n}{erase\PYZus{}superfluous\PYZus{}factors}\PY{p}{(}\PY{n}{ff}\PY{p}{,} \PY{n}{nonZeroFt}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} since the ideal J7 is (1), we have }
+\PY{c+c1}{\PYZsh{}\PYZsh{} that the matrix MM2 cannot have rank 6 or smaller, hence}
+\PY{c+c1}{\PYZsh{}\PYZsh{} M cannot have rank 8 or smaller:}
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{J7}\PY{p}{)} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The above computation show that the matrix \(M\) has rank 9. Therefore
+there is only one cubic given by \(M\) and is obtained from the
+determinant of the matrix Mc below. We get therefore the cubic Cbc
+below.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{107}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Mc} \PY{o}{=} \PY{n}{MM1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}  
+\PY{n}{Mc} \PY{o}{=} \PY{n}{Mc}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{mon}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{dtMc} \PY{o}{=} \PY{n}{Mc}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} from dtMc we erase useless factors:}
+
+\PY{n}{dt1} \PY{o}{=} \PY{n}{erase\PYZus{}superfluous\PYZus{}factors}\PY{p}{(}\PY{n}{dtMc}\PY{p}{,} \PY{n}{nonZeroFt}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} We get that dt1 is a list of 4 elements, which are:}
+\PY{n}{Ls} \PY{o}{=} \PY{p}{[}\PY{n}{w1} \PY{o}{+} \PY{n}{w2}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{n}{l1}\PY{o}{*}\PY{n}{m1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{m1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{,} \PYZbs{}
+      \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l1} \PY{o}{+} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{]}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{dt1} \PY{o}{==} \PY{n}{Ls}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} we select the two factors which are a line and a conic and whose }
+\PY{c+c1}{\PYZsh{}\PYZsh{} product is the desired cubic.}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} The factor dt1[1] is the line r12 given by P1+P2:}
+
+\PY{n}{r12} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{det}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{ii}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{r12}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} The factor Lt[3] is the l1*r12\PYZca{}2+3*(l1+1)*Ciso:}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{==} \PY{p}{(}\PY{n}{l1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{Ciso}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{l1}\PY{o}{*}\PY{n}{r12}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} The cubic is therefore:}
+
+\PY{n}{Cbc} \PY{o}{=} \PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{dt1}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{Cbc} \PY{o}{==} \PY{n}{r12}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{l1}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{Ciso}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{l1}\PY{o}{*}\PY{n}{r12}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The above cubic is of the form desired, i.e.~is of the form
+r\emph{(u}r\^{}2+v*Ciso) for suitable u, v in K. Now we compute the
+eigenpoints of Cbc and we see that they are of the desired form:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{108}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Je} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}
+    \PY{n}{matrix}\PY{p}{(}
+        \PY{p}{[}
+            \PY{p}{[}\PY{n}{Cbc}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{Cbc}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{Cbc}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{,} 
+            \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}
+        \PY{p}{]}
+    \PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} we get two components: }
+\PY{n}{PDe} \PY{o}{=} \PY{n}{Je}\PY{o}{.}\PY{n}{primary\PYZus{}decomposition}\PY{p}{(}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{PDe}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{PDe}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{rtg1}\PY{p}{,} \PY{n}{rtg2}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{PDe}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{Ciso}\PY{o}{+}\PY{n}{l1}\PY{o}{*}\PY{n}{rtg1}\PY{o}{*}\PY{n}{rtg2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    This concludes the case \(P_2 =(1:-i:0)\) and there are no differences
+w.r.t. the case \(P_2 \not= (1:-i:0)\)
+
+    \hypertarget{gamma-osculating-the-isotropic-conic-in-p_11i0.}{%
+\subsection{\texorpdfstring{\(\Gamma\) osculating the isotropic conic in
+\(P_1=(1:i:0)\).}{\textbackslash Gamma osculating the isotropic conic in P\_1=(1:i:0).}}\label{gamma-osculating-the-isotropic-conic-in-p_11i0.}}
+
+    Time of computations: about 800 seconds.
+
+Here we want to see the case in which a cubic has among its eigenpoints,
+a conic which is osculating \(\mathcal{Q}_{\mathrm{iso}}\) in the point
+\(P_1=(1:i:0)\). We define \(P_2\) a generic point on
+\(\mathcal{Q}_{\mathrm{iso}}\) different from \(P_1\) (\(P_2\) depends
+on the parameter \(u_1\)). We define the tangent lines to
+\(\mathcal{Q}_{\mathrm{iso}}\) in \(P_1\) and \(P_2\), we define the
+pencil of conics Cg that pass through \(P_2\) and are osculating
+\(\mathcal{Q}_{\mathrm{iso}}\) in \(P_1\). Then we define 6 ``random''
+points \(P_3, \dots, P_8\) on Cg
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{109}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{P2} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{u1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{n}{u1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u1}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Tangent line to Ciso in P1:}
+\PY{n}{rtg} \PY{o}{=} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{P1}\PY{p}{,} \PY{n}{vector}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{P1}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} line P1 + P2}
+\PY{n}{r12} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Pencil of conics osculating Ciso in P1 and passing through P2:}
+\PY{n}{Cg} \PY{o}{=} \PY{n}{Ciso} \PY{o}{+} \PY{n}{l1}\PY{o}{*}\PY{n}{rtg}\PY{o}{*}\PY{n}{r12}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} If l1 = 0, Cg is Ciso, so we can assume}
+\PY{c+c1}{\PYZsh{}\PYZsh{} l1 != 0}
+\PY{k}{assert}\PY{p}{(}\PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{o}{==} \PY{n}{Ciso}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} construction of a generic point (different from (1, ii, 0)) on Cg:}
+
+\PY{n}{foo} \PY{o}{=} \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{ii}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} generic point of Cg (it depends on the parameter w1):}
+\PY{n}{Pg} \PY{o}{=} \PY{n}{vector}\PY{p}{(}
+    \PY{n}{S}\PY{p}{,} 
+    \PY{p}{(}
+        \PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{,} 
+        \PY{n}{ii}\PY{o}{*}\PY{p}{(}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+        \PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Pg is on Cg:}
+\PY{k}{assert}\PY{p}{(}\PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{substitution}\PY{p}{(}\PY{n}{Pg}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} If w1 = 0, then Pg = P1, hence we can assume w1 != 0.}
+\PY{k}{assert}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Now we define six specific points on Cg:}
+
+\PY{n}{P3} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{P4} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{P5} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{P6} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+\PY{n}{P7} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{)}
+\PY{n}{P8} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{6}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Then we construct two matrices, MT1 and MT2 of conditions that must have
+rank \(\leq 9\). We manipulate these matrices and at the end of the
+block below, we have two matrices (called again MT1 and MT2) that, if
+\(P_1, \dotsc, P_8\) are eigenpoints, must have rank \(\leq 8\).
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{110}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MT1} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{,} \PY{n}{P5}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{MT2} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P6}\PY{p}{,} \PY{n}{P7}\PY{p}{,} \PY{n}{P8}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Since the 0\PYZhy{}row of MT1 and MT2 is numeric and also the 1\PYZhy{}row }
+\PY{c+c1}{\PYZsh{}\PYZsh{} of MT1 and MT2 is numeric, we can use them to simplify MT1 and MT2. }
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{MT1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{MT2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{MT1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{MT2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{MT1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT1} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}columns}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\PY{n}{MT1} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} same for MT2:}
+
+\PY{n}{MT2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT2} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}columns}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\PY{n}{MT2} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} If P1, P2, P3, P4, P5, P6, P7, P8 are eigenpoints, }
+\PY{c+c1}{\PYZsh{}\PYZsh{} the order 8 minors of MT1 and of MT2 must all be zero.}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we compute the two ideals of the minors of order 8 of MT1 and MT2.
+The next computations require about 200 seconds. At the end of the
+computations below, we have two ideals, j1 and j2 which are such that
+when the parameters are a zero of j1+j2, then MT1 and MT2 have rank
+\textless=8
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{111}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} this computation requires about 63\PYZdq{}:}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{About 63 seconds of computation...}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{mt1\PYZus{}8} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} this computation requires about 80\PYZdq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{About 80 seconds of computation...}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{mt2\PYZus{}8} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} To speed up the computations, we keep separated the two ideals}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} The following block requires 36 seconds.}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Now 36 seconds of computations}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{JJ1} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mt1\PYZus{}8}\PY{p}{)}
+\PY{n}{JJ2} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mt2\PYZus{}8}\PY{p}{)}
+
+
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{j1} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{JJ1}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{l1}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} we saturate w.r.t. the conditions that P2 and P3, P4, P5}
+\PY{c+c1}{\PYZsh{}\PYZsh{} are different:}
+
+\PY{n}{plSat} \PY{o}{=} \PY{n}{prod}\PY{p}{(}
+    \PY{p}{[}
+        \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P2}\PY{p}{,} \PY{n}{pp}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{k}{for} \PY{n}{pp} \PY{o+ow}{in} \PY{p}{[}\PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{,} \PY{n}{P5}\PY{p}{]}
+    \PY{p}{]}
+\PY{p}{)}
+
+\PY{n}{j1} \PY{o}{=} \PY{n}{j1}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{plSat}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} similarly for JJ2.}
+\PY{c+c1}{\PYZsh{}\PYZsh{} we saturate w.r.t. the conditions that P2 and P6, P7, P8}
+\PY{c+c1}{\PYZsh{}\PYZsh{} are different:}
+
+\PY{n}{j2} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{JJ2}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{l1}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n}{plSat} \PY{o}{=} \PY{n}{prod}\PY{p}{(}
+    \PY{p}{[}
+        \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P2}\PY{p}{,} \PY{n}{pp}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{k}{for} \PY{n}{pp} \PY{o+ow}{in} \PY{p}{[}\PY{n}{P6}\PY{p}{,} \PY{n}{P7}\PY{p}{,} \PY{n}{P8}\PY{p}{]}
+    \PY{p}{]}
+\PY{p}{)}
+
+\PY{n}{j2} \PY{o}{=} \PY{n}{j2}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{plSat}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+About 63 seconds of computation{\ldots}
+41.41182299999991
+About 80 seconds of computation{\ldots}
+46.731866999999966
+Now 36 seconds of computations
+25.96072499999991
+    \end{Verbatim}
+
+    In order to study the zeros of j1 and j2, we compute their radical, then
+we sum the two radicals and we get the ideal (1). This means that the
+matrices MT1 and MT2 cannot have rank 8 Time of computations: about 146
+seconds.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{112}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} We compute the radical of j1 and j2:}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Computation of a radical: 54 seconds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{rJ1} \PY{o}{=} \PY{n}{j1}\PY{o}{.}\PY{n}{radical}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{computation of the second radical: 73 seconds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{rJ2} \PY{o}{=} \PY{n}{j2}\PY{o}{.}\PY{n}{radical}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} now we sum the two ideals and we get }
+\PY{c+c1}{\PYZsh{}\PYZsh{} the ideal (1).}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{about 15 seconds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{rJ1}\PY{o}{+}\PY{n}{rJ2} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computation of a radical: 54 seconds
+39.453751999999895
+computation of the second radical: 73 seconds
+52.07700100000011
+about 15 seconds
+10.753017999999884
+    \end{Verbatim}
+
+    The above computations show that it is almost sure that it is not
+possible to have \(P_1, \dotsc, P_8\) eigenpoints. In order to be sure,
+we have to repeat the computation for other points and to see if we get
+again that also these points on Cs cannot be eigenpoint for a cubic. The
+next block repeat therefore the computations for other points. The time
+of computation is 420 seconds.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{113}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Half of the computation. Now the same computations with other points}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{P3} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{P4} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{P5} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{P6} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\PY{n}{P7} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{)}
+\PY{n}{P8} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{)}
+
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} the following two matrices must have rank \PYZlt{}= 9:}
+
+\PY{n}{MT1} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{,} \PY{n}{P5}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{MT2} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P6}\PY{p}{,} \PY{n}{P7}\PY{p}{,} \PY{n}{P8}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Since the 0\PYZhy{}row of MT1 and MT2 is numeric and also the 1\PYZhy{}row }
+\PY{c+c1}{\PYZsh{}\PYZsh{} of MT1 and MT2 is numeric, we can use them to simplify MT1 and MT2. }
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} assert(MT1[0] == }
+\PY{n}{MT1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT1} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}columns}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\PY{n}{MT1} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} same for MT2:}
+\PY{c+c1}{\PYZsh{}\PYZsh{}assert(MT1[0] == MT2[0])}
+\PY{c+c1}{\PYZsh{}\PYZsh{}assert(MT1[1] == MT2[1])}
+
+\PY{n}{MT2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT2} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}columns}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\PY{n}{MT2} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Half of the computation. Now the same computations with other points
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{114}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} If P1, P2, P3, P4, P5, P6, P7, P8 are eigenpoints, }
+\PY{c+c1}{\PYZsh{}\PYZsh{} the order 8 minors of MT1 and of MT2 must all be zero.}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} this computation requires about 62\PYZdq{}:}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{About 62 seconds of computation...}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{mt1\PYZus{}8} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} this computation requires about 97\PYZdq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{About 97 seconds of computation...}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{mt2\PYZus{}8} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+About 62 seconds of computation{\ldots}
+35.11327500000016
+About 97 seconds of computation{\ldots}
+51.91341700000021
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{115}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} To speed up the computations, we keep separated the two ideals}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} The following block requires 46 seconds.}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Now 46 seconds of computations}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{JJ1} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mt1\PYZus{}8}\PY{p}{)}
+\PY{n}{JJ2} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mt2\PYZus{}8}\PY{p}{)}
+
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{j1} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{JJ1}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{l1}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Now 46 seconds of computations
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{116}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} we saturate w.r.t. the conditions that P2 and P3, P4, P5}
+\PY{c+c1}{\PYZsh{}\PYZsh{} are different:}
+
+\PY{n}{plSat} \PY{o}{=} \PY{n}{prod}\PY{p}{(}
+    \PY{p}{[}
+        \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P2}\PY{p}{,} \PY{n}{pp}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{k}{for} \PY{n}{pp} \PY{o+ow}{in} \PY{p}{[}\PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{,} \PY{n}{P5}\PY{p}{]}
+    \PY{p}{]}
+\PY{p}{)}
+
+\PY{n}{j1} \PY{o}{=} \PY{n}{j1}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{plSat}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{117}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} similarly for JJ2.}
+\PY{c+c1}{\PYZsh{}\PYZsh{} we saturate w.r.t. the conditions that P2 and P6, P7, P8}
+\PY{c+c1}{\PYZsh{}\PYZsh{} are different:}
+
+\PY{n}{j2} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{JJ2}\PY{p}{)}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{l1}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n}{plSat} \PY{o}{=} \PY{n}{prod}\PY{p}{(}
+    \PY{p}{[}
+        \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}
+            \PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P2}\PY{p}{,} \PY{n}{pp}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{k}{for} \PY{n}{pp} \PY{o+ow}{in} \PY{p}{[}\PY{n}{P6}\PY{p}{,} \PY{n}{P7}\PY{p}{,} \PY{n}{P8}\PY{p}{]}
+    \PY{p}{]}
+\PY{p}{)}
+
+\PY{n}{j2} \PY{o}{=} \PY{n}{j2}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{plSat}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+32.323909000000185
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{118}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} We compute the radical of j1 and j2:}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Computation of a radical: 55 seconds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{rJ1} \PY{o}{=} \PY{n}{j1}\PY{o}{.}\PY{n}{radical}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{computation of the second radical: 116 seconds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{n}{rJ2} \PY{o}{=} \PY{n}{j2}\PY{o}{.}\PY{n}{radical}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computation of a radical: 55 seconds
+38.51320700000042
+computation of the second radical: 116 seconds
+79.28385499999968
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{119}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} now we sum the two ideals and we get }
+\PY{c+c1}{\PYZsh{}\PYZsh{} the ideal (1).}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{about 20 seconds}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{ttA} \PY{o}{=} \PY{n}{cputime}\PY{p}{(}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{rJ1}\PY{o}{+}\PY{n}{rJ2} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cputime}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{ttA}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+about 20 seconds
+13.807926000000407
+    \end{Verbatim}
+
+    Conclusion of the above comptations: it is not possible to have a cubic
+whose eigenpoints contain a conic which is osculating the isotropic
+conic in a point.
+
+    \hypertarget{gamma-iperosculating-the-isotropic-conic-mathcalq_mathrmiso-in-p_1-1i0}{%
+\subsection{\texorpdfstring{\(\Gamma\) iperosculating the isotropic
+conic \(\mathcal{Q}_{\mathrm{iso}}\) in
+\(P_1 = (1:i:0)\)}{\textbackslash Gamma iperosculating the isotropic conic \textbackslash mathcal\{Q\}\_\{\textbackslash mathrm\{iso\}\} in P\_1 = (1:i:0)}}\label{gamma-iperosculating-the-isotropic-conic-mathcalq_mathrmiso-in-p_1-1i0}}
+
+    We want to see now if there are cubics such that among their eigenpoints
+have a conic which is iperosculating \(\mathcal{Q}_{\mathrm{iso}}\) in a
+point that, as usual, can be the point \(P_1=(1:i:0)\). The computations
+are similar to the computations in the previous case:
+
+We construct the pencil of conics Cg iperosculating
+\(\mathcal{Q}_{\mathrm{iso}}\) in \(P_1\), we define 8 further points
+``random'' on Cg and we construct two matrices MT1 and MT2 whose rank
+must be \(\leq 9\). We study the ideal obtained from these conditions.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{120}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ii}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{121}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} Tangent line to Ciso in P1:}
+\PY{n}{rtg} \PY{o}{=} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{P1}\PY{p}{,} \PY{n}{vector}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{P1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{122}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} Pencil of conics iperosculating Ciso in P1}
+\PY{n}{Cg} \PY{o}{=} \PY{n}{Ciso} \PY{o}{+} \PY{n}{l1}\PY{o}{*}\PY{n}{rtg}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{123}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} If l1 = 0, Cg is Ciso, so we can assume}
+\PY{c+c1}{\PYZsh{}\PYZsh{} l1 != 0}
+\PY{k}{assert}\PY{p}{(}\PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{l1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{o}{==} \PY{n}{Ciso}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{124}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} construction of a generic point (different from (1, ii, 0)) on Cg:}
+
+\PY{n}{foo} \PY{o}{=} \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{ii}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{w1}\PY{o}{*}\PY{n}{z}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{125}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} generic point of Cg (it depends on the parameter w1):}
+\PY{n}{Pg} \PY{o}{=} \PY{n}{vector}\PY{p}{(}
+    \PY{n}{S}\PY{p}{,} 
+    \PY{p}{(}
+        \PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{,}
+        \PY{n}{ii}\PY{o}{*}\PY{p}{(}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{w1}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+        \PY{o}{\PYZhy{}}\PY{n}{foo}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{126}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} Pg is on Cg:}
+\PY{k}{assert}\PY{p}{(}\PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{substitution}\PY{p}{(}\PY{n}{Pg}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{127}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} If w1 = 0, then Pg = P1, hence we can assume w1 != 0.}
+\PY{k}{assert}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{128}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} Now we define eight specific points on Cg:}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{129}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P2} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{P3} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{P4} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{P5} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{P6} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{P7} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{P8} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\PY{n}{P9} \PY{o}{=} \PY{n}{Pg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{w1}\PY{o}{=}\PY{l+m+mi}{7}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{130}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} the following two matrices must have rank \PYZlt{}= 9:}
+
+\PY{n}{MT1} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{,} \PY{n}{P5}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{MT2} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P6}\PY{p}{,} \PY{n}{P7}\PY{p}{,} \PY{n}{P8}\PY{p}{,} \PY{n}{P9}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We manipulate MT1 and MT2 in order to see if it is possible that their
+rank is \(\leq 9\). At the end of these computations, we see that we
+have to study the condition given by the groebner basis gb which is
+l1*(l1 + 3) (about 10 seconds of computations)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{131}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MT1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT1}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT1}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+    
+\PY{n}{MT1} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}columns}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\PY{n}{MT1} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{m8} \PY{o}{=} \PY{n}{MT1}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+
+\PY{n}{I} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{m8}\PY{p}{)}
+
+\PY{n}{MT2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ii}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+
+\PY{n}{MT2}\PY{o}{.}\PY{n}{rescale\PYZus{}row}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MT2}\PY{o}{.}\PY{n}{add\PYZus{}multiple\PYZus{}of\PYZus{}row}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{MT2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+    
+\PY{n}{MT2} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}columns}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+\PY{n}{MT2} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{m8} \PY{o}{=} \PY{n}{MT2}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+
+\PY{n}{J} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{m8}\PY{p}{)}
+
+\PY{n}{gb} \PY{o}{=} \PY{p}{(}\PY{n}{I}\PY{o}{+}\PY{n}{J}\PY{p}{)}\PY{o}{.}\PY{n}{groebner\PYZus{}basis}\PY{p}{(}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{gb} \PY{o}{==} \PY{p}{[}\PY{n}{l1}\PY{o}{*}\PY{p}{(}\PY{n}{l1} \PY{o}{+} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Here we see that we have to study the case l1 = -3. We study the cubic
+we obtain and we see it is of the form \(t(\mathcal{Q}_{iso}-t^2)\),
+while the eigenpoints are given by \(\mathcal{Q}_{iso} -3t^2\) (\(t\) is
+the tangent line)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{132}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} we particularize Cg  and we define Cs:}
+
+\PY{n}{Cs} \PY{o}{=} \PY{n}{Cg}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} we define the matrix of conditions for the case l1 = \PYZhy{}3:}
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P3}\PY{p}{,} \PY{n}{P4}\PY{p}{,} \PY{n}{P5}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{l1}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{M}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{9}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} select a suitable 9x10 submatrix of rank 9}
+\PY{n}{N} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{]}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{N}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{9}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} determine the cubic from M (and N)}
+\PY{n}{C} \PY{o}{=} \PY{n}{N}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{mon}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{pd} \PY{o}{=} \PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{eig}\PY{p}{(}\PY{n}{C}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{primary\PYZus{}decomposition}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} we get two ideals. One is the double point P\PYZus{}1}
+
+\PY{k}{assert}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{pd}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{k}{assert}\PY{p}{(}\PY{n}{pd}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{ii}\PY{p}{)}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} the other ideal is the conic Cs:}
+\PY{k}{assert}\PY{p}{(}\PY{n}{pd}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{Cs}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} The cubic C is of the form rtg*(Ciso\PYZhy{}rtg\PYZca{}2)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} the conic Cs is of the form Ciso\PYZhy{}3*rtg\PYZca{}2:}
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{C}\PY{p}{)} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{rtg}\PY{o}{*}\PY{p}{(}\PY{n}{Ciso}\PY{o}{\PYZhy{}}\PY{n}{rtg}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{Cs}\PY{p}{)} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{Ciso}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{rtg}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} Moreover, rtg*(1/2*Cs + Ciso)) and rtg*(Ciso \PYZhy{} rtg\PYZca{}2)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} are the same cubic}
+\PY{k}{assert}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{rtg}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{Cs} \PY{o}{+} \PY{n}{Ciso}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{rtg}\PY{o}{*}\PY{p}{(}\PY{n}{Ciso} \PY{o}{\PYZhy{}} \PY{n}{rtg}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The conclusion of this computation is that if a cubic \(C\) has among
+the eigenpoints a conic which is iperosculating
+\(\mathcal{Q}_{\mathrm{iso}}\) in a point \(P_1\), then the cubic is of
+the form \(t(\mathcal{Q}_{iso}-t^2)\) and the conic of eigenpoints is
+\(\mathcal{Q}_{iso}-3t^2\). The converse is also true and is immediately
+verified, because is given by the computation of the ideal pd above,
+which is the ideal of the eigenpoints of the cubic
+\(t(\mathcal{Q}_{iso}-t^2)\).
+
+    This concludes the proof of the theorem.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}

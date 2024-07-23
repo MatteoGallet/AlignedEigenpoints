@@ -1,0 +1,1568 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{soul}      % strikethrough (\st) support for pandoc >= 3.0.0
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{NB.04.F5}
+    
+    
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{proposition}{%
+\section{Proposition}\label{proposition}}
+
+    If five points \(P_1, \dots, P_5\) in a \(V\)-configuration satisfy \[
+  \delta_1(P_1, P_2, P_4) = 
+  \bar{\delta}_1(P_1, P_2, P_3) =
+  \bar{\delta}_1(P_1, P_4, P_5) = 0
+\] then, in \(\Lambda \bigl( \Phi(P_1, \dotsc, P_5)\bigr)\) there is a
+cubic curve with \(7\) eigenpoints with the following three alignments:
+\[
+ (P_1, P_2, P_3) \,, \quad (P_1, P_4, P_5) \,, \quad \text{and} \quad (P_1, P_6, P_7) \,.
+\] No choices of \(P_1, \dots, P_5\) allow one to obtain further
+alignments of the \(7\) eigenpoints.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{load}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{basic\PYZus{}functions.sage}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We define three points \(P_1, \dotsc, P_5\) so that they form a
+\(V\)-configuration
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{P1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{P2} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{n}{A2}\PY{p}{,} \PY{n}{B2}\PY{p}{,} \PY{n}{C2}\PY{p}{)}\PY{p}{)}
+\PY{n}{P3} \PY{o}{=} \PY{n}{u1}\PY{o}{*}\PY{n}{P1}\PY{o}{+}\PY{n}{u2}\PY{o}{*}\PY{n}{P2}
+\PY{n}{P4} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{n}{A4}\PY{p}{,} \PY{n}{B4}\PY{p}{,} \PY{n}{C4}\PY{p}{)}\PY{p}{)}
+\PY{n}{P5} \PY{o}{=} \PY{n}{v1}\PY{o}{*}\PY{n}{P1}\PY{o}{+}\PY{n}{v2}\PY{o}{*}\PY{n}{P4}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We want to impose \(\delta_1(P_1, P_2, P_4) = 0\). We check that
+\(\delta_1(P_1, P_2, P_4) = 0\) is \(B_2 B_4 + C_2 C_4\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta1}\PY{p}{(}\PY{n}{P1}\PY{p}{,} \PY{n}{P2}\PY{p}{,} \PY{n}{P4}\PY{p}{)} \PY{o}{==} \PY{n}{B2}\PY{o}{*}\PY{n}{B4}\PY{o}{+}\PY{n}{C2}\PY{o}{*}\PY{n}{C4}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    It is not possible to have \(C_2 = C_4 = 0\).
+
+If \(C_2 = 0\), necessarily \(B_2 \neq 0\).
+
+If \(C_2 \neq 0\) and \(B_4 = 0\), we get \(C_4 = 0\), but
+\(P_4 \neq P_1\), so if \(C_2 \neq 0\), we can assume \(B_4 \neq 0\).
+
+Hence, the other situation to consider is \(C_2 = B_4 = 0\), in which
+case the points are \(p_1 = (1, 0, 0)\), \(p_2 = (A_2, B_2, 0)\),
+\(p_4 = (A_4, 0, C_4)\).
+
+    \hypertarget{we-assume-c_2-neq-0}{%
+\subsection{\texorpdfstring{We assume
+\(C_2 \neq 0\)}{We assume C\_2 \textbackslash neq 0}}\label{we-assume-c_2-neq-0}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{st1} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{A4}\PY{p}{:} \PY{n}{A4}\PY{o}{*}\PY{n}{C2}\PY{p}{,} \PY{n}{B4}\PY{p}{:} \PY{n}{B4}\PY{o}{*}\PY{n}{C2}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{B2}\PY{o}{*}\PY{n}{B4}\PY{p}{\PYZcb{}}
+\PY{n}{p1} \PY{o}{=} \PY{n}{P1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{st1}\PY{p}{)}
+\PY{n}{p2} \PY{o}{=} \PY{n}{P2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{st1}\PY{p}{)}
+\PY{n}{p4} \PY{o}{=} \PY{n}{P4}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{st1}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta1}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{,} \PY{n}{p4}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We define \(p_3\) and \(p_5\) according to the known formulas:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{p3} \PY{o}{=} \PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p2}\PY{p}{,} \PY{n}{p2}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p1}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p2}
+\PY{n}{p5} \PY{o}{=} \PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p4}\PY{p}{,} \PY{n}{p4}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p1}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p4}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The entries of \(p_5\) can be divided by \(B_4\) (which is, as said, not
+0)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{gcd}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{p5}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{n}{B4}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{p5} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{[}\PY{n}{px}\PY{o}{.}\PY{n}{quo\PYZus{}rem}\PY{p}{(}\PY{n}{B4}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{px} \PY{o+ow}{in} \PY{n+nb}{list}\PY{p}{(}\PY{n}{p5}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta1b}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta1b}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{n}{p5}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} Incidentally, delta2 is also 0:}
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta2}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{n}{p5}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    An example shows that, in general, \(p_6\) and \(p_7\) are not aligned
+with \(p_1\). Here is an example.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{ss3} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{C2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{7}\PY{p}{,} \PY{n}{B4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{\PYZcb{}}
+\PY{n}{pp1} \PY{o}{=} \PY{n}{p1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp2} \PY{o}{=} \PY{n}{p2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp3} \PY{o}{=} \PY{n}{p3}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp4} \PY{o}{=} \PY{n}{p4}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp5} \PY{o}{=} \PY{n}{p5}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{cb} \PY{o}{=} \PY{n}{cubic\PYZus{}from\PYZus{}matrix}\PY{p}{(}
+    \PY{n}{condition\PYZus{}matrix}\PY{p}{(}
+        \PY{p}{[}\PY{n}{pp1}\PY{p}{,} \PY{n}{pp2}\PY{p}{,} \PY{n}{pp3}\PY{p}{,} \PY{n}{pp4}\PY{p}{,} \PY{n}{pp5}\PY{p}{]}\PY{p}{,}
+         \PY{n}{S}\PY{p}{,} 
+        \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+    \PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}
+        \PY{n}{matrix}\PY{p}{(}
+            \PY{p}{[}
+                \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+            \PY{p}{]}
+        \PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    NOW WE WANT TO SEE WHAT HAPPENS IF WE IMPOSE THE ALIGNMENT \(p_1\),
+\(p_6\), \(p_7\).
+
+We start with \(p_1\), \(p_2\), \(p_3\), \(p_4\), \(p_5\) as above, such
+that \(\delta_1(p_1, p_2, p_4)\), \(\bar{\delta}_1(p_1, p_2, p_3)\) and
+\(\bar{\delta}_1(p_1, p_4, p_5)\) are \(0\)
+
+    The matrix \(\Phi(p_1, p_2, p_3, p_4, p_5)\) has rank 8.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{M}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{8}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We select 8 linearly independent rows:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mm} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} in general, mm has rank 8}
+\PY{k}{assert}\PY{p}{(}\PY{n}{mm}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{8}\PY{p}{)}  
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} let us see when the rank is not 8:}
+\PY{n}{hj} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mm}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p3}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{c+c1}{\PYZsh{} }
+\PY{c+c1}{\PYZsh{} it holds: hj = (1)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{hj} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} hence the order 8 minor mm has always rank 8.}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The cubics of \(\mathbb{P}^9\) that have \(p_1, \dotsc, p_5\) as
+eigenpoints are a line \(L\) of \(\mathbb{P}^9\).
+
+We want to see if, among the points of this line, we can find some which
+give cubic curves with the eigenpoints \(p_1\), \(p_6\), \(p_7\)
+collinear. Here is the way in which we procede. We fix two 10-components
+vectors like: \((1, 2, 5, 6, 0, 2, 3, 4, 9, 11)\) and
+\((-1, 3, 6, 5, 0, 1, 3, 7, 9, -5)\) and we consider the following
+matrices: mmA and mmB (we put an index ``1'' because later we shall
+repeat the computation):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mmA\PYZus{}1} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{n}{mmB\PYZus{}1} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    mmA and mmB have rank 9 (if not, take two other points!) From mmA we get
+one cubic curve cbA, from mmB we get one cubic cbB and they are two
+points of the line \(L\) of \(\mathbb{P}^9\). Both cbA and cbB have,
+among the eigenpoints, \(p_1\), \(p_2\), \(p_3\), \(_4\), \(p_5\).
+
+Given the generic point \(P = (x: y: z)\) of \(\mathbb{P}^2\), consider
+the three matrices obtained from mmA\_1 given by * mmA plus the row
+\(\Phi(P)_{(1)}\), * mmA plus the row \(\Phi(P)_{(2)}\), and * mmA plus
+the row \(\Phi(P)_{(3)}\).
+
+We get three square matrices with determinant GA1, GA2, GA3 such that
+\(p_{1, z} GA1 - p_{1, y} GA2 + p_{1, x} GA3\) splits, as a polynomial
+in x, y, z, into three linear factors, one corresponds to the line
+\(p_1 \vee p_2\), the other to the line \(p_1 \vee p_4\) and the third
+to the line passing through the two remaining eigenpoints of cbA. A
+simplification comes from the fact that \(p_1\) is the point
+\((1: 0: 0)\), hence \(p_{1, z} GA1 - p_{1, y} GA2 + p_{1, x} GA3\) is
+\(GA3\). Hence we have to factorize it.
+
+    The same construction can be done for mmB and we get a polynomial GB3
+which factorizes into three linear factors in x, y, z, the first two
+correspond again to the lines \(p_1 \vee p_2\) and \(p_1 \vee p_4\), the
+third corresponds to the line through the two remaining eigenpoints of
+cbB.
+
+A point of the line \(L\) corresponds to the cubic cb =
+w1\emph{cbA+w2}cbB, where w1 and w2 are parameters.
+
+The cubic cb has \(p_1\), \(p_2\), \(p_3\), \(p_4\), \(p_5\) as
+eigenpoints and two other eigenpints, say p6 and p7, that are obtained
+from the factorization of w1\emph{GA3+w2}GB3.
+
+Now the explicit computations (we repeat the construction twice):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{GA3\PYZus{}1} \PY{o}{=} \PY{n}{mmA\PYZus{}1}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{n}{GB3\PYZus{}1} \PY{o}{=} \PY{n}{mmB\PYZus{}1}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{rr3\PYZus{}1} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+    \PY{n+nb}{filter}\PY{p}{(}
+        \PY{k}{lambda} \PY{n}{uu}\PY{p}{:} \PY{n}{w1} \PY{o+ow}{in} \PY{n}{uu}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{variables}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+        \PY{n+nb}{list}\PY{p}{(}\PY{n}{factor}\PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}1}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}1}\PY{p}{)}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    rr3\_1 is a polynomial of degree 1 in x, y, z which gives the line
+passing through the eigenpoints p6 and p7 of cb (it depends of w1 and
+w2).
+
+    We want to see if, among the cubics cb = cb(w1, w2), it is possible to
+find a cubic with p1, p6, p7 aligned. Hence p1 must be a point of
+rr3\_1, so the following polynomial must be zero:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{hh1} \PY{o}{=} \PY{n}{rr3\PYZus{}1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    In order to get rid of the choice of the two rows above (i.e.~the choice
+of two points of L), we repeat the construction for two other random
+rows:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mmA\PYZus{}2} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{n}{mmB\PYZus{}2} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{GA3\PYZus{}2} \PY{o}{=} \PY{n}{mmA\PYZus{}2}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{n}{GB3\PYZus{}2} \PY{o}{=} \PY{n}{mmB\PYZus{}2}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{rr3\PYZus{}2} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+    \PY{n+nb}{filter}\PY{p}{(}
+        \PY{k}{lambda} \PY{n}{uu}\PY{p}{:} \PY{n}{w1} \PY{o+ow}{in} \PY{n}{uu}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{variables}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+        \PY{n+nb}{list}\PY{p}{(}\PY{n}{factor}\PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}2}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}2}\PY{p}{)}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{} if p1, p6, p7 are alligned, also the following polynomial must be zero}
+\PY{n}{hh2} \PY{o}{=} \PY{n}{rr3\PYZus{}2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    hh1 (and hh2) are of the form w1\emph{()+w2}(). Hence hh1 (and hh2) is
+zero iff w1 and w2 are chosen as solution of the equation
+w1\emph{()+w2}() = 0 or if the coefficients of w1 and w2 are both zero.
+In the first case, we construct r3\_1 and r3\_2 as follows:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{r3\PYZus{}1} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}1}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}1}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{r3\PYZus{}2} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}2}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}2}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    (i.e.~r3\_1 and r3\_2 are the line passing through p1, p6, p7. They
+should be equal, because they should not depend of the two points of the
+line L chosen. Indeed, they are equal:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{r3\PYZus{}1} \PY{o}{==} \PY{n}{r3\PYZus{}2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we have to consider the case in which r3\_1 and r3\_2 are not
+defined, i.e.~when the coefficients of w1 and w2 in hh1 and hh2 are all
+zero:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{HH} \PY{o}{=} \PY{p}{[}\PY{n}{hh1}\PY{p}{,} \PY{n}{hh2}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{p}{[}\PY{n}{hh}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)} \PY{k}{for} \PY{n}{hh} \PY{o+ow}{in} \PY{n}{HH}\PY{p}{]} \PY{o}{+} \PY{p}{[}\PY{n}{hh}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)} \PY{k}{for} \PY{n}{hh} \PY{o+ow}{in} \PY{n}{HH}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    If we have some values of the points p1, \ldots, p5 such that give a
+zero of JJ, we have to study that case.
+
+    But JJ, after saturation, is (1):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p3}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{JJ} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    This computation shows that there are no exceptions to consider.
+
+On the line \(L\) of \(\mathbb{P}^9\) there is a point that corresponds
+to a cubic which has the alignments \(p_1\), \(p_2\), \(p_3\), and
+\(p_1\), \(p_4\), \(p_5\), and \(p_1\), \(p_6\), \(p_7\) among the
+eigenpoints.
+
+We can determine the cubic:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM\PYZus{}1} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{mmA\PYZus{}1}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{mmB\PYZus{}1}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}
+
+\PY{n}{Mcb1} \PY{o}{=} \PY{n}{MM\PYZus{}1}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{mon}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{MM\PYZus{}2} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{mmA\PYZus{}2}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{mmB\PYZus{}2}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}
+
+\PY{n}{Mcb2} \PY{o}{=} \PY{n}{MM\PYZus{}2}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{mon}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The cubic is the determinant of Mcb1 (or of Mcb2).
+
+    The following computations require, respectively, about 3000 and 4000
+seconds. We omit them but we define below the cubic cb which is
+obtained:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} ttA = cputime()}
+\PY{c+c1}{\PYZsh{} cb1 = Mcb1.det()}
+\PY{c+c1}{\PYZsh{} print(cputime()\PYZhy{}ttA)}
+\PY{c+c1}{\PYZsh{} }
+\PY{c+c1}{\PYZsh{} ttA = cputime()}
+\PY{c+c1}{\PYZsh{} cb2 = Mcb2.det()}
+\PY{c+c1}{\PYZsh{} print(cputime()\PYZhy{}ttA)}
+\PY{c+c1}{\PYZsh{} }
+\PY{c+c1}{\PYZsh{} assert(cb1.factor()[\PYZhy{}1][0]  == cb2.factor()[\PYZhy{}1][0])}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{cb} \PY{o}{=} \PY{p}{(}
+    \PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{A4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} 
+    \PY{o}{\PYZhy{}} \PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{A4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{C2}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{C2}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} 
+    \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{C2}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{C2}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{A2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} 
+    \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} 
+    \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} 
+    \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} 
+    \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} 
+    \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{6}\PY{o}{*}\PY{n}{A4}\PY{o}{*}\PY{n}{B4} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{C2}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} 
+    \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} 
+    \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{z}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{B2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{A2}\PY{o}{*}\PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{B4}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We remark however that cb can be computed in 12 seconds using the fact
+that the rows of Mcb1 have big common factors:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Ms} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{gd} \PY{o}{=} \PY{n}{gcd}\PY{p}{(}\PY{p}{[}\PY{n}{Mcb1}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+    \PY{n}{Ms}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{Mcb1}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{quo\PYZus{}rem}\PY{p}{(}\PY{n}{gd}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{cb\PYZus{}alt} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}\PY{n}{Ms}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{cb\PYZus{}alt} \PY{o}{==} \PY{n}{cb}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    An example shows that cb, in general, has the following aligned
+eigenpoints: p1, p2, p3 and p1, p4, p5 and p1, p6, p7. The cubic is
+irreducible and singular in p1.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{ccb} \PY{o}{=} \PY{n}{cb}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{C2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{B4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    HERE WE CONCLUDE THE FIRST PART OF THE COMPUTATION:
+
+In case \(C_2 \neq 0\), IT IS POSSIBLE TO HAVE THREE ALIGNMENTS: (1, 2,
+3), (1, 4, 5), (1, 6, 7)
+
+    Now we want to see if it is possible to have more then three alignments
+(We continue to assume C2 != 0)
+
+Recall that cb is our cubic.
+
+Recall that r3\_1 (= r3\_2) is the line through p6 and p7.
+
+Up to a permutation of the indices of the points, if there is another
+alignment among the eigenpoints, p6 must be on the line p2+p4. Hence we
+can find it, since is the intersection or p2+p4 and r3.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{r24} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p2}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{E1} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}
+    \PY{p}{[}
+        \PY{p}{[}\PY{n}{r3\PYZus{}1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{xx}\PY{p}{)} \PY{k}{for} \PY{n}{xx} \PY{o+ow}{in} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+        \PY{p}{[}\PY{n}{r24}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{xx}\PY{p}{)} \PY{k}{for} \PY{n}{xx} \PY{o+ow}{in} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}
+    \PY{p}{]}
+\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    All the entries of E1 can be divided by \(B_2^2 B_4 + C_2^2 B_4\) and we
+know that \(B_2^2 B_4 + C_2^2 B_4 = 0\) implies \(p_3 = p_5\), hence we
+divide with no problems.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{35}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{p6} \PY{o}{=} \PY{n}{vector}\PY{p}{(}
+    \PY{n}{S}\PY{p}{,}
+    \PY{p}{(}
+        \PY{n}{E1}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4}\PY{p}{)}\PY{p}{,} 
+        \PY{o}{\PYZhy{}}\PY{n}{E1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4}\PY{p}{)}\PY{p}{,}
+        \PY{n}{E1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Now we compute the ideal kJ of the eigenpoints of cb and we saturate it
+as much as possible (in particular, we saturate it w.r.t. the ideals of
+the points p1, p2, p3, p4, p5):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{36}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kJ} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}
+    \PY{n}{matrix}\PY{p}{(}
+        \PY{p}{[}
+            \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{,}
+            \PY{p}{[}\PY{n}{cb}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{cb}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{cb}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{]}
+        \PY{p}{]}
+    \PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{B2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4} \PY{o}{+} \PY{n}{C2}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{B4}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}  \PY{c+c1}{\PYZsh{}\PYZsh{}p1}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p2}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p3}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p4}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p5}
+\end{Verbatim}
+\end{tcolorbox}
+
+    After these computations, kJ is the ideal of the two reminining
+eigenpoints. we want that p1 defined above is an eigenpoint, so the
+ideal kkJ here defined must be zero:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{n}{p6}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{n}{p6}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{n}{p6}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{o}{.}\PY{n}{radical}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We saturate kkJ and we get a primary decomposiiton:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{40}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p3}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p2}\PY{p}{,} \PY{n}{p6}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p4}\PY{p}{,} \PY{n}{p6}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    kkJ is (1), so there are no solutions:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{41}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{kkJ} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    CONCLUSION (for the case \(C_2 \neq 0\)) when the three deltas are zero,
+(hence rank of the matrix of the five points is 8), we have also
+\(\delta_2 = 0\) and we have the collinearities (1, 2, 3) (1, 4, 5). We
+have a sub-case in which there is the further collinearity (1, 6, 7). No
+other collinearities among the 7 eigenpoints are possible.
+
+    \hypertarget{we-assume-c_2-0}{%
+\subsection{\texorpdfstring{We assume
+\(C_2 = 0\)}{We assume C\_2 = 0}}\label{we-assume-c_2-0}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{68}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{p1} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{p2} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{n}{A2}\PY{p}{,} \PY{n}{B2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{n}{p4} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{n}{A4}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{C4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We are sure that \(B_2 \neq 0\) (since \(p_2 \neq p_1\)) and
+\(C_4 \neq 0\) (since \(p_4 \neq p_1\))
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{69}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{p3} \PY{o}{=} \PY{p}{(}
+    \PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p2}\PY{p}{,} \PY{n}{p2}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p1}
+    \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p2}
+\PY{p}{)}
+\PY{n}{p5} \PY{o}{=} \PY{p}{(}
+    \PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p4}\PY{p}{,} \PY{n}{p4}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p1}
+    \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p1}\PY{p}{)}\PY{o}{*}\PY{n}{scalar\PYZus{}product}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{p4}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We redefine the points, since \(B_2\) and \(C_4\) are not 0.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{70}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{p3}\PY{p}{,} \PY{n}{p5} \PY{o}{=} \PY{n}{p3}\PY{o}{/}\PY{n}{B2}\PY{p}{,} \PY{n}{p5}\PY{o}{/}\PY{n}{C4}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{71}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta1b}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta1b}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{n}{p5}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}\PYZsh{} Incidentally, delta2 is also 0:}
+\PY{k}{assert}\PY{p}{(}\PY{n}{delta2}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{n}{p5}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    An example shows that, in general, \(p_6\) and \(p_7\) are not aligned
+with \(p_1\). Here is an example.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{72}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{ss3} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{7}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{\PYZcb{}}
+\PY{n}{pp1} \PY{o}{=} \PY{n}{p1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp2} \PY{o}{=} \PY{n}{p2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp3} \PY{o}{=} \PY{n}{p3}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp4} \PY{o}{=} \PY{n}{p4}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{pp5} \PY{o}{=} \PY{n}{p5}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{ss3}\PY{p}{)}
+\PY{n}{cb} \PY{o}{=} \PY{n}{cubic\PYZus{}from\PYZus{}matrix}\PY{p}{(}
+    \PY{n}{condition\PYZus{}matrix}\PY{p}{(}
+        \PY{p}{[}\PY{n}{pp1}\PY{p}{,} \PY{n}{pp2}\PY{p}{,} \PY{n}{pp3}\PY{p}{,} \PY{n}{pp4}\PY{p}{,} \PY{n}{pp5}\PY{p}{]}\PY{p}{,}
+         \PY{n}{S}\PY{p}{,} 
+        \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}
+    \PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}
+        \PY{n}{matrix}\PY{p}{(}
+            \PY{p}{[}
+                \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+            \PY{p}{]}
+        \PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    NOW WE WANT TO SEE WHAT HAPPENS IF WE IMPOSE THE ALIGNMENT \(p_1\),
+\(p_6\), \(p_7\).
+
+We start with \(p_1\), \(p_2\), \(p_3\), \(p_4\), \(p_5\) as above, such
+that \(\delta_1(p_1, p_2, p_4)\), \(\bar{\delta}_1(p_1, p_2, p_3)\) and
+\(\bar{\delta}_1(p_1, p_4, p_5)\) are \(0\)
+
+    The matrix \(\Phi(p_1, p_2, p_3, p_4, p_5)\) has rank 8.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{73}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M} \PY{o}{=} \PY{n}{condition\PYZus{}matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{standard}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{all}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{M}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{8}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We select 8 linearly independent rows:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{74}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mm} \PY{o}{=} \PY{n}{M}\PY{o}{.}\PY{n}{matrix\PYZus{}from\PYZus{}rows}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{75}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} in general, mm has rank 8}
+\PY{k}{assert}\PY{p}{(}\PY{n}{mm}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{8}\PY{p}{)}  
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{76}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} let us see when it is not 8:}
+\PY{n}{hj} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{mm}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{77}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{hj} \PY{o}{=} \PY{n}{hj}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p2}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    hj is (1), so mm has always rank 8.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{82}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{hj} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{one}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Hence the order 8 minor mm has always rank 8. As above, we construct
+mmA\_1 and mmB\_1. The construction is the same as above.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{83}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mmA\PYZus{}1} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{n}{mmB\PYZus{}1} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    These two matrices have rank 9
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{84}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{mmA\PYZus{}1}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{9}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{mmB\PYZus{}1}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{9}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{87}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{GA3\PYZus{}1} \PY{o}{=} \PY{n}{mmA\PYZus{}1}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{n}{GB3\PYZus{}1} \PY{o}{=} \PY{n}{mmB\PYZus{}1}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{88}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{rr3\PYZus{}1} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+    \PY{n+nb}{filter}\PY{p}{(}
+        \PY{k}{lambda} \PY{n}{uu}\PY{p}{:} \PY{n}{w1} \PY{o+ow}{in} \PY{n}{uu}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{variables}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+        \PY{n+nb}{list}\PY{p}{(}\PY{n}{factor}\PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}1}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}1}\PY{p}{)}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n}{hh1} \PY{o}{=} \PY{n}{rr3\PYZus{}1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{91}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mmA\PYZus{}2} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{n}{mmB\PYZus{}2} \PY{o}{=} \PY{n}{mm}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{GA3\PYZus{}2} \PY{o}{=} \PY{n}{mmA\PYZus{}2}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+\PY{n}{GB3\PYZus{}2} \PY{o}{=} \PY{n}{mmB\PYZus{}2}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{phi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{S}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{rr3\PYZus{}2} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}
+    \PY{n+nb}{filter}\PY{p}{(}
+        \PY{k}{lambda} \PY{n}{uu}\PY{p}{:} \PY{n}{w1} \PY{o+ow}{in} \PY{n}{uu}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{variables}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+        \PY{n+nb}{list}\PY{p}{(}\PY{n}{factor}\PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}2}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}2}\PY{p}{)}\PY{p}{)}
+    \PY{p}{)}
+\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    If \(p_1\), \(p_6\), \(p_7\) are aligned, also the following polynomial
+must be zero
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{92}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{hh2} \PY{o}{=} \PY{n}{rr3\PYZus{}2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{93}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{r3\PYZus{}1} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}1}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}1}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n}{r3\PYZus{}2} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{GA3\PYZus{}2}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{GB3\PYZus{}2}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    (i.e.~r3\_1 and r3\_2 are the line passing through p1, p6, p7. They
+should be equal, because they should not depend of the two points of the
+line L chosen. Indeed, they are equal:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{96}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{r3\PYZus{}1} \PY{o}{==} \PY{n}{r3\PYZus{}2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{97}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{HH} \PY{o}{=} \PY{p}{[}\PY{n}{hh1}\PY{p}{,} \PY{n}{hh2}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{p}{[}\PY{n}{hh}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)} \PY{k}{for} \PY{n}{hh} \PY{o+ow}{in} \PY{n}{HH}\PY{p}{]}\PY{o}{+}\PY{p}{[}\PY{n}{hh}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)} \PY{k}{for} \PY{n}{hh} \PY{o+ow}{in} \PY{n}{HH}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{98}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{JJ} \PY{o}{=} \PY{n}{JJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{100}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{JJ} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{one}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    This computation shows that there are no exceptions to consider.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{MM\PYZus{}1} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{mmA\PYZus{}1}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{mmB\PYZus{}1}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}
+
+\PY{n}{Mcb1} \PY{o}{=} \PY{n}{MM\PYZus{}1}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{mon}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{MM\PYZus{}2} \PY{o}{=} \PY{p}{(}\PY{n}{w1}\PY{o}{*}\PY{n}{mmA\PYZus{}2}\PY{o}{+}\PY{n}{w2}\PY{o}{*}\PY{n}{mmB\PYZus{}2}\PY{p}{)}\PY{o}{.}\PY{n}{subs}\PY{p}{(}
+    \PY{p}{\PYZob{}}
+        \PY{n}{w1}\PY{p}{:} \PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w2}\PY{p}{)}\PY{p}{,}
+        \PY{n}{w2}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{hh2}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{w1}\PY{p}{)}
+    \PY{p}{\PYZcb{}}
+\PY{p}{)}
+
+\PY{n}{Mcb2} \PY{o}{=} \PY{n}{MM\PYZus{}2}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{mon}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    The cubic is the determinant of Mcb1 (or of Mcb2). one possibility is
+the following computation (not long)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{101}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{cb1} \PY{o}{=} \PY{n}{Mcb1}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{cb2} \PY{o}{=} \PY{n}{Mcb2}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}, frame=single, framerule=2mm, rulecolor=\color{outerrorbackground}]
+\textcolor{ansi-red-intense}{\textbf{---------------------------------------------------------------------------}}
+\textcolor{ansi-red-intense}{\textbf{KeyboardInterrupt}}                         Traceback (most recent call last)
+Cell \textcolor{ansi-green-intense}{\textbf{In[101], line 1}}
+\textcolor{ansi-green-intense}{\textbf{----> 1}} cb1 \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} \setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{Mcb1\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{.\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{det\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}factor()[\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{1})][Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]
+\textcolor{ansi-green}{      2} cb2 \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} Mcb2\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}det()\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}factor()[\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{1})][Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/matrix/matrix2.pyx:1984}}, in \textcolor{ansi-cyan}{sage.matrix.matrix2.Matrix.det (build/cythonized/sage/matrix/matrix2.c:23316)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{   1982}         6
+\textcolor{ansi-green}{   1983}     """
+\textcolor{ansi-green-intense}{\textbf{-> 1984}}     return self.determinant(*args, **kwds)
+\textcolor{ansi-green}{   1985} 
+\textcolor{ansi-green}{   1986} def determinant(self, algorithm=None):
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/matrix/matrix\_mpolynomial\_dense.pyx:610}}, in \textcolor{ansi-cyan}{sage.matrix.matrix\_mpolynomial\_dense.Matrix\_mpolynomial\_dense.determinant (build/cythonized/sage/matrix/matrix\_mpolynomial\_dense.cpp:12320)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{    608} if isinstance(R, MPolynomialRing\_libsingular) and R.base\_ring().is\_field():
+\textcolor{ansi-green}{    609}     singular\_det = singular\_function("det")
+\textcolor{ansi-green-intense}{\textbf{--> 610}}     d = singular\_det(self)
+\textcolor{ansi-green}{    611} 
+\textcolor{ansi-green}{    612} elif can\_convert\_to\_singular(self.base\_ring()):
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/libs/singular/function.pyx:1298}}, in \textcolor{ansi-cyan}{sage.libs.singular.function.SingularFunction.\_\_call\_\_ (build/cythonized/sage/libs/singular/function.cpp:21339)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{   1296}     if not (isinstance(ring, MPolynomialRing\_libsingular) or isinstance(ring, NCPolynomialRing\_plural)):
+\textcolor{ansi-green}{   1297}         raise TypeError("cannot call Singular function '\%s' with ring parameter of type '\%s'" \% (self.\_name,type(ring)))
+\textcolor{ansi-green-intense}{\textbf{-> 1298}}     return call\_function(self, args, ring, interruptible, attributes)
+\textcolor{ansi-green}{   1299} 
+\textcolor{ansi-green}{   1300} def \_instancedoc\_(self):
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/libs/singular/function.pyx:1477}}, in \textcolor{ansi-cyan}{sage.libs.singular.function.call\_function (build/cythonized/sage/libs/singular/function.cpp:23326)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{   1475}     error\_messages.pop()
+\textcolor{ansi-green}{   1476} 
+\textcolor{ansi-green-intense}{\textbf{-> 1477}} with opt\_ctx: \# we are preserving the global options state here
+\textcolor{ansi-green}{   1478}     if signal\_handler:
+\textcolor{ansi-green}{   1479}         sig\_on()
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/libs/singular/function.pyx:1479}}, in \textcolor{ansi-cyan}{sage.libs.singular.function.call\_function (build/cythonized/sage/libs/singular/function.cpp:23238)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{   1477} with opt\_ctx: \# we are preserving the global options state here
+\textcolor{ansi-green}{   1478}     if signal\_handler:
+\textcolor{ansi-green-intense}{\textbf{-> 1479}}         sig\_on()
+\textcolor{ansi-green}{   1480}         \_res = self.call\_handler.handle\_call(argument\_list, si\_ring)
+\textcolor{ansi-green}{   1481}         sig\_off()
+
+\textcolor{ansi-red-intense}{\textbf{KeyboardInterrupt}}: 
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{102}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} here is an alternative:}
+\PY{n}{Ms} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+    \PY{n}{gd} \PY{o}{=} \PY{n}{gcd}\PY{p}{(}\PY{p}{[}\PY{n}{Mcb1}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+    \PY{n}{Ms}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{Mcb1}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{quo\PYZus{}rem}\PY{p}{(}\PY{n}{gd}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{cb\PYZus{}alt} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}\PY{n}{Ms}\PY{p}{)}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{factor}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We have: cb1 = cb2 and cb2 = cb\_alt:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{103}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{cb1} \PY{o}{==} \PY{n}{cb2}\PY{p}{)}
+\PY{k}{assert}\PY{p}{(}\PY{n}{cb1} \PY{o}{==} \PY{n}{cb\PYZus{}alt}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}, frame=single, framerule=2mm, rulecolor=\color{outerrorbackground}]
+\textcolor{ansi-red-intense}{\textbf{---------------------------------------------------------------------------}}
+\textcolor{ansi-red-intense}{\textbf{NameError}}                                 Traceback (most recent call last)
+Cell \textcolor{ansi-green-intense}{\textbf{In[103], line 1}}
+\textcolor{ansi-green-intense}{\textbf{----> 1}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{assert}}(\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{cb1\strut} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{==} cb2)
+\textcolor{ansi-green}{      2} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{assert}}(cb1 \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{==} cb\_alt)
+
+\textcolor{ansi-red-intense}{\textbf{NameError}}: name 'cb1' is not defined
+    \end{Verbatim}
+
+    The following example shows that in general there are only the
+collinearities (1, 2, 3), (1, 4, 5), (1, 6, 7)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{ccb} \PY{o}{=} \PY{n}{cb\PYZus{}alt}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{pp1} \PY{o}{=} \PY{n}{p1}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{pp2} \PY{o}{=} \PY{n}{p2}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{pp3} \PY{o}{=} \PY{n}{p3}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{pp4} \PY{o}{=} \PY{n}{p4}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{pp5} \PY{o}{=} \PY{n}{p5}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{A2}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{B2}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{A4}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{C4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    HERE WE CONCLUDE THE FIRST PART OF THE COMPUTATION:
+
+In case \(C_2 = 0\), IT IS POSSIBLE TO HAVE THREE ALIGNMENTS: (1, 2, 3),
+(1, 4, 5), (1, 6, 7)
+
+    Now we want to see if it is possible to have more then three alignments
+(We continue to assume \(C2 = 0\))
+
+Recall that cb\_alt is our cubic.
+
+Recall that r3\_1 (= r3\_2) is the line through \(p_6\) and \(p_7\).
+
+Up to a permutation of the indices of the points, if there is another
+alignment among the eigenpoints, \(p_6\) must be on the line
+\(p_2 \vee p_4\). Hence we can find it, since is the intersection of
+\(p_2 \vee p_4\) and r3.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{106}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{r24} \PY{o}{=} \PY{n}{det}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p2}\PY{p}{,} \PY{n}{p4}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{107}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{E1} \PY{o}{=} \PY{n}{matrix}\PY{p}{(}
+    \PY{p}{[}
+        \PY{p}{[}\PY{n}{r3\PYZus{}1}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{xx}\PY{p}{)} \PY{k}{for} \PY{n}{xx} \PY{o+ow}{in} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+        \PY{p}{[}\PY{n}{r24}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{xx}\PY{p}{)} \PY{k}{for} \PY{n}{xx} \PY{o+ow}{in} \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{]}
+    \PY{p}{]}
+\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{108}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{p6} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{p}{(}\PY{n}{E1}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{E1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{E1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{109}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kJ} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}
+    \PY{n}{matrix}\PY{p}{(}
+        \PY{p}{[}
+            \PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{,}
+            \PY{p}{[}\PY{n}{cb\PYZus{}alt}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{cb\PYZus{}alt}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{cb\PYZus{}alt}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{]}
+        \PY{p}{]}
+    \PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{111}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}  \PY{c+c1}{\PYZsh{}\PYZsh{}p1}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p2}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p2}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p3}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p3}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p4}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p4}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{x}\PY{p}{,} \PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{o}{\PYZhy{}}\PY{n}{p5}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}\PYZsh{} p5}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+// ** `sat\_with\_exp` in use, can not be killed
+// ** redefining id (parameter def id; parameter ideal j;  )
+elim.lib::sat\_with\_exp:745
+// ** redefining j (parameter def id; parameter ideal j;  )
+elim.lib::sat\_with\_exp:745
+// ** redefining ii (   int ii,kk;) elim.lib::sat\_with\_exp:746
+// ** redefining kk (   int ii,kk;) elim.lib::sat\_with\_exp:746
+// ** redefining i (   def i=id;) elim.lib::sat\_with\_exp:747
+// ** redefining p (   int p = printlevel-voice+2;  // p=printlevel (default:
+p=0)) elim.lib::sat\_with\_exp:749
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}, frame=single, framerule=2mm, rulecolor=\color{outerrorbackground}]
+\textcolor{ansi-red-intense}{\textbf{---------------------------------------------------------------------------}}
+\textcolor{ansi-red-intense}{\textbf{KeyboardInterrupt}}                         Traceback (most recent call last)
+Cell \textcolor{ansi-green-intense}{\textbf{In[111], line 6}}
+\textcolor{ansi-green}{      4} kJ \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} kJ\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}saturation(S\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}ideal(p4[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}y\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}p4[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{1})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}x, p4[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}z\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}p4[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{2})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}x, p4[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{1})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}z\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}p4[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{2})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}y))[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})] \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{95,135,135}}{\#\# p4}
+\textcolor{ansi-green}{      5} kJ \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} kJ\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}saturation(S\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}ideal(p5[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}y\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}p5[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{1})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}x, p5[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}z\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}p5[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{2})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}x, p5[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{1})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}z\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{-}p5[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{2})]\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{*}y))[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})] \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{95,135,135}}{\#\# p5}
+\textcolor{ansi-green-intense}{\textbf{----> 6}} kJ \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} \setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{kJ\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{.\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{saturation\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{S\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{.\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{ideal\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{matrix\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{[\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{p1\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{,\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{ \strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{p2\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{]\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{.\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{minors\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{Integer\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{2\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]
+\textcolor{ansi-green}{      7} kJ \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} kJ\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}saturation(S\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}ideal(matrix([p1, p3])\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}minors(Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{2}))))[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]
+\textcolor{ansi-green}{      8} kJ \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} kJ\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}saturation(S\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}ideal(matrix([p1, p4])\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}minors(Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{2}))))[Integer(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{0})]
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/rings/qqbar\_decorators.py:96}}, in \textcolor{ansi-cyan}{handle\_AA\_and\_QQbar.<locals>.wrapper}\textcolor{ansi-blue-intense}{\textbf{(*args, **kwds)}}
+\textcolor{ansi-green}{     90} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{from}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,0,255}}{\textbf{sage}}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,0,255}}{\textbf{.}}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,0,255}}{\textbf{rings}}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,0,255}}{\textbf{.}}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,0,255}}{\textbf{abc}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{import}} AlgebraicField\_common
+\textcolor{ansi-green}{     92} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{if}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,255}}{\textbf{not}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{any}(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{isinstance}(a, (Polynomial, MPolynomial, Ideal\_generic))
+\textcolor{ansi-green}{     93}            \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,255}}{\textbf{and}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{isinstance}(a\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}base\_ring(), AlgebraicField\_common)
+\textcolor{ansi-green}{     94}            \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,255}}{\textbf{or}} is\_PolynomialSequence(a)
+\textcolor{ansi-green}{     95}            \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,255}}{\textbf{and}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{isinstance}(a\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}ring()\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}base\_ring(), AlgebraicField\_common) \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{for}} a \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,255}}{\textbf{in}} args):
+\textcolor{ansi-green-intense}{\textbf{---> 96}}     \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{return}} \setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{func\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{*\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{args\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{,\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{ \strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{*\strut}}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{*\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{kwds\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}
+\textcolor{ansi-green}{     98} polynomials \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} []
+\textcolor{ansi-green}{    100} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{for}} a \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,255}}{\textbf{in}} flatten(args, ltypes\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=}(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{list}, \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{tuple}, \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{set})):
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/rings/polynomial/multi\_polynomial\_ideal.py:2477}}, in \textcolor{ansi-cyan}{MPolynomialIdeal\_singular\_repr.saturation}\textcolor{ansi-blue-intense}{\textbf{(self, other)}}
+\textcolor{ansi-green}{   2475}     sat \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} ff\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}elim\_\_lib\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}sat
+\textcolor{ansi-green}{   2476} R \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{self}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}ring()
+\textcolor{ansi-green-intense}{\textbf{-> 2477}} ideal, expo \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} \setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{sat\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{self\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{,\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{ \strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{other\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}
+\textcolor{ansi-green}{   2478} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\textbf{return}} (R\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}ideal(ideal), ZZ(expo))
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/libs/singular/function.pyx:1298}}, in \textcolor{ansi-cyan}{sage.libs.singular.function.SingularFunction.\_\_call\_\_ (build/cythonized/sage/libs/singular/function.cpp:21339)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{   1296}     if not (isinstance(ring, MPolynomialRing\_libsingular) or isinstance(ring, NCPolynomialRing\_plural)):
+\textcolor{ansi-green}{   1297}         raise TypeError("cannot call Singular function '\%s' with ring parameter of type '\%s'" \% (self.\_name,type(ring)))
+\textcolor{ansi-green-intense}{\textbf{-> 1298}}     return call\_function(self, args, ring, interruptible, attributes)
+\textcolor{ansi-green}{   1299} 
+\textcolor{ansi-green}{   1300} def \_instancedoc\_(self):
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/libs/singular/function.pyx:1477}}, in \textcolor{ansi-cyan}{sage.libs.singular.function.call\_function (build/cythonized/sage/libs/singular/function.cpp:23326)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{   1475}     error\_messages.pop()
+\textcolor{ansi-green}{   1476} 
+\textcolor{ansi-green-intense}{\textbf{-> 1477}} with opt\_ctx: \# we are preserving the global options state here
+\textcolor{ansi-green}{   1478}     if signal\_handler:
+\textcolor{ansi-green}{   1479}         sig\_on()
+
+File \textcolor{ansi-green-intense}{\textbf{\textasciitilde{}/miniforge3/lib/python3.9/site-packages/sage/libs/singular/function.pyx:1479}}, in \textcolor{ansi-cyan}{sage.libs.singular.function.call\_function (build/cythonized/sage/libs/singular/function.cpp:23238)}\textcolor{ansi-blue-intense}{\textbf{()}}
+\textcolor{ansi-green}{   1477} with opt\_ctx: \# we are preserving the global options state here
+\textcolor{ansi-green}{   1478}     if signal\_handler:
+\textcolor{ansi-green-intense}{\textbf{-> 1479}}         sig\_on()
+\textcolor{ansi-green}{   1480}         \_res = self.call\_handler.handle\_call(argument\_list, si\_ring)
+\textcolor{ansi-green}{   1481}         sig\_off()
+
+\textcolor{ansi-red-intense}{\textbf{KeyboardInterrupt}}: 
+    \end{Verbatim}
+
+    after these computations, kJ is the ideal of the two reminining
+eigenpoints. we want that p1 defined above is an eigenpoint, so the
+ideal kkJ here defined must be zero:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kJ}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:}\PY{n}{p6}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{:}\PY{n}{p6}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{z}\PY{p}{:}\PY{n}{p6}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{o}{.}\PY{n}{radical}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We saturate kkJ
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p4}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p1}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p3}\PY{p}{,} \PY{n}{p5}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p2}\PY{p}{,} \PY{n}{p6}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{kkJ} \PY{o}{=} \PY{n}{kkJ}\PY{o}{.}\PY{n}{saturation}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{n}{matrix}\PY{p}{(}\PY{p}{[}\PY{n}{p4}\PY{p}{,} \PY{n}{p6}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{minors}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    kkJ is (1), so there are no solutions:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{assert}\PY{p}{(}\PY{n}{kkJ} \PY{o}{==} \PY{n}{S}\PY{o}{.}\PY{n}{ideal}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    CONCLUSION (for the case \(C_2 = 0\)) when the three deltas are zero,
+(hence rank of the matrix of the five points is \(8\)), we have also
+\(\delta_2 = 0\) and we have the collinearities \((1, 2, 3)\),
+\((1, 4, 5)\). We have a sub-case in which there is the further
+collinearity \((1, 6, 7)\). No other collinearities among the 7
+eigenpoints are possible.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
