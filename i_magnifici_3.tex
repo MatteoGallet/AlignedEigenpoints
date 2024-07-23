@@ -10,6 +10,8 @@
 \usepackage{mathtools}
 \usepackage{lmodern}
 \usepackage[english]{babel}
+\usepackage{hyphenat}
+\hyphenation{ei-gen-point ei-gen-points ei-gen-scheme ei-gen-schemes}
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{enumitem}
@@ -986,7 +988,7 @@ $\delta_2=0$ uniquely determines $P_3$. However, there are some exceptions, whic
 \begin{prop}
 \label{proposition:definitionP3}
 For five points $P_1, \dots, P_5$ in a $V$- configuration, it holds that
-$\delta_2(P_1, P_2, P_3, P_4, P_5) = 0$ if and only if (up to a permutation of $P_2, \dots, P_5$) at least one of the following conditions
+$\delta_2(P_1, \dotsc, P_5) = 0$ if and only if (up to a permutation of $P_2, \dots, P_5$) at least one of the following conditions
 is satisfied:
 %
 \begin{enumerate}
@@ -1203,11 +1205,13 @@ Also in this case, the locus of cubics is of dimension~$7$.
 We will show that in this situation there are further alignments.
 \end{itemize}
 
+In our analysis, we distinguish whether the matrix of conditions of the points of the $V$- configuration has rank~$9$ or~$8$.
+
 \subsection{\texorpdfstring{$V$}{V}- configurations of rank~\texorpdfstring{$9$}{9}}
 \label{rank_9}
 
-In this section, we consider five points $P_1, \dots, P_5$ in a $V$- configuration and we assume that the rank of $\Phi(P_1, \dots, P_5)$ is~$9$.
-We prove that when $\delta_2(P_1, \dotsc, P_5) = 0$, if the unique corresponding cubic has a regular eigenscheme, then the two other eigenpoints $P_6$ and $P_7$ are aligned with $P_1$.
+In this section, we consider five points $P_1, \dots, P_5$ in a $V$- configuration and we assume that $\rk \, \Phi(P_1, \dots, P_5) = 9$.
+We show that if $\delta_2(P_1, \dotsc, P_5) = 0$ and the unique corresponding cubic has a regular eigenscheme, then the two other eigenpoints $P_6$ and $P_7$ are aligned with $P_1$.
 
 The following two results are instrumental to the symbolic computations in the proof of the main result.
 
@@ -1534,7 +1538,7 @@ See Notebook \nb{04}{F2}.
   \end{array}
   }
   \right.
-  \quad \text{and} \quad
+  \;\; \text{and} \;\;
   \left\{ \!\!
   \scalemath{0.9}{
   \begin{array}{ll}
@@ -1652,7 +1656,7 @@ in place of~$P_4$.
 %% file three_deltas_III.sage, three_deltas_IV.sage
 We define the points $P_1, \dots, P_5$ as in the previous proposition, then 
 we consider a point of the line $P_2 \vee P_4$ and we impose that it is 
-an eigenpoint (i.e., we impose that $\rk \, \Phi(P_1, \dotsc, P_6) < 10$).
+an eigenpoint, i.e., we impose that $\rk \, \Phi(P_1, \dotsc, P_6) < 10$.
 This request defines a point~$P_6$ and it turns out that $P_6$ is also aligned 
 with~$P_3$ and~$P_5$. We then define $P_7$ as the point 
 $(P_2 \vee P_5) \cap (P_3 \vee P_4)$. It turns out that 
@@ -1858,7 +1862,7 @@ The variety~$\sL$ is an irreducible hypersurface.
 \end{theorem}
 
 \begin{proof}
-We observe that as there exist
+We observe that, as there exist
 polynomials $f$ such that $\Eig{f}$ has no aligned triple, we have $\dim \sL \le 8$.
 
 Consider the symmetric product $(\p^2)^{(3)}$ and set $\mathcal{AL} \subset (\p^2)^{(3)}$ to be the locus of unordered triples of distinct aligned points. Observe that $\mathcal{AL}$ is irreducible of dimension $5$ as its closure is the hypersurface given by the vanishing of the determinant of the order~$3$ matrix of the coordinates of three general points. Alternatively, the closure of the locus $\mathcal {AL}$ can be seen as the symmetric quotient of the projective line bundle $\sF \subset \p^2 \times \p^2 \times \p^2$ parametrized by the triples $(P_1, P_2, u_1 P_1 +u_2P_2)$, where $(u_1:u_2) \in \p^1$.
@@ -2318,8 +2322,8 @@ then $t \subseteq \Eig{f}$ for a cubic $C=V(f)$ if and only if
 \end{prop}
 \begin{proof}
 %% file: una_retta_tg_autop.sage
-Suppose $t$ is not tangent to $\iso$ and let $P_1, \dots, P_4$ be four 
-distinct points on it. By~\Cref{lemma:four_points_on_line}, the projective linear system
+Suppose that $t$ is not tangent to $\iso$ and let $P_1, \dots, P_4$ be four 
+distinct points on it. By \Cref{lemma:four_points_on_line}, the projective linear system
 $\Lambda(\Phi(P_1, \dotsc, P_4))$ is two-dimensional, but also all the cubics
 defined by $t^2\ell$ (for $\ell$ any line of $\mathbb{P}^2$) have $t$ among
 their eigenpoints and form a
@@ -2644,7 +2648,7 @@ $(C_1)$ configuration.
 \subsection*{Configuration~\texorpdfstring{$(C_2)$}{C2}}
 In this case, the points
 $P_1, \dots, P_5$ are in a
-$V$- configuration, so $\rk \, \Phi(P_1, \dotsc, P_5)$
+$V$- configuration, so the rank of~$\Phi(P_1, \dotsc, P_5)$
 must be~$9$ or~$8$. If the rank is~$9$, then $\delta_1(P_1, P_2, P_4) = 0$
 or $\delta_2(P_1, \dotsc, P_5) = 0$, see \Cref{theorem:rank_V}.
 From \Cref{proposition:third_alignment}, the only case
